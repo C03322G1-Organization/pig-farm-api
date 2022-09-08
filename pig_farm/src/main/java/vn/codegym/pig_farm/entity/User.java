@@ -1,5 +1,7 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,9 +37,13 @@ public class User {
     private Boolean isDeleted;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Employee employee;
 
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<UserRole> userRoles;
+
+
 }

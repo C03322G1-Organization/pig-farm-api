@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Storage {
     private Integer id;
 
     @OneToMany(mappedBy = "storage")
+    @JsonIgnore
     private List<Food> foods;
 
     private Integer amount;
