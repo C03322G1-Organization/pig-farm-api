@@ -20,6 +20,8 @@ public class Storage {
     @OneToMany(mappedBy = "storage")
     private List<Food> foods;
 
+    private String foodType;
+
     private Integer amount;
 
     @Column(columnDefinition = "VARCHAR(15)")
