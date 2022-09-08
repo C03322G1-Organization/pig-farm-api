@@ -16,7 +16,7 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(30)")
+    @Column(columnDefinition = "VARCHAR(255)")
     private String title;
 
     @Column(columnDefinition = "VARCHAR(1000)")
@@ -28,6 +28,6 @@ public class Notification {
     @Column(columnDefinition = "VARCHAR(255)")
     private String image;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 }

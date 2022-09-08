@@ -29,7 +29,7 @@ public class User {
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @OneToOne(mappedBy = "user")
