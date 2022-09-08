@@ -1,8 +1,8 @@
 package vn.codegym.pig_farm.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Data
+//@Getter
+//@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pigsty {
@@ -31,19 +33,26 @@ public class Pigsty {
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Food> foods;
 
+
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Vaccination> vaccinations;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Pig> pigs;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Export> exports;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
+
 }
