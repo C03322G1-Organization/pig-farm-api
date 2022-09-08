@@ -29,11 +29,11 @@ public class Advertisement {
     @Column(columnDefinition = "VARCHAR(50)")
     private String timeExistence;
 
+    @ManyToOne
+    @JoinColumn(name = "placement_id", referencedColumnName = "id")
+    private Placement placement;
 
-    @OneToMany(mappedBy = "advertisement")
-    private List<Placement> placements;
-
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 
 }

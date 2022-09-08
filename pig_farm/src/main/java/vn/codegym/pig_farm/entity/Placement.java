@@ -1,10 +1,13 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,8 +21,7 @@ public class Placement {
     @Column(columnDefinition = "VARCHAR(255)")
     private String name;
 
-
-    @ManyToOne
-    @JoinColumn(name = "advertisement_id", referencedColumnName = "id")
-    private Advertisement advertisement;
+    @JsonIgnore
+    @OneToMany(mappedBy = "placement")
+    private Set<Advertisement> advertisements;
 }
