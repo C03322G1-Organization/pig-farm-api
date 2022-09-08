@@ -3,7 +3,6 @@ package vn.codegym.pig_farm.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class Role {
 
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
-
 
     @OneToMany(mappedBy = "role")
     private List<UserRole> userRoles;

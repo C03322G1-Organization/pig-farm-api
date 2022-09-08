@@ -1,9 +1,9 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -39,6 +39,8 @@ public class Pig {
     private List<Treatment> treatments;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
+
 }

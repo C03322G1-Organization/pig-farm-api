@@ -3,7 +3,6 @@ package vn.codegym.pig_farm.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +16,6 @@ public class Placement {
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String name;
-
 
     @ManyToOne
     @JoinColumn(name = "advertisement_id", referencedColumnName = "id")

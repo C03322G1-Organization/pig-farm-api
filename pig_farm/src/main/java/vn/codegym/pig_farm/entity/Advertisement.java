@@ -29,7 +29,6 @@ public class Advertisement {
     @Column(columnDefinition = "VARCHAR(50)")
     private String timeExistence;
 
-
     @OneToMany(mappedBy = "advertisement")
     private List<Placement> placements;
 
