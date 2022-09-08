@@ -16,9 +16,19 @@ import java.util.Optional;
 @RequestMapping("/api/food")
 public class FoodController {
 
+
     @Autowired
     FoodService foodService;
 
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: create a food
+     * @param food
+     * @return
+     * if created food return HttpStatus.CREATED(201)
+     *
+     */
     @PostMapping("/create")
     public ResponseEntity<Object> add(@RequestBody Food food) {
         if (food == null) {
@@ -28,6 +38,15 @@ public class FoodController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: edit a food
+     * @param food
+     * @return
+     * if created food return HttpStatus.CREATED(201)
+     *
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable("id") Integer id, @RequestBody Food food) {
         Food foods = foodService.findById(id);

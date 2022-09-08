@@ -14,6 +14,15 @@ import java.util.Optional;
 @Transactional
 public interface IFoodRepository extends JpaRepository<Food, Integer> {
 
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: save a food
+     * @param amount
+     * @param unit
+     * @param pigsty
+     * @param storage
+     */
     @Modifying
     @Query(value = "INSERT INTO food(amount, unit, pigsty_id, storage_id) " +
             " values(:amount, :unit , :pigsty, :storage)", nativeQuery = true)
@@ -23,6 +32,15 @@ public interface IFoodRepository extends JpaRepository<Food, Integer> {
               @Param("storage") Storage storage);
 
 
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: edit a food
+     * @param amount
+     * @param unit
+     * @param pigsty
+     * @param storage
+     */
     @Transactional
     @Modifying
     @Query(value = "update food set amount = :amount, unit = :unit, pigsty_id = :pigsty, storage_id = :storage where id = :id", nativeQuery = true)
@@ -33,6 +51,13 @@ public interface IFoodRepository extends JpaRepository<Food, Integer> {
                 @Param("id") Integer id);
 
 
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: findById a food
+     * @param id
+     * @return
+     */
     @Query(value = "select * from food where id = :id", nativeQuery = true)
     Food findById(@Param("id") int id);
 }
