@@ -25,7 +25,11 @@ public class PigService implements IPigService {
     public Pig findById(Integer id) {
         return pigRepository.findByIdPig(id);
     }
-
+    /**
+     * Created by: DatVT
+     * Date created: 08/09/2022
+     * Function: createPig
+     */
     @Override
     public void createPig(Pig pig) {
         pigRepository.createPig(
@@ -37,6 +41,11 @@ public class PigService implements IPigService {
                 pig.getPigsty().getId());
 
     }
+    /**
+     * Created by: DatVT
+     * Date created: 08/09/2022
+     * Function: updatePig
+     */
     @Override
     public void updatePig( Pig pig) {
         pigRepository.updatePig(

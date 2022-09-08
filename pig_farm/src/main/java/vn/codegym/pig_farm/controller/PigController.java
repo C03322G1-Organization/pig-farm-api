@@ -22,7 +22,11 @@ public class PigController {
         }
         return new ResponseEntity<>(pigService.findAll(), HttpStatus.OK);
     }
-
+    /**
+     * Create by: DatVT
+     * Date Create: 08/09/2022
+     * funtion: Create item in pig
+     */
     @PostMapping("/create")
     public ResponseEntity<?> createPig(@RequestBody Pig pig) {
         if (pig == null){
@@ -32,6 +36,11 @@ public class PigController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+    /**
+     * Create by: DatVT
+     * Date Create: 08/09/2022
+     * funtion: Update item in pig
+     */
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updatePig(@PathVariable("id") Integer id,
                                        @RequestBody Pig pig) {
