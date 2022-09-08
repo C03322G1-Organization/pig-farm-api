@@ -12,7 +12,7 @@ public interface IStatisticService {
      * Date created: 8/9/2022
      * function: Get value statistic by month from Database to return value.
      *
-     * @return
+     * @return List<StatisticByMonth> or null
      */
 
     List<StatisticByMonth> getStatisticByMonth(String startDate, String endDate, Integer type);
@@ -22,7 +22,7 @@ public interface IStatisticService {
      * Date created: 8/9/2022
      * function: Get value statistic by year from Database to return value.
      *
-     * @return
+     * @return List<StatisticByYear> or null
      */
 
     List<StatisticByYear> getStatisticByYear(String startDate, String endDate, Integer type);

@@ -20,7 +20,7 @@ public class StatisticService implements IStatisticService {
      * Date created: 8/9/2022
      * function: Get value statistic by month from Database to return value.
      *
-     * @return
+     * @return List<StatisticByMonth> or null
      */
 
     @Override
@@ -33,7 +33,7 @@ public class StatisticService implements IStatisticService {
      * Date created: 8/9/2022
      * function: Get value statistic by year from Database to return value.
      *
-     * @return
+     * @return List<StatisticByYear> or null
      */
 
     @Override

@@ -20,7 +20,7 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
      * Date created: 8/9/2022
      * function: Get value statistic by month from Database to return value.
      *
-     * @return
+     * @return List<StatisticByMonth> or null
      */
 
     @Query(value= " select " +
@@ -41,7 +41,7 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
      * Date created: 8/9/2022
      * function: Get value statistic by year from Database to return value.
      *
-     * @return
+     * @return List<StatisticByYear> or null
      */
 
     @Query(value = "select " +

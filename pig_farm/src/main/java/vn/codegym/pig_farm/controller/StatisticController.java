@@ -25,7 +25,7 @@ public class StatisticController {
      * Date created: 8/9/2022
      * function: Get value statistic by month from Database to return value.
      *
-     * @return
+     * @return BAD_REQUEST, NO_CONTENT, OK
      */
 
     @GetMapping("by-month/{startTime}/{endTime}/{type}")
@@ -35,7 +35,7 @@ public class StatisticController {
         }
         List<StatisticByMonth> statisticByMonthList = statisticService.getStatisticByMonth(startTime, endTime, type);
         if (statisticByMonthList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(statisticByMonthList, HttpStatus.OK);
     }
@@ -45,7 +45,7 @@ public class StatisticController {
      * Date created: 8/9/2022
      * function: Get value statistic by year from Database to return value.
      *
-     * @return
+     * @return BAD_REQUEST, NO_CONTENT, OK
      */
 
     @GetMapping("by-year/{startTime}/{endTime}/{type}")
@@ -55,7 +55,7 @@ public class StatisticController {
         }
         List<StatisticByYear> statisticByMonthList = statisticService.getStatisticByYear(startTime, endTime, type);
         if (statisticByMonthList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(statisticByMonthList, HttpStatus.OK);
     }
