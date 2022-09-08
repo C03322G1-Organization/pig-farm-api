@@ -2,16 +2,15 @@ package vn.codegym.pig_farm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.IContactDTO;
 import vn.codegym.pig_farm.entity.Contact;
 import vn.codegym.pig_farm.service.IContactService;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -57,5 +56,15 @@ public class ContactController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contact, HttpStatus.OK);
+    }
+    /**
+     * Create by : TriPT
+     * Date created: 08/09/2022
+     * function: delete Contact
+     */
+    @PostMapping("/delete")
+    private ResponseEntity<Contact> delete(@RequestBody Map<String, Integer[]> ids) {
+        contactService.deleteContact(ids.get("id"));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

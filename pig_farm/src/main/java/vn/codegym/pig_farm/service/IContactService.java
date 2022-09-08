@@ -2,10 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.IContactDTO;
 import vn.codegym.pig_farm.entity.Contact;
-
-import java.time.LocalDate;
 
 public interface IContactService {
     /*
@@ -13,7 +10,7 @@ public interface IContactService {
      *Date create: 08/09/2022
      *function: Delete Contact
      */
-    void deleteContact( Integer id);
+    void deleteContact(Integer[] ids);
     /*
      *Create by TriPT
      *Date create: 08/09/2022

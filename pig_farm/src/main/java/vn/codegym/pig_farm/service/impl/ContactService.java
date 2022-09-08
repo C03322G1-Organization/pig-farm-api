@@ -4,12 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.IContactDTO;
 import vn.codegym.pig_farm.entity.Contact;
 import vn.codegym.pig_farm.repository.IContactRepository;
 import vn.codegym.pig_farm.service.IContactService;
-
-import java.time.LocalDate;
 
 @Service
 public class ContactService implements IContactService {
@@ -22,7 +19,8 @@ public class ContactService implements IContactService {
      * function: Delete Contact
      */
     @Override
-    public void deleteContact(Integer id) {
+    public void deleteContact(Integer[] ids) {
+        for(Integer id : ids)
         contactRepository.deleteContact(id);
     }
 
