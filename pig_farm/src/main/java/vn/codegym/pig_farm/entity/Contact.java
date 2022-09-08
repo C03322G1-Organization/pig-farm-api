@@ -34,6 +34,6 @@ public class Contact {
     @Column(columnDefinition = "DATE")
     private LocalDate date;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 }
