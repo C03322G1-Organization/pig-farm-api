@@ -53,13 +53,13 @@ public interface IPigRepository extends JpaRepository<Pig, Integer> {
      */
     @Modifying
     @Query(value = "update pig set " +
-            "code=:code," +
-            " date_in=:dateIn," +
+            "code=:code, " +
+            " date_in=:dateIn, " +
             "date_out=:dateOut, " +
             "status=:status," +
             "weight=:weight," +
-            "pigsty_id=:pigsty," +
-            " where id=:id", nativeQuery = true)
+            "pigsty_id=:pigsty " +
+            "where id=:id", nativeQuery = true)
     void updatePig(@Param("code") String code, @Param("dateIn") LocalDate dateIn,
                    @Param("dateOut") LocalDate dateOut, @Param("status") String status,
                    @Param("weight") String weight, @Param("pigsty") Pigsty pigsty,
