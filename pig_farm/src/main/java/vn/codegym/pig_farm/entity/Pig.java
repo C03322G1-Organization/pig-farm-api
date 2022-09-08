@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Pig {
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(10)")
-    private String code;
+    private String pigCode;
 
     @Column(columnDefinition = "DATE")
     private LocalDate dateIn;
@@ -36,9 +37,11 @@ public class Pig {
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pig")
+    @JsonBackReference
     private List<Treatment> treatments;
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
+
 }

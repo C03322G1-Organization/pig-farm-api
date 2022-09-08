@@ -38,9 +38,6 @@ public class Employee {
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
 
-    @OneToMany(mappedBy = "employee")
-    private List<Pigsty> pigsties;
-
 
     @OneToMany(mappedBy = "employee")
     private List<Export> exports;

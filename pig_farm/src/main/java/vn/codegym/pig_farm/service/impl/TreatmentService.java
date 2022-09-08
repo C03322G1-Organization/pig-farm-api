@@ -1,0 +1,39 @@
+package vn.codegym.pig_farm.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import vn.codegym.pig_farm.dto.ITreatmentDto;
+import vn.codegym.pig_farm.entity.Treatment;
+import vn.codegym.pig_farm.repository.TreatmentRepository;
+import vn.codegym.pig_farm.service.ITreatmentService;
+
+import java.util.List;
+
+@Service
+public class TreatmentService implements ITreatmentService {
+    @Autowired
+    private TreatmentRepository treatmentRepository;
+
+    /**
+     * Create by ThuanT
+     * Date create: 08/09/2022
+     * Override method findAllTreatment
+     * @return
+     */
+    @Override
+    public List<ITreatmentDto> getAllTreatment() {
+        return treatmentRepository.getAllTreatment();
+    }
+
+    /**
+     * Create by ThuanT
+     * Date create: 08/09/2022
+     * Override method deleteByIdTreatment
+     * @return
+     */
+    @Override
+    public void deleteByIdTreatment(int id) {
+        treatmentRepository.deleteByIdTreatment(id);
+    }
+
+}

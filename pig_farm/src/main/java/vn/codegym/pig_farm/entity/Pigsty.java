@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class Pigsty {
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(30)")
-    private String code;
+    private String pigstyCode;
 
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
@@ -28,22 +29,27 @@ public class Pigsty {
 
     private Integer maxNumber;
 
+    @Column(columnDefinition = "varchar(100)")
+    private String creator;
+
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonBackReference
     private List<Food> foods;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonBackReference
     private List<Vaccination> vaccinations;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonBackReference
     private List<Pig> pigs;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonBackReference
     private List<Export> exports;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    private Employee employee;
+
 }
