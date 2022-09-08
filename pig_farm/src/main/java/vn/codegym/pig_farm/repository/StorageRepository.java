@@ -17,9 +17,21 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
 //    @Query(value = "select `storage`.id, `storage`.amount,`storage`.food_type, `storage`.`date`, `storage`.unit, `storage`.is_deleted from storage", nativeQuery = true)
 //    List<Storage> storagePage();
 
-    @Query(value = " select * from storage where food_type like :foodType ", nativeQuery = true,
+    /**
+     * Created by: HoangDT
+     * Date created: 08/09/2022
+     * Function: findAll
+     */
+
+    @Query(value = " select * from storage where food_type like :foodType and is_deleted = 0 ", nativeQuery = true,
             countQuery = " select count(*) from (select * from storage where food_type like :foodType) temp_table ")
     Page<Storage> findAllStorage(Pageable pageable, @Param("foodType") String foodType);
+
+    /**
+     * Created by: HoangDT
+     * Date created: 08/09/2022
+     * Function: create storage
+     */
 
     @Modifying
     @Query(value = "insert into `storage` ( amount, food_type, `date`, unit)" +

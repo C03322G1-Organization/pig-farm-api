@@ -20,29 +20,33 @@ public class StorageRestController {
     @Autowired
     StorageService storageService;
 
-//    @GetMapping("/list")
-//    public ResponseEntity<List<Storage>> getStorageList() {
-//        Page<Storage> storageList = storageService.findAll();
-//        if (storageList.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(storageList, HttpStatus.OK);
-//    }
-    @GetMapping("/list")
+    /**
+     * Create by: HoangDT
+     * Date Create: 08/09/2022
+     * funtion: findAll storage
+     */
+
+    @GetMapping("/page")
     public ResponseEntity<Page<Storage>> showAll(@PageableDefault(5) Pageable pageable,
-                                             @RequestParam Optional<String> keyWord) {
+                                                 Optional<String> keyWord) {
         {
-    //        String code = codeSearch.orElse("");
-    //        if (code.equals("null")) {
-    //            code = "";
-    //        }
-            Page<Storage> pigs = storageService.findAll(pageable, String.valueOf(keyWord));
-            if (pigs.isEmpty()) {
+            String foodType = keyWord.orElse("");
+            if (foodType.equals("null")) {
+                foodType = "";
+            }
+            Page<Storage> storagePage = storageService.findAll(pageable, foodType);
+            if (storagePage.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(pigs, HttpStatus.OK);
+            return new ResponseEntity<>(storagePage, HttpStatus.OK);
         }
     }
+
+    /**
+     * Create by: HoangDT
+     * Date Create: 08/09/2022
+     * funtion: create storage
+     */
 
     @PostMapping("/create")
     public ResponseEntity <Storage> createStorage(@RequestBody Storage storage) {

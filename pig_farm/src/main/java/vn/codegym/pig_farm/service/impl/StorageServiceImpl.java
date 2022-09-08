@@ -13,10 +13,22 @@ public class StorageServiceImpl implements StorageService {
     @Autowired
     StorageRepository storageRepository;
 
+    /**
+     * Created by: HoangDT
+     * Date created: 08/09/2022
+     * Function: findAll
+     */
+
     @Override
     public Page<Storage> findAll(Pageable pageable, String keyWord) {
         return storageRepository.findAllStorage(pageable,"%" + keyWord + "%");
     }
+
+    /**
+     * Created by: HoangDT
+     * Date created: 08/09/2022
+     * Function: createStorage
+     */
 
     @Override
     public void save(Storage storage) {
