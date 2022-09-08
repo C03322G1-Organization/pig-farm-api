@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,7 @@ public class Employee {
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "employee")
+    @JsonIgnore
     private List<Pigsty> pigsties;
 
 
