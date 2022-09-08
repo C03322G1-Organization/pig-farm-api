@@ -26,6 +26,9 @@ public class Pigsty {
     @Column(columnDefinition = "DATE")
     private LocalDate buildDate;
 
+    @Column(columnDefinition = "varchar(100)")
+    private String creator;
+
     private Integer maxNumber;
 
     @Column(columnDefinition = "BIT")
@@ -42,8 +45,4 @@ public class Pigsty {
 
     @OneToMany(mappedBy = "pigsty")
     private List<Export> exports;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    private Employee employee;
 }
