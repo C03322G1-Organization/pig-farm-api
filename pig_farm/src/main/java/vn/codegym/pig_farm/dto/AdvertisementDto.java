@@ -1,0 +1,98 @@
+package vn.codegym.pig_farm.dto;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import vn.codegym.pig_farm.entity.Placement;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+public class AdvertisementDto  {
+
+    private Integer id;
+    
+    private String title;
+
+    private String image;
+
+    private LocalDate submittedDate;
+
+    private String timeExistence;
+
+    private Placement placement;
+
+    private Boolean isDeleted;
+
+    public AdvertisementDto() {
+    }
+
+    public AdvertisementDto(Integer id, String title, String image, LocalDate submittedDate, String timeExistence, Placement placement, Boolean isDeleted) {
+        this.id = id;
+        this.title = title;
+        this.image = image;
+        this.submittedDate = submittedDate;
+        this.timeExistence = timeExistence;
+        this.placement = placement;
+        this.isDeleted = isDeleted;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public LocalDate getSubmittedDate() {
+        return submittedDate;
+    }
+
+    public void setSubmittedDate(LocalDate submittedDate) {
+        this.submittedDate = submittedDate;
+    }
+
+    public String getTimeExistence() {
+        return timeExistence;
+    }
+
+    public void setTimeExistence(String timeExistence) {
+        this.timeExistence = timeExistence;
+    }
+
+    public Placement getPlacement() {
+        return placement;
+    }
+
+    public void setPlacement(Placement placement) {
+        this.placement = placement;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+
+
+
+}

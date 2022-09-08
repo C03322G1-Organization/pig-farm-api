@@ -1,5 +1,7 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,10 +32,12 @@ public class Advertisement {
     private String timeExistence;
 
 
-    @OneToMany(mappedBy = "advertisement")
-    private List<Placement> placements;
+    @ManyToOne
+    @JoinColumn(name = "placement_id", referencedColumnName = "id")
+    private Placement placement;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
+
 
 }
