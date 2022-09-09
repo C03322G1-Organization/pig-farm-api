@@ -15,18 +15,16 @@ import java.time.LocalDate;
 public class PigstyDto implements Validator {
     private Integer id;
 
-    @NotNull
-    @NotBlank
     private LocalDate creationDate;
 
     private LocalDate buildDate;
-    @NotNull
-    @NotBlank
+
     @Max(value = 20,message = "không được lớn hơn 20 cá thể")
     private Integer maxNumber;
 
     private Boolean isDeleted;
 
+    @NotNull
     private Employee employee;
 
     @Override
