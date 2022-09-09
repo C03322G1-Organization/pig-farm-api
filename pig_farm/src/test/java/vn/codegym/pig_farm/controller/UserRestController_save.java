@@ -249,6 +249,6 @@ public class UserRestController_save {
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is2xxSuccessful());
     }
 }
