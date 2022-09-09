@@ -36,7 +36,7 @@ public class Treatment {
 
     @ManyToOne
     @JoinColumn(name = "pig_id", referencedColumnName = "id")
-    @JsonBackReference
+//    @JsonBackReference
     private Pig pig;
 
 }

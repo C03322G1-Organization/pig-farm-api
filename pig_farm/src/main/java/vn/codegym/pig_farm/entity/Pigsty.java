@@ -36,19 +36,15 @@ public class Pigsty {
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pigsty")
-    @JsonBackReference
     private List<Food> foods;
 
     @OneToMany(mappedBy = "pigsty")
-    @JsonBackReference
     private List<Vaccination> vaccinations;
 
     @OneToMany(mappedBy = "pigsty")
-    @JsonBackReference
     private List<Pig> pigs;
 
     @OneToMany(mappedBy = "pigsty")
-    @JsonBackReference
     private List<Export> exports;
 
 

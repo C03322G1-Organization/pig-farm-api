@@ -37,7 +37,6 @@ public class Pig {
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pig")
-    @JsonBackReference
     private List<Treatment> treatments;
 
     @ManyToOne

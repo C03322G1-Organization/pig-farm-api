@@ -1,6 +1,8 @@
 package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.dto.ITreatmentDto;
 import vn.codegym.pig_farm.entity.Treatment;
@@ -21,8 +23,8 @@ public class TreatmentService implements ITreatmentService {
      * @return
      */
     @Override
-    public List<ITreatmentDto> getAllTreatment() {
-        return treatmentRepository.getAllTreatment();
+    public Page<ITreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
+        return treatmentRepository.getAllTreatment( pageable,   "%" + keySearch + "%");
     }
 
     /**
@@ -35,5 +37,6 @@ public class TreatmentService implements ITreatmentService {
     public void deleteByIdTreatment(int id) {
         treatmentRepository.deleteByIdTreatment(id);
     }
+
 
 }

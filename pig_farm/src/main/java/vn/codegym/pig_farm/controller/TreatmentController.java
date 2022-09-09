@@ -1,6 +1,9 @@
 package vn.codegym.pig_farm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,7 @@ import vn.codegym.pig_farm.service.ITreatmentService;
 import vn.codegym.pig_farm.service.impl.TreatmentService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/treatment/v1")
@@ -24,13 +28,18 @@ public class TreatmentController {
      * method: get All Treatment
      * @return
      */
-    @GetMapping
-    public ResponseEntity<List<ITreatmentDto>> getAllTreatment() {
-        List<ITreatmentDto> treatmentList = treatmentService.getAllTreatment();
-        if (treatmentList.isEmpty()) {
+    @GetMapping("/")
+    public ResponseEntity<Page<ITreatmentDto>> getAllTreatment(@PageableDefault(value = 5) Pageable pageable,
+                                                                Optional<String> keySearch) {
+        String title = keySearch.orElse("");
+        if (title.equals("null")) {
+            title = "";
+        }
+        Page<ITreatmentDto> treatmentPage = treatmentService.getAllTreatment(pageable, title);
+        if (treatmentPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(treatmentList, HttpStatus.OK);
+        return new ResponseEntity<>(treatmentPage, HttpStatus.OK);
     }
 
     /**
@@ -41,7 +50,7 @@ public class TreatmentController {
      * @return
      */
     @PutMapping(value ="/{id}")
-    public ResponseEntity<ITreatmentDto> deleteTreatment(@PathVariable int id) {
+    public ResponseEntity<?> deleteTreatment(@PathVariable int id) {
         treatmentService.deleteByIdTreatment(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

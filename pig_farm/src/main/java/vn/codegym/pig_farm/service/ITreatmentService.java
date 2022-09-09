@@ -1,9 +1,9 @@
 package vn.codegym.pig_farm.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.dto.ITreatmentDto;
-import vn.codegym.pig_farm.entity.Treatment;
 
-import java.util.List;
 
 public interface ITreatmentService {
 
@@ -13,7 +13,7 @@ public interface ITreatmentService {
      * create method getAllTreatment
      * @return
      */
-    List<ITreatmentDto> getAllTreatment();
+    Page<ITreatmentDto> getAllTreatment(Pageable pageable, String keySearch);
 
     /**
      * Create by ThuanT
@@ -23,4 +23,5 @@ public interface ITreatmentService {
      * @param id
      */
     void deleteByIdTreatment(int id);
+
 }
