@@ -6,6 +6,7 @@ import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Storage;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ public class FoodDto implements Validator {
 
     @NotNull(message = "*Không được để trống!")
     @Min(0)
+    @Max(1000)
     private Integer amount;
 
     @NotBlank(message = "*Không được để trống!")
