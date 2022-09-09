@@ -20,7 +20,7 @@ public class VaccinationServiceImpl implements IVaccinationService {
 
     @Override
     public void saveVaccination(Vaccination vaccination) {
-        iVaccinationRepository.createVaccination(vaccination.getAmount(), vaccination.getDate(), vaccination.getIsDeleted(),
+        iVaccinationRepository.createVaccination(vaccination.getAmount(), vaccination.getDate(),
                 vaccination.getNote(), vaccination.getVaccinatedPerson(), vaccination.getVaccineType(), vaccination.getPigsty());
     }
 }

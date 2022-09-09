@@ -1,15 +1,7 @@
 package vn.codegym.pig_farm.dto;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.*;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 
