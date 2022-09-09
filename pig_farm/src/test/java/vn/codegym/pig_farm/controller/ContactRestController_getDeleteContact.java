@@ -14,6 +14,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ContactRestController_getDeleteContact {
 
+    @Autowired
+    private MockMvc mockMvc;
+
+
     /**
      * Creator: TriPT
      * Date created: 09-09-2022
@@ -31,8 +35,8 @@ public class ContactRestController_getDeleteContact {
 
 
     /**
-     * Creator: PhucNQ
-     * Date created: 11-08-2022 10:30
+     * Creator: TriPT
+     * Date created: 09-09-2022
      * Function: delete_26
      * Description: In situation the id send value is empty
      */
@@ -40,14 +44,14 @@ public class ContactRestController_getDeleteContact {
     void delete_26() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/computer/"))
+                                .delete("/contact/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
     /**
-     * Creator: PhucNQ
-     * Date created: 11-08-2022 10:30
+     * Creator: TriPT
+     * Date created: 09-09-2022
      * Function: delete_27
      * Description: In situation the id send value was not founded in database
      */
@@ -55,14 +59,14 @@ public class ContactRestController_getDeleteContact {
     void delete_27() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/computer/99"))
+                                .delete("/contact/99"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
     /**
-     * Creator: PhucNQ
-     * Date created: 11-08-2022 10:30
+     * Creator: TriPT
+     * Date created: 09-09-2022
      * Function: delete_28
      * Description: In situation the id send value was founded in database
      */
@@ -70,7 +74,7 @@ public class ContactRestController_getDeleteContact {
     void delete_28() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/computer/4"))
+                                .delete("/contact/4"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
