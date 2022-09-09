@@ -110,8 +110,9 @@ public class VaccinationRestController_getListVaccination {
 
 
     /**
+     * This function is used to check the delete of the list
      * Create: TamLT
-     * Date create: 09/09/2022
+     * @Time 09/09/2022
      * Delete Advertisement with id = 1
      * if id == null
      */
@@ -123,8 +124,9 @@ public class VaccinationRestController_getListVaccination {
     }
 
     /**
+     * This function is used to check the delete of the list
      * Create: TamLT
-     * Date create: 09/09/2022
+     * @Time 09/09/2022
      * Delete Advertisement with id = 1
      * if id == ""
      */
@@ -136,8 +138,9 @@ public class VaccinationRestController_getListVaccination {
     }
 
     /**
+     * This function is used to check the delete of the list
      * Create: TamLT
-     * Date create: 09/09/2022
+     * @Time 09/09/2022
      * Delete Advertisement with id = 1
      * if id is not exist in database
      */
@@ -149,8 +152,9 @@ public class VaccinationRestController_getListVaccination {
     }
 
     /**
+     * This function is used to check the delete of the list
      * Create: TamLT
-     * Date create: 09/09/2022
+     * @Time 09/09/2022
      * Delete Advertisement with id = 1
      * if id is exist in database
      */
