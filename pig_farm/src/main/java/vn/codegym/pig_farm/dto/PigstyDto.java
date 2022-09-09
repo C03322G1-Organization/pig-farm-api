@@ -9,22 +9,21 @@ import javax.persistence.Column;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Data
 public class PigstyDto implements Validator {
     private Integer id;
+    @NotNull
+    private String creationDate;
 
-    private LocalDate creationDate;
+    private String buildDate;
 
-    private LocalDate buildDate;
-
-    @Max(value = 20,message = "không được lớn hơn 20 cá thể")
+    @Max(value = 20, message = "không được lớn hơn 20 cá thể")
     private Integer maxNumber;
 
     private Boolean isDeleted;
 
-    private Employee employee;
+    private EmployeeDto employeeDto;
 
     @Override
     public boolean supports(Class<?> clazz) {

@@ -29,7 +29,7 @@ public class PigstyRestController {
      * @return if created pigsty return HttpStatus.CREATED(201)
      */
     @PostMapping("/createPigsty")
-    public ResponseEntity<Pigsty> createPigsty(@RequestBody @Valid PigstyDto pigstyDto, BindingResult bindingResult) {
+    public ResponseEntity<Pigsty> createPigsty(@Valid @RequestBody  PigstyDto pigstyDto, BindingResult bindingResult) {
 
         pigstyDto.validate(pigstyDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
