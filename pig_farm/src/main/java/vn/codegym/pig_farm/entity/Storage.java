@@ -28,7 +28,9 @@ public class Storage {
     @JsonBackReference
     private List<Food> foods;
 
+    @Column(columnDefinition = "VARCHAR(30)")
     private String foodType;
+
 
     private Integer amount;
 

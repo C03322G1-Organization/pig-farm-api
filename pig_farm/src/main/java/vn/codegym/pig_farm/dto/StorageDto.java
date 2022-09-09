@@ -4,23 +4,25 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class StorageDto {
     private Integer id;
 
     @NotBlank(message = "Không được để trống")
+    @Length(min = 1, max = 30, message = "Tối thiểu 1 ký tự và lớn nhất 30 ký tự.")
     private String foodType;
 
-    @NotBlank(message = "Không được để trống")
+    @NotNull(message = "Không được để trống")
     @Min(value = 1, message = "Số phải lớn hơn 0")
-    @Length(min = 1, max = 15, message = "Tối thiểu 1 ký tự và lớn nhất 15 ký tự.")
-    private String amount;
+    private Integer amount;
 
     @NotBlank(message = "Không được để trống")
+    @Length(min = 1, max = 15, message = "Tối thiểu 1 ký tự và lớn nhất 30 ký tự.")
     private String unit;
 
-//    @NotBlank(message = "Không được để trống")
+    @NotNull(message = "Không được để trống")
     private LocalDate date;
 
     public Integer getId() {
@@ -39,11 +41,20 @@ public class StorageDto {
         this.foodType = foodType;
     }
 
-    public String getAmount() {
+//    public String getAmount() {
+//        return amount;
+//    }
+//
+//    public void setAmount(String amount) {
+//        this.amount = amount;
+//    }
+
+
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

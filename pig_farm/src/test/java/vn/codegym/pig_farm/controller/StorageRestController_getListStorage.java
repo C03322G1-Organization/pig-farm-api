@@ -18,6 +18,11 @@ public class StorageRestController_getListStorage {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Create by: HoangDT
+     * Date Create: 09/09/2022
+     * funtion: Case Returns a list with size = 0
+     */
     @Test
     public void getListStorage_5() throws Exception {
 
@@ -27,6 +32,12 @@ public class StorageRestController_getListStorage {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HoangDT
+     * Date Create: 09/09/2022
+     * funtion: Case Returns a list with size > 0
+     */
     @Test
     public void getListStorage_6() throws Exception {
 
@@ -42,6 +53,12 @@ public class StorageRestController_getListStorage {
                 .andExpect(jsonPath("content[3].unit").value("tấn"))
                 .andExpect(jsonPath("content[3].date").value("2022-02-02"));
     }
+
+    /**
+     * Create by: HoangDT
+     * Date Create: 09/09/2022
+     * funtion: this function use to test the validation of field search more specific is empty
+     */
     @Test
     public void getListStorage_8() throws Exception {
 
@@ -51,6 +68,12 @@ public class StorageRestController_getListStorage {
                 .andDo(print())
                 .andExpect(status().is(204));
     }
+
+    /**
+     * Create by: HoangDT
+     * Date Create: 09/09/2022
+     * funtion: Test search ,does not exist in DB
+     */
     @Test
     public void getListStorage_9() throws Exception {
 
@@ -60,6 +83,12 @@ public class StorageRestController_getListStorage {
                 .andDo(print())
                 .andExpect(status().is(204));
     }
+
+    /**
+     * Create by: HoangDT
+     * Date Create: 09/09/2022
+     * funtion: Test search ,Case Returns a list with size = 0
+     */
     @Test
     public void getListStorage_10() throws Exception {
 
@@ -69,6 +98,12 @@ public class StorageRestController_getListStorage {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Create by: HoangDT
+     * Date Create: 09/09/2022
+     * funtion: Test search ,Case Returns a list with size > 0
+     */
     @Test
     public void getListStorage_11() throws Exception {
 
