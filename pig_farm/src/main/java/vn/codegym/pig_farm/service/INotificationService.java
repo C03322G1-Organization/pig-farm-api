@@ -1,13 +1,24 @@
 package vn.codegym.pig_farm.service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import vn.codegym.pig_farm.entity.Notification;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface NotificationService {
-//    List<Notification> findAll();
+public interface INotificationService {
+
+    /**
+     * Created by: DatLT
+     * Date created: 08/09/2022
+     * Function: Display all news list by keyword with pagination
+     * @param pageable pageable
+     * @param keyword keyword
+     * @return Page<Notification>
+     */
+
+    Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 
     /**
      * Create by HuyenTN
@@ -37,5 +48,4 @@ public interface NotificationService {
      */
 
     void update(Notification notification);
-
 }

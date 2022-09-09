@@ -18,7 +18,6 @@ public class Placement {
     @Column(columnDefinition = "VARCHAR(255)")
     private String name;
 
-
     @ManyToOne
     @JoinColumn(name = "advertisement_id", referencedColumnName = "id")
     private Advertisement advertisement;

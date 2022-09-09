@@ -1,9 +1,13 @@
 package vn.codegym.pig_farm.repository;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import vn.codegym.pig_farm.entity.Notification;
 
 import javax.transaction.Transactional;
@@ -56,4 +60,17 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
             " image = :image, is_deleted = :isDeleted where id = :id", nativeQuery = true)
     void update(@Param("content") String content, @Param("submittedDate") LocalDate submittedDate,
                 @Param("image") String image, @Param("isDeleted") Boolean isDeleted, @Param("id") Integer id);
+
+
+    /**
+     * Created by: DatLT
+     * Date created: 08/09/2022
+     * Function: Display all news list by keyword with pagination
+     *
+     * @param pageable pageable
+     * @param keyword  keyword
+     * @return Page<Notification> notifications
+     */
+    @Query(value = "select * from notification where title like %:keyword% and content like %:keyword% and is_deleted = 0", nativeQuery = true)
+    Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 }

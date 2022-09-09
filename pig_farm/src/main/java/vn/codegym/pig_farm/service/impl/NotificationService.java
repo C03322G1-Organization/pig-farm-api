@@ -1,24 +1,35 @@
 package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Notification;
 import vn.codegym.pig_farm.repository.NotificationRepository;
-import vn.codegym.pig_farm.service.NotificationService;
+import vn.codegym.pig_farm.service.INotificationService;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NotificationServiceImpl implements NotificationService {
+public class NotificationService implements INotificationService {
+
     @Autowired
     NotificationRepository notificationRepository;
 
-//    @Override
-//    public List<Notification> findAll() {
-//        return notificationRepository.findAll();
-//    }
+    /**
+     * Created by: DatLT
+     * Date created: 08/09/2022
+     * Function: Display all news list by keyword with pagination
+     *
+     * @param pageable pageable
+     * @param keyword  keyword
+     * @return Page<Notification> notifications
+     */
+
+    @Override
+    public Page<Notification> findAll(Pageable pageable, String keyword) {
+        return notificationRepository.findAll(pageable, keyword);
+    }
 
     /**
      * Create by HuyenTN

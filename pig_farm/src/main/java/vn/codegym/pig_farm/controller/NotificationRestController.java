@@ -2,6 +2,9 @@ package vn.codegym.pig_farm.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -9,7 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.NotificationDto;
 import vn.codegym.pig_farm.entity.Notification;
-import vn.codegym.pig_farm.service.NotificationService;
+import vn.codegym.pig_farm.service.INotificationService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,10 +20,30 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/notifications")
-public class NotificationController {
+@RequestMapping("/api/v1/notification")
+public class NotificationRestController {
+
     @Autowired
-    private NotificationService notificationService;
+    INotificationService iNotificationService;
+
+    /**
+     * Created by: DatLT
+     * Date created: 08/09/2022
+     * Function: Display all news list by keyword with pagination
+     * @param pageable pageable
+     * @param keyword keyword
+     * @return HTTP status code 200 (OK): return Page<Notification> notifications
+     * HTTP status code 204 (NO_CONTENT): return notifications is empty
+     */
+
+    @GetMapping("")
+    public ResponseEntity<Page<Notification>> findAll(@PageableDefault(value = 5) Pageable pageable, @RequestParam Optional<String> keyword) {
+        Page<Notification> notifications = iNotificationService.findAll(pageable, keyword.orElse(""));
+        if (notifications.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(notifications, HttpStatus.OK);
+    }
 
     /**
      * Create by HuyenTN
@@ -45,7 +68,7 @@ public class NotificationController {
         Notification notification = new Notification();
         BeanUtils.copyProperties(notificationDto, notification);
 
-        this.notificationService.save(notification);
+        this.iNotificationService.save(notification);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -62,8 +85,8 @@ public class NotificationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Notification> findById(@PathVariable Integer id) {
-        Optional<Notification> notification = notificationService.findById(id);
-        if (!notificationService.findById(id).isPresent()) {
+        Optional<Notification> notification = iNotificationService.findById(id);
+        if (!iNotificationService.findById(id).isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(notification.get(), HttpStatus.OK);
@@ -85,7 +108,7 @@ public class NotificationController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Notification> update(@PathVariable Integer id, @Valid @RequestBody NotificationDto notificationDto,
                                                BindingResult bindingResult) {
-        Optional<Notification> currentNotification = notificationService.findById(id);
+        Optional<Notification> currentNotification = iNotificationService.findById(id);
 
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
@@ -99,9 +122,8 @@ public class NotificationController {
         currentNotification.get().setContent(notificationDto.getContent());
         currentNotification.get().setImage(notificationDto.getImage());
 
-        notificationService.update(currentNotification.get());
+        iNotificationService.update(currentNotification.get());
 
         return new ResponseEntity(currentNotification.get(), HttpStatus.OK);
     }
 }
-
