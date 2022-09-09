@@ -18,8 +18,9 @@ public class NotificationService implements INotificationService {
      * Created by: DatLT
      * Date created: 08/09/2022
      * Function: Display all news list by keyword with pagination
+     *
      * @param pageable pageable
-     * @param keyword keyword
+     * @param keyword  keyword
      * @return Page<Notification> notifications
      */
 

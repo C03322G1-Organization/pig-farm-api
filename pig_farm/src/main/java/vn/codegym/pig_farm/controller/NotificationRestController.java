@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/notification")
-public class NotificationController {
+public class NotificationRestController {
 
     @Autowired
     INotificationService iNotificationService;
@@ -30,7 +30,7 @@ public class NotificationController {
      * HTTP status code 204 (NO_CONTENT): return notifications is empty
      */
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<Page<Notification>> findAll(@PageableDefault(value = 5) Pageable pageable, @RequestParam Optional<String> keyword) {
         Page<Notification> notifications = iNotificationService.findAll(pageable, keyword.orElse(""));
         if (notifications.isEmpty()) {
