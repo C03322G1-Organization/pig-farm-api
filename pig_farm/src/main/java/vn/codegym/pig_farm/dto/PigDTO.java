@@ -28,7 +28,7 @@ public class PigDTO implements Validator {
     @NotBlank(message = "Không được để trống")
     private String status;
 
-    @Length(min = 1, max = 20, message = "Tối thiểu 1 ký tự và lớn nhất 20 ký tự.")
+    @Length(min = 1, max = 3, message = "Tối thiểu 1 ký tự và lớn nhất 3 ký tự.")
     @NotBlank(message = "Không được để trống")
     private String weight;
 
