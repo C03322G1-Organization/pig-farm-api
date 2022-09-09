@@ -33,25 +33,24 @@ public class Pigsty {
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
 
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Food> foods;
-
 
     @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Vaccination> vaccinations;
 
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Pig> pigs;
 
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     private List<Export> exports;
 
+//    @JsonIgnore
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 

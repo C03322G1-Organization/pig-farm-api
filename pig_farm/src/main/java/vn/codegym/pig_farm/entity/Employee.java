@@ -39,7 +39,7 @@ public class Employee {
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
 
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany(mappedBy = "employee")
     private List<Export> exports;
 
@@ -47,7 +47,7 @@ public class Employee {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany(mappedBy = "employee")
     private List<Pigsty> pigsties;
 }

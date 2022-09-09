@@ -13,18 +13,19 @@ import java.time.LocalDate;
 import java.util.List;
 @Repository
 public interface IVaccinationRepository extends JpaRepository<Vaccination, Integer> {
-//    @Query(value="select * from vaccination", nativeQuery=true)
-//    List<Vaccination> getAll();
+
+    @Query(value="select * from vaccination", nativeQuery=true)
+    List<Vaccination> getAll();
 
     @Modifying
     @Transactional
     @Query(value = "insert into vaccination(amount, `date`, is_deleted, note, vaccinated_person, vaccine_type, pigsty_id)" +
-            "value(:amount, :date, :isDeleted, :note, :vaccinationPerson, :vaccineType, :pigsty)", nativeQuery=true)
+            "value (:amount, :date, :isDeleted, :note, :vaccinatedPerson, :vaccineType, :pigsty)", nativeQuery=true)
     void createVaccination(@Param("amount") Integer amount,
                            @Param("date") LocalDate date,
                            @Param("isDeleted") Boolean isDeleted,
                            @Param("note") String note,
-                           @Param("vaccinationPerson") String vaccinationPerson,
+                           @Param("vaccinatedPerson") String vaccinatedPerson,
                            @Param("vaccineType") String vaccineType,
                            @Param("pigsty") Pigsty pigsty);
 }

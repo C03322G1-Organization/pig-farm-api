@@ -1,4 +1,5 @@
 package vn.codegym.pig_farm.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -32,7 +33,6 @@ public class Vaccination {
     private Boolean isDeleted;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
 }

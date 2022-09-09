@@ -5,7 +5,8 @@ import vn.codegym.pig_farm.entity.Vaccination;
 import java.util.List;
 
 public interface IVaccinationService {
-//    List<Vaccination> findAll();
+
+    List<Vaccination> findAll();
 
     void saveVaccination(Vaccination vaccination);
 }

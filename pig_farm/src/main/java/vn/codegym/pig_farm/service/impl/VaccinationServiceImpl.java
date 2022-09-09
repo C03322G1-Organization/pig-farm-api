@@ -13,10 +13,10 @@ public class VaccinationServiceImpl implements IVaccinationService {
     @Autowired
     private IVaccinationRepository iVaccinationRepository;
 
-//    @Override
-//    public List<Vaccination> findAll() {
-//        return iVaccinationRepository.getAll();
-//    }
+    @Override
+    public List<Vaccination> findAll() {
+        return iVaccinationRepository.getAll();
+    }
 
     @Override
     public void saveVaccination(Vaccination vaccination) {
