@@ -16,7 +16,7 @@ public interface IExportService {
      * @Param: pageable
      * @return
      */
-    Page<IExportDto> listAll(Pageable pageable);
+    Page<IExportDto> listAll(Pageable pageable, String codeExport, String company);
 
     /**
      * Create by: DongLHP
@@ -42,5 +42,5 @@ public interface IExportService {
      * @Param: codeExport, company, pageable
      * @return
      */
-    Page<Export> searchExport(String codeExport, String company, Pageable pageable);
+    Page<IExportDto> searchExport(String codeExport, String company, Pageable pageable);
 }

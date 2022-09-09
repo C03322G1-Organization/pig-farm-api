@@ -34,8 +34,8 @@ public interface IExportRepository extends JpaRepository<Export, Integer> {
             "e.employee_id as idEmployee, emp.name as nameEmployee " +
             "FROM export e " +
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
-            "where e.is_deleted = 0", nativeQuery = true)
-    Page<IExportDto> listAllExport(Pageable pageable);
+            "where e.is_deleted = 0 and code_export like:codeExport and company like:company", nativeQuery = true)
+    Page<IExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company);
 
     /**
      * Create by: DongLHP
@@ -65,7 +65,7 @@ public interface IExportRepository extends JpaRepository<Export, Integer> {
      * @Param: id
      * @return
      */
-    @Query(value = "select id, mount, code_export, company, is_deleted, kilogram, " +
+    @Query(value = "select id, code_export, company, is_deleted, " +
             " price, start_date, employee_id, pigsty_id from export where code_export like:codeExport || company like:company", nativeQuery = true)
-    Page<Export> search(@Param("codeExport") String codeExport,@Param("company") String company, Pageable pageable);
+    Page<IExportDto> search(@Param("codeExport") String codeExport,@Param("company") String company, Pageable pageable);
 }

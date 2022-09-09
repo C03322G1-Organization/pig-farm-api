@@ -31,13 +31,34 @@ public class ExportRestController {
      * @return HttpStatus.OK
      * @param: pageable
      */
-    @GetMapping("")
-    public ResponseEntity<Page<IExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable) {
-        Page<IExportDto> listAll = iExportService.listAll(pageable);
-        if (listAll.isEmpty()) {
+//    @GetMapping("")
+//    public ResponseEntity<Page<IExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable) {
+//        Page<IExportDto> listAll = iExportService.listAll(pageable);
+//        if (listAll.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(listAll, HttpStatus.OK);
+//    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<IExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable,
+                                                        Optional<String> codeExport,
+                                                        Optional<String> company) {
+        String code = codeExport.orElse("");
+        String company1 = company.orElse("");
+        if (code.equals("null")) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+        if (company1.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(listAll, HttpStatus.OK);
+        Page<IExportDto> contactPage = iExportService.listAll(pageable, code, company1);
+        if (contactPage.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(contactPage,HttpStatus.OK);
+
     }
 
     /**
@@ -69,25 +90,25 @@ public class ExportRestController {
      * @return HttpStatus.OK
      * @param: codeExport, company, pageable
      */
-    @GetMapping("/search")
-    public ResponseEntity<Page<Export>> searchExport(
-            @RequestParam("searchByCodeExport") Optional<String> codeExport,
-            @RequestParam("searchByCompany") Optional<String> company,
-            @PageableDefault(value = 5) Pageable pageable) {
-        {
-            String code = codeExport.orElse("");
-            String company1 = company.orElse("");
-            if (code.equals("null")) {
-                code = "";
-            }
-            if (company1.equals("null")) {
-                company1 = "";
-            }
-            Page<Export> exports = iExportService.searchExport(code, company1, pageable);
-            if (exports.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(exports, HttpStatus.OK);
-        }
-    }
+//    @GetMapping("/search")
+//    public ResponseEntity<Page<Export>> searchExport(
+//            @RequestParam Optional<String> codeExport,
+//            @RequestParam Optional<String> company,
+//            @PageableDefault(value = 5) Pageable pageable) {
+//        {
+//            String code = codeExport.orElse("");
+//            String company1 = company.orElse("");
+//            if (code.equals("null")) {
+//                code = "";
+//            }
+//            if (company1.equals("null")) {
+//                company1 = "";
+//            }
+//            Page<Export> exports = iExportService.searchExport(code, company1, pageable);
+//            if (exports.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//            return new ResponseEntity<>(exports, HttpStatus.OK);
+//        }
+//    }
 }

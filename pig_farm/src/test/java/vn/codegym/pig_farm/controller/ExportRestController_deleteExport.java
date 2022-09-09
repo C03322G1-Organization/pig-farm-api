@@ -17,6 +17,12 @@ public class ExportRestController_deleteExport {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Create by: DongLHP
+     * Date create: 09/09/2022
+     * Function: xóa Id = null
+     * @throws Exception
+     */
     @Test
     public void deleteExport_id_25() throws Exception {
         this.mockMvc.perform(
@@ -26,6 +32,12 @@ public class ExportRestController_deleteExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Create by: DongLHP
+     * Date create: 09/09/2022
+     * Function: Trường hợp xóa Id = rỗng
+     * @throws Exception
+     */
     @Test
     public void deleteExport_id_26() throws Exception {
         this.mockMvc.perform(
@@ -35,7 +47,12 @@ public class ExportRestController_deleteExport {
                 .andExpect(status().is4xxClientError());
     }
 
-
+    /**
+     * Create by: DongLHP
+     * Date create: 09/09/2022
+     * Function: Trường hợp xóa Id không có trong DB
+     * @throws Exception
+     */
     @Test
     public void deleteExport_id_27() throws Exception {
         this.mockMvc.perform(
@@ -45,7 +62,12 @@ public class ExportRestController_deleteExport {
                 .andExpect(status().is4xxClientError());
     }
 
-
+    /**
+     * Create by: DongLHP
+     * Date create: 09/09/2022
+     * Function: Trường hợp xóa Id thành công
+     * @throws Exception
+     */
     @Test
     public void deleteExport_id_28() throws Exception {
         this.mockMvc.perform(

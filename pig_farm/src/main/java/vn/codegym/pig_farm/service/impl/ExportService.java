@@ -24,8 +24,8 @@ public class ExportService implements IExportService {
      * @return
      */
     @Override
-    public Page<IExportDto> listAll(Pageable pageable) {
-        return iExportRepository.listAllExport(pageable);
+    public Page<IExportDto> listAll(Pageable pageable, String codeExport, String company) {
+        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%");
     }
 
     /**
@@ -59,7 +59,7 @@ public class ExportService implements IExportService {
      * @return
      */
     @Override
-    public Page<Export> searchExport(String codeExport, String company, Pageable pageable) {
+    public Page<IExportDto> searchExport(String codeExport, String company, Pageable pageable) {
         return iExportRepository.search("%" + codeExport + "%" , "%" + company + "%", pageable);
     }
 }
