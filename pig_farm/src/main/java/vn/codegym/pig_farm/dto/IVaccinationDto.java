@@ -1,13 +1,17 @@
 package vn.codegym.pig_farm.dto;
 
-import vn.codegym.pig_farm.entity.Pigsty;
-
 import java.time.LocalDate;
 
 public interface IVaccinationDto {
+    Integer getId();
+
     LocalDate getDate();
-    Pigsty getPigsty();
+
+    String getPigstyCode();
+
     String getVaccinatedPerson();
+
     String getVaccineType();
+
     Integer getAmount();
 }

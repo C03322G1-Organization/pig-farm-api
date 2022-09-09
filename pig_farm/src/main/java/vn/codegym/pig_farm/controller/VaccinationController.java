@@ -7,6 +7,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.codegym.pig_farm.dto.IVaccinationDto;
 import vn.codegym.pig_farm.entity.Vaccination;
 import vn.codegym.pig_farm.service.IVaccinationService;
 
@@ -22,8 +23,8 @@ public class VaccinationController {
     private IVaccinationService vaccinationService;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Vaccination>> getList(@PageableDefault(5) Pageable pageable,
-                                                     @RequestParam Optional<String> name) {
+    public ResponseEntity<Page<IVaccinationDto>> getList(@PageableDefault(5) Pageable pageable,
+                                                         @RequestParam Optional<String> name) {
         /**
          * @function (Display all Vaccination and search)
          * @creator TamLT
@@ -39,7 +40,7 @@ public class VaccinationController {
             nameSearch = "";
         }
 
-        Page<Vaccination> vaccinationList = vaccinationService.getAll(pageable, nameSearch);
+        Page<IVaccinationDto> vaccinationList = vaccinationService.getAll(pageable, nameSearch);
         if (vaccinationList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -54,9 +55,15 @@ public class VaccinationController {
      * @date-create 08/09/2022
      */
 
-    @PostMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-        vaccinationService.delete(ids.get("id"));
+//    @PostMapping("/delete")
+//    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+//        vaccinationService.delete(ids.get("id"));
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
+    @PutMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@RequestBody Integer id) {
+        vaccinationService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
