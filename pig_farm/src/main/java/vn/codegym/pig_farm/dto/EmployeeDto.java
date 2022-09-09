@@ -5,6 +5,12 @@ import vn.codegym.pig_farm.entity.User;
 import java.time.LocalDate;
 
 public class EmployeeDto {
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: EmployeeDto
+     * return employeeDto
+     */
     private Integer id;
     private String code;
     private String name;

@@ -3,6 +3,12 @@ package vn.codegym.pig_farm.dto;
 import java.time.LocalDate;
 
 public class PigstyDto {
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: PigstyDto
+     * return pigstyDto
+     */
     private Integer id;
     private String code;
     private LocalDate creationDate;

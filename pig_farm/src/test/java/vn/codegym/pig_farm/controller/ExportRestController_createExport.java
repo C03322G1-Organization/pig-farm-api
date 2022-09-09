@@ -23,7 +23,11 @@ public class ExportRestController_createExport {
 
     @Autowired
     private MockMvc mockMvc;
-
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_company_14
+     */
     @Test
     public void createExport_company_14() throws Exception {
 
@@ -50,6 +54,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_company_13
+     */
     @Test
     public void createExport_company_13() throws Exception {
 
@@ -76,6 +85,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_company_17
+     */
     @Test
     public void createExport_company_17() throws Exception {
 
@@ -105,6 +119,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_18
+     */
     @Test
     public void createExport_18() throws Exception {
 
@@ -133,6 +152,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is2xxSuccessful());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_amount_15
+     */
     @Test
     public void createExport_amount_15() throws Exception {
 
@@ -159,6 +183,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_price_15
+     */
     @Test
     public void createExport_price_15() throws Exception {
 
@@ -185,6 +214,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_typePigs_13
+     */
     @Test
     public void createExport_typePigs_13() throws Exception {
 
@@ -211,6 +245,12 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_typePigs_14
+     */
     @Test
     public void createExport_typePigs_14() throws Exception {
 
@@ -237,6 +277,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_kilogram_15
+     */
     @Test
     public void createExport_kilogram_15() throws Exception {
 
@@ -263,7 +308,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
-
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_codeExport_13
+     */
     @Test
     public void createExport_codeExport_13() throws Exception {
 
@@ -290,7 +339,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
-
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_codeExport_14
+     */
     @Test
     public void createExport_codeExport_14() throws Exception {
 
@@ -317,6 +370,11 @@ public class ExportRestController_createExport {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: createExport_codeExport_17
+     */
     @Test
     public void createExport_codeExport_17() throws Exception {
 

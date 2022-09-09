@@ -8,6 +8,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class ExportDto {
+    /**
+     * Created by: HoaL
+     * Date created: 09/09/2022
+     * Function: ExportDto
+     * return exportDto
+     */
+
     @Size(min = 1, max = 50, message = "không quá 1-50 từ và không để trống")
     @NotBlank
     private String codeExport;
