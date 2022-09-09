@@ -3,6 +3,7 @@ package vn.codegym.pig_farm.dto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Pigsty;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -29,10 +30,12 @@ public class ExportDto {
     @Min(value = 1, message = "Gía không âm và không để trống")
     private Double kilogram;
 
-    @Min(value = 1, message = "Gía không âm và không để trống")
+    @Min(value = 1, message = "Gía không âm ")
+    @Max(value = 99000)
     private Double price;
 
     @NotBlank(message = "Vui lòng nhập loại")
+    @Size(min = 1, max = 50, message = "không quá 1-50 từ")
     private String typePigs;
 
     private Boolean isDeleted;
