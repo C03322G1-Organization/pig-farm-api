@@ -47,7 +47,17 @@ public class EmployeeRestController_getAllListEmployeePaginationAndSearch {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/employee/searchList?name="))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(3))
+                .andExpect(jsonPath("totalElements").value(5))
+                .andExpect(jsonPath("content[1].nameEmployee").value("Nguyen Thi Buoi"))
+                .andExpect(jsonPath("content[1].code").value("NV-124"))
+                .andExpect(jsonPath("content[1].birthDay").value("2019-09-09"))
+                .andExpect(jsonPath("content[1].image").value("abc"))
+                .andExpect(jsonPath("content[1].gender").value("Female"))
+                .andExpect(jsonPath("content[1].idCard").value("247456789"))
+                .andExpect(jsonPath("content[1].roleName").value("user"))
+                .andExpect(jsonPath("content[1].deleted").value(false));
     }
 
     /**
@@ -84,7 +94,12 @@ public class EmployeeRestController_getAllListEmployeePaginationAndSearch {
                 .andExpect(jsonPath("totalElements").value(1))
                 .andExpect(jsonPath("content[0].nameEmployee").value("Nguyen Thi Buoi"))
                 .andExpect(jsonPath("content[0].code").value("NV-124"))
-                .andExpect(jsonPath("content[0].birthDay").value("2019-09-09"));
+                .andExpect(jsonPath("content[0].birthDay").value("2019-09-09"))
+                .andExpect(jsonPath("content[0].image").value("abc"))
+                .andExpect(jsonPath("content[0].gender").value("Female"))
+                .andExpect(jsonPath("content[0].idCard").value("247456789"))
+                .andExpect(jsonPath("content[0].roleName").value("user"))
+                .andExpect(jsonPath("content[0].deleted").value(false));
     }
 
     /**
@@ -115,7 +130,17 @@ public class EmployeeRestController_getAllListEmployeePaginationAndSearch {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/employee/searchList?idCard="))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(3))
+                .andExpect(jsonPath("totalElements").value(5))
+                .andExpect(jsonPath("content[1].nameEmployee").value("Nguyen Thi Buoi"))
+                .andExpect(jsonPath("content[1].code").value("NV-124"))
+                .andExpect(jsonPath("content[1].birthDay").value("2019-09-09"))
+                .andExpect(jsonPath("content[1].image").value("abc"))
+                .andExpect(jsonPath("content[1].gender").value("Female"))
+                .andExpect(jsonPath("content[1].idCard").value("247456789"))
+                .andExpect(jsonPath("content[1].roleName").value("user"))
+                .andExpect(jsonPath("content[1].deleted").value(false));
     }
 
     /**
@@ -147,7 +172,17 @@ public class EmployeeRestController_getAllListEmployeePaginationAndSearch {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/employee/searchList?idCard=247456789"))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(1))
+                .andExpect(jsonPath("totalElements").value(1))
+                .andExpect(jsonPath("content[0].nameEmployee").value("Nguyen Thi Buoi"))
+                .andExpect(jsonPath("content[0].code").value("NV-124"))
+                .andExpect(jsonPath("content[0].birthDay").value("2019-09-09"))
+                .andExpect(jsonPath("content[0].image").value("abc"))
+                .andExpect(jsonPath("content[0].gender").value("Female"))
+                .andExpect(jsonPath("content[0].idCard").value("247456789"))
+                .andExpect(jsonPath("content[0].roleName").value("user"))
+                .andExpect(jsonPath("content[0].deleted").value(false));
     }
 
     /**
@@ -178,7 +213,17 @@ public class EmployeeRestController_getAllListEmployeePaginationAndSearch {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/employee/searchList?name=&idCard="))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(3))
+                .andExpect(jsonPath("totalElements").value(5))
+                .andExpect(jsonPath("content[1].nameEmployee").value("Nguyen Thi Buoi"))
+                .andExpect(jsonPath("content[1].code").value("NV-124"))
+                .andExpect(jsonPath("content[1].birthDay").value("2019-09-09"))
+                .andExpect(jsonPath("content[1].image").value("abc"))
+                .andExpect(jsonPath("content[1].gender").value("Female"))
+                .andExpect(jsonPath("content[1].idCard").value("247456789"))
+                .andExpect(jsonPath("content[1].roleName").value("user"))
+                .andExpect(jsonPath("content[1].deleted").value(false));
     }
 
     /**
@@ -210,7 +255,17 @@ public class EmployeeRestController_getAllListEmployeePaginationAndSearch {
         this.mockMvc.perform(
                         MockMvcRequestBuilders.get("/employee/searchList?name=Buoi&idCard=247456789"))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(1))
+                .andExpect(jsonPath("totalElements").value(1))
+                .andExpect(jsonPath("content[0].nameEmployee").value("Nguyen Thi Buoi"))
+                .andExpect(jsonPath("content[0].code").value("NV-124"))
+                .andExpect(jsonPath("content[0].birthDay").value("2019-09-09"))
+                .andExpect(jsonPath("content[0].image").value("abc"))
+                .andExpect(jsonPath("content[0].gender").value("Female"))
+                .andExpect(jsonPath("content[0].idCard").value("247456789"))
+                .andExpect(jsonPath("content[0].roleName").value("user"))
+                .andExpect(jsonPath("content[0].deleted").value(false));
     }
 
 }
