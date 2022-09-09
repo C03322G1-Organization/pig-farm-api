@@ -24,4 +24,6 @@ public interface IContactService {
      *function: find by id contact
      */
     Contact findByIdContact(int id);
+
+
 }
