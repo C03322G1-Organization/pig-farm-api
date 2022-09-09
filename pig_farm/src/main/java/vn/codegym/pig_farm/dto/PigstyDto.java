@@ -24,7 +24,6 @@ public class PigstyDto implements Validator {
 
     private Boolean isDeleted;
 
-    @NotNull
     private Employee employee;
 
     @Override

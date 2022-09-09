@@ -71,7 +71,11 @@ public class PigstyRestController {
      * @return if edited return Http status OK
      */
     @PatchMapping("/editPigsty")
-    public ResponseEntity<Pigsty> editPigsty(@Valid PigstyDto pigstyDto) {
+    public ResponseEntity<Pigsty> editPigsty(@Valid @RequestBody PigstyDto pigstyDto,BindingResult bindingResult) {
+        pigstyDto.validate(pigstyDto, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         Pigsty pigsty = new Pigsty();
         BeanUtils.copyProperties(pigstyDto, pigsty);
         this.iPigstyService.editPigsty(pigsty);

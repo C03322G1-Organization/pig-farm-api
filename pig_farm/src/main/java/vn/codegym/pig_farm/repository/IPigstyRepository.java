@@ -37,10 +37,15 @@ public interface IPigstyRepository extends JpaRepository<Pigsty, Integer> {
             " from pigsty p where p.is_deleted=0 and p.id = :pigstyId ;", nativeQuery = true)
     Pigsty getPigstyById(@Param("pigstyId") Integer id);
 
-
+    /**
+     * Created by: HieuCD
+     * Date created: 09/09/2022
+     * function: update a Pigsty with condition existing
+     * @param pigsty
+     */
     @Transactional
     @Modifying
-    @Query(value ="update pig_farm.pigsty set `build_date`=:#{#pigsty.buildDate},`creation_date`=:#{#pigsty.creationDate}," +
+    @Query(value ="update pigsty set `build_date`=:#{#pigsty.buildDate},`creation_date`=:#{#pigsty.creationDate}," +
             "`max_number`=:#{#pigsty.maxNumber} where `is_deleted`=0 and `id`=:#{#pigsty.id}",nativeQuery=true)
     void editPigsty(Pigsty pigsty);
 }
