@@ -57,7 +57,7 @@ public class VaccinationRestController_getListVaccination {
      * @Time 09/09/2022
      */
     @Test
-    public void getListStudent_3() throws Exception {
+    public void getVaccination_3() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/vaccination/list/"))
 
                 .andDo(print())
@@ -113,11 +113,11 @@ public class VaccinationRestController_getListVaccination {
      * This function is used to check the delete of the list
      * Create: TamLT
      * @Time 09/09/2022
-     * Delete Advertisement with id = 1
+     * Delete Vaccination with id = 1
      * if id == null
      */
     @Test
-    public void deleteAdvertisement_idNull() throws Exception {
+    public void deleteVaccination_idNull() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -127,11 +127,11 @@ public class VaccinationRestController_getListVaccination {
      * This function is used to check the delete of the list
      * Create: TamLT
      * @Time 09/09/2022
-     * Delete Advertisement with id = 1
+     * Delete Vaccination with id = 1
      * if id == ""
      */
     @Test
-    public void deleteAdvertisement_idIsEmpty() throws Exception {
+    public void deleteVaccination_idIsEmpty() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -141,11 +141,11 @@ public class VaccinationRestController_getListVaccination {
      * This function is used to check the delete of the list
      * Create: TamLT
      * @Time 09/09/2022
-     * Delete Advertisement with id = 1
+     * Delete Vaccination with id = 1
      * if id is not exist in database
      */
     @Test
-    public void deleteAdvertisement_idNotExist() throws Exception {
+    public void deleteVaccination_idNotExist() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -155,11 +155,11 @@ public class VaccinationRestController_getListVaccination {
      * This function is used to check the delete of the list
      * Create: TamLT
      * @Time 09/09/2022
-     * Delete Advertisement with id = 1
+     * Delete Vaccination with id = 1
      * if id is exist in database
      */
     @Test
-    public void deleteAdvertisement_idOk() throws Exception {
+    public void deleteVaccination_idOk() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/2"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
