@@ -17,9 +17,6 @@ public class Pigsty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(30)")
-    private String code;
-
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 
@@ -28,7 +25,7 @@ public class Pigsty {
 
     private Integer maxNumber;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pigsty")
