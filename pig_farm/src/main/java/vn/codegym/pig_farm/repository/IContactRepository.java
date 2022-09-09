@@ -30,7 +30,7 @@ public interface IContactRepository extends JpaRepository<Contact, Integer> {
      * Date create: 08/09/2022
      * function: find all Contact by name and content
      */
-    @Query(value = "select * from contact where is_deleted = 0 and `name` like :nameSearch and content like :contentSearch", nativeQuery = true)
+    @Query(value = "select id, `name`, email, phone, address, content,`date`, is_deleted from contact where is_deleted = 0 and `name` like :nameSearch and content like :contentSearch", nativeQuery = true)
     Page<Contact> findAll(Pageable pageable, @Param("nameSearch") String nameSearch, @Param("contentSearch") String contentSearch);
 
 
@@ -39,6 +39,6 @@ public interface IContactRepository extends JpaRepository<Contact, Integer> {
      * Date create: 08/09/2022
      * function: find by id
      */
-    @Query(value = "select * from contact where id =:id", nativeQuery = true)
+    @Query(value = "select id, `name`, email, phone, address, content,`date`, is_deleted from contact where id =:id", nativeQuery = true)
     Contact findByIdContact(@Param("id") Integer id);
 }
