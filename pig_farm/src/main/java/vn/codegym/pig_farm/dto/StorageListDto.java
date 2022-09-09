@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.dto.storage_dto;
+package vn.codegym.pig_farm.dto;
 
 /**
  * Created by: HoangDT
