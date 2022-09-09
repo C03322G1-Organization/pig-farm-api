@@ -16,7 +16,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(45)")
+    @Column(columnDefinition = "VARCHAR(45)", name = "role_name")
     private String name;
 
     @Column(columnDefinition = "BIT")
