@@ -19,8 +19,7 @@ public class ContactService implements IContactService {
      * function: Delete Contact
      */
     @Override
-    public void deleteContact(Integer[] ids) {
-        for(Integer id : ids)
+    public void deleteContact(int id) {
         contactRepository.deleteContact(id);
     }
 

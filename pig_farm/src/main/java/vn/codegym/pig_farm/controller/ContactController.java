@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.entity.Contact;
 import vn.codegym.pig_farm.service.IContactService;
@@ -20,7 +19,6 @@ import java.util.Optional;
 public class ContactController {
     @Autowired
     private IContactService contactService;
-
     /**
      * Create by TriPT
      * Date create: 08/09/2022
@@ -40,11 +38,11 @@ public class ContactController {
         if (content.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Page<Contact> contactPage = contactService.getAll(pageable, name, content);
-        if (contactPage.isEmpty()) {
+        Page<Contact> contactPage = contactService.getAll(pageable,name,content);
+        if (contactPage.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(contactPage, HttpStatus.OK);
+        return new ResponseEntity<>(contactPage,HttpStatus.OK);
 
     }
 
@@ -61,19 +59,14 @@ public class ContactController {
         }
         return new ResponseEntity<>(contact, HttpStatus.OK);
     }
-
     /**
      * Create by : TriPT
      * Date created: 08/09/2022
      * function: delete Contact
      */
-    @PutMapping("/{id}")
-    private ResponseEntity<Contact> delete(@PathVariable Integer id, @RequestBody Contact contact) {
-        Contact currentContact = contactService.findByIdContact(id);
-        if (currentContact == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        currentContact.setIsDeleted(contact.getIsDeleted());
-        contactService.deleteContact(currentContact);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteContact(@PathVariable("id") Integer id) {
+        contactService.deleteContact(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

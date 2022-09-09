@@ -10,7 +10,7 @@ public interface IContactService {
      *Date create: 08/09/2022
      *function: Delete Contact
      */
-    void deleteContact(Integer[] ids);
+    void deleteContact(int id);
     /*
      *Create by TriPT
      *Date create: 08/09/2022
