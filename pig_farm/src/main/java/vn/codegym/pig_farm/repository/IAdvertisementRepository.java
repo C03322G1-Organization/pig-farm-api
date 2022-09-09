@@ -13,8 +13,6 @@ import java.util.Optional;
 
 @Transactional
 public interface IAdvertisementRepository extends JpaRepository<Advertisement,Integer> {
-    @Query(value = "select * from advertisement where is_deleted = 0",nativeQuery = true)
-    List<Advertisement> findAllAdvertisement();
 
     /**
      * Created by : ChungHV

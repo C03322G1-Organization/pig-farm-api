@@ -5,12 +5,14 @@ import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Placement;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
-public class AdvertisementDto  {
+public class AdvertisementDto implements Validator  {
 
     private Integer id;
-    
+    @Pattern(
+            regexp = "^[A-Za-z _ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+",message = "Không được để trống và không nhập kí tự")
     private String title;
 
     private String image;
@@ -21,7 +23,8 @@ public class AdvertisementDto  {
 
     private Placement placement;
 
-    private Boolean isDeleted;
+    private Boolean isDeleted = false ;
+
 
     public AdvertisementDto() {
     }
@@ -94,5 +97,14 @@ public class AdvertisementDto  {
 
 
 
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
 
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
+    }
 }
