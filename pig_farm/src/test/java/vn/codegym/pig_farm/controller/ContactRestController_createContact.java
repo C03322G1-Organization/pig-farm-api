@@ -303,4 +303,26 @@ public class ContactRestController_createContact {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+    /**
+     * this function use to test crete success
+     *
+     * @throws Exception
+     * @author PhucND
+     */
+    @Test
+    public void createContact_18() throws Exception {
+        ContactDto contactDto = new ContactDto();
+        contactDto.setName("Phuc");
+        contactDto.setEmail("ndphuc@gmail.com");
+        contactDto.setPhone("0812341234");
+        contactDto.setAddress("Huế");
+        contactDto.setContent("mua heo");
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/contact/create")
+                        .content(this.objectMapper.writeValueAsString(contactDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
 }
