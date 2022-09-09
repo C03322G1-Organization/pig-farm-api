@@ -30,7 +30,7 @@ public class Vaccination {
     @Column(columnDefinition = "VARCHAR(255)")
     private String note;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @ManyToOne
