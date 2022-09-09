@@ -32,10 +32,6 @@ public class Export {
     @Column(columnDefinition = "VARCHAR(50)")
     private String codeExport;
 
-    private Integer amount;
-
-    private Double kilogram;
-
     private Double price;
 
     @Column(columnDefinition = "BIT")

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import vn.codegym.pig_farm.dto.IExportDto;
 import vn.codegym.pig_farm.entity.Export;
 
 import javax.transaction.Transactional;
@@ -22,8 +23,19 @@ public interface IExportRepository extends JpaRepository<Export, Integer> {
      * @Param: pageable
      * @return
      */
-    @Query(value = "SELECT * FROM export WHERE is_deleted = 0", nativeQuery = true)
-    Page<Export> listAllExport(Pageable pageable);
+    @Query(value = "SELECT e.id as id, " +
+            "amount as amount, " +
+            "e.code_export as codeExport, " +
+            "company as company, " +
+            "e.is_deleted as isDeleted, " +
+            "kilogram as kilogram, " +
+            "price as price, " +
+            "e.start_date as startDate, " +
+            "e.employee_id as idEmployee, emp.name as nameEmployee " +
+            "FROM export e " +
+            "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
+            "where e.is_deleted = 0", nativeQuery = true)
+    Page<IExportDto> listAllExport(Pageable pageable);
 
     /**
      * Create by: DongLHP
@@ -40,11 +52,20 @@ public interface IExportRepository extends JpaRepository<Export, Integer> {
      * Date create: 08/09/2022
      * Function: find export by Id
      * @Param: id
-     * @return 
+     * @return
      */
-    @Query(value = "SELECT * FROM export WHERE id=:id", nativeQuery = true)
+    @Query(value = "SELECT id, amount, code_export, company, is_deleted, kilogram," +
+            " price, start_date, employee_id, pigsty_id FROM export WHERE id=:id", nativeQuery = true)
     Export findById(@Param("id") int id);
 
-    @Query(value = "select * from export where code_export like:codeExport || company like:company", nativeQuery = true)
+    /**
+     * Create by: DongLHP
+     * Date create: 08/09/2022
+     * Function: search export by code export or company
+     * @Param: id
+     * @return
+     */
+    @Query(value = "select id, mount, code_export, company, is_deleted, kilogram, " +
+            " price, start_date, employee_id, pigsty_id from export where code_export like:codeExport || company like:company", nativeQuery = true)
     Page<Export> search(@Param("codeExport") String codeExport,@Param("company") String company, Pageable pageable);
 }

@@ -5,7 +5,7 @@ import vn.codegym.pig_farm.entity.Pigsty;
 
 import java.time.LocalDate;
 
-public class ExportRestDto {
+public class ExportDto {
     private String company;
     private LocalDate startDate;
     private String codeExport;
@@ -16,7 +16,7 @@ public class ExportRestDto {
     private Pigsty pigsty;
     private Employee employee;
 
-    public ExportRestDto() {
+    public ExportDto() {
     }
 
     public String getCompany() {
