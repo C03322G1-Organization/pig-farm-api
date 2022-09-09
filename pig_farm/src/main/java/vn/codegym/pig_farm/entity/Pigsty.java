@@ -19,7 +19,7 @@ public class Pigsty {
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(30)")
-    private String pigstyCode;
+    private String code;
 
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;

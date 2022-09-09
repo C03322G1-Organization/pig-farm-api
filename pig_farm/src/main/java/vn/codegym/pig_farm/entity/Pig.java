@@ -19,7 +19,7 @@ public class Pig {
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(10)")
-    private String pigCode;
+    private String code;
 
     @Column(columnDefinition = "DATE")
     private LocalDate dateIn;

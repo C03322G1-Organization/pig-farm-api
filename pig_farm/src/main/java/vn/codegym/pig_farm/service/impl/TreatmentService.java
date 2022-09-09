@@ -24,7 +24,8 @@ public class TreatmentService implements ITreatmentService {
      */
     @Override
     public Page<ITreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
-        return treatmentRepository.getAllTreatment( pageable,   "%" + keySearch + "%");
+        System.out.printf("--------------- "+keySearch+" ---------------");
+        return treatmentRepository.getAllTreatment( pageable,"%" + keySearch + "%");
     }
 
     /**

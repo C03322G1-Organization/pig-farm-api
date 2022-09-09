@@ -23,10 +23,10 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
      * @return
      */
     @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine," +
-            " p.pig_code as pigCode, pt.pigsty_code as pigstyCode" +
+            " p.code as pigCode, pt.code as pigstyCode" +
             " FROM Treatment t JOIN pig p ON t.pig_id = p.id" +
             " JOIN pigsty pt ON p.pigsty_id = pt.id " +
-            "where pt.pigsty_code like :keySearch and t.is_deleted = 0", nativeQuery = true)
+            "where t.is_deleted = 0 and pt.code like :keySearch", nativeQuery = true)
     Page<ITreatmentDto> getAllTreatment(Pageable pageable,@Param("keySearch")  String keySearch);
 
     /**
