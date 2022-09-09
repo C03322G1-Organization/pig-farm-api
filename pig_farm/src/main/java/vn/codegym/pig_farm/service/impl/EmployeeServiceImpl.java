@@ -5,8 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Employee;
+import vn.codegym.pig_farm.projection.IEmployeeProjection;
 import vn.codegym.pig_farm.repository.IEmployeeRepository;
 import vn.codegym.pig_farm.service.IEmployeeService;
+
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements IEmployeeService {
@@ -23,7 +26,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
      * @return Page<Employee>
      */
     @Override
-    public Page<Employee> getAllEmployeePaginationAndSearch(String name, String idCard,Pageable pageable) {
+    public Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(String name, String idCard, Pageable pageable) {
         return iEmployeeRepository.getAllEmployeePaginationAndSearch(name,idCard,pageable);
     }
 
@@ -35,5 +38,15 @@ public class EmployeeServiceImpl implements IEmployeeService {
     @Override
     public void deleteEmployee(int id) {
         iEmployeeRepository.deleteEmployee(id);
+    }
+
+    /**
+     * @Creator HungNQ
+     * @Date 09/09/2022
+     * @return List employee
+     */
+    @Override
+    public List<Employee> getAllEmployee() {
+        return iEmployeeRepository.getAllEmployee();
     }
 }
