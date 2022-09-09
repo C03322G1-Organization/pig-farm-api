@@ -26,6 +26,12 @@ public class EmployeeRestController_save {
     @Autowired
     private ObjectMapper objectMapper;
 
+    /**
+     * @Created LongNT
+     * @function return error when miss [item] code employee
+     * @throws Exception
+     */
+
     @Test
     public void save_code_13() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -41,6 +47,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when miss [item] name employee
+     * @throws Exception
+     */
 
     @Test
     public void save_name_13() throws Exception {
@@ -58,6 +70,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when miss [item] birthDay employee
+     * @throws Exception
+     */
+
     @Test
     public void save_birthDay_13() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -73,6 +91,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when miss [item] gender employee
+     * @throws Exception
+     */
 
     @Test
     public void save_gender_13() throws Exception {
@@ -90,6 +114,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when miss [item] idCard employee
+     * @throws Exception
+     */
+
     @Test
     public void save_idCard_13() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -106,6 +136,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when miss [item] image employee
+     * @throws Exception
+     */
+
     @Test
     public void save_image_13() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -121,6 +157,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when [item] code is empty employee
+     * @throws Exception
+     */
 
     @Test
     public void save_code_14() throws Exception {
@@ -139,6 +181,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when [item] name is empty employee
+     * @throws Exception
+     */
+
     @Test
     public void save_name_14() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -155,6 +203,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when [item] birthDay is empty employee
+     * @throws Exception
+     */
 
     @Test
     public void save_birthDay_14() throws Exception {
@@ -173,6 +227,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when [item] gender is empty employee
+     * @throws Exception
+     */
+
     @Test
     public void save_gender_14() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -189,6 +249,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when [item] idCard is empty employee
+     * @throws Exception
+     */
 
     @Test
     public void save_idCard_14() throws Exception {
@@ -207,6 +273,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when [item] image is empty employee
+     * @throws Exception
+     */
+
     @Test
     public void save_image_14() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -223,6 +295,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when [item] code employee incorrect format
+     * @throws Exception
+     */
 
     @Test
     public void save_code_15() throws Exception {
@@ -241,6 +319,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when [item] name employee incorrect format
+     * @throws Exception
+     */
+
     @Test
     public void save_name_15() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -257,6 +341,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return error when [item] idCard employee incorrect format
+     * @throws Exception
+     */
 
     @Test
     public void save_idCard_15() throws Exception {
@@ -275,6 +365,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when [item] name employee <= minlength
+     * @throws Exception
+     */
+
     @Test
     public void save_name_16() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -292,6 +388,12 @@ public class EmployeeRestController_save {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * @Created LongNT
+     * @function return error when [item] name employee >= maxlength
+     * @throws Exception
+     */
+
     @Test
     public void save_name_17() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
@@ -308,6 +410,12 @@ public class EmployeeRestController_save {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return register successful in database
+     * @throws Exception
+     */
 
     @Test
     public void save_18() throws Exception {

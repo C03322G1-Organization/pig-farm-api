@@ -18,10 +18,22 @@ public class EmployeeRestController_findById {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * @Created LongNT
+     * @function return error when id employee is null
+     * @throws Exception
+     */
+
     @Test
     public void findById_id_1() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/employee/{id}", "null")).andDo(print()).andExpect(status().is4xxClientError());
     }
+
+    /**
+     * @Created LongNT
+     * @function return employee when find id success
+     * @throws Exception
+     */
 
     @Test
     public void findById_id_4() throws Exception {
