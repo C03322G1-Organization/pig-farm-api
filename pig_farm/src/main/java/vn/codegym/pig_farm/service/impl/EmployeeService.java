@@ -16,7 +16,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void save(Employee employee) {
-        employeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage());
+        employeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getUser());
     }
 
     @Override

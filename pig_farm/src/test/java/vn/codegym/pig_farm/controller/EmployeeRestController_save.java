@@ -413,14 +413,13 @@ public class EmployeeRestController_save {
 
     /**
      * @Created LongNT
-     * @function return register successful in database
+     * @function return register employee successful in database
      * @throws Exception
      */
 
     @Test
     public void save_18() throws Exception {
         EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(11);
         employeeDto.setCode("NV-001");
         employeeDto.setName("Trần Ngọc");
         employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));

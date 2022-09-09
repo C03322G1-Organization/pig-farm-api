@@ -19,11 +19,11 @@ public class EmployeeDto {
     private Integer id;
 
     @NotBlank(message = "Mã Nhân Viên không được để trống !!")
-    @Pattern(regexp = "", message = "Mã Nhân Viên phải đúng định dạng: NV-xxx !!")
+//    @Pattern(regexp = "", message = "Mã Nhân Viên phải đúng định dạng: NV-xxx !!")
     private String code;
 
     @NotBlank(message = "Tên Nhân Viên không được để trống !!")
-    @Pattern(regexp = "", message = "Tên Nhân Viên phải viết hoa chữ cái đầu !!")
+//    @Pattern(regexp = "", message = "Tên Nhân Viên phải viết hoa chữ cái đầu !!")
     @Size(min = 1, max = 30, message = "Tên Nhân Viên không quá 30 kí tự !!")
     private String name;
 
@@ -34,7 +34,7 @@ public class EmployeeDto {
     private String gender;
 
     @NotBlank(message = "Số CMND không được để trống !!")
-    @Pattern(regexp = "", message = "Số CMND phải đúng định dạng: 9 hoặc 12 chữ số !!")
+//    @Pattern(regexp = "", message = "Số CMND phải đúng định dạng: 9 hoặc 12 chữ số !!")
     private String idCard;
 
     @NotBlank(message = "Ảnh không được để trống !!")
