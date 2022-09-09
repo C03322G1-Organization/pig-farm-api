@@ -9,7 +9,11 @@ import vn.codegym.pig_farm.service.IContactService;
 public class ContactService implements IContactService {
     @Autowired
     private IContactRepository iContactRepository;
-
+    /**
+     * Create by PhucND
+     * Date Create: 08/09/2022
+     * This save
+     */
     @Override
     public Contact save(Contact contact) {
         return iContactRepository.save(contact.getName(), contact.getEmail(), contact.getPhone(), contact.getAddress(), contact.getContent());
