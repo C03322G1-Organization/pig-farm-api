@@ -8,8 +8,19 @@ import vn.codegym.pig_farm.entity.Notification;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.Optional;
 
 public interface NotificationRepository extends JpaRepository<Notification, Integer> {
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Write query fìndById
+     * @param id
+     */
+
+    @Query(value = "select * from notification where id = :id", nativeQuery = true)
+    Optional<Notification> findById(@Param("id") Integer id);
 
     /**
      * Create by HuyenTN
@@ -20,6 +31,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      * @param submitted_date
      * @param image
      */
+
     @Transactional
     @Modifying
     @Query(value = "insert into notification(id, content, submitted_date, image) " +

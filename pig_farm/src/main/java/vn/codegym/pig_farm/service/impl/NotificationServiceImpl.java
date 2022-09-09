@@ -40,7 +40,7 @@ public class NotificationServiceImpl implements NotificationService {
      */
 
     @Override
-    public void save(Notification notification, Pageable pageable) {
+    public void save(Notification notification) {
         notificationRepository.save(notification.getId(), notification.getContent(), notification.getSubmittedDate(),
                 notification.getImage());
     }
@@ -53,7 +53,7 @@ public class NotificationServiceImpl implements NotificationService {
      */
 
     @Override
-    public void update(Notification notification, Pageable pageable) {
+    public void update(Notification notification) {
         notificationRepository.update(notification.getContent(), notification.getSubmittedDate(),
                 notification.getImage(), notification.getIsDeleted(), notification.getId());
     }

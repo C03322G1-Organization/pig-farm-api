@@ -26,7 +26,7 @@ public interface NotificationService {
      * @return save(Notification notification)
      */
 
-    void save(Notification notification, Pageable pageable);
+    void save(Notification notification);
 
     /**
      * Create by HuyenTN
@@ -36,5 +36,6 @@ public interface NotificationService {
      * @return save(Notification notification)
      */
 
-    void update(Notification notification, Pageable pageable);
+    void update(Notification notification);
+
 }

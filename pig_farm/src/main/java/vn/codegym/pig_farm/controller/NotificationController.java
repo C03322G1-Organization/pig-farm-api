@@ -1,13 +1,17 @@
 package vn.codegym.pig_farm.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import vn.codegym.pig_farm.dto.NotificationDto;
 import vn.codegym.pig_farm.entity.Notification;
 import vn.codegym.pig_farm.service.NotificationService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,21 +22,31 @@ public class NotificationController {
     @Autowired
     private NotificationService notificationService;
 
-//    @GetMapping
-//    public ResponseEntity<List<Notification>> getAll() {
-//        return new ResponseEntity<>(notificationService.findAll(), HttpStatus.OK);
-//    }
-
     /**
      * Create by HuyenTN
      * Date: 08/09/2022
-     * Add new notification
-     * @param notification
-     * @return HttpStatus: Http 200 OK, ResponseEntity()
+     * Create notification
+     *
+     * @param notificationDto
+     * @param bindingResult
+     * @return HttpStatus: Http 200 OK, ResponseEntity<>(),
+     * * HttpStatus: Http 404 NOT_FOUND, ResponseEntity is enity
      */
-    @PostMapping
-    public ResponseEntity<Notification> create(@RequestBody Notification notification, Pageable pageable) {
-        notificationService.save(notification, pageable);
+
+    @PostMapping("/create")
+    public ResponseEntity<List<FieldError>> create(@RequestBody @Valid NotificationDto notificationDto,
+                                                   BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),
+                    HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        Notification notification = new Notification();
+        BeanUtils.copyProperties(notificationDto, notification);
+
+        this.notificationService.save(notification);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -40,9 +54,10 @@ public class NotificationController {
      * Create by HuyenTN
      * Date: 08/09/2022
      * Find By Id
+     *
      * @param id
-     * @return  HttpStatus: Http 200 OK, ResponseEntity<>(notification.get()),
-     *          HttpStatus: Http 404 NOT_FOUND, ResponseEntity is enity
+     * @return HttpStatus: Http 200 OK, ResponseEntity<>(notification.get()),
+     *         HttpStatus: Http 404 NOT_FOUND, ResponseEntity is enity
      */
 
     @GetMapping("/{id}")
@@ -58,25 +73,35 @@ public class NotificationController {
      * Create by HuyenTN
      * Date: 08/09/2022
      * Edit notification
+     *
      * @param id
-     * @param notification
-     * @return HttpStatus: Http 200 OK : ResponseEntity<>(notifications1)
-     *         HttpStatus: Http 404 NOT_FOUND : ResponseEntity is enity
+     * @param notificationDto
+     * @param bindingResult
+     * @return HttpStatus.NOT_MODIFIED: Http 300, errors
+     *         HttpStatus.NO_CONTENT: Http 404, ResponseEntity is enity
+     *         HttpStatus.OK: Http 200, ResponseEntity(currentNotification.get())
      */
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Notification> update(@PathVariable Integer id,
-                                               @RequestBody Notification notification,
-                                               Pageable pageable) {
-        Notification notifications1 = notificationService.findById(id).get();
-        if (notifications1 == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        notifications1.setId(notification.getId());
-        notifications1.setContent(notification.getContent());
-        notifications1.setImage(notification.getImage());
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Notification> update(@PathVariable Integer id, @Valid @RequestBody NotificationDto notificationDto,
+                                               BindingResult bindingResult) {
+        Optional<Notification> currentNotification = notificationService.findById(id);
 
-        notificationService.update(notifications1, pageable);
-        return new ResponseEntity<>(notifications1, HttpStatus.OK);
+        if (bindingResult.hasFieldErrors()) {
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+
+        if (!currentNotification.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        currentNotification.get().setId(notificationDto.getId());
+        currentNotification.get().setContent(notificationDto.getContent());
+        currentNotification.get().setImage(notificationDto.getImage());
+
+        notificationService.update(currentNotification.get());
+
+        return new ResponseEntity(currentNotification.get(), HttpStatus.OK);
     }
 }
+
