@@ -47,9 +47,14 @@ public class PigService implements IPigService {
      * Function: updatePig
      */
     @Override
-    public void updatePig( Pig pig) {
+    public void updatePig(Integer id,Pig pig) {
         pigRepository.updatePig(
                 pig.getCode(),
-               pig.getDateIn(),pig.getDateOut(),pig.getStatus(),pig.getWeight(),pig.getPigsty(),pig.getId());
+               pig.getDateIn(),
+                pig.getDateOut(),
+                pig.getStatus(),
+                pig.getWeight(),
+                pig.getPigsty(),
+                pig.getId());
     }
 }

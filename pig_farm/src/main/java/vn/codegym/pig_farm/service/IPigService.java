@@ -26,5 +26,5 @@ public interface IPigService {
      * Date created: 08/09/2022
      * Function: updatePig
      */
-    void updatePig(Pig pig);
+    void updatePig(Integer id,Pig pig);
 }

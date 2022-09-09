@@ -17,7 +17,7 @@ import java.util.List;
 public class Pig {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(columnDefinition = "VARCHAR(10)")
     private String code;
