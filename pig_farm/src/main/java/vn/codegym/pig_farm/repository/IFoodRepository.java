@@ -9,7 +9,6 @@ import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Storage;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
 
 @Transactional
 public interface IFoodRepository extends JpaRepository<Food, Integer> {
@@ -58,7 +57,11 @@ public interface IFoodRepository extends JpaRepository<Food, Integer> {
      * @param id
      * @return
      */
-    @Query(value = "select * from food where id = :id", nativeQuery = true)
+    @Query(value = "select id, amount, is_deleted, unit, pigsty_id, storage_id from food where id = :id", nativeQuery = true)
     Food findById(@Param("id") int id);
+
+
+
+
 }
 

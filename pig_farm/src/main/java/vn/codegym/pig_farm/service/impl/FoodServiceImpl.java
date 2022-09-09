@@ -3,7 +3,9 @@ package vn.codegym.pig_farm.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Food;
+import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.repository.IFoodRepository;
+import vn.codegym.pig_farm.repository.IStorageRepository;
 import vn.codegym.pig_farm.service.FoodService;
 
 
@@ -12,7 +14,8 @@ public class FoodServiceImpl implements FoodService {
     @Autowired
     IFoodRepository iFoodRepository;
 
-
+    @Autowired
+    IStorageRepository storageRepository;
 
     /**
      * Create by: HungNV
@@ -46,5 +49,17 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public Food findById(int id) {
         return iFoodRepository.findById(id);
+    }
+
+    @Override
+    public Storage findByIdStorage(int id) {
+        return storageRepository.findByIdStorage(id);
+    }
+
+
+
+    @Override
+    public void updateStorage(int i, Integer id) {
+        storageRepository.updateAmountStorage(i, id);
     }
 }
