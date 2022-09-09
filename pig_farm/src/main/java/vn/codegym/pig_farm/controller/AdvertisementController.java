@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.entity.Advertisement;
+import vn.codegym.pig_farm.projection.IAdvertisementProjection;
 import vn.codegym.pig_farm.service.IAdvertisementService;
 
 import java.util.Map;
@@ -28,13 +29,13 @@ public class AdvertisementController {
      * @date-create 08/09/2022
      */
     @GetMapping("/page")
-    public ResponseEntity<Page<Advertisement>> findAllAdvertisement(@PageableDefault(value = 5) Pageable pageable,
-                                                                    Optional<String> keySearch) {
+    public ResponseEntity<Page<IAdvertisementProjection>> findAllAdvertisement(@PageableDefault(value = 5) Pageable pageable,
+                                                                               Optional<String> keySearch) {
         String title = keySearch.orElse("");
         if (title.equals("null")) {
             title = "";
         }
-        Page<Advertisement> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
+        Page<IAdvertisementProjection> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
         if (advertisementPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -42,15 +43,18 @@ public class AdvertisementController {
     }
 
     /**
-     * @param ids return status 200
+     * @param id return status 200
      * @function (Query to delete Advertisement)
      * @creator DucNH
      * @date-create 08/09/2022
      */
-    @PutMapping("/delete")
-    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-        System.out.println(ids.toString());
-        advertisementService.deleteAdvertisement(ids.get("id"));
+    @PutMapping("/delete/{id}")
+    private ResponseEntity<Void> delete(@PathVariable int id) {
+        Optional<Advertisement> advertisement = advertisementService.findById(id);
+        if (advertisement.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        advertisementService.deleteAdvertisement(advertisement.get().getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

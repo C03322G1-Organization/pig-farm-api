@@ -5,8 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Advertisement;
+import vn.codegym.pig_farm.projection.IAdvertisementProjection;
 import vn.codegym.pig_farm.repository.IAdvertisementRepository;
 import vn.codegym.pig_farm.service.IAdvertisementService;
+
+import java.util.Optional;
 
 @Service
 public class AdvertisementServiceImpl implements IAdvertisementService {
@@ -22,20 +25,30 @@ public class AdvertisementServiceImpl implements IAdvertisementService {
      * @date-create 08/09/2022
      */
     @Override
-    public Page<Advertisement> findAllAdvertisement(Pageable pageable, String keySearch) {
+    public Page<IAdvertisementProjection> findAllAdvertisement(Pageable pageable, String keySearch) {
         return advertisementRepository.findAllAdvertisement(pageable, "%" + keySearch + "%");
     }
 
     /**
-     * @param ids
+     * @param id must not be
+     * @return
+     * @function (Query to Advertisement)
+     * @creator DucNH
+     * @date-create 08/09/2022
+     */
+    @Override
+    public Optional<Advertisement> findById(int id) {
+        return advertisementRepository.findById(id);
+    }
+
+    /**
+     * @param id
      * @function (Query to delete Advertisement)
      * @creator DucNH
      * @date-create 08/09/2022
      */
     @Override
-    public void deleteAdvertisement(Integer[] ids) {
-        for (Integer id : ids) {
-            advertisementRepository.delete(id);
-        }
+    public void deleteAdvertisement(int id) {
+        advertisementRepository.deleteAdvertisement(id);
     }
 }
