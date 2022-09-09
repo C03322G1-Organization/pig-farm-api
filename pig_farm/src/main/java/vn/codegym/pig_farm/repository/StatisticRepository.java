@@ -55,5 +55,49 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
             "and (start_date < date(:endTime)) " +
             "and type_pigs =:type group by groupD", nativeQuery = true)
     List<StatisticByYear> getStatisticByYear(@Param("starTime") String starTime, @Param("endTime") String endTime, @Param("type") Integer type);
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Get value statistic by month and company from Database to return value.
+     *
+     * @return List<StatisticByMonth> or null
+     */
+
+    @Query(value= " select " +
+            "sum(price * amount) as price, " +
+            "company as company, " +
+            "sum(amount) as amount, " +
+            "month(start_date) as `month`, " +
+            "year(start_date) as `year`, " +
+            "concat(month(start_date),'/', year(start_date)) as `time` " +
+            "from `export` " +
+            "where (start_date > date(:starTime)) " +
+            "and company like %:company% " +
+            "and (start_date < date(:endTime)) " +
+            "and type_pigs = :type group by `time`", nativeQuery = true)
+    List<StatisticByMonth> getStatisticByMonthAndCompany(@Param("starTime") String starTime, @Param("endTime") String endTime,  @Param("type") Integer type, @Param("company") String company);
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Get value statistic by year and company from Database to return value.
+     *
+     * @return List<StatisticByMonth> or null
+     */
+
+    @Query(value= " select " +
+            "sum(price * amount) as price, " +
+            "company as company, " +
+            "sum(amount) as amount, " +
+            "month(start_date) as `month`, " +
+            "year(start_date) as `year`, " +
+            "concat(month(start_date),'/', year(start_date)) as `time` " +
+            "from `export` " +
+            "where (start_date > date(:starTime)) " +
+            "and company like %:company% " +
+            "and (start_date < date(:endTime)) " +
+            "and type_pigs = :type group by `time`", nativeQuery = true)
+    List<StatisticByYear> getStatisticByYearAndCompany(@Param("starTime") String starTime, @Param("endTime") String endTime,  @Param("type") Integer type, @Param("company") String company);
 }
 

@@ -29,8 +29,14 @@ public class StatisticController {
      */
 
     @GetMapping("by-month/{startTime}/{endTime}/{type}")
-    public ResponseEntity<List<StatisticByMonth>> getStatisticByMonth(@PathVariable String startTime, @PathVariable String endTime, @PathVariable Integer type) {
-        if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime))) {
+    public ResponseEntity<List<StatisticByMonth>> getStatisticByMonth(@PathVariable String startTime,
+                                                                      @PathVariable String endTime,
+                                                                      @PathVariable Integer type) {
+        try {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || type != 0 && type != 1) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         List<StatisticByMonth> statisticByMonthList = statisticService.getStatisticByMonth(startTime, endTime, type);
@@ -49,8 +55,14 @@ public class StatisticController {
      */
 
     @GetMapping("by-year/{startTime}/{endTime}/{type}")
-    public ResponseEntity<List<StatisticByYear>> getStatisticByYear(@PathVariable String startTime, @PathVariable String endTime, @PathVariable Integer type) {
-        if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime))) {
+    public ResponseEntity<List<StatisticByYear>> getStatisticByYear(@PathVariable String startTime,
+                                                                    @PathVariable String endTime,
+                                                                    @PathVariable Integer type) {
+        try {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || type != 0 && type != 1) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         List<StatisticByYear> statisticByMonthList = statisticService.getStatisticByYear(startTime, endTime, type);
@@ -58,5 +70,59 @@ public class StatisticController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(statisticByMonthList, HttpStatus.OK);
+    }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Get value statistic by month and company from Database to return value.
+     *
+     * @return BAD_REQUEST, NO_CONTENT, OK
+     */
+
+    @GetMapping("by-month/{startTime}/{endTime}/{type}/{company}")
+    public ResponseEntity<List<StatisticByMonth>> getStatisticByMonthAndCompany(@PathVariable String startTime,
+                                                                                @PathVariable String endTime,
+                                                                                @PathVariable Integer type,
+                                                                                @PathVariable String company) {
+        try {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || company == null || company.equals("") || type != 0 && type != 1) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<StatisticByMonth> statisticByYearList = statisticService.getStatisticByMonthAndCompany(startTime, endTime, type, company);
+        if (statisticByYearList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(statisticByYearList, HttpStatus.OK);
+    }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Get value statistic by year and company from Database to return value.
+     *
+     * @return BAD_REQUEST, NO_CONTENT, OK
+     */
+
+    @GetMapping("by-year/{startTime}/{endTime}/{type}/{company}")
+    public ResponseEntity<List<StatisticByYear>> getStatisticByYearAndCompany(@PathVariable String startTime,
+                                                                              @PathVariable String endTime,
+                                                                              @PathVariable Integer type,
+                                                                              @PathVariable String company) {
+        try {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || company == null || company.equals("") || type != 0 && type != 1) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<StatisticByYear> statisticByYearList = statisticService.getStatisticByYearAndCompany(startTime, endTime, type, company);
+        if (statisticByYearList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(statisticByYearList, HttpStatus.OK);
     }
 }

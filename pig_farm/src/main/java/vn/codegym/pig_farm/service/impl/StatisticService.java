@@ -40,4 +40,30 @@ public class StatisticService implements IStatisticService {
     public List<StatisticByYear> getStatisticByYear(String startDate, String endDate, Integer type) {
         return statisticRepository.getStatisticByYear(startDate, endDate, type);
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Get value statistic by month from Database to return value.
+     *
+     * @return List<StatisticByMonth> or null
+     */
+
+    @Override
+    public List<StatisticByMonth> getStatisticByMonthAndCompany(String startDate, String endDate, Integer type, String company) {
+        return statisticRepository.getStatisticByMonthAndCompany(startDate, endDate, type, company);
+    }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Get value statistic by year from Database to return value.
+     *
+     * @return List<StatisticByYear> or null
+     */
+
+    @Override
+    public List<StatisticByYear> getStatisticByYearAndCompany(String startDate, String endDate, Integer type, String company) {
+        return statisticRepository.getStatisticByYearAndCompany(startDate, endDate, type, company);
+    }
 }
