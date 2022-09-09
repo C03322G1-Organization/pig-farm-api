@@ -30,4 +30,5 @@ public interface IPigstyService {
      */
     Pigsty getPigstyById(Integer id);
 
+    List<Pigsty> getListPigsty();
 }

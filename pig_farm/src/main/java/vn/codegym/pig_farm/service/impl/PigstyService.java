@@ -17,6 +17,7 @@ public class PigstyService implements IPigstyService {
      * Created by: HieuCD
      * Date created: 08/09/2022
      * function: create a Pigsty
+     *
      * @param pigsty
      */
     @Override
@@ -28,24 +29,29 @@ public class PigstyService implements IPigstyService {
      * Created by: HieuCD
      * Date created: 08/09/2022
      * function: edit a Pigsty
+     *
      * @param pigsty
      */
     @Override
     public void editPigsty(Pigsty pigsty) {
-
+        this.iPigstyRepository.editPigsty(pigsty);
     }
 
     /**
      * Created by: HieuCD
      * Date created: 08/09/2022
      * function: get a Pigsty by id
+     *
      * @param id
      * @return return a pigsty
      */
     @Override
     public Pigsty getPigstyById(Integer id) {
-        return null;
+        return this.iPigstyRepository.getPigstyById(id);
     }
 
-
+    @Override
+    public List<Pigsty> getListPigsty() {
+        return iPigstyRepository.findAll();
+    }
 }
