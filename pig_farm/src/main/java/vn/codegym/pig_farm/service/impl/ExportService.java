@@ -2,6 +2,7 @@ package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.repository.IExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
@@ -17,9 +18,13 @@ public class ExportService implements IExportService {
      * Function: create
      */
     @Override
-    public void create(Export export) {
-        iExportRepository.create(export.getPigsty(), export.getEmployee(), export.getCodeExport(), export.getCompany(),
-                export.getStartDate(), export.getAmount(), export.getKilogram(), export.getPrice(), export.getTypePigs());
+    public void create(ExportDto exportDto) {
+        iExportRepository.create(exportDto.getPigstyDto().getId(),
+                exportDto.getEmployeeDto().getId(),
+                exportDto.getCodeExport(),
+                exportDto.getCompany(),
+                exportDto.getPrice(),
+                exportDto.getTypePigs());
     }
     /**
      * Created by: HoaL
@@ -29,7 +34,7 @@ public class ExportService implements IExportService {
     @Override
     public void update(Export export) {
         iExportRepository.update(export.getPigsty(), export.getEmployee(), export.getCodeExport(), export.getCompany(),
-                export.getStartDate(), export.getAmount(), export.getKilogram(), export.getPrice(), export.getTypePigs(),
+                 export.getPrice(), export.getTypePigs(),
                 export.getId());
     }
     /**

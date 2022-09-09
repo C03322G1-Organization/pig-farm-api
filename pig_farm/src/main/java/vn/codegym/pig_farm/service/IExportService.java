@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.service;
 
+import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.entity.Export;
 
 public interface IExportService {
@@ -9,7 +10,7 @@ public interface IExportService {
      * Date created: 08/09/2022
      * Function: create
      */
-    void create(Export export);
+    void create(ExportDto exportDto);
 
     /**
      * Created by: HoaL

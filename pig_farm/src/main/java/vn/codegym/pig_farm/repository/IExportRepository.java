@@ -23,17 +23,14 @@ public interface IExportRepository extends JpaRepository<Export,Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "insert into `export` (pigsty_id,employee_id,code_export,company,start_date,amount,kilogram," +
+    @Query(value = "insert into `export` (pigsty_id,employee_id,code_export,company," +
             "price,type_pigs) values" +
-            " (:pigstyId,:employeeId,:codeExport,:company,:startDate,:amount,:kilogram,:price,:typePigs)",
+            " (:pigstyId,:employeeId,:codeExport,:company,:price,:typePigs)",
             nativeQuery = true)
-    void create(@Param("pigstyId") Pigsty pigstyId,
-                @Param("employeeId") Employee employeeId,
+    void create(@Param("pigstyId") Integer pigstyId,
+                @Param("employeeId") Integer employeeId,
                 @Param("codeExport") String codeExport,
                 @Param("company") String company,
-                @Param("startDate") LocalDate startDate,
-                @Param("amount") Integer amount,
-                @Param("kilogram") Double kilogram,
                 @Param("price") Double price,
                 @Param("typePigs") String typePigs
     );
@@ -47,12 +44,11 @@ public interface IExportRepository extends JpaRepository<Export,Integer> {
     @Modifying
     @Transactional
     @Query(value = "update `export` set pigsty_id = :pigstyId,employee_id = :employeeId,code_export = :codeExport,company = :company," +
-            "start_date = :startDate,amount = :amount,kilogram = :kilogram,price = :price,type_pigs = :typePigs where id = :id",
+            "price = :price,type_pigs = :typePigs where id = :id",
             nativeQuery = true)
     void update(@Param("pigstyId") Pigsty pigstyId, @Param("employeeId") Employee employeeId,
                  @Param("codeExport") String codeExport, @Param("company") String company,
-                @Param("startDate") LocalDate startDate, @Param("amount") Integer amount,
-                @Param("kilogram") Double kilogram,@Param("price") Double price,
+                 @Param("price") Double price,
                 @Param("typePigs") String typePigs, @Param("id") Integer id
     );
 
@@ -63,5 +59,23 @@ public interface IExportRepository extends JpaRepository<Export,Integer> {
      */
     @Query(value = "select * from export where id = :id", nativeQuery = true)
     Export findById(@Param("id") int id);
+
+    /**
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: findById
+     * return totalWeight
+     */
+    @Query(value = "select sum(weight) as weighht from pig where pigsty_id = :id ;", nativeQuery = true)
+    Integer totalWeight(@Param("id") int id);
+
+    /**
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: findById
+     * return countPigOnPigsty
+     */
+    @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id",nativeQuery = true)
+    Integer countPigOnPigsty(@Param("id") int id);
 
 }

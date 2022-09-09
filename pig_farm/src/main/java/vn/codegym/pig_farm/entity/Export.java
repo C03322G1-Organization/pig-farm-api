@@ -31,13 +31,6 @@ public class Export {
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
-    @Column(columnDefinition = "DATE")
-    private LocalDate startDate;
-
-    private Integer amount;
-
-    private Double kilogram;
-
     private Double price;
 
     private String typePigs;
