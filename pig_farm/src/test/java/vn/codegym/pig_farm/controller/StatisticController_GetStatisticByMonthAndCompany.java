@@ -17,6 +17,14 @@ public class StatisticController_GetStatisticByMonthAndCompany {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check startTime
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByMonthAndCompany_startTime_1() throws Exception {
 
@@ -26,6 +34,14 @@ public class StatisticController_GetStatisticByMonthAndCompany {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check endTime
+     *
+     * @return BAD_REQUEST 400
+     */
 
     @Test
     public void getStatisticByMonthAndCompany_endTime_1() throws Exception {
@@ -37,6 +53,14 @@ public class StatisticController_GetStatisticByMonthAndCompany {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check type
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByMonthAndCompany_type_1() throws Exception {
 
@@ -46,6 +70,14 @@ public class StatisticController_GetStatisticByMonthAndCompany {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check type
+     *
+     * @return BAD_REQUEST 400
+     */
 
     @Test
     public void getStatisticByMonthAndCompany_type_2() throws Exception {
@@ -57,18 +89,16 @@ public class StatisticController_GetStatisticByMonthAndCompany {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check null value
+     *
+     * @return NO_CONTENT 204
+     */
+
     @Test
     public void getStatisticByMonthAndCompany_company_1() throws Exception {
-
-        this.mockMvc.perform(
-                MockMvcRequestBuilders
-                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", null, ""))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-
-    @Test
-    public void getStatisticByMonthAndCompany_company_2() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
@@ -76,6 +106,14 @@ public class StatisticController_GetStatisticByMonthAndCompany {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check success
+     *
+     * @return OK 200
+     */
 
     @Test
     public void getStatisticByMonth_All_5() throws Exception {

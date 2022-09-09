@@ -18,6 +18,14 @@ public class StatisticController_GetStatisticByMonth {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check startTime
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByMonth_startTime_1() throws Exception {
 
@@ -27,6 +35,14 @@ public class StatisticController_GetStatisticByMonth {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check endTime
+     *
+     * @return BAD_REQUEST 400
+     */
 
     @Test
     public void getStatisticByMonth_endTime_1() throws Exception {
@@ -38,6 +54,14 @@ public class StatisticController_GetStatisticByMonth {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check type
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByMonth_type_1() throws Exception {
 
@@ -48,6 +72,14 @@ public class StatisticController_GetStatisticByMonth {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check type
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByMonth_type_2() throws Exception {
 
@@ -57,6 +89,14 @@ public class StatisticController_GetStatisticByMonth {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check success
+     *
+     * @return OK 200
+     */
 
     @Test
     public void getStatisticByMonth_All_5() throws Exception {

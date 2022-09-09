@@ -17,6 +17,14 @@ public class StatisticController_GetStatisticByYear {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check startTime
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByYear_startTime_1() throws Exception {
 
@@ -26,6 +34,14 @@ public class StatisticController_GetStatisticByYear {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check endTime
+     *
+     * @return BAD_REQUEST 400
+     */
 
     @Test
     public void getStatisticByYear_startTime_2() throws Exception {
@@ -37,6 +53,14 @@ public class StatisticController_GetStatisticByYear {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check type
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
     public void getStatisticByYear_startTime_3() throws Exception {
 
@@ -47,8 +71,16 @@ public class StatisticController_GetStatisticByYear {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check type
+     *
+     * @return BAD_REQUEST 400
+     */
+
     @Test
-    public void getStatisticByYear_startTime_4() throws Exception {
+    public void getStatisticByYear_type_2() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
@@ -56,6 +88,14 @@ public class StatisticController_GetStatisticByYear {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 9/9/2022
+     * function: Check success
+     *
+     * @return OK 200
+     */
 
     @Test
     public void getStatisticByYear_startTime_5() throws Exception {
