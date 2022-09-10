@@ -16,6 +16,7 @@ import java.util.Optional;
 public class AdvertisementService implements IAdvertisementService {
     @Autowired
     private IAdvertisementRepository advertisementRepository;
+
     @Override
     public List<Advertisement> findAllAdvertisement() {
         return advertisementRepository.findAllAdvertisement();
