@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,10 @@ public class Role {
     @Column(columnDefinition = "VARCHAR(45)")
     private String name;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
-
+    @JsonBackReference
     @OneToMany(mappedBy = "role")
     private List<UserRole> userRoles;
 }

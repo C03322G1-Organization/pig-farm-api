@@ -1,9 +1,9 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -30,10 +30,13 @@ public class Treatment {
 
     private Integer amount;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "pig_id", referencedColumnName = "id")
+//    @JsonBackReference
     private Pig pig;
+
 }
