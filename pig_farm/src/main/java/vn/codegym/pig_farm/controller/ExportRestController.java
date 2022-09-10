@@ -25,21 +25,12 @@ public class ExportRestController {
     /**
      * Create by: DongLHP
      * Date create: 08/09/2022
-     * Function: get all export in Database
+     * Function: get all and search export in Database
      *
      * @return HttpStatus.NOT_FOUND
      * @return HttpStatus.OK
      * @param: pageable
      */
-//    @GetMapping("")
-//    public ResponseEntity<Page<IExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable) {
-//        Page<IExportDto> listAll = iExportService.listAll(pageable);
-//        if (listAll.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(listAll, HttpStatus.OK);
-//    }
-
     @GetMapping("/page")
     public ResponseEntity<Page<IExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable,
                                                         Optional<String> codeExport,
@@ -80,35 +71,4 @@ public class ExportRestController {
         iExportService.delete(export);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: search export by code_export and company
-     *
-     * @return HttpStatus.NOT_FOUND
-     * @return HttpStatus.OK
-     * @param: codeExport, company, pageable
-     */
-//    @GetMapping("/search")
-//    public ResponseEntity<Page<Export>> searchExport(
-//            @RequestParam Optional<String> codeExport,
-//            @RequestParam Optional<String> company,
-//            @PageableDefault(value = 5) Pageable pageable) {
-//        {
-//            String code = codeExport.orElse("");
-//            String company1 = company.orElse("");
-//            if (code.equals("null")) {
-//                code = "";
-//            }
-//            if (company1.equals("null")) {
-//                company1 = "";
-//            }
-//            Page<Export> exports = iExportService.searchExport(code, company1, pageable);
-//            if (exports.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//            return new ResponseEntity<>(exports, HttpStatus.OK);
-//        }
-//    }
 }

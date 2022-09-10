@@ -34,13 +34,4 @@ public interface IExportService {
      * @return
      */
     Export findById(int id);
-
-    /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: search by code export or company
-     * @Param: codeExport, company, pageable
-     * @return
-     */
-    Page<IExportDto> searchExport(String codeExport, String company, Pageable pageable);
 }

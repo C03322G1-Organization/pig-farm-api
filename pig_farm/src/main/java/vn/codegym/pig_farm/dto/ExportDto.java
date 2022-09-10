@@ -5,6 +5,11 @@ import vn.codegym.pig_farm.entity.Pigsty;
 
 import java.time.LocalDate;
 
+/**
+ * Create by: DongLHP
+ * Date create: 08/09/2022
+ * Function: Create ExportDto
+ */
 public class ExportDto {
     private String company;
     private LocalDate startDate;
@@ -12,11 +17,35 @@ public class ExportDto {
     private Integer amount;
     private Double kilogram;
     private Double price;
+    private String typePigs;
     private Boolean isDeleted;
     private Pigsty pigsty;
     private Employee employee;
 
     public ExportDto() {
+    }
+
+    public ExportDto(String company, LocalDate startDate, String codeExport,
+                     Integer amount, Double kilogram, Double price, String typePigs,
+                     Boolean isDeleted, Pigsty pigsty, Employee employee) {
+        this.company = company;
+        this.startDate = startDate;
+        this.codeExport = codeExport;
+        this.amount = amount;
+        this.kilogram = kilogram;
+        this.price = price;
+        this.typePigs = typePigs;
+        this.isDeleted = isDeleted;
+        this.pigsty = pigsty;
+        this.employee = employee;
+    }
+
+    public String getTypePigs() {
+        return typePigs;
+    }
+
+    public void setTypePigs(String typePigs) {
+        this.typePigs = typePigs;
     }
 
     public String getCompany() {
