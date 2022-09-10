@@ -2,10 +2,9 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.IExportDto;
 import vn.codegym.pig_farm.entity.Export;
-
-import java.util.List;
 
 public interface IExportService {
 
@@ -26,12 +25,27 @@ public interface IExportService {
      */
     void delete(Export export);
 
+
     /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: find by Id
-     * @Param: id
-     * @return
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: create
+     */
+    void create(ExportDto exportDto);
+
+    /**
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: update
+     */
+    void update(Export export);
+
+    /**
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: findById
+     *
      */
     Export findById(int id);
+
 }

@@ -1,5 +1,7 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,6 +44,8 @@ public class Pigsty {
     private List<Pig> pigs;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonIgnore
+
     private List<Export> exports;
 
     @ManyToOne

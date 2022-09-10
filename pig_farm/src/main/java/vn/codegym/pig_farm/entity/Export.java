@@ -1,11 +1,11 @@
 package vn.codegym.pig_farm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 
 
@@ -13,6 +13,12 @@ import javax.persistence.*;
  * Create by: DongLHP
  * Date create: 08/09/2022
  * Function: Create Entity
+=======
+/**
+ * Created by : HoaL
+ * Date create : 08/09/2022
+ * entity : Export
+>>>>>>> export-port-HoaL
  */
 @Entity
 @Data
@@ -33,9 +39,9 @@ public class Export {
 
     private String typePigs;
 
-
     @ColumnDefault("0")
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @ManyToOne
