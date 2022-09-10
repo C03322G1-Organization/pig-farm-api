@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.dto.StorageListDto;
 import vn.codegym.pig_farm.entity.Storage;
 
-public interface StorageService {
+public interface IStorageService {
     /**
      * Created by: HoangDT
      * Date created: 08/09/2022

@@ -17,7 +17,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface IExportRepository extends JpaRepository<Export, Integer> {
+public interface ExportRepository extends JpaRepository<Export, Integer> {
 
     /**
      * Create by: DongLHP

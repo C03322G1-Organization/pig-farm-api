@@ -5,7 +5,6 @@ import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
 
 public class VaccinationDto implements Validator {
     private Integer id;

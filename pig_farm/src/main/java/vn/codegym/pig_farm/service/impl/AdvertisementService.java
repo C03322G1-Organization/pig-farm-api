@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Advertisement;
 import vn.codegym.pig_farm.projection.IAdvertisementProjection;
-import vn.codegym.pig_farm.repository.IAdvertisementRepository;
+import vn.codegym.pig_farm.repository.AdvertisementRepository;
 import vn.codegym.pig_farm.service.IAdvertisementService;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class AdvertisementService implements IAdvertisementService {
     @Autowired
-    private IAdvertisementRepository advertisementRepository;
+    private AdvertisementRepository advertisementRepository;
 
     @Override
     public List<Advertisement> findAllAdvertisement() {

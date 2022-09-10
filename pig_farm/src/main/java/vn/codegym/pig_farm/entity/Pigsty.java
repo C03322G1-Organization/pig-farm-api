@@ -35,11 +35,11 @@ public class Pigsty {
     @Column(columnDefinition = "varchar(100)")
     private String creator;
 
-
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
-//    @JsonBackReference
+
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     @JsonIgnore
     private List<Food> foods;
@@ -49,20 +49,22 @@ public class Pigsty {
     @JsonIgnore
     private List<Vaccination> vaccinations;
 
-//    @JsonBackReference
+
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     @JsonIgnore
     private List<Pig> pigs;
 
-//    @JsonBackReference
+
+    @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     @JsonIgnore
     private List<Export> exports;
 
-//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     @JsonIgnore
     private Employee employee;
+
 
 }

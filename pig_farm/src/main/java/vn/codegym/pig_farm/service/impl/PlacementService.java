@@ -3,7 +3,7 @@ package vn.codegym.pig_farm.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Placement;
-import vn.codegym.pig_farm.repository.IPlacementRepository;
+import vn.codegym.pig_farm.repository.PlacementRepository;
 import vn.codegym.pig_farm.service.IPlacementService;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PlacementService implements IPlacementService {
     @Autowired
-    private IPlacementRepository placementRepository;
+    private PlacementRepository placementRepository;
 
     /**
      * Created by : ChungHV

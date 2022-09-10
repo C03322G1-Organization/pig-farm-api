@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.StorageDto;
 import vn.codegym.pig_farm.dto.StorageListDto;
 import vn.codegym.pig_farm.entity.Storage;
-import vn.codegym.pig_farm.service.StorageService;
+import vn.codegym.pig_farm.service.IStorageService;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -24,7 +24,7 @@ public class StorageRestController {
     ModelMapper modelMapper;
 
     @Autowired
-    StorageService storageService;
+    IStorageService storageService;
 
     /**
      * Create by: HoangDT

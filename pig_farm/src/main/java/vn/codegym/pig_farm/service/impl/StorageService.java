@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.dto.StorageListDto;
 import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.repository.StorageRepository;
-import vn.codegym.pig_farm.service.StorageService;
+import vn.codegym.pig_farm.service.IStorageService;
 
 @Service
-public class StorageServiceImpl implements StorageService {
+public class StorageService implements IStorageService {
     @Autowired
     StorageRepository storageRepository;
 

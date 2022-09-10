@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,11 +35,12 @@ public class User {
 
     private Boolean isDeleted;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "user")
     private Employee employee;
 
 
-//    @JsonBackReference
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<UserRole> userRoles;
 }

@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.IExportDto;
 import vn.codegym.pig_farm.entity.Export;
-import vn.codegym.pig_farm.repository.IExportRepository;
+import vn.codegym.pig_farm.repository.ExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
 
 @Service
 public class ExportService implements IExportService {
 
     @Autowired
-    IExportRepository iExportRepository;
+    ExportRepository iExportRepository;
 
     /**
      * Create by: DongLHP

@@ -1,10 +1,10 @@
 package vn.codegym.pig_farm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -36,7 +36,6 @@ public class Employee {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
 
     private Boolean isDeleted;
@@ -45,8 +44,7 @@ public class Employee {
     @JsonIgnore
     private List<Pigsty> pigsties;
 
-
-    //    @JsonBackReference
+    @JsonBackReference
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<Export> exports;

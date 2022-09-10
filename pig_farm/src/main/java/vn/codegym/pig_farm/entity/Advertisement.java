@@ -32,6 +32,7 @@ public class Advertisement {
     @JoinColumn(name = "placement_id", referencedColumnName = "id")
     private Placement placement;
 
+
     @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 }

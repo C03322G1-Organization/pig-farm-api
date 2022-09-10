@@ -26,7 +26,7 @@ public class VaccinationRestController_createVaccination {
 
     @Test
     public void createVaccination_name_13() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccine/create")).andDo(print()).andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccination/create")).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class VaccinationRestController_createVaccination {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccine/create").content(this.objectMapper.writeValueAsString(vaccinationDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccination/create").content(this.objectMapper.writeValueAsString(vaccinationDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class VaccinationRestController_createVaccination {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccine/create").content(this.objectMapper.writeValueAsString(vaccinationDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccination/create").content(this.objectMapper.writeValueAsString(vaccinationDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -75,6 +75,6 @@ public class VaccinationRestController_createVaccination {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 //        vaccinationDto.setPigsty(pigstyDto);
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccine/create").content(this.objectMapper.writeValueAsString(vaccinationDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is2xxSuccessful());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/vaccination/create").content(this.objectMapper.writeValueAsString(vaccinationDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is2xxSuccessful());
     }
 }

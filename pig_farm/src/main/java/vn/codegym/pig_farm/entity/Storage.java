@@ -24,8 +24,8 @@ public class Storage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(mappedBy = "storage")
     @JsonBackReference
+    @OneToMany(mappedBy = "storage")
     private List<Food> foods;
 
     @Column(columnDefinition = "VARCHAR(30)")

@@ -6,7 +6,7 @@ import vn.codegym.pig_farm.entity.Placement;
 
 import java.util.List;
 
-public interface IPlacementRepository extends JpaRepository<Placement,Integer> {
+public interface PlacementRepository extends JpaRepository<Placement,Integer> {
 
     /**
      * Created by : ChungHV
