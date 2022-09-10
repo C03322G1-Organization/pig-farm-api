@@ -9,7 +9,9 @@ public interface IExportDto {
     Integer getAmount();
     Double getKilogram();
     Double getPrice();
+    String getTypePigs();
     Boolean getIsDeleted();
     String getIdEmployee();
+    String getCodeEmployee();
     String getNameEmployee();
 }

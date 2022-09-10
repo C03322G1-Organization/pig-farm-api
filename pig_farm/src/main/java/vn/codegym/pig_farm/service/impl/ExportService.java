@@ -50,16 +50,4 @@ public class ExportService implements IExportService {
     public Export findById(int id) {
         return iExportRepository.findById(id);
     }
-
-    /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: search by code export or company
-     * @Param: codeExport, company, pageable
-     * @return
-     */
-    @Override
-    public Page<IExportDto> searchExport(String codeExport, String company, Pageable pageable) {
-        return iExportRepository.search("%" + codeExport + "%" , "%" + company + "%", pageable);
-    }
 }

@@ -31,7 +31,8 @@ public interface IExportRepository extends JpaRepository<Export, Integer> {
             "kilogram as kilogram, " +
             "price as price, " +
             "e.start_date as startDate, " +
-            "e.employee_id as idEmployee, emp.name as nameEmployee " +
+            "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee, " +
+            "e.type_pigs as typePigs " +
             "FROM export e " +
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
             "where e.is_deleted = 0 and code_export like:codeExport and company like:company", nativeQuery = true)
@@ -58,14 +59,4 @@ public interface IExportRepository extends JpaRepository<Export, Integer> {
             " price, start_date, employee_id, pigsty_id FROM export WHERE id=:id", nativeQuery = true)
     Export findById(@Param("id") int id);
 
-    /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: search export by code export or company
-     * @Param: id
-     * @return
-     */
-    @Query(value = "select id, code_export, company, is_deleted, " +
-            " price, start_date, employee_id, pigsty_id from export where code_export like:codeExport || company like:company", nativeQuery = true)
-    Page<IExportDto> search(@Param("codeExport") String codeExport,@Param("company") String company, Pageable pageable);
 }
