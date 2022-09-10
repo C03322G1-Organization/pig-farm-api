@@ -45,6 +45,8 @@ public class Employee {
     @JsonIgnore
     private List<Pigsty> pigsties;
 
+
+    //    @JsonBackReference
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<Export> exports;
