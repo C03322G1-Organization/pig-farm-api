@@ -1,14 +1,11 @@
 package vn.codegym.pig_farm.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
@@ -31,13 +28,10 @@ public class Advertisement {
     @Column(columnDefinition = "VARCHAR(50)")
     private String timeExistence;
 
-
     @ManyToOne
     @JoinColumn(name = "placement_id", referencedColumnName = "id")
     private Placement placement;
 
     @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
-
-
 }

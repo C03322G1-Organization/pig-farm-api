@@ -1,12 +1,15 @@
 package vn.codegym.pig_farm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.entity.Advertisement;
 import vn.codegym.pig_farm.entity.Placement;
-import vn.codegym.pig_farm.repository.IPlacementRepository;
+import vn.codegym.pig_farm.projection.IAdvertisementProjection;
 import vn.codegym.pig_farm.service.IAdvertisementService;
 import vn.codegym.pig_farm.service.IPlacementService;
 
@@ -15,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/ads")
+@RequestMapping("/advertisement")
 public class AdvertisementRestController {
     @Autowired
     private IAdvertisementService advertisementService;
@@ -23,7 +26,7 @@ public class AdvertisementRestController {
     private IPlacementService placementService;
 
     @GetMapping("/list")
-    public ResponseEntity<List<Advertisement>> findAll(){
+    public ResponseEntity<List<Advertisement>> findAll() {
         return new ResponseEntity<>(advertisementService.findAllAdvertisement(), HttpStatus.OK);
     }
 
@@ -31,10 +34,11 @@ public class AdvertisementRestController {
      * Created by :ChungHV
      * Date create : 9/8/2022
      * Function : show list placement
+     *
      * @return : Http.OK
      */
     @GetMapping("/list/placement")
-    public ResponseEntity<List<Placement>> findAllPlacement(){
+    public ResponseEntity<List<Placement>> findAllPlacement() {
         return new ResponseEntity<>(placementService.findAllPlacement(), HttpStatus.OK);
     }
 
@@ -42,15 +46,16 @@ public class AdvertisementRestController {
      * Created by :ChungHV
      * Date create : 9/8/2022
      * Function : Post Advertisement
+     *
      * @param advertisement
      * @return : Http.BAD_REQUEST
      * @return : Http.OK
      */
     @PostMapping("/post")
-    public ResponseEntity<Object> postAdvertisement(@RequestBody Advertisement advertisement){
-        if(advertisement == null){
+    public ResponseEntity<Object> postAdvertisement(@RequestBody Advertisement advertisement) {
+        if (advertisement == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }else {
+        } else {
             advertisementService.saveAdvertisement(advertisement);
             return new ResponseEntity<>(advertisementService.findAllAdvertisement(), HttpStatus.OK);
         }
@@ -60,17 +65,18 @@ public class AdvertisementRestController {
      * Created by :ChungHV
      * Date create : 9/8/2022
      * Function : Update Advertisement
+     *
      * @param advertisement
      * @param id
      * @return : Http.NOT_FOUND
      * @return : Http.OK
      */
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer id ,@RequestBody Advertisement advertisement){
+    public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer id, @RequestBody Advertisement advertisement) {
         Optional<Advertisement> advertisementUpdate = advertisementService.findById(id);
-        if(!advertisementUpdate.isPresent()){
+        if (!advertisementUpdate.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else {
+        } else {
             advertisementService.updateAdvertisement(advertisement);
             return new ResponseEntity<>(advertisementUpdate, HttpStatus.OK);
         }
@@ -80,17 +86,55 @@ public class AdvertisementRestController {
      * Created by :ChungHV
      * Date create : 9/8/2022
      * Function : FindById Advertisement
+     *
      * @param id
      * @return : Http.BAD_REQUEST
      * @return : Http.OK
      */
     @GetMapping("{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") Integer id){
+    public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
         Optional<Advertisement> advertisement = advertisementService.findById(id);
-        if(!advertisement.isPresent()){
+        if (!advertisement.isPresent()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }else {
-            return new ResponseEntity<>(advertisement,HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(advertisement, HttpStatus.OK);
         }
+    }
+
+    /**
+     * @param pageable
+     * @param keySearch return List Advertisement, status 200
+     * @function (Query to display all Advertisement and search)
+     * @creator DucNH
+     * @date-create 08/09/2022
+     */
+    @GetMapping("/page")
+    public ResponseEntity<Page<IAdvertisementProjection>> findAllAdvertisement(@PageableDefault(value = 5) Pageable pageable,
+                                                                               Optional<String> keySearch) {
+        String title = keySearch.orElse("");
+        if (title.equals("null")) {
+            title = "";
+        }
+        Page<IAdvertisementProjection> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
+        if (advertisementPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(advertisementPage, HttpStatus.OK);
+    }
+
+    /**
+     * @param id return status 200
+     * @function (Query to delete Advertisement)
+     * @creator DucNH
+     * @date-create 08/09/2022
+     */
+    @PutMapping("/delete/{id}")
+    private ResponseEntity<Void> delete(@PathVariable int id) {
+        Optional<Advertisement> advertisement = advertisementService.findById(id);
+        if (advertisement.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        advertisementService.deleteAdvertisement(advertisement.get().getId());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
