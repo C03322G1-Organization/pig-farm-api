@@ -5,6 +5,11 @@ import vn.codegym.pig_farm.entity.Pigsty;
 
 import java.time.LocalDate;
 
+/**
+ * Create by: DongLHP
+ * Date create: 08/09/2022
+ * Function: Create ExportDto
+ */
 public class ExportDto {
     private String company;
     private LocalDate startDate;
