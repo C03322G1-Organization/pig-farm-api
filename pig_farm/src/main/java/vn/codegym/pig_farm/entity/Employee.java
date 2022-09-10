@@ -1,7 +1,5 @@
 package vn.codegym.pig_farm.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,12 +35,13 @@ public class Employee {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-    @Column(columnDefinition = "BIT")
+
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "employee")
     private List<Pigsty> pigsties;
-
 
     @OneToMany(mappedBy = "employee")
     private List<Export> exports;

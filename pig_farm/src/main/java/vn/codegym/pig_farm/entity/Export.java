@@ -6,9 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+
 
 /**
  * Create by: DongLHP
@@ -34,8 +33,9 @@ public class Export {
 
     private String typePigs;
 
-    @Column(columnDefinition = "BIT")
+
     @ColumnDefault("0")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @ManyToOne

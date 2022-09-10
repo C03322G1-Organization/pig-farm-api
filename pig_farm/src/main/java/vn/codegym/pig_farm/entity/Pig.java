@@ -1,9 +1,9 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -32,13 +32,15 @@ public class Pig {
     @Column(columnDefinition = "VARCHAR(20)")
     private String weight;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pig")
     private List<Treatment> treatments;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
+
 }
