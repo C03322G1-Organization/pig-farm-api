@@ -1,6 +1,5 @@
 package vn.codegym.pig_farm.controller;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,22 +14,22 @@ import vn.codegym.pig_farm.entity.Placement;
 import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AdvertisementRestController_postAdvertisement {
+public class AdvertisementRestController_editAdvertisement {
 
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private ObjectMapper objectMapper;
 
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field title more specific is Empty
      */
@@ -51,7 +50,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -61,9 +60,9 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
-     * this function use to test validation of field title does not contain special characters
+     * this function use to test validation of field name does not contain special characters
      */
     @Test
     public void postAdvertisement_title_15() throws Exception {
@@ -81,7 +80,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -91,15 +90,15 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
-     * this function use to test validation of field title successfully
+     * this function use to test validation of field name successfully
      */
     @Test
     public void postAdvertisement_title_18() throws Exception {
 
         AdvertisementDto advertisementDto = new AdvertisementDto();
-        advertisementDto.setTitle("Quảng cáo");
+        advertisementDto.setTitle("Quảng cáo 2");
         advertisementDto.setDeleted(false);
         advertisementDto.setSubmittedDate(LocalDate.parse("2022-05-16"));
         advertisementDto.setTimeExistence("4");
@@ -111,7 +110,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -121,7 +120,7 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field image more specific is Empty
      */
@@ -141,7 +140,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -151,7 +150,7 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field image more can access the link
      */
@@ -171,7 +170,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -180,7 +179,7 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field image successfully
      */
@@ -188,11 +187,11 @@ public class AdvertisementRestController_postAdvertisement {
     public void postAdvertisement_image_18() throws Exception {
 
         AdvertisementDto advertisementDto = new AdvertisementDto();
-        advertisementDto.setTitle("Quảng cáo");
+        advertisementDto.setTitle("Quảng cáo 2");
         advertisementDto.setDeleted(false);
         advertisementDto.setSubmittedDate(LocalDate.parse("2022-05-16"));
         advertisementDto.setTimeExistence("4");
-        advertisementDto.setImage("http//firebase");
+        advertisementDto.setImage("http//firebase spring");
 
         Placement placement = new Placement();
         placement.setId(1);
@@ -200,7 +199,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -210,17 +209,17 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
-     * this function use to test validation of field submittedDate successfully
+     * this function use to test validation of field submittedDate isEmpty
      */
     @Test
     public void postAdvertisement_submittedDate_14() throws Exception {
 
         AdvertisementDto advertisementDto = new AdvertisementDto();
-        advertisementDto.setTitle("Quảng cáo");
+        advertisementDto.setTitle("Quảng cáo 2");
         advertisementDto.setDeleted(false);
-        advertisementDto.setSubmittedDate(LocalDate.parse("2022-05-16"));
+        advertisementDto.setSubmittedDate(LocalDate.parse("yyyy-MM-dd"));
         advertisementDto.setTimeExistence("4");
         advertisementDto.setImage("http:firebase");
 
@@ -230,17 +229,17 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is2xxSuccessful());
     }
 
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field timeExistence isEmpty
      */
@@ -260,7 +259,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -271,7 +270,7 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field timeExistence isEmpty
      */
@@ -291,7 +290,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -301,7 +300,7 @@ public class AdvertisementRestController_postAdvertisement {
     /**
      * Create by: ChungHV
      * Date Create: 9/09/2022
-     * funtion: Post Advertisement
+     * funtion: Edit Advertisement
      * @throws Exception
      * this function use to test validation of field timeExistence successfully
      */
@@ -309,7 +308,7 @@ public class AdvertisementRestController_postAdvertisement {
     public void postAdvertisement_timeExistence_18() throws Exception {
 
         AdvertisementDto advertisementDto = new AdvertisementDto();
-        advertisementDto.setTitle("Quảng cáo");
+        advertisementDto.setTitle("Quảng cáo 2");
         advertisementDto.setDeleted(false);
         advertisementDto.setSubmittedDate(LocalDate.parse("2022-05-16"));
         advertisementDto.setTimeExistence("4");
@@ -321,7 +320,7 @@ public class AdvertisementRestController_postAdvertisement {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/ads/post")
+                        .put("/ads/edit/1")
                         .content(this.objectMapper.writeValueAsString(advertisementDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())

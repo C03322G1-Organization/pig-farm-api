@@ -76,15 +76,19 @@ public class AdvertisementRestController {
     @PutMapping("/edit/{id}")
     public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer id ,@RequestBody @Valid AdvertisementDto advertisementDto,
                                                     BindingResult bindingResult){
-       Optional<Advertisement> advertisementUpdate = advertisementService.findById(id);
-        if(bindingResult.hasErrors()){
+//        if(bindingResult.hasErrors()){
+//            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_FOUND);
+//        }
+
+        Optional<Advertisement> advertisementUpdate = advertisementService.findById(id);
+        if(!advertisementUpdate.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-            Advertisement advertisement = new Advertisement();
-            advertisementDto.setId(advertisementUpdate.get().getId());
-            BeanUtils.copyProperties(advertisementDto,advertisement);
+          Advertisement advertisement = new Advertisement();
+          BeanUtils.copyProperties(advertisementDto,advertisement);
+            advertisement.setId(advertisementUpdate.get().getId());
             advertisementService.updateAdvertisement(advertisement);
-            return new ResponseEntity<>(advertisementDto, HttpStatus.OK);
+            return new ResponseEntity<>(advertisement, HttpStatus.OK);
 
     }
 
@@ -96,7 +100,7 @@ public class AdvertisementRestController {
      * @return : Http.BAD_REQUEST
      * @return : Http.OK
      */
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Integer id){
         Optional<Advertisement> advertisement = advertisementService.findById(id);
         if(!advertisement.isPresent()){
