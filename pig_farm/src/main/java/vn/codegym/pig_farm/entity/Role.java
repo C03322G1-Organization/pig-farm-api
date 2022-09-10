@@ -18,7 +18,8 @@ public class Role {
     @Column(columnDefinition = "VARCHAR(45)")
     private String name;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "role")

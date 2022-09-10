@@ -29,7 +29,8 @@ public class Treatment {
 
     private Integer amount;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @ManyToOne

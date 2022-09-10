@@ -32,7 +32,7 @@ public class Pig {
     @Column(columnDefinition = "VARCHAR(20)")
     private String weight;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pig")

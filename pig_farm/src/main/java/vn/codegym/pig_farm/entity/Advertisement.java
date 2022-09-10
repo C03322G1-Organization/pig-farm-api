@@ -32,7 +32,9 @@ public class Advertisement {
     @OneToMany(mappedBy = "advertisement")
     private List<Placement> placements;
 
-    @Column(columnDefinition = "BIT")
+
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
 }

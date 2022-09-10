@@ -27,7 +27,8 @@ public class Pigsty {
 
     private Integer maxNumber;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pigsty")
