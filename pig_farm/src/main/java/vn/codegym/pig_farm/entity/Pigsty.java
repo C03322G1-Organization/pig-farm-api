@@ -1,7 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,17 +37,24 @@ public class Pigsty {
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonIgnore
     private List<Food> foods;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonIgnore
     private List<Vaccination> vaccinations;
 
     @OneToMany(mappedBy = "pigsty")
+    @JsonIgnore
     private List<Pig> pigs;
 
     @OneToMany(mappedBy = "pigsty")
     @JsonIgnore
     private List<Export> exports;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Employee employee;
 
 }
