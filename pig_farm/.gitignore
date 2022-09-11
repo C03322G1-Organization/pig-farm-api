@@ -33,5 +33,9 @@ out/
 /nbdist/
 /.nb-gradle/
 
+<<<<<<< HEAD
 ### VS Code ##
+=======
+### VS Code ###
+>>>>>>> origin/contact-PhucND
 .vscode/

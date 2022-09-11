@@ -3,6 +3,7 @@ package vn.codegym.pig_farm.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -33,10 +34,7 @@ public class Contact {
     @Column(columnDefinition = "DATE")
     private LocalDate date;
 
-<<<<<<< HEAD
+
     @Column(columnDefinition = "BIT(1) default 0")
-=======
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
->>>>>>> 9c8a49657dd06cc742721257f10170e22544dc39
     private Boolean isDeleted;
 }

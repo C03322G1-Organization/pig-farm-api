@@ -9,11 +9,13 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+
 /**
  * Created by: HoangDT
  * Date created: 08/09/2022
  * Entity: Storage
  */
+
 
 @Entity
 @Data
@@ -23,6 +25,7 @@ public class Storage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
 
     @JsonBackReference
     @OneToMany(mappedBy = "storage")

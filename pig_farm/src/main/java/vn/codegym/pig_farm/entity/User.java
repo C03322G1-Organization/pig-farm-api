@@ -30,7 +30,6 @@ public class User {
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 
-
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
 
     private Boolean isDeleted;
@@ -38,7 +37,6 @@ public class User {
     @JsonBackReference
     @OneToOne(mappedBy = "user")
     private Employee employee;
-
 
     @JsonBackReference
     @OneToMany(mappedBy = "user")

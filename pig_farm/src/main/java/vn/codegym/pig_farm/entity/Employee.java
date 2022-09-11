@@ -36,8 +36,8 @@ public class Employee {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
 
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "employee")

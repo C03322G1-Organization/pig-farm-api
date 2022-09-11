@@ -46,5 +46,4 @@ public class Pig {
     @JsonBackReference
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
-
 }
