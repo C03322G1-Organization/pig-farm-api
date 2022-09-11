@@ -10,11 +10,18 @@ import vn.codegym.pig_farm.entity.User;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Transactional
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
+
+    @Query(value = "select employee.code, employee.name, user.username, user.email, employee.birth_day, employee.gender, employee.id_card, employee.image from employee join user on user.id = employee.user_id", nativeQuery = true)
+    List<Employee> findAll();
+
+//    @Query(value = "select * from employee", nativeQuery = true)
+//    List<Employee> findAll();
 
     @Modifying
     @Query(value = "insert into employee (`code`, `name`, birth_day, gender, id_card, image, is_deleted, user_id) values (:code, :name, :birthDay, :gender, :idCard, :image, 0, :userId)", nativeQuery = true)

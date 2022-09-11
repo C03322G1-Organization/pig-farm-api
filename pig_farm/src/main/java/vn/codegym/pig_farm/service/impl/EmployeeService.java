@@ -6,6 +6,7 @@ import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.repository.IEmployeeRepository;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +14,11 @@ public class EmployeeService implements IEmployeeService {
 
     @Autowired
     IEmployeeRepository employeeRepository;
+
+    @Override
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
+    }
 
     @Override
     public void save(Employee employee) {

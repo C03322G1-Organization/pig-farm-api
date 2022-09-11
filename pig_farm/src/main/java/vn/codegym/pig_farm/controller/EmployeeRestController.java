@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/employee")
 public class EmployeeRestController {
 
@@ -26,6 +26,15 @@ public class EmployeeRestController {
 
     @Autowired(required = false)
     private ModelMapper modelMapper;
+
+    @GetMapping("")
+    public ResponseEntity<List<Employee>> findAll() {
+        List<Employee> employees = employeeService.findAll();
+        if (employees.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
 
     /**
      * @param employeeDto

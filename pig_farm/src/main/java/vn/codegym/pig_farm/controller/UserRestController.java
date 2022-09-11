@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.UserDto;
+import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.User;
 import vn.codegym.pig_farm.service.IUserService;
 
@@ -22,6 +23,15 @@ public class UserRestController {
 
     @Autowired
     IUserService userService;
+
+    @GetMapping("")
+    public ResponseEntity<List<User>> findAll() {
+        List<User> users = userService.findAll();
+        if (users.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 
     /**
      * @param userDto
