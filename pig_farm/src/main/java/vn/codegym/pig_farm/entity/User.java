@@ -1,6 +1,9 @@
 package vn.codegym.pig_farm.entity;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonBackReference;
+=======
+>>>>>>> origin/employee-LongNT
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,12 +39,19 @@ public class User {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
+<<<<<<< HEAD
     @JsonBackReference
+=======
+    @JsonIgnore
+>>>>>>> origin/employee-LongNT
     @OneToOne(mappedBy = "user")
     @JsonIgnore
     private Employee employee;
 
+<<<<<<< HEAD
     @JsonBackReference
+=======
+>>>>>>> origin/employee-LongNT
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<UserRole> userRoles;

@@ -10,12 +10,33 @@ import vn.codegym.pig_farm.repository.IEmployeeRepository;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements IEmployeeService {
+public class EmployeeService implements IEmployeeService {
 
     @Autowired
-    private IEmployeeRepository iEmployeeRepository;
+    IEmployeeRepository iEmployeeRepository;
+
+    @Override
+    public List<Employee> findAll() {
+        return iEmployeeRepository.findAll();
+    }
+
+    @Override
+    public void save(Employee employee) {
+        iEmployeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getUser());
+    }
+
+    @Override
+    public Optional<Employee> findById(Integer id) {
+        return iEmployeeRepository.findById(id);
+    }
+
+    @Override
+    public void edit(Employee employee) {
+        iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
+    }
 
     /**
      * @Creator HungNQ

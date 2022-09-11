@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -28,10 +29,10 @@ public class Pigsty {
     @Column(columnDefinition = "DATE")
     private LocalDate buildDate;
 
-    private Integer maxNumber;
-
     @Column(columnDefinition = "varchar(100)")
     private String creator;
+
+    private Integer maxNumber;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
@@ -62,4 +63,5 @@ public class Pigsty {
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     @JsonIgnore
     private Employee employee;
+
 }
