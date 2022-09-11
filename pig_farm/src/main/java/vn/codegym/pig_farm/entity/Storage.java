@@ -31,7 +31,6 @@ public class Storage {
     @Column(columnDefinition = "VARCHAR(30)")
     private String foodType;
 
-
     private Integer amount;
 
     @Column(columnDefinition = "VARCHAR(15)")
