@@ -43,6 +43,9 @@ public class Export {
 
     private Double totalMoney;
 
+//    @Column(columnDefinition = "BIT(1) default 0")
+//    private int typePigs;
+
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
