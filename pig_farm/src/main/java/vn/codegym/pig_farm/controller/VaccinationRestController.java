@@ -27,7 +27,7 @@ public class VaccinationRestController {
     @Autowired
     private IVaccinationService iVaccinationService;
 
-    @GetMapping("/list")
+    @GetMapping("/list1")
     public ResponseEntity<List<Vaccination>> findAll() {
         List<Vaccination> vaccinationList = iVaccinationService.findAll();
         if (vaccinationList.isEmpty()) {

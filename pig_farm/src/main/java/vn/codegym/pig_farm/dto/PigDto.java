@@ -10,10 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
-public class PigDTO implements Validator {
+public class PigDto implements Validator {
     private Integer id;
     @NotBlank
     @Pattern(regexp = "^(ML)[0-9]{2,4}$", message = "Code phải có dạng MlXXX")
@@ -43,21 +42,21 @@ public class PigDTO implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        PigDTO pigDTO = (PigDTO) target;
+        PigDto pigDTO = (PigDto) target;
         Date dateIn = new Date();
         Date dateOut = new Date();
         try {
-             dateIn=new SimpleDateFormat("yyyy-MM-dd").parse(pigDTO.dateIn);
+            dateIn = new SimpleDateFormat("yyyy-MM-dd").parse(pigDTO.dateIn);
         } catch (ParseException e) {
-            errors.rejectValue("dateIn","","ngày nhập vào không hợp lệ");
+            errors.rejectValue("dateIn", "", "ngày nhập vào không hợp lệ");
         }
         try {
-             dateOut =new SimpleDateFormat("yyyy-MM-dd").parse(pigDTO.dateOut);
+            dateOut = new SimpleDateFormat("yyyy-MM-dd").parse(pigDTO.dateOut);
         } catch (ParseException e) {
-            errors.rejectValue("dateOut","","ngày nhập vào không hợp lệ");
+            errors.rejectValue("dateOut", "", "ngày nhập vào không hợp lệ");
         }
-        if (dateIn.after(dateOut)){
-            errors.rejectValue("dateOut","ngày xuất phải sau ngày nhập","ngày xuất phải sau ngày nhập");
+        if (dateIn.after(dateOut)) {
+            errors.rejectValue("dateOut", "ngày xuất phải sau ngày nhập", "ngày xuất phải sau ngày nhập");
         }
     }
 
@@ -122,6 +121,6 @@ public class PigDTO implements Validator {
     }
 
     public void setIsDeleted(Boolean isDeleted) {
-       this.isDeleted = isDeleted ;
+        this.isDeleted = isDeleted;
     }
 }
