@@ -3,6 +3,9 @@ package vn.codegym.pig_farm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.dto.ITreatmentDto;
+import vn.codegym.pig_farm.entity.Treatment;
+
+import java.util.Optional;
 
 
 public interface ITreatmentService {
@@ -24,4 +27,5 @@ public interface ITreatmentService {
      */
     void deleteByIdTreatment(int id);
 
+    Treatment findById(int id);
 }

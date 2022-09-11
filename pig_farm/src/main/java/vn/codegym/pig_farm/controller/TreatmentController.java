@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.ITreatmentDto;
 import vn.codegym.pig_farm.entity.Treatment;
 import vn.codegym.pig_farm.service.ITreatmentService;
-import vn.codegym.pig_farm.service.impl.TreatmentService;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.lang.Float.NaN;
+import static java.lang.Float.isNaN;
 
 @RestController
 @RequestMapping("/api/treatment/v1")
@@ -26,11 +28,12 @@ public class TreatmentController {
      * Create by ThuanT
      * Date create: 08/09/2022
      * method: get All Treatment
+     *
      * @return
      */
     @GetMapping("/")
     public ResponseEntity<Page<ITreatmentDto>> getAllTreatment(@PageableDefault(value = 5) Pageable pageable,
-                                                                Optional<String> keySearch) {
+                                                               Optional<String> keySearch) {
         String title = keySearch.orElse("");
         if (title.equals("null")) {
             title = "";
@@ -46,13 +49,23 @@ public class TreatmentController {
      * Create by ThuanT
      * Date create: 08/09/2022
      * method: delete Treatment
+     *
      * @param id
      * @return
      */
-    @PutMapping(value ="/{id}")
-    public ResponseEntity<?> deleteTreatment(@PathVariable int id) {
-        treatmentService.deleteByIdTreatment(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteTreatment(@PathVariable String id) {
+        try {
+            Integer.parseInt(id);
+            Treatment treatment = treatmentService.findById(Integer.parseInt(id));
+            if (treatment == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            treatmentService.deleteByIdTreatment(Integer.parseInt(id));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (final Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

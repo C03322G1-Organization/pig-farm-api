@@ -12,6 +12,7 @@ import vn.codegym.pig_farm.dto.ITreatmentDto;
 import vn.codegym.pig_farm.entity.Treatment;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
@@ -38,6 +39,8 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
      */
     @Modifying
     @Transactional
-    @Query(value = "update Treatment T set t.is_deleted = 1 where T.id = :id",nativeQuery = true)
+    @Query(value = "update Treatment t set t.is_deleted = 1 where t.id = :id",nativeQuery = true)
     void deleteByIdTreatment(@Param("id") int id);
+    @Query(value = "select * from Treatment t where t.id = :id and t.is_deleted = 0",nativeQuery = true)
+    Treatment findByIdTreatment(@Param("id") int id);
 }

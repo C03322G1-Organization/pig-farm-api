@@ -10,6 +10,7 @@ import vn.codegym.pig_farm.repository.TreatmentRepository;
 import vn.codegym.pig_farm.service.ITreatmentService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TreatmentService implements ITreatmentService {
@@ -37,6 +38,11 @@ public class TreatmentService implements ITreatmentService {
     @Override
     public void deleteByIdTreatment(int id) {
         treatmentRepository.deleteByIdTreatment(id);
+    }
+
+    @Override
+    public Treatment findById(int id) {
+        return treatmentRepository.findByIdTreatment(id);
     }
 
 
