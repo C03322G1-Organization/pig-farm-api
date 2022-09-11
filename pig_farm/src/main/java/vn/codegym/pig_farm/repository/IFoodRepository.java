@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import vn.codegym.pig_farm.dto.IFoodDto;
 import vn.codegym.pig_farm.entity.Food;
 
 @Repository
@@ -18,11 +17,12 @@ public interface IFoodRepository extends JpaRepository<Food, Integer> {
      * HoanTV-list-food
      *
      * @param pageable
-     * @param nameSearch
+     * @param foodType
      * @return
      **/
-    @Query(value = " SELECT f.id as id,f.amount ,f.unit,f.is_deleted as isdeleted,f.pigsty_id as pigsty ,f.storage_id as storage FROM food as f " +
-            " where f.amount like :nameSearch ", nativeQuery = true,
-            countQuery = " SELECT count(*) from (SELECT f.id as id,f.amount ,f.unit,f.is_deleted,f.pigsty_id as pigsty,f.storage_id as storage FROM food as f where f.amount like :nameSearch ) table_name")
-    Page<IFoodDto> getAllFood(Pageable pageable, @Param("nameSearch") String nameSearch);
+    @Query(value = " select f.* from food f " +
+            " join storage s on s.id = f.storage_id " +
+            " where s.food_type like :foodType ",nativeQuery = true,
+    countQuery = " select count(*) from ( select f.* from food f join storage s on s.id = f.storage_id where s.food_type like :foodType ) temp ")
+    Page<Food> getAllFood(Pageable pageable, @Param("foodType") String foodType);
 }

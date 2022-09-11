@@ -2,7 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.IFoodDto;
+import vn.codegym.pig_farm.entity.Food;
 
 public interface IFoodService {
     /**
@@ -15,6 +15,6 @@ public interface IFoodService {
      * @param searchKeyWork
      * @return
      */
-    Page<IFoodDto> getAllFood(Pageable pageable, String searchKeyWork);
+    Page<Food> getAllFood(Pageable pageable, String searchKeyWork);
 
 }

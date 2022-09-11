@@ -1,6 +1,5 @@
 package vn.codegym.pig_farm.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +21,8 @@ public class Storage {
     @OneToMany(mappedBy = "storage")
     private List<Food> foods;
 
+    private String foodType;
+
     private Integer amount;
 
     @Column(columnDefinition = "VARCHAR(15)")
@@ -30,6 +31,6 @@ public class Storage {
     @Column(columnDefinition = "DATE")
     private LocalDate date;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT(0)")
     private Boolean isDeleted;
 }

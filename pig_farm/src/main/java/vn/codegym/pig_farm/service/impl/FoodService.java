@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.dto.IFoodDto;
+import vn.codegym.pig_farm.entity.Food;
 import vn.codegym.pig_farm.repository.IFoodRepository;
 import vn.codegym.pig_farm.service.IFoodService;
 
@@ -24,7 +25,7 @@ public class FoodService implements IFoodService {
      * @return
      */
     @Override
-    public Page<IFoodDto> getAllFood(Pageable pageable, String searchKeyWork) {
+    public Page<Food> getAllFood(Pageable pageable, String searchKeyWork) {
         return iFoodRepository.getAllFood(pageable, "%" + searchKeyWork + "%");
     }
 }

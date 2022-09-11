@@ -28,10 +28,9 @@ public class FoodRestController_getAllFood {
 
     @Test
     public void getListStudent_1() throws Exception {
-
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?search=null"))
+                                .get("/food/list?foodType=null"))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -41,7 +40,7 @@ public class FoodRestController_getAllFood {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?search= "))
+                                .get("/food/list?foodType= "))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -51,7 +50,7 @@ public class FoodRestController_getAllFood {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?search=234"))
+                                .get("/food/list?foodType=124"))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -70,16 +69,16 @@ public class FoodRestController_getAllFood {
     public void getListStudent_4_6() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?search=1"))
+                                .get("/food/list?page=1"))
                 .andDo(print())
                 .andExpect(status().is(200))
-                .andExpect(jsonPath("totalPages").value(1))
-                .andExpect(jsonPath("totalElements").value(3))
-                .andExpect(jsonPath("content[2].id").value(3))
-                .andExpect(jsonPath("content[2].unit").value(1))
-                .andExpect(jsonPath("content[2].amount").value(1))
-                .andExpect(jsonPath("content[2].storage").value(1))
-                .andExpect(jsonPath("content[2].pigsty").value(1));
+                .andExpect(jsonPath("totalPages").value(2))
+                .andExpect(jsonPath("totalElements").value(6))
+                .andExpect(jsonPath("content[2].id").value(6))
+                .andExpect(jsonPath("content[2].storage.unit").value(10))
+                .andExpect(jsonPath("content[2].amount").value(25))
+                .andExpect(jsonPath("content[2].storage.foodType").value("rau lang"))
+                .andExpect(jsonPath("content[2].pigsty.id").value(1));
     }
 
 }
