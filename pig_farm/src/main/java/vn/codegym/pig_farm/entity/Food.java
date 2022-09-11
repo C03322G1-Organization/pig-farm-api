@@ -15,9 +15,7 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer amount;
-//
-//    @Column(columnDefinition = "VARCHAR(15)")
-//    private String unit;
+
     @ManyToOne
     @JoinColumn(name = "storage_id", referencedColumnName = "id")
     private Storage storage;
