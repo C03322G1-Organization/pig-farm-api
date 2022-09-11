@@ -38,7 +38,7 @@ public class VaccinationRestController {
                                                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldError(),
-                    HttpStatus.NOT_FOUND);
+                    HttpStatus.NOT_ACCEPTABLE);
         }
         Vaccination vaccination = new Vaccination();
         BeanUtils.copyProperties(vaccinationDto, vaccination);

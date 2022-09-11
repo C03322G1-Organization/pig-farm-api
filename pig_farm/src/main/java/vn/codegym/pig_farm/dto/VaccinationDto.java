@@ -17,6 +17,7 @@ public class VaccinationDto implements Validator {
     @NotBlank
     private String vaccineType;
     @NotBlank
+    @Size(min = 5, max = 30)
     private String vaccinatedPerson;
     @Size(min = 1, max = 255)
     private String note;
@@ -26,7 +27,7 @@ public class VaccinationDto implements Validator {
     public VaccinationDto() {
     }
 
-    public VaccinationDto(Integer id, String date, Integer amount, String vaccineType, String vaccinatedPerson, String note, Boolean isDeleted, Pigsty pigsty) {
+    public VaccinationDto(Integer id, String date, @NotNull @Min(value = 1) @Max(value = 10) Integer amount, @NotBlank String vaccineType, @NotBlank @Size(min = 5, max = 30) String vaccinatedPerson, @Size(min = 1, max = 255) String note, Boolean isDeleted, Pigsty pigsty) {
         this.id = id;
         this.date = date;
         this.amount = amount;

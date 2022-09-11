@@ -16,6 +16,7 @@ import vn.codegym.pig_farm.dto.VaccinationDto;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Vaccination;
 
 @SpringBootTest
@@ -29,16 +30,16 @@ public class VaccinationRestController_createVaccination {
     private ObjectMapper objectMapper;
 
     @Test
-    public void createVaccination_name_13() throws Exception {
+    public void createVaccination_13() throws Exception {
         this.mockMvc.perform(
                 MockMvcRequestBuilders
                         .post("/api/vaccine/create"))
-                        .andDo(print())
-                        .andExpect(status().is4xxClientError());
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
     }
 
     @Test
-    public void createVaccination_name_14() throws Exception {
+    public void createVaccination_vaccinatedPerson_14() throws Exception {
 
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(7);
@@ -59,8 +60,9 @@ public class VaccinationRestController_createVaccination {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     @Test
-    public void createVaccination_name_16() throws Exception{
+    public void createVaccination_amount_16() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(33);
         vaccinationDto.setDate("2022-01-21");
@@ -81,7 +83,28 @@ public class VaccinationRestController_createVaccination {
                 .andExpect(status().is4xxClientError());
     }
     @Test
-    public void createVaccination_name_18() throws Exception{
+    public void createVaccination_vaccinatedPerson_16() throws Exception {
+        VaccinationDto vaccinationDto = new VaccinationDto();
+        vaccinationDto.setAmount(33);
+        vaccinationDto.setDate("2022-01-21");
+        vaccinationDto.setDeleted(false);
+        vaccinationDto.setNote("ML001 không tiêm");
+        vaccinationDto.setVaccinatedPerson("An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên");
+        vaccinationDto.setVaccineType("PPK");
+
+        PigstyDto pigstyDto = new PigstyDto();
+        pigstyDto.setId(1);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/vaccine/create")
+                        .content(this.objectMapper.writeValueAsString(vaccinationDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+    @Test
+    public void createVaccination_18() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(8);
         vaccinationDto.setDate("2022-01-21");
@@ -90,9 +113,10 @@ public class VaccinationRestController_createVaccination {
         vaccinationDto.setVaccinatedPerson("Lam Linh");
         vaccinationDto.setVaccineType("PPK");
 
-        PigstyDto pigstyDto = new PigstyDto();
-        pigstyDto.setId(1);
-//        vaccinationDto.setPigsty(pigstyDto);
+//        PigstyDto pigstyDto = new PigstyDto();
+        Pigsty pigsty = new Pigsty();
+        pigsty.setId(1);
+        vaccinationDto.setPigsty(pigsty);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/vaccine/create")
