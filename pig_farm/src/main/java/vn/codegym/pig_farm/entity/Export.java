@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -33,6 +32,7 @@ public class Export {
     @ColumnDefault("0")
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
+
 
     @Column(columnDefinition = "DATE")
     private LocalDate startDate;

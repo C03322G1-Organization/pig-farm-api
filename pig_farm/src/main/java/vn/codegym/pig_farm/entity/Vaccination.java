@@ -30,6 +30,7 @@ public class Vaccination {
     @Column(columnDefinition = "VARCHAR(255)")
     private String note;
 
+
     @Column(columnDefinition = "BIT(1) default 0 ")
     private Boolean isDeleted;
 

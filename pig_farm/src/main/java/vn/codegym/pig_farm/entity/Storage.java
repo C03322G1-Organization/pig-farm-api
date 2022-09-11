@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
+
 /**
  * Created by: HoangDT
  * Date created: 08/09/2022
@@ -26,14 +27,12 @@ public class Storage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @JsonBackReference
     @OneToMany(mappedBy = "storage")
     private List<Food> foods;
 
     @Column(columnDefinition = "VARCHAR(30)")
     private String foodType;
-
 
     private Integer amount;
 

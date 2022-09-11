@@ -36,5 +36,4 @@ public class Advertisement {
     @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 
-
 }
