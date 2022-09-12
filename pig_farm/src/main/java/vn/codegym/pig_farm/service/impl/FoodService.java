@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Food;
 import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.repository.FoodRepository;
-import vn.codegym.pig_farm.repository.IStorageRepository;
+import vn.codegym.pig_farm.repository.StorageRepository;
 import vn.codegym.pig_farm.service.IFoodService;
 
 @Service
@@ -16,7 +16,7 @@ public class FoodService implements IFoodService {
     private FoodRepository foodRepository;
 
     @Autowired
-    IStorageRepository storageRepository;
+    StorageRepository storageRepository;
 
     /**
      * Create by HoanTV

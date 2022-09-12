@@ -7,7 +7,6 @@ import vn.codegym.pig_farm.entity.Placement;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.util.List;
 
 
 public class AdvertisementDto implements Validator {
@@ -26,20 +25,20 @@ public class AdvertisementDto implements Validator {
     private String timeExistence;
 
     private Placement placement;
-
-    private Boolean isDeleted = false;
+    private Boolean isDeleted;
 
 
     public AdvertisementDto() {
     }
 
-    public AdvertisementDto(Integer id, String title, String image, LocalDate submittedDate, String timeExistence, Placement placement, Boolean isDeleted) {
+
+    public AdvertisementDto(Integer id, String title, String image, LocalDate submittedDate, String timeExistence, Placement placements, Boolean isDeleted) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.submittedDate = submittedDate;
         this.timeExistence = timeExistence;
-        this.placement = placement;
+        this.placement = placements;
         this.isDeleted = isDeleted;
     }
 

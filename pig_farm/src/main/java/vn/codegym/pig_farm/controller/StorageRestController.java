@@ -8,8 +8,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.StorageDto;
-import vn.codegym.pig_farm.dto.StorageListDto;
+import vn.codegym.pig_farm.dto.projections.StorageDto;
 import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.service.IStorageService;
 
@@ -33,14 +32,14 @@ public class StorageRestController {
      */
 
     @GetMapping("/page")
-    public ResponseEntity<Page<StorageListDto>> showAll(@PageableDefault(5) Pageable pageable,
-                                                 Optional<String> keyWord) {
+    public ResponseEntity<Page<StorageDto>> showAll(@PageableDefault(5) Pageable pageable,
+                                                    Optional<String> keyWord) {
         {
             String foodType = keyWord.orElse("");
             if (foodType.equals("null")) {
                 foodType = "";
             }
-            Page<StorageListDto> storagePage = storageService.findAll(pageable, foodType);
+            Page<StorageDto> storagePage = storageService.findAll(pageable, foodType);
             if (storagePage.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -55,7 +54,7 @@ public class StorageRestController {
      */
 
     @PostMapping("/create")
-    public ResponseEntity <Storage> createStorage(@RequestBody @Valid StorageDto storageDto) {
+    public ResponseEntity <Storage> createStorage(@RequestBody @Valid vn.codegym.pig_farm.dto.StorageDto storageDto) {
         Storage storage = modelMapper.map(storageDto, Storage.class);
         storageService.save(storage);
         return new ResponseEntity<>(HttpStatus.CREATED);

@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import org.springframework.data.repository.query.Param;
-import vn.codegym.pig_farm.dto.StatisticByMonth;
-import vn.codegym.pig_farm.dto.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.StatisticByMonth;
+import vn.codegym.pig_farm.dto.projections.StatisticByYear;
 import vn.codegym.pig_farm.entity.Export;
 
 import javax.transaction.Transactional;

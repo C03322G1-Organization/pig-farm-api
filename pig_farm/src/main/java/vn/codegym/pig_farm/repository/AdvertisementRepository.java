@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import vn.codegym.pig_farm.entity.Advertisement;
-import vn.codegym.pig_farm.projection.IAdvertisementProjection;
+import vn.codegym.pig_farm.dto.projections.AdvertisementDto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -75,7 +75,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
      * @date-create 08/09/2022
      */
     @Query(value = "select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " + "from advertisement where title like :keySearch and is_deleted = 0", nativeQuery = true, countQuery = "select count(*) from (select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " + "from advertisement where title like :keySearch and is_deleted = 0) abc")
-    Page<IAdvertisementProjection> findAllAdvertisement(Pageable pageable, @Param("keySearch") String keySearch);
+    Page<AdvertisementDto> findAllAdvertisement(Pageable pageable, @Param("keySearch") String keySearch);
 
     /**
      * @param id must not be

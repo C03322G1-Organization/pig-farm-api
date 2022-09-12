@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 import java.time.LocalDate;
 
@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * Date create: 08/09/2022
  * Function: Create Interface ExportDto
  */
-public interface IExportDto {
+public interface ExportDto {
     String getCompany();
     LocalDate getStartDate();
     String getCodeExport();

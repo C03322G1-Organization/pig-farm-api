@@ -11,10 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.AdvertisementDto;
 import vn.codegym.pig_farm.entity.Advertisement;
 import vn.codegym.pig_farm.entity.Placement;
-import vn.codegym.pig_farm.projection.IAdvertisementProjection;
+import vn.codegym.pig_farm.dto.projections.AdvertisementDto;
 import vn.codegym.pig_farm.service.IAdvertisementService;
 import vn.codegym.pig_farm.service.IPlacementService;
 
@@ -62,7 +61,7 @@ public class AdvertisementRestController {
      * @return : Http.OK
      */
     @PostMapping("/post")
-    public ResponseEntity<Object> postAdvertisement(@RequestBody @Valid AdvertisementDto advertisementDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> postAdvertisement(@RequestBody @Valid vn.codegym.pig_farm.dto.AdvertisementDto advertisementDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
@@ -87,7 +86,7 @@ public class AdvertisementRestController {
     @PutMapping("/edit/{id}")
 
     public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer
-                                                            id, @RequestBody @Valid AdvertisementDto advertisementDto, BindingResult bindingResult) {
+                                                            id, @RequestBody @Valid vn.codegym.pig_farm.dto.AdvertisementDto advertisementDto, BindingResult bindingResult) {
 //        if(bindingResult.hasErrors()){
 //            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_FOUND);
 //        }
@@ -133,13 +132,13 @@ public class AdvertisementRestController {
      * @date-create 08/09/2022
      */
     @GetMapping("/page")
-    public ResponseEntity<Page<IAdvertisementProjection>> findAllAdvertisement
+    public ResponseEntity<Page<AdvertisementDto>> findAllAdvertisement
     (@PageableDefault(value = 5) Pageable pageable, Optional<String> keySearch) {
         String title = keySearch.orElse("");
         if (title.equals("null")) {
             title = "";
         }
-        Page<IAdvertisementProjection> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
+        Page<AdvertisementDto> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
         if (advertisementPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

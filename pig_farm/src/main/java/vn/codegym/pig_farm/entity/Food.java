@@ -14,6 +14,9 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "VARCHAR(30)")
+    private String type;
+
     private Integer amount;
 
     @Column(columnDefinition = "VARCHAR(15)")

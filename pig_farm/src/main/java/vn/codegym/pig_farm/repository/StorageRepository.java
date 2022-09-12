@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import vn.codegym.pig_farm.dto.StorageListDto;
+import vn.codegym.pig_farm.dto.projections.StorageDto;
 import vn.codegym.pig_farm.entity.Storage;
 
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
 
     @Query(value = " select storage.id, storage.amount,storage.food_type as foodType, storage.date, storage.unit from storage where food_type like :foodType and is_deleted = 0 ", nativeQuery = true,
             countQuery = " select count(*) from (select * from storage where food_type like :foodType) temp_table ")
-    Page<StorageListDto> findAllStorage(Pageable pageable, @Param("foodType") String foodType);
+    Page<StorageDto> findAllStorage(Pageable pageable, @Param("foodType") String foodType);
 
     /**
      * Created by: HoangDT
@@ -39,4 +39,27 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
             "values (:amount, :foodType, :date, :unit)", nativeQuery = true)
     void saveS(@Param("amount") Integer amount, @Param("foodType") String foodType, @Param("date") LocalDate date, @Param("unit") String unit);
 
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: findByIdStorage2 a Storage
+     * @param id
+     * @return
+     */
+    @Query(value = "select id , amount, date, is_deleted, unit from storage where id = :id ", nativeQuery = true)
+    Storage findByIdStorage(@Param("id") int id);
+
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: edit a Storage
+     * @param amount
+     */
+
+    @javax.transaction.Transactional
+    @Modifying
+    @Query(value = "update storage set amount = :amount where id = :id", nativeQuery = true)
+    void updateAmountStorage(@Param("amount") Integer amount,@Param("id") Integer id);
 }
