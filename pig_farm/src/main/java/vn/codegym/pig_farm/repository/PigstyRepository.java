@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import vn.codegym.pig_farm.entity.Pigsty;
 
-public interface IPigstyRepository extends JpaRepository<Pigsty, Integer> {
+public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
     /**
      * Create by PhucND
      * Date Create: 08/09/2022
