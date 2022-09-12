@@ -1,4 +1,5 @@
-package vn.codegym.pig_farm.advertisement.controller;
+package vn.codegym.pig_farm.controller;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,60 +13,66 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AdvertisementRestController_deleteAdvertisement {
+public class EmployeeRestController_deleteEmployeeById {
+
     @Autowired
     private MockMvc mockMvc;
 
+
     /**
-     * Create: DucNH
+     * Create: HungNQ
      * Date create: 09/09/2022
-     * Delete Advertisement with id = 1
-     * if id == null
+     * Return error method not allowed
      */
     @Test
-    public void deleteAdvertisement_idNull() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/advertisement/delete/null"))
+    public void deleteEmployeeById_1_idNull() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.patch("/employee/delete/null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
     /**
-     * Create: DucNH
+     * Create: HungNQ
      * Date create: 09/09/2022
-     * Delete Advertisement with id = 1
-     * if id == ""
+     * Return error 404 not found
      */
     @Test
-    public void deleteAdvertisement_idIsEmpty() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/advertisement/delete/"))
+    public void deleteEmployeeById_2_idEmpty() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.patch("/employee/delete/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
     /**
-     * Create: DucNH
+     * Create: HungNQ
      * Date create: 09/09/2022
-     * Delete Advertisement with id = 1
-     * if id is not exist in database
+     * Return error 404 not found
      */
     @Test
-    public void deleteAdvertisement_idNotExist() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/advertisement/delete/1"))
+    public void deleteEmployeeById_3_idNotExist() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.patch("/employee/delete/9"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
 
     /**
-     * Create: DucNH
+     * Create: HungNQ
      * Date create: 09/09/2022
-     * Delete Advertisement with id = 1
-     * if id is exist in database
+     * Return update column is_deleted = 1 in database
      */
     @Test
-    public void deleteAdvertisement_idOk() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/advertisement/delete/1"))
+    public void deleteEmployeeById_4_idOk() throws Exception {
+
+        this.mockMvc.perform(
+                        MockMvcRequestBuilders.patch("/employee/delete/4"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
-}
 
+}

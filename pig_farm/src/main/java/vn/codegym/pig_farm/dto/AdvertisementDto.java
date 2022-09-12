@@ -4,19 +4,33 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Placement;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+
 
 public class AdvertisementDto implements Validator {
     private Integer id;
+
+    @Pattern(regexp = "^[A-Za-z _ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+", message = "Không được để trống và không nhập kí tự")
     private String title;
+    @NotEmpty(message = "Ảnh không được để trống")
+    @Pattern(regexp = "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/{2}=]*)", message = "Phải đúng định dạng ảnh")
     private String image;
+    //    @NotEmpty(message = "Ngày đăng không được để trống")
     private LocalDate submittedDate;
+
+    @NotEmpty(message = "Ngày đăng không được để trống")
+    @Pattern(regexp = "^[0-9]+$", message = "Không được nhập kí tự và chữ")
     private String timeExistence;
+
     private Placement placement;
     private Boolean isDeleted;
 
+
     public AdvertisementDto() {
     }
+
 
     public AdvertisementDto(Integer id, String title, String image, LocalDate submittedDate, String timeExistence, Placement placements, Boolean isDeleted) {
         this.id = id;
@@ -91,6 +105,5 @@ public class AdvertisementDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
     }
 }

@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.advertisement.controller;
+package vn.codegym.pig_farm.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
