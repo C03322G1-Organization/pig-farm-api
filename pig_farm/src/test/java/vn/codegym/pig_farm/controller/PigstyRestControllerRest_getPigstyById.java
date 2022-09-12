@@ -83,6 +83,7 @@ public class PigstyRestControllerRest_getPigstyById {
                 .andExpect(jsonPath("id").value(1))
                 .andExpect(jsonPath("buildDate").value("2020-02-02"))
                 .andExpect(jsonPath("creationDate").value("2045-02-03"))
+                .andExpect(jsonPath("typePigs").value(1))
                 .andExpect(jsonPath("maxNumber").value(20))
                 .andExpect(jsonPath("employee.id").value(1));
     }

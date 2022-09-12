@@ -20,6 +20,8 @@ public class Pigsty {
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 
+    private Integer typePigs;
+
     @Column(columnDefinition = "DATE")
     private LocalDate buildDate;
 

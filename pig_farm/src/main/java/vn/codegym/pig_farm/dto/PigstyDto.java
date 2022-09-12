@@ -3,9 +3,7 @@ package vn.codegym.pig_farm.dto;
 import lombok.Data;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import vn.codegym.pig_farm.entity.Employee;
 
-import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 @Data
@@ -14,6 +12,8 @@ public class PigstyDto implements Validator {
     @NotNull
     @NotEmpty
     private String creationDate;
+
+    private Integer typePigs;
 
     private String buildDate;
 
