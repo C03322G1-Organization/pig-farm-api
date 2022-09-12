@@ -39,4 +39,27 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
             "values (:amount, :foodType, :date, :unit)", nativeQuery = true)
     void saveS(@Param("amount") Integer amount, @Param("foodType") String foodType, @Param("date") LocalDate date, @Param("unit") String unit);
 
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: findByIdStorage2 a Storage
+     * @param id
+     * @return
+     */
+    @Query(value = "select id , amount, date, is_deleted, unit from storage where id = :id ", nativeQuery = true)
+    Storage findByIdStorage(@Param("id") int id);
+
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: edit a Storage
+     * @param amount
+     */
+
+    @javax.transaction.Transactional
+    @Modifying
+    @Query(value = "update storage set amount = :amount where id = :id", nativeQuery = true)
+    void updateAmountStorage(@Param("amount") Integer amount,@Param("id") Integer id);
 }
