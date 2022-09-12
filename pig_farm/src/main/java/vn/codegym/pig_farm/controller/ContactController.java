@@ -38,7 +38,7 @@ public class ContactController {
         if (content.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Page<Contact> contactPage = contactService.getAll(pageable,name,content);
+        Page<Contact> contactPage = contactService.getAll(pageable,name);
         if (contactPage.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -64,9 +64,9 @@ public class ContactController {
      * Date created: 08/09/2022
      * function: delete Contact
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteContact(@PathVariable("id") Integer id) {
-        contactService.deleteContact(id);
+    @PostMapping("/delete")
+    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+        contactService.deleteContact(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
