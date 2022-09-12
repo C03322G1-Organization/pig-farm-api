@@ -51,17 +51,12 @@ public class ContactRestController {
     @CrossOrigin()
     @GetMapping("/page")
     public ResponseEntity<Page<Contact>> findAllContact(@PageableDefault(value = 5) Pageable pageable,
-                                                        Optional<String> nameSearch,
-                                                        Optional<String> contentSearch) {
+                                                        Optional<String> nameSearch) {
         String name = nameSearch.orElse("");
-        String content = contentSearch.orElse("");
         if (name.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if (content.equals("null")) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        Page<Contact> contactPage = contactService.getAll(pageable,name,content);
+        Page<Contact> contactPage = contactService.getAll(pageable,name);
         if (contactPage.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

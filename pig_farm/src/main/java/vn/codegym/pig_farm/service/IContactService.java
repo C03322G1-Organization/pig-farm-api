@@ -19,7 +19,7 @@ public interface IContactService {
      *Date create: 08/09/2022
      *function: get all Contact Pageable
      */
-    Page<Contact> getAll(Pageable pageable, String name, String content);
+    Page<Contact> getAll(Pageable pageable, String name);
 
     /**
      * Create by TriPT
