@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.dto;
 
+
 import lombok.Data;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -23,6 +24,6 @@ public class EmployeeDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
     }
+
 }

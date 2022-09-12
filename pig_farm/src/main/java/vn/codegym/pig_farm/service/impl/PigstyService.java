@@ -1,9 +1,11 @@
 package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Pigsty;
-import vn.codegym.pig_farm.repository.IPigstyRepository;
+import vn.codegym.pig_farm.repository.PigstyRepository;
 import vn.codegym.pig_farm.service.IPigstyService;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 @Service
 public class PigstyService implements IPigstyService {
     @Autowired
-    private IPigstyRepository iPigstyRepository;
+    private PigstyRepository pigstyRepository;
 
     /**
      * Created by: HieuCD
@@ -22,7 +24,7 @@ public class PigstyService implements IPigstyService {
      */
     @Override
     public void createPigsty(Pigsty pigsty) {
-        this.iPigstyRepository.createPigsty(pigsty);
+        this.pigstyRepository.createPigsty(pigsty);
     }
 
     /**
@@ -34,7 +36,7 @@ public class PigstyService implements IPigstyService {
      */
     @Override
     public void editPigsty(Pigsty pigsty) {
-        this.iPigstyRepository.editPigsty(pigsty);
+        this.pigstyRepository.editPigsty(pigsty);
     }
 
     /**
@@ -47,11 +49,24 @@ public class PigstyService implements IPigstyService {
      */
     @Override
     public Pigsty getPigstyById(Integer id) {
-        return this.iPigstyRepository.getPigstyById(id);
+        return this.pigstyRepository.getPigstyById(id);
     }
 
     @Override
     public List<Pigsty> getListPigsty() {
-        return iPigstyRepository.findAll();
+        return pigstyRepository.findAll();
+    }
+
+    /**
+     * Create by PhucND
+     * Date Create: 08/09/2022
+     * This findAll
+     * <p>
+     * Param search,pageable
+     */
+    @Override
+    public Page<Pigsty> findAll(Pageable pageable, String search) {
+        return pigstyRepository.findAll(pageable, "%" + search + "%");
+
     }
 }

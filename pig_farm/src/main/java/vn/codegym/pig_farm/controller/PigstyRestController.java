@@ -1,7 +1,11 @@
 package vn.codegym.pig_farm.controller;
 
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -29,7 +33,7 @@ public class PigstyRestController {
      * @return if created pigsty return HttpStatus.CREATED(201)
      */
     @PostMapping("/createPigsty")
-    public ResponseEntity<Pigsty> createPigsty(@Valid @RequestBody  PigstyDto pigstyDto, BindingResult bindingResult) {
+    public ResponseEntity<Pigsty> createPigsty(@Valid @RequestBody PigstyDto pigstyDto, BindingResult bindingResult) {
 
         pigstyDto.validate(pigstyDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -71,7 +75,7 @@ public class PigstyRestController {
      * @return if edited return Http status OK
      */
     @PatchMapping("/editPigsty")
-    public ResponseEntity<Pigsty> editPigsty(@Valid @RequestBody PigstyDto pigstyDto,BindingResult bindingResult) {
+    public ResponseEntity<Pigsty> editPigsty(@Valid @RequestBody PigstyDto pigstyDto, BindingResult bindingResult) {
         pigstyDto.validate(pigstyDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -90,5 +94,18 @@ public class PigstyRestController {
             return new ResponseEntity<>(pigstyList, HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(pigstyList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by PhucND
+     * Date Create: 08/09/2022
+     * This findAll
+     * <p>
+     * Param search
+     */
+    @GetMapping("/list")
+    public ResponseEntity<Page<Pigsty>> findAll(@RequestParam(value = "search", defaultValue = "") String search, @PageableDefault(5) Pageable pageable) {
+        return new ResponseEntity<>(iPigstyService.findAll(pageable, search), HttpStatus.OK);
+
     }
 }
