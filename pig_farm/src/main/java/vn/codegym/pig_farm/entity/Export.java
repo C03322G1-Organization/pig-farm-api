@@ -25,6 +25,10 @@ public class Export {
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
+    private Double kilogram;
+
+    private Integer amount;
+
     private Double price;
 
     private Integer typePigs;
