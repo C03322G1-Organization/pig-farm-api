@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm;
 
+<<<<<<< HEAD
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,13 @@ public class PigFarmApplication {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+=======
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PigFarmApplication {
+>>>>>>> origin/notification-HaiTV
 
     public static void main(String[] args) {
         SpringApplication.run(PigFarmApplication.class, args);
