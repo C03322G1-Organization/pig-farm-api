@@ -26,6 +26,13 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     IUserRoleRepository userRoleRepository;
 
+
+//    public PasswordEncoder encoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+
+//    private PasswordEncoder passwordEncoder;
+
     /**
      * @return list Employee (test list)
      * @creator LongNT
@@ -45,8 +52,12 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void save(Employee employee) {
-        List<User> users = userRepository.findAll();
+//        User user = new User();
+//        user.setUsername(user.getUsername());
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.setEmail(user.getEmail());
 
+        List<User> users = userRepository.findAll();
         UserRole userRole = new UserRole();
         Role role = new Role();
         role.setId(1);
