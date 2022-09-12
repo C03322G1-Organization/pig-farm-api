@@ -27,25 +27,13 @@ public class Export {
 
     private Double price;
 
-    private String typePigs;
+    private Integer typePigs;
 
-    @ColumnDefault("0")
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
-
     @Column(columnDefinition = "DATE")
-    private LocalDate startDate;
-
-    private Integer amount;
-
-    private Double kilogram;
-
-    private Double totalMoney;
-
-//    @Column(columnDefinition = "BIT(1) default 0")
-//    private int typePigs;
-
+    private LocalDate saleDate;
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
