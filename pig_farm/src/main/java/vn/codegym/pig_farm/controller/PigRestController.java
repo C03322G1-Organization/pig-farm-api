@@ -32,14 +32,6 @@ public class PigRestController {
     private ModelMapper modelMapper;
 
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Pig>> findAll() {
-        if (pigService.findAll().isEmpty()) {
-            return new ResponseEntity<>(pigService.findAll(), HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(pigService.findAll(), HttpStatus.OK);
-    }
-
     /**
      * Create by: DatVT
      * Date Create: 08/09/2022
@@ -61,12 +53,6 @@ public class PigRestController {
             pigService.createPig(pig);
             return new ResponseEntity<>(pig, HttpStatus.CREATED);
         }
-//        if (pig == null){
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }else{
-//            pigService.createPig(pig);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }
     }
 
     /**

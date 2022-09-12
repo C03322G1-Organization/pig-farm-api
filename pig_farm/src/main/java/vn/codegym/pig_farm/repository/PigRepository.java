@@ -59,9 +59,6 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
     void deletePigById(@Param("id") Integer id);
 
 
-    @Query(value = "select * from Pig where is_deleted = 0", nativeQuery = true)
-    List<Pig> findAll();
-
     /**
      * Created by: DatVT
      * Date created: 08/09/2022

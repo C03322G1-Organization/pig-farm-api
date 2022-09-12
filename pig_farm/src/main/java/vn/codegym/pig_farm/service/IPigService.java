@@ -40,8 +40,6 @@ public interface IPigService {
      */
     Optional<Pig> findById(int id);
 
-    List<Pig> findAll();
-
     /**
      * Created by: DatVT
      * Date created: 08/09/2022

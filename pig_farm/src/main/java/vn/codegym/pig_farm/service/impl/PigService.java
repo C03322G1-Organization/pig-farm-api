@@ -16,10 +16,7 @@ public class PigService implements IPigService {
     @Autowired
     private PigRepository pigRepository;
 
-    public List<Pig> findAll() {
-        return pigRepository.findAll();
-    }
-    /**
+     /**
      * Created by: DatVT
      * Date created: 08/09/2022
      * Function: findById
