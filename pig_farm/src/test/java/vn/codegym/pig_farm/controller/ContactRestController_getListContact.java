@@ -27,7 +27,7 @@ public class ContactRestController_getListContact {
     void getListContact_name_7() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?nameSearch=null"))
+                                .get("/api/contact/page?nameSearch=null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -42,7 +42,7 @@ public class ContactRestController_getListContact {
     void getListContact_name_8() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?nameSearch"))
+                                .get("/api/contact/page?nameSearch"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))
@@ -66,7 +66,7 @@ public class ContactRestController_getListContact {
     void getListComputer_name_9() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?nameSearch=Thai"))
+                                .get("/api/contact/page?nameSearch=Thai"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -80,7 +80,7 @@ public class ContactRestController_getListContact {
     void getListComputer_name_10() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?nameSearch=Tri"))
+                                .get("/api/contact/page?nameSearch=Tri"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -95,7 +95,7 @@ public class ContactRestController_getListContact {
     void getListComputer_name_11() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("contact/page?nameSearch=Bay"))
+                                .get("/api/contact/page?nameSearch=Bay"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))
@@ -119,7 +119,7 @@ public class ContactRestController_getListContact {
     void getListContact_content_7() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?contentSearch=null"))
+                                .get("/api/contact/page?contentSearch=null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -134,7 +134,7 @@ public class ContactRestController_getListContact {
     void getListContact_content_8() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?contentSearch"))
+                                .get("/api/contact/page?contentSearch"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))
@@ -157,7 +157,7 @@ public class ContactRestController_getListContact {
     void getListComputer_content_9() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?contentSearch=Alo"))
+                                .get("/api/contact/page?contentSearch=Alo"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -171,7 +171,7 @@ public class ContactRestController_getListContact {
     void getListComputer_content_10() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/contact/page?contentSearch=Tri"))
+                                .get("/api/contact/page?contentSearch=Tri"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -186,7 +186,7 @@ public class ContactRestController_getListContact {
     void getListComputer_content_11() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("contact/page?contentSearch=lon giong"))
+                                .get("/api/contact/page?contentSearch=lon giong"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("totalPages").value(1))

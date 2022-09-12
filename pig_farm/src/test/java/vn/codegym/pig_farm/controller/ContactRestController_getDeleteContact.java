@@ -28,7 +28,7 @@ public class ContactRestController_getDeleteContact {
     void delete_25() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/contact/null"))
+                                .delete("/api/contact/null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -44,7 +44,7 @@ public class ContactRestController_getDeleteContact {
     void delete_26() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/contact/"))
+                                .delete("/api/contact/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -59,7 +59,7 @@ public class ContactRestController_getDeleteContact {
     void delete_27() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/contact/99"))
+                                .delete("/api/contact/99"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -74,7 +74,7 @@ public class ContactRestController_getDeleteContact {
     void delete_28() throws Exception{
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .delete("/contact/4"))
+                                .delete("/api/contact/4"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }

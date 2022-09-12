@@ -13,12 +13,12 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface IContactRepository extends JpaRepository<Contact, Integer> {
+public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
-    /*
-     *Create by TriPT
-     *Date create: 08/09/2022
-     *function: Delete Contact
+    /**
+     * Create by TriPT
+     * Date create: 08/09/2022
+     * function: Delete Contact
      */
     @Modifying
     @Query(value = "update contact set is_deleted = 1 where id = :id", nativeQuery = true)
@@ -42,4 +42,13 @@ public interface IContactRepository extends JpaRepository<Contact, Integer> {
      */
     @Query(value = "select id, `name`, email, phone, address, content,`date`, is_deleted from contact where id =:id", nativeQuery = true)
     Contact findByIdContact(@Param("id") Integer id);
+
+
+    /**
+     * Create by PhucND
+     * Date Create: 08/09/2022
+     * This save
+     */
+    @Query(value = "insert into contact (name,email,phone,address,content) value (:name,:email,:phone,:address,:content)", nativeQuery = true)
+    Contact save(@Param("name") String name, @Param("email") String email, @Param("phone") String phone, @Param("address") String address, @Param("content") String content);
 }
