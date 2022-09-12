@@ -1,25 +1,15 @@
 package vn.codegym.pig_farm.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
+import java.time.LocalDate;
 
 
-/**
- * Create by: DongLHP
- * Date create: 08/09/2022
- * Function: Create Entity
-=======
-/**
- * Created by : HoaL
- * Date create : 08/09/2022
- * entity : Export
->>>>>>> export-port-HoaL
- */
 @Entity
 @Data
 @NoArgsConstructor
@@ -41,11 +31,23 @@ public class Export {
 
     @ColumnDefault("0")
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
-
     private Boolean isDeleted;
 
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate startDate;
+
+    private Integer amount;
+
+    private Double kilogram;
+
+    private Double totalMoney;
+
+//    @Column(columnDefinition = "BIT(1) default 0")
+//    private int typePigs;
+
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
 

@@ -1,19 +1,17 @@
 package vn.codegym.pig_farm.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
-//@Getter
-//@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pigsty {
@@ -49,7 +47,6 @@ public class Pigsty {
     @JsonIgnore
     private List<Vaccination> vaccinations;
 
-
     @JsonBackReference
     @OneToMany(mappedBy = "pigsty")
     @JsonIgnore
@@ -65,6 +62,4 @@ public class Pigsty {
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     @JsonIgnore
     private Employee employee;
-
-
 }

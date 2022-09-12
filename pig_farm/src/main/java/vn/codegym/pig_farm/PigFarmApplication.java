@@ -11,6 +11,7 @@ public class PigFarmApplication {
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
+
     public static void main(String[] args) {
         SpringApplication.run(PigFarmApplication.class, args);
     }

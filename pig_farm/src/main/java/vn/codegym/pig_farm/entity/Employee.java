@@ -1,18 +1,17 @@
 package vn.codegym.pig_farm.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,13 +35,14 @@ public class Employee {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
 
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<Pigsty> pigsties;
+
 
     @JsonBackReference
     @OneToMany(mappedBy = "employee")
@@ -52,4 +52,5 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
 }
