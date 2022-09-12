@@ -8,8 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -29,7 +30,7 @@ public class NotificationController_findAllNotification {
 
     @Test
     public void getListNotification_1() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/Notification/list/"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/notification"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -42,7 +43,7 @@ public class NotificationController_findAllNotification {
 
     @Test
     public void getListNotification_2() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/notification/list/"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/notification"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
@@ -54,7 +55,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void getListNotification_3() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/notification/list/"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/notification"))
 
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
@@ -75,7 +76,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void getListNotification_4() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/Notification/list?content=a"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/notification?content=a"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
@@ -99,7 +100,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void getListNotification_6() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/notification/list?content=zz"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/notification?content=zz"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
@@ -114,7 +115,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void deleteNotification_idNull() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/notification/delete/null"))
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/notification/delete/null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -128,7 +129,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void deleteNotification_idIsEmpty() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/notification/delete/"))
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/notification/delete/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -142,7 +143,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void deleteNotification_idNotExist() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/notification/delete/1"))
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/notification/delete/1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -156,7 +157,7 @@ public class NotificationController_findAllNotification {
      */
     @Test
     public void deleteNotification_idOk() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/notification/delete/2"))
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/notification/delete/2"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }

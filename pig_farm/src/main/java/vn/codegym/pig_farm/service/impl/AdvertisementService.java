@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Advertisement;
-import vn.codegym.pig_farm.projection.IAdvertisementProjection;
+import vn.codegym.pig_farm.dto.projections.AdvertisementDto;
 import vn.codegym.pig_farm.repository.AdvertisementRepository;
 import vn.codegym.pig_farm.service.IAdvertisementService;
 
@@ -67,7 +67,7 @@ public class AdvertisementService implements IAdvertisementService {
      * @date-create 08/09/2022
      */
     @Override
-    public Page<IAdvertisementProjection> findAllAdvertisement(Pageable pageable, String keySearch) {
+    public Page<AdvertisementDto> findAllAdvertisement(Pageable pageable, String keySearch) {
         return advertisementRepository.findAllAdvertisement(pageable, "%" + keySearch + "%");
     }
 

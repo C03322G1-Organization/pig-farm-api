@@ -1,17 +1,12 @@
 package vn.codegym.pig_farm.repository;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/notification-HaiTV
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-<<<<<<< HEAD
-import org.springframework.stereotype.Repository;
+import vn.codegym.pig_farm.dto.projections.NotificationDto;
 import vn.codegym.pig_farm.entity.Notification;
 
 import javax.transaction.Transactional;
@@ -75,16 +70,12 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      * @param keyword  keyword
      * @return Page<Notification> notifications
      */
-    @Query(value = "select * from notification where title like %:keyword% and content like %:keyword% and is_deleted = 0", nativeQuery = true)
+    @Query(value = "select * " +
+            "from notification " +
+            "where title like %:keyword% and content like %:keyword% and is_deleted = 0",
+            nativeQuery = true)
     Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
-=======
-import vn.codegym.pig_farm.dto.INotificationDto;
-import vn.codegym.pig_farm.entity.Notification;
 
-import javax.transaction.Transactional;
-
-@Transactional
-public interface NotificationRepository extends JpaRepository<Notification, Integer> {
 
     /**
      * Create by HaiTV
@@ -106,7 +97,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
                     " where content " +
                     "like :content " +
                     "and is_deleted =0")
-    Page<INotificationDto> findAllNotification(@Param("content") String content, Pageable pageable);
+    Page<NotificationDto> findAllNotification(@Param("content") String content, Pageable pageable);
 
     /**
      * Create by HaiTV
@@ -120,5 +111,4 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     @Query(value = "update notification set is_deleted =1 where id =:id", nativeQuery = true)
     void delete(@Param("id") Integer id);
 
->>>>>>> origin/notification-HaiTV
 }

@@ -2,8 +2,8 @@ package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.StatisticByMonth;
-import vn.codegym.pig_farm.dto.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.StatisticByMonth;
+import vn.codegym.pig_farm.dto.projections.StatisticByYear;
 import vn.codegym.pig_farm.repository.StatisticRepository;
 import vn.codegym.pig_farm.service.IStatisticService;
 

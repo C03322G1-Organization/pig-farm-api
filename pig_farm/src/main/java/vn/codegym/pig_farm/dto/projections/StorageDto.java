@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 /**
  * Created by: HoangDT
@@ -6,7 +6,7 @@ package vn.codegym.pig_farm.dto;
  * Interface: ComputerListDto
  */
 
-public interface StorageListDto {
+public interface StorageDto {
     String getId();
     String getFoodType();
     String getAmount();

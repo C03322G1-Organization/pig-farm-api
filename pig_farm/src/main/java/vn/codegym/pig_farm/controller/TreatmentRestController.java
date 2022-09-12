@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.ITreatmentDto;
-import vn.codegym.pig_farm.dto.TreatmentDto;
+import vn.codegym.pig_farm.dto.projections.TreatmentDto;
 import vn.codegym.pig_farm.entity.Treatment;
 import vn.codegym.pig_farm.service.ITreatmentService;
 
@@ -22,7 +21,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/treatment/v1")
 @CrossOrigin
-public class TreatmentController {
+public class TreatmentRestController {
     @Autowired
     private ITreatmentService treatmentService;
 
@@ -40,7 +39,7 @@ public class TreatmentController {
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
     @PostMapping
-    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid vn.codegym.pig_farm.dto.TreatmentDto treatmentDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
@@ -60,12 +59,12 @@ public class TreatmentController {
      * @return
      */
     @GetMapping("/")
-    public ResponseEntity<Page<ITreatmentDto>> getAllTreatment(@PageableDefault(value = 5) Pageable pageable, Optional<String> keySearch) {
+    public ResponseEntity<Page<TreatmentDto>> getAllTreatment(@PageableDefault(value = 5) Pageable pageable, Optional<String> keySearch) {
         String title = keySearch.orElse("");
         if (title.equals("null")) {
             title = "";
         }
-        Page<ITreatmentDto> treatmentPage = treatmentService.getAllTreatment(pageable, title);
+        Page<TreatmentDto> treatmentPage = treatmentService.getAllTreatment(pageable, title);
         if (treatmentPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

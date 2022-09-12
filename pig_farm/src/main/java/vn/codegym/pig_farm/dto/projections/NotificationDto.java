@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 import java.time.LocalDate;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Create by HaiTV
  * Date : 08/09/2022
  */
-public interface INotificationDto {
+public interface NotificationDto {
     Integer getId();
 
     String getContent();

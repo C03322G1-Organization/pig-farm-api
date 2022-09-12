@@ -6,15 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
@@ -47,7 +44,6 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<Pigsty> pigsties;
-
 
     @JsonBackReference
     @OneToMany(mappedBy = "employee")

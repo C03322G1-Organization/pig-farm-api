@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import vn.codegym.pig_farm.dto.IExportDto;
+import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.entity.Pigsty;
@@ -39,7 +39,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
             "FROM export e " +
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
             "where e.is_deleted = 0 and code_export like:codeExport and company like:company", nativeQuery = true)
-    Page<IExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company);
+    Page<ExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company);
 
     /**
      * Create by: DongLHP
