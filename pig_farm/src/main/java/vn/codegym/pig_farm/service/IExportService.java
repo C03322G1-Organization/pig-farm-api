@@ -15,7 +15,7 @@ public interface IExportService {
      * @Param: pageable
      * @return
      */
-    Page<IExportDto> listAll(Pageable pageable, String codeExport, String company);
+    Page<IExportDto> listAll(Pageable pageable, String codeExport, String company, String nameEmployee);
 
     /**
      * Create by: DongLHP
@@ -23,7 +23,7 @@ public interface IExportService {
      * Function: delete export pork
      * @Param: export
      */
-    void delete(Export export);
+    void delete(Integer[] ids);
 
 
     /**
