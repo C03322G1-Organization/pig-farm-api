@@ -27,9 +27,11 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      * @return
      */
     @Query(value = "SELECT e.id as id, " +
+            "amount as amount, " +
             "e.code_export as codeExport, " +
             "company as company, " +
             "e.is_deleted as isDeleted, " +
+            "kilogram as kilogram, " +
             "price as price, " +
             "e.sale_date as saleDate, " +
             "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee, " +
@@ -38,9 +40,11 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
             "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee", nativeQuery = true,
             countQuery = "SELECT count(*) from (SELECT e.id as id," +
+                    "amount as amount," +
                     "e.code_export as codeExport," +
                     "company as company," +
                     "e.is_deleted as isDeleted," +
+                    "kilogram as kilogram," +
                     "price as price," +
                     "e.sale_date as saleDate," +
                     "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee," +
