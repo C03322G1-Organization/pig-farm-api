@@ -5,29 +5,32 @@ import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class VaccinationDto implements Validator {
     private Integer id;
-    private String date;
+    @NotNull
+    private Date date;
     @NotNull
     @Min(value = 1)
-    @Max(value = 10)
+    @Max(value = 20)
     private Integer amount;
     @NotBlank
     private String vaccineType;
     @NotBlank
     @Size(min = 5, max = 30)
+    @Pattern(regexp = "(^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$)")
     private String vaccinatedPerson;
     @Size(min = 1, max = 255)
     private String note;
     private Boolean isDeleted;
+    @NotNull
     private Pigsty pigsty;
 
     public VaccinationDto() {
     }
 
-    public VaccinationDto(Integer id, String date, @NotNull @Min(value = 1) @Max(value = 10) Integer amount, @NotBlank String vaccineType, @NotBlank @Size(min = 5, max = 30) String vaccinatedPerson, @Size(min = 1, max = 255) String note, Boolean isDeleted, Pigsty pigsty) {
+    public VaccinationDto(Integer id, @NotNull Date date, @NotNull @Min(value = 1) @Max(value = 20) Integer amount, @NotBlank String vaccineType, @NotBlank @Size(min = 5, max = 30) @Pattern(regexp = "(^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$)") String vaccinatedPerson, @Size(min = 1, max = 255) String note, Boolean isDeleted, @NotNull Pigsty pigsty) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -46,11 +49,11 @@ public class VaccinationDto implements Validator {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
