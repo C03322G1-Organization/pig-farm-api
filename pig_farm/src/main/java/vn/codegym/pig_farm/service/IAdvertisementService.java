@@ -2,17 +2,11 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-<<<<<<< HEAD
-import vn.codegym.pig_farm.projection.IAdvertisementProjection;
-
-=======
 import vn.codegym.pig_farm.entity.Advertisement;
 import vn.codegym.pig_farm.dto.projections.AdvertisementDto;
-
 import java.util.List;
 import java.util.Optional;
 
->>>>>>> advertisement-management
 public interface IAdvertisementService {
     List<Advertisement> findAllAdvertisement();
 
