@@ -24,13 +24,13 @@ public class JwtAuthenticationController_createAuthenticationToken {
     private ObjectMapper objectMapper;
 
     /**
-     * this function use to test the validation of field name more specific is empty
+     * This function use to test the validation of field name more specific is empty
      *
      * @author SangNH
      * @Time 15:00 09/09/2022
      */
     @Test
-    public void createAuthenticationToken_username_13() throws Exception {
+    public void createAuthenticationToken_username_14() throws Exception {
         JwtRequest authenticationRequest = new JwtRequest();
         authenticationRequest.setUsername(null);
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/public/login")
@@ -41,13 +41,13 @@ public class JwtAuthenticationController_createAuthenticationToken {
     }
 
     /**
-     * this function use to test the validation of field password more specific is empty
+     * This function use to test the validation of field password more specific is empty
      *
      * @author SangNH
      * @Time 15:00 09/09/2022
      */
     @Test
-    public void createAuthenticationToken_password_13() throws Exception {
+    public void createAuthenticationToken_password_14() throws Exception {
         JwtRequest authenticationRequest = new JwtRequest();
         authenticationRequest.setPassword(null);
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/public/login")
@@ -58,13 +58,13 @@ public class JwtAuthenticationController_createAuthenticationToken {
     }
 
     /**
-     * this function use to test the validation of field name more specific is null
+     * This function use to test the validation of field name more specific is null
      *
      * @author SangNH
      * @Time 15:00 09/09/2022
      */
     @Test
-    public void createAuthenticationToken_username_14() throws Exception {
+    public void createAuthenticationToken_username_13() throws Exception {
         JwtRequest authenticationRequest = new JwtRequest();
         authenticationRequest.setUsername("");
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/public/login")
@@ -75,13 +75,13 @@ public class JwtAuthenticationController_createAuthenticationToken {
     }
 
     /**
-     * this function use to test the validation of field password more specific is null
+     * This function use to test the validation of field password more specific is null
      *
      * @author SangNH
      * @Time 15:00 09/09/2022
      */
     @Test
-    public void createAuthenticationToken_password_14() throws Exception {
+    public void createAuthenticationToken_password_13() throws Exception {
         JwtRequest authenticationRequest = new JwtRequest();
         authenticationRequest.setPassword("");
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/public/login")
@@ -109,7 +109,7 @@ public class JwtAuthenticationController_createAuthenticationToken {
     }
 
     /**
-     * This function is used to verify that a specific field name is not more than 32 characters
+     * This function is used to verify that a specific field password is not more than 32 characters
      *
      * @author SangNH
      * @Time 15:00 09/09/2022
@@ -118,6 +118,23 @@ public class JwtAuthenticationController_createAuthenticationToken {
     public void createAuthenticationToken_password_16() throws Exception {
         JwtRequest authenticationRequest = new JwtRequest();
         authenticationRequest.setPassword("12334455283237283478628731298183778163asdsadjasvhdgjzxcz87872323sjag");
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/public/login")
+                        .content(this.objectMapper.writeValueAsString(authenticationRequest))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * This function is used to verify the Ming that a field password can must be more than 8 character
+     *
+     * @author SangNH
+     * @Time 15:00 09/09/2022
+     */
+    @Test
+    public void createAuthenticationToken_password_17() throws Exception {
+        JwtRequest authenticationRequest = new JwtRequest();
+        authenticationRequest.setPassword("123344");
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/public/login")
                         .content(this.objectMapper.writeValueAsString(authenticationRequest))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
