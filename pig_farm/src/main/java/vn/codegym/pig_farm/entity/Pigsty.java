@@ -3,7 +3,6 @@ package vn.codegym.pig_farm.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +27,8 @@ public class Pigsty {
 
     private Integer maxNumber;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
     private Boolean isDeleted;
 
     @OneToMany(mappedBy = "pigsty")
