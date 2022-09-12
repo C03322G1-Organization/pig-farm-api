@@ -17,6 +17,8 @@ public class Pigsty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private Integer typePigs;
+
     @Column(columnDefinition = "VARCHAR(30)")
     private String code;
 
