@@ -1,6 +1,5 @@
 package vn.codegym.pig_farm.controller;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,23 +8,32 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.UserDto;
 import vn.codegym.pig_farm.entity.Employee;
+import vn.codegym.pig_farm.entity.User;
 import vn.codegym.pig_farm.service.IEmployeeService;
+import vn.codegym.pig_farm.service.IUserService;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/employee")
 public class EmployeeRestController {
 
     @Autowired
-    IEmployeeService employeeService;
+    private IEmployeeService employeeService;
 
-    @Autowired(required = false)
-    private ModelMapper modelMapper;
+    @Autowired
+    private IUserService userService;
+
+    /**
+     * @return list Employee (test list) success: OK, error: NOT_FOUND
+     * @creator LongNT
+     * @day 12/09/2022
+     */
 
     @GetMapping("")
     public ResponseEntity<List<Employee>> findAll() {
@@ -38,30 +46,39 @@ public class EmployeeRestController {
 
     /**
      * @param employeeDto
-     * @return create Employee
+     * @return create Employee success: CREATED, error: NOT_ACCEPTABLE
      * @creator LongNT
      * @day 08/09/2022
      */
 
     @PostMapping("")
     public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
-
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
 
-        Employee employeeObj = new Employee();
+        UserDto userDto;
 
-        BeanUtils.copyProperties(employeeDto, employeeObj);
+        userDto = employeeDto.getUserDto();
 
-        employeeService.save(employeeObj);
+        User user = new User();
+
+        BeanUtils.copyProperties(userDto, user);
+
+        userService.save(user);
+
+        Employee employee = new Employee();
+
+        BeanUtils.copyProperties(employeeDto, employee);
+
+        employeeService.save(employee);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
      * @param id
-     * @return Employee ID
+     * @return Employee ID success: OK, error: NOT_FOUND
      * @creator LongNT
      * @day 08/09/2022
      */
@@ -78,7 +95,7 @@ public class EmployeeRestController {
     /**
      * @param id
      * @param employeeDto
-     * @return Employee edited
+     * @return Employee edited success: OK, Employee not present: NO_CONTENT, error: NOT_ACCEPTABLE
      * @creator LongNT
      * @day 08/09/2022
      */
