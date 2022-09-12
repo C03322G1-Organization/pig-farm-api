@@ -32,7 +32,7 @@ public class VaccinationRestController_getListVaccination {
      */
 
     @Test
-    public void getListVaccination_1() throws Exception {
+    public void getListVaccination_5() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/vaccination/list/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -45,7 +45,7 @@ public class VaccinationRestController_getListVaccination {
      */
 
     @Test
-    public void getListVaccination_2() throws Exception {
+    public void getListVaccination_4() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/vaccination/list/"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
@@ -57,7 +57,7 @@ public class VaccinationRestController_getListVaccination {
      * @Time 09/09/2022
      */
     @Test
-    public void getVaccination_3() throws Exception {
+    public void getVaccination_4() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/vaccination/list/"))
 
                 .andDo(print())
@@ -78,7 +78,7 @@ public class VaccinationRestController_getListVaccination {
      * @Time 09/09/2022
      */
     @Test
-    public void getListVaccination_4() throws Exception {
+    public void getListVaccination_9() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/vaccination/list?name=a"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
@@ -90,10 +90,10 @@ public class VaccinationRestController_getListVaccination {
      * @Time 09/09/2022
      */
     @Test
-    public void getListVaccination_5() throws Exception {
+    public void getListVaccination_7() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/vaccination/list?name="))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is4xxClientError());
     }
 
     /**
@@ -117,7 +117,7 @@ public class VaccinationRestController_getListVaccination {
      * if id == null
      */
     @Test
-    public void deleteVaccination_idNull() throws Exception {
+    public void deleteVaccination_idNull_25() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/null"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -131,7 +131,7 @@ public class VaccinationRestController_getListVaccination {
      * if id == ""
      */
     @Test
-    public void deleteVaccination_idIsEmpty() throws Exception {
+    public void deleteVaccination_idIsEmpty_26() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -145,7 +145,7 @@ public class VaccinationRestController_getListVaccination {
      * if id is not exist in database
      */
     @Test
-    public void deleteVaccination_idNotExist() throws Exception {
+    public void deleteVaccination_idNotExist_27() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/1"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -159,7 +159,7 @@ public class VaccinationRestController_getListVaccination {
      * if id is exist in database
      */
     @Test
-    public void deleteVaccination_idOk() throws Exception {
+    public void deleteVaccination_idOk_28() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.patch("/vaccination/delete/2"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
