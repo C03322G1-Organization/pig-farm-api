@@ -31,8 +31,8 @@ public class ContactService implements IContactService {
      * function: getAll Contact
      */
     @Override
-    public Page<Contact> getAll(Pageable pageable, String name) {
-        return contactRepository.findAll(pageable, "%" + name + "%");
+    public Page<Contact> getAll(Pageable pageable, String name, String content) {
+        return contactRepository.findAll(pageable, "%" + name + "%", "%" + content + "%");
     }
 
     /**

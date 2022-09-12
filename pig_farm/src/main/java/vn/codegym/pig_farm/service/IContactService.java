@@ -13,12 +13,13 @@ public interface IContactService {
      */
 
     void deleteContact(Integer[] ids);
+
     /*
      *Create by TriPT
      *Date create: 08/09/2022
      *function: get all Contact Pageable
      */
-    Page<Contact> getAll(Pageable pageable, String name);
+    Page<Contact> getAll(Pageable pageable, String name, String content);
 
     /**
      * Create by TriPT

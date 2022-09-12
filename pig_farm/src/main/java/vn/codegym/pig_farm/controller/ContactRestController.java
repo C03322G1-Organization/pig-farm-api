@@ -55,19 +55,19 @@ public class ContactRestController {
                                                         Optional<String> contentSearch) {
         String name = nameSearch.orElse("");
         String content = contentSearch.orElse("");
+        System.out.println(111111111);
+        System.out.println(name);
         if (name.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
         if (content.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Page<Contact> contactPage = contactService.getAll(pageable,name);
+        Page<Contact> contactPage = contactService.getAll(pageable,name,content);
         if (contactPage.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contactPage,HttpStatus.OK);
-
     }
 
     /**
