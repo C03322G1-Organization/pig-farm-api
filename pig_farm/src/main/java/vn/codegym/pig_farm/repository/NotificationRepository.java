@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import vn.codegym.pig_farm.dto.INotificationDto;
+import vn.codegym.pig_farm.dto.NotificationProjection;
 import vn.codegym.pig_farm.entity.Notification;
 
 import javax.transaction.Transactional;
@@ -23,18 +23,18 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      * @param pageable
      * @return
      */
-    @Query(value = " select id , content, submitted_date as submittedDate , image  " +
+    @Query(value = " select id , content, title , submitted_date as submittedDate , image  " +
             " from notification " +
             " where content " +
             "like :content " +
             "and is_deleted =0",
             nativeQuery = true,
-            countQuery = "select count(*) from (select id , content, submitted_date as submittedDate , image  " +
+            countQuery = "select count(*) from (select id , content, title , submitted_date as submittedDate , image  " +
                     " from notification " +
                     " where content " +
                     "like :content " +
-                    "and is_deleted =0")
-    Page<INotificationDto> findAllNotification(@Param("content") String content, Pageable pageable);
+                    "and is_deleted =0) as abc")
+    Page<NotificationProjection> findAllNotification(Pageable pageable, @Param("content") String content);
 
     /**
      * Create by HaiTV

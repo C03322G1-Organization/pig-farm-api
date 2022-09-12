@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.INotificationDto;
+import vn.codegym.pig_farm.dto.NotificationProjection;
 import vn.codegym.pig_farm.entity.Notification;
 import vn.codegym.pig_farm.repository.NotificationRepository;
 import vn.codegym.pig_farm.service.NotificationService;
@@ -24,9 +24,8 @@ public class NotificationServiceImpl implements NotificationService {
      * @return
      */
     @Override
-    public Page<INotificationDto> findAll(String content, Pageable pageable) {
-        return notificationRepository.findAllNotification("%" + content + "%", pageable);
-
+    public Page<NotificationProjection> findAll(Pageable pageable, String content) {
+        return notificationRepository.findAllNotification(pageable, "%" + content + "%");
     }
 
     /**

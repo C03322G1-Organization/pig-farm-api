@@ -18,6 +18,9 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "VARCHAR(255)")
+    private String title;
+
     @Column(columnDefinition = "VARCHAR(1000)")
     private String content;
 

@@ -2,7 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.INotificationDto;
+import vn.codegym.pig_farm.dto.NotificationProjection;
 import vn.codegym.pig_farm.entity.Notification;
 
 public interface NotificationService {
@@ -15,7 +15,7 @@ public interface NotificationService {
      * @param pageable
      * @return
      */
-    Page<INotificationDto> findAll(String content, Pageable pageable);
+    Page<NotificationProjection> findAll(Pageable pageable, String content);
 
     /**
      * Create by HaiTV
