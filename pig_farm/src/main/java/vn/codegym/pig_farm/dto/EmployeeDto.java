@@ -1,6 +1,6 @@
 package vn.codegym.pig_farm.dto;
 
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 
 import java.time.LocalDate;
 
@@ -18,7 +18,7 @@ public class EmployeeDto {
     private String gender;
     private String idCard;
     private String image;
-    private User user;
+    private AppUser user;
 
     public EmployeeDto() {
     }
@@ -79,11 +79,11 @@ public class EmployeeDto {
         this.image = image;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 }

@@ -14,9 +14,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "role")
+@Table(name = "app_role")
 
-public class Role {
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,7 +28,7 @@ public class Role {
     private Boolean isDeleted;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "appRole")
     @JsonIgnore
     private List<UserRole> userRoles;
 }

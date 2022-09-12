@@ -14,8 +14,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
-public class User {
+@Table(name = "app_user")
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -36,12 +36,12 @@ public class User {
     private Boolean isDeleted;
 
     @JsonBackReference
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "appUser")
     @JsonIgnore
     private Employee employee;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "appUser")
     @JsonIgnore
     private List<UserRole> userRoles;
 }
