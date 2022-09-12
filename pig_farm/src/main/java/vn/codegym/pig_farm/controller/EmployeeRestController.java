@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
+import vn.codegym.pig_farm.dto.projection.EmployeeDto;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
 import java.util.List;
@@ -33,12 +33,12 @@ public class EmployeeRestController {
      * @return if success status 2xx else if error status 4xx
      */
     @GetMapping("/searchList")
-    public ResponseEntity<Page<IEmployeeProjection>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 2) Pageable pageable,
-                                                                                           @RequestParam Optional<String> name,
-                                                                                           @RequestParam Optional<String> idCard) {
+    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
+                                                                                   @RequestParam Optional<String> name,
+                                                                                   @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
-        Page<IEmployeeProjection> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
+        Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
         if (employeePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -63,5 +63,19 @@ public class EmployeeRestController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     * @param id
+     * @return EmployeeDto
+     */
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<EmployeeDto> getEmployeeDtoById(@PathVariable Integer id){
+        Optional<EmployeeDto> employeeDtoOptional = iEmployeeService.getEmployeeDtoById(id);
+        if (!employeeDtoOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employeeDtoOptional.get(), HttpStatus.OK);
+    }
 
 }

@@ -8,11 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
+import vn.codegym.pig_farm.dto.projection.EmployeeDto;
 
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
@@ -26,23 +27,25 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Date 08/09/2022
      */
     @Query(value = "select e.`name` as nameEmployee, e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
-            "e.is_deleted as deleted, e.id, `user`.username , `role`.role_name as roleName from employee e " +
+            "e.is_deleted as isDeleted, e.id, `user`.username , `role`.role_name as roleName,`user`.creation_date " +
+            "as creationDate, `user`.password, `user`.email from employee e " +
             "join `user` on e.user_id = `user`.id " +
             "join user_role on user_role.user_id = `user`.id " +
             "join `role` on `role`.id = user_role.role_id " +
             "where e.is_deleted = 0 " +
             "and e.name like  " +
-            "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')", nativeQuery = true,
+            "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%') order by e.id desc ", nativeQuery = true,
             countQuery = "select count(*) from (select e.`name` as nameEmployee , e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
-                    "e.is_deleted as deleted, e.id, `user`.username,`role`.role_name as roleName from employee e " +
+                    "e.is_deleted as isDeleted, e.id, `user`.username,`role`.role_name as roleName,`user`.creation_date " +
+                    "as creationDate, `user`.password, `user`.email from employee e " +
                     "join `user` on e.user_id = `user`.id " +
                     "join user_role on user_role.user_id = `user`.id  " +
                     "join `role` on `role`.id = user_role.role_id " +
                     "where e.is_deleted = 0 " +
                     "and e.name like  " +
-                    "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')) abc")
-    Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(@Param("name") String name, @Param("idCard") String idCard,
-                                                                Pageable pageable);
+                    "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%') order by e.id desc ) abc")
+    Page<EmployeeDto> getAllEmployeePaginationAndSearch(@Param("name") String name, @Param("idCard") String idCard,
+                                                        Pageable pageable);
 
     /**
      * @param id function deleteEmployee
@@ -61,5 +64,21 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      */
     @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,name,user_id from employee",nativeQuery = true)
     List<Employee> getAllEmployee();
+
+
+    /**
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     * @param id
+     * @return EmployeeDto
+     */
+    @Query(value = "select e.`name` as nameEmployee, e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
+            "e.is_deleted as isDeleted, e.id, `user`.username , `role`.role_name as roleName,`user`.creation_date " +
+            "as creationDate, `user`.password, `user`.email from employee e " +
+            "join `user` on e.user_id = `user`.id " +
+            "join user_role on user_role.user_id = `user`.id " +
+            "join `role` on `role`.id = user_role.role_id " +
+            "where e.id = :id",nativeQuery = true)
+    Optional<EmployeeDto> getEmployeeDtoById(@Param("id") int id);
 
 }

@@ -1,8 +1,9 @@
-package vn.codegym.pig_farm.projection;
+package vn.codegym.pig_farm.dto.projection;
 
 import java.time.LocalDate;
 
-public interface IEmployeeProjection {
+public interface EmployeeDto {
+
         Integer getId();
 
         String getCode();
@@ -17,13 +18,18 @@ public interface IEmployeeProjection {
 
         LocalDate getBirthDay();
 
-        Boolean getDeleted();
+        Boolean getIsDeleted();
 
         Integer getUserId();
 
         String getUserName();
 
-        String getRoleName();
+        String getPassWord();
 
+        String getEmail();
+
+        String getCreationDate();
+
+        String getRoleName();
 
 }
