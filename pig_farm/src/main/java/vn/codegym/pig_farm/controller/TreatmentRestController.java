@@ -39,7 +39,7 @@ public class TreatmentRestController {
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
     @PostMapping
-    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid vn.codegym.pig_farm.dto.TreatmentDto treatmentDto, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
