@@ -37,9 +37,9 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 
     @Transactional
     @Modifying
-    @Query(value = "insert into notification(id, content, submitted_date, image) " +
-            " values (:id, :content, :submitted_date, :image);", nativeQuery = true)
-    void save(@Param("id") Integer id, @Param("content") String content,
+    @Query(value = "insert into notification(id, title, content, submitted_date, image) " +
+            " values (:id, :title, :content, :submitted_date, :image);", nativeQuery = true)
+    void save(@Param("id") Integer id, @Param("title") String title, @Param("content") String content,
               @Param("submitted_date") LocalDate submitted_date, @Param("image") String image);
 
     /**
@@ -55,9 +55,9 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
 
     @Transactional
     @Modifying
-    @Query(value = "update notification set content = :content, submitted_date = :submittedDate, " +
+    @Query(value = "update notification set title = :title, content = :content, submitted_date = :submittedDate, " +
             " image = :image, is_deleted = :isDeleted where id = :id", nativeQuery = true)
-    void update(@Param("content") String content, @Param("submittedDate") LocalDate submittedDate,
+    void update(@Param("title") String title, @Param("content") String content, @Param("submittedDate") LocalDate submittedDate,
                 @Param("image") String image, @Param("isDeleted") Boolean isDeleted, @Param("id") Integer id);
 
 

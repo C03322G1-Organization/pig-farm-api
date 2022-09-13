@@ -53,7 +53,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void save(Notification notification) {
-        notificationRepository.save(notification.getId(), notification.getContent(), notification.getSubmittedDate(),
+        notificationRepository.save(notification.getId(),notification.getTitle(), notification.getContent(), notification.getSubmittedDate(),
                 notification.getImage());
     }
 
@@ -66,7 +66,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void update(Notification notification) {
-        notificationRepository.update(notification.getContent(), notification.getSubmittedDate(),
+        notificationRepository.update(notification.getTitle(),notification.getContent(), notification.getSubmittedDate(),
                 notification.getImage(), notification.getIsDeleted(), notification.getId());
     }
 
