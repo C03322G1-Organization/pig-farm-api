@@ -30,7 +30,7 @@ public class FoodRestController_getAllFood {
     public void getListStudent_1() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?foodType=null"))
+                                .get("/api/food/list?foodType=null"))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -40,7 +40,7 @@ public class FoodRestController_getAllFood {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?foodType= "))
+                                .get("/api/food/list?foodType= "))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -50,7 +50,7 @@ public class FoodRestController_getAllFood {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?foodType=124"))
+                                .get("/api/food/list?foodType=124"))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -60,7 +60,7 @@ public class FoodRestController_getAllFood {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list/"))
+                                .get("/api/food/list/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -69,7 +69,7 @@ public class FoodRestController_getAllFood {
     public void getListStudent_4_6() throws Exception {
         this.mockMvc.perform(
                         MockMvcRequestBuilders
-                                .get("/food/list?page=1"))
+                                .get("/api/food/list?page=1"))
                 .andDo(print())
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("totalPages").value(2))
