@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public interface NotificationDto {
     Integer getId();
 
+    String getTitle();
     String getContent();
 
     String getImage();

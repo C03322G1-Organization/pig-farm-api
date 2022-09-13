@@ -107,7 +107,7 @@ public class NotificationRestController {
      */
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Notification> update(@PathVariable Integer id, @Valid @RequestBody vn.codegym.pig_farm.dto.NotificationDto notificationDto, BindingResult bindingResult) {
+    public ResponseEntity<Notification> update(@PathVariable Integer id, @Valid @RequestBody NotificationDto notificationDto, BindingResult bindingResult) {
         Optional<Notification> currentNotification = iNotificationService.findById(id);
 
         if (bindingResult.hasFieldErrors()) {
@@ -143,7 +143,7 @@ public class NotificationRestController {
         if (searchContent.equals("null")) {
             searchContent = "";
         }
-        return new ResponseEntity<Page<NotificationDto>>(iNotificationService.findAll(searchContent, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(iNotificationService.findAll(searchContent, pageable), HttpStatus.OK);
     }
 
 
