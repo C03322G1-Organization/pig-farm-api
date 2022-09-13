@@ -37,7 +37,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -68,7 +68,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -102,7 +102,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -133,7 +133,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -166,7 +166,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -197,7 +197,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -251,31 +251,31 @@ public class ExportRestController_createExport {
      * Date created: 09/09/2022
      * Function: createExport_typePigs_14
      */
-    @Test
-    public void createExport_typePigs_14() throws Exception {
-
-        ExportDto exportDto = new ExportDto();
-        exportDto.setCodeExport("MC01");
-        exportDto.setCompany("nha dong");
-        exportDto.setAmount(10);
-        exportDto.setKilogram(30.0);
-        exportDto.setPrice(30.0);
-        exportDto.setTypePigs("");
-        exportDto.setDeleted(false);
-
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
-        PigstyDto pigstyDto = new PigstyDto();
-        pigstyDto.setId(1);
-
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
+//    @Test
+//    public void createExport_typePigs_14() throws Exception {
+//
+//        ExportDto exportDto = new ExportDto();
+//        exportDto.setCodeExport("MC01");
+//        exportDto.setCompany("nha dong");
+//        exportDto.setAmount(10);
+//        exportDto.setKilogram(30.0);
+//        exportDto.setPrice(30.0);
+//        exportDto.setTypePigs("");
+//        exportDto.setDeleted(false);
+//
+//        EmployeeDto employeeDto = new EmployeeDto();
+//        employeeDto.setId(1);
+//        PigstyDto pigstyDto = new PigstyDto();
+//        pigstyDto.setId(1);
+//
+//        this.mockMvc
+//                .perform(MockMvcRequestBuilders
+//                        .post("/export/create")
+//                        .content(this.objectMapper.writeValueAsString(exportDto))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+//                .andExpect(status().is4xxClientError());
+//    }
 
     /**
      * Created by: HoaL
@@ -291,7 +291,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -322,7 +322,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -353,7 +353,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -384,7 +384,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();

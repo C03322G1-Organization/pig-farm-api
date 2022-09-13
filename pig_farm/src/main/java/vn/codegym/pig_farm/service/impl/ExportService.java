@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.IExportDto;
+import vn.codegym.pig_farm.dto.IPigstyDto;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.repository.ExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
@@ -52,7 +53,7 @@ public class ExportService implements IExportService {
                 exportDto.getCodeExport(),
                 exportDto.getCompany(),
                 exportDto.getPrice(),
-                exportDto.getTypePigs());
+                exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram());
     }
     /**
      * Created by: HoaL
@@ -62,17 +63,19 @@ public class ExportService implements IExportService {
     @Override
     public void update(Export export) {
         iExportRepository.update(export.getPigsty(), export.getEmployee(), export.getCodeExport(), export.getCompany(),
-                 export.getPrice(), export.getTypePigs(),
+                 export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(),
                 export.getId());
     }
     /**
-     * Created by: HoaL
+     * Created by: DongLHP
      * Date created: 08/09/2022
      * Function: findById
->>>>>>> export-port-HoaL
+>>>>>>> export-port-DongLHP
      */
     @Override
     public Export findById(int id) {
         return iExportRepository.findById(id);
     }
+
+
 }

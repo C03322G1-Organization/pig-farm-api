@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.IExportDto;
+import vn.codegym.pig_farm.dto.IPigstyDto;
 import vn.codegym.pig_farm.entity.Export;
 
 public interface IExportService {

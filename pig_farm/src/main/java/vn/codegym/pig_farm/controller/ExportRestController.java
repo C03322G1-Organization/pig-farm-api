@@ -11,7 +11,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.IExportDto;
+import vn.codegym.pig_farm.dto.IPigstyDto;
 import vn.codegym.pig_farm.entity.Export;
+import vn.codegym.pig_farm.repository.ExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
 
 import java.util.Optional;
@@ -109,7 +111,18 @@ public class ExportRestController {
         export1.setCompany(export.getCompany());
         export1.setPrice(export.getPrice());
         export1.setTypePigs(export.getTypePigs());
+        export1.setAmount(export.getAmount());
+        export1.setKilogram(export.getKilogram());
         iExportService.update(export1);
         return new ResponseEntity<>(export1, HttpStatus.OK);
     }
+    @Autowired
+    private ExportRepository exportRepository;
+    @GetMapping("/test/{id}")
+    private ResponseEntity<Object[]> test(@PathVariable("id") Integer id) {
+//        System.out.println(id);
+        Object[] temp = {(exportRepository.countPigOnPigsty(id)),exportRepository.totalWeight(id)};
+       return new ResponseEntity<>(temp,HttpStatus.OK);
+    }
+
 }

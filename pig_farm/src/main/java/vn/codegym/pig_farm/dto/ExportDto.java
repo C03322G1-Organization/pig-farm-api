@@ -10,42 +10,13 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
- * Create by: DongLHP
- * Date create: 08/09/2022
- * Function: Create ExportDto
+ * Created by: HoaL
+ * Date created: 09/09/2022
+ * Function: ExportDto
+ * return exportDto
  */
 public class ExportDto {
-    private LocalDate startDate;
-    private Pigsty pigsty;
-    private Employee employee;
 
-    public ExportDto(String company, LocalDate startDate, String codeExport, Integer amount, Double kilogram, Double price, String typePigs, Boolean isDeleted, Pigsty pigsty, Employee employee) {
-        this.company = company;
-        this.startDate = startDate;
-        this.codeExport = codeExport;
-        this.amount = amount;
-        this.kilogram = kilogram;
-        this.price = price;
-        this.typePigs = typePigs;
-        this.isDeleted = isDeleted;
-        this.pigsty = pigsty;
-        this.employee = employee;
-    }
-
-    public String getTypePigs() {
-        return typePigs;
-    }
-
-    public void setTypePigs(String typePigs) {
-        this.typePigs = typePigs;
-    }
-
-    /**
-     * Created by: HoaL
-     * Date created: 09/09/2022
-     * Function: ExportDto
-     * return exportDto
-     */
 
     @Size(min = 1, max = 50, message = "không quá 1-50 từ và không để trống")
     @NotBlank
@@ -67,7 +38,8 @@ public class ExportDto {
 
     @NotBlank(message = "Vui lòng nhập loại")
     @Size(min = 1, max = 50, message = "không quá 1-50 từ")
-    private String typePigs;
+    private Integer typePigs;
+
 
     private Boolean isDeleted;
 
@@ -75,7 +47,17 @@ public class ExportDto {
 
     private EmployeeDto employeeDto;
 
+    private LocalDate saleDate;
+
+
     public ExportDto() {
+    }
+    public Integer getTypePigs() {
+        return typePigs;
+    }
+
+    public void setTypePigs(Integer typePigs) {
+        this.typePigs = typePigs;
     }
 
     public String getCodeExport() {
@@ -95,12 +77,12 @@ public class ExportDto {
     }
 
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getSaleDateDate() {
+        return saleDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setSaleDate(LocalDate saleDate) {
+        this.saleDate = saleDate;
     }
 
     public Integer getAmount() {
@@ -135,21 +117,6 @@ public class ExportDto {
         isDeleted = deleted;
     }
 
-    public Pigsty getPigsty() {
-        return pigsty;
-    }
-
-    public void setPigsty(Pigsty pigsty) {
-        this.pigsty = pigsty;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     public PigstyDto getPigstyDto() {
         return pigstyDto;

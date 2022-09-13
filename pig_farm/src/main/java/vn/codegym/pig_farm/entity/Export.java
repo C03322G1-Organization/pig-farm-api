@@ -25,27 +25,19 @@ public class Export {
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
-    private Double price;
-
-    private String typePigs;
-
-    @ColumnDefault("0")
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
-    private Boolean isDeleted;
-
-
-    @Column(columnDefinition = "DATE")
-    private LocalDate startDate;
-
     private Integer amount;
 
     private Double kilogram;
 
-    private Double totalMoney;
+    private Double price;
 
-//    @Column(columnDefinition = "BIT(1) default 0")
-//    private int typePigs;
+    private Integer typePigs;
 
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+    private Boolean isDeleted;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate saleDate;
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
