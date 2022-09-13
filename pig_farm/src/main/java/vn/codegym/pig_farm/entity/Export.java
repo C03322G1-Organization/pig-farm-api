@@ -27,8 +27,6 @@ public class Export {
 
     private Double price;
 
-    private String typePigs;
-
     @ColumnDefault("0")
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
@@ -43,9 +41,9 @@ public class Export {
 
     private Double totalMoney;
 
-//    @Column(columnDefinition = "BIT(1) default 0")
-//    private int typePigs;
 
+    @Column(columnDefinition = "BIT(1) default 0")
+    private int typePigs;
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
