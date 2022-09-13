@@ -1,8 +1,6 @@
 package vn.codegym.pig_farm.service;
-
 import vn.codegym.pig_farm.dto.projections.IStatisticByMonthDto;
 import vn.codegym.pig_farm.dto.projections.IStatisticByYearDto;
-
 import java.util.List;
 
 public interface IStatisticService {

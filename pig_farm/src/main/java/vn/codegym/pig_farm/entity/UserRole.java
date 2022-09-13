@@ -16,14 +16,15 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "BIT")
+
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private AppUser user;
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    private AppRole role;
 }

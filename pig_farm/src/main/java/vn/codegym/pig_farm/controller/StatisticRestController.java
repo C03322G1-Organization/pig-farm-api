@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/statistic")
-public class StatisticController {
+public class StatisticRestController {
 
     @Autowired
     private IStatisticService statisticService;
