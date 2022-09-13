@@ -2,8 +2,8 @@ package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.StatisticByMonth;
-import vn.codegym.pig_farm.dto.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.IStatisticByMonthDto;
+import vn.codegym.pig_farm.dto.projections.IStatisticByYearDto;
 import vn.codegym.pig_farm.repository.StatisticRepository;
 import vn.codegym.pig_farm.service.IStatisticService;
 
@@ -24,7 +24,7 @@ public class StatisticService implements IStatisticService {
      */
 
     @Override
-    public List<StatisticByMonth> getStatisticByMonth(String startDate, String endDate, Integer type) {
+    public List<IStatisticByMonthDto> getStatisticByMonth(String startDate, String endDate, String type) {
         return statisticRepository.getStatisticByMonth(startDate, endDate, type);
     }
 
@@ -37,7 +37,7 @@ public class StatisticService implements IStatisticService {
      */
 
     @Override
-    public List<StatisticByYear> getStatisticByYear(String startDate, String endDate, Integer type) {
+    public List<IStatisticByYearDto> getStatisticByYear(String startDate, String endDate, String type) {
         return statisticRepository.getStatisticByYear(startDate, endDate, type);
     }
 
@@ -50,7 +50,7 @@ public class StatisticService implements IStatisticService {
      */
 
     @Override
-    public List<StatisticByMonth> getStatisticByMonthAndCompany(String startDate, String endDate, Integer type, String company) {
+    public List<IStatisticByMonthDto> getStatisticByMonthAndCompany(String startDate, String endDate, String type, String company) {
         return statisticRepository.getStatisticByMonthAndCompany(startDate, endDate, type, company);
     }
 
@@ -63,7 +63,20 @@ public class StatisticService implements IStatisticService {
      */
 
     @Override
-    public List<StatisticByYear> getStatisticByYearAndCompany(String startDate, String endDate, Integer type, String company) {
+    public List<IStatisticByYearDto> getStatisticByYearAndCompany(String startDate, String endDate, String type, String company) {
         return statisticRepository.getStatisticByYearAndCompany(startDate, endDate, type, company);
+    }
+
+    /**
+     * Created by: ToanNH
+     * Date created: 13/9/2022
+     * function: Get list company.
+     *
+     * @return List<String> or null
+     */
+
+    @Override
+    public List<String> getListCompany() {
+        return statisticRepository.getListCompany();
     }
 }

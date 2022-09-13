@@ -1,7 +1,7 @@
 package vn.codegym.pig_farm.service;
 
-import vn.codegym.pig_farm.dto.StatisticByMonth;
-import vn.codegym.pig_farm.dto.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.IStatisticByMonthDto;
+import vn.codegym.pig_farm.dto.projections.IStatisticByYearDto;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface IStatisticService {
      * @return List<StatisticByMonth> or null
      */
 
-    List<StatisticByMonth> getStatisticByMonth(String startDate, String endDate, Integer type);
+    List<IStatisticByMonthDto> getStatisticByMonth(String startDate, String endDate, String type);
 
     /**
      * Created by: ToanNH
@@ -25,7 +25,7 @@ public interface IStatisticService {
      * @return List<StatisticByYear> or null
      */
 
-    List<StatisticByYear> getStatisticByYear(String startDate, String endDate, Integer type);
+    List<IStatisticByYearDto> getStatisticByYear(String startDate, String endDate, String type);
 
     /**
      * Created by: ToanNH
@@ -35,7 +35,7 @@ public interface IStatisticService {
      * @return List<StatisticByMonth> or null
      */
 
-    List<StatisticByMonth> getStatisticByMonthAndCompany(String startDate, String endDate, Integer type, String company);
+    List<IStatisticByMonthDto> getStatisticByMonthAndCompany(String startDate, String endDate, String type, String company);
 
     /**
      * Created by: ToanNH
@@ -45,5 +45,15 @@ public interface IStatisticService {
      * @return List<StatisticByYear> or null
      */
 
-    List<StatisticByYear> getStatisticByYearAndCompany(String startDate, String endDate, Integer type, String company);
+    List<IStatisticByYearDto> getStatisticByYearAndCompany(String startDate, String endDate, String type, String company);
+
+    /**
+     * Created by: ToanNH
+     * Date created: 13/9/2022
+     * function: Get list company.
+     *
+     * @return List<String> or null
+     */
+
+    List<String> getListCompany();
 }

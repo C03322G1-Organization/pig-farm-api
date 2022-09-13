@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StatisticController_GetStatisticByMonthAndCompany {
+public class StatisticController_GetIStatisticByMonthDtoAndCompany {
 
     @Autowired
     private MockMvc mockMvc;

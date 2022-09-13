@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StatisticController_GetStatisticByYearAndCompany {
+public class StatisticController_GetIStatisticByYearDto {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,13 +25,12 @@ public class StatisticController_GetStatisticByYearAndCompany {
      * @return BAD_REQUEST 400
      */
 
-
     @Test
-    public void getStatisticByYearAndCompany_startTime_1() throws Exception {
+    public void getStatisticByYear_startTime_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "222222222", "2022-10-10", 0, "ABC"))
+                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2222222222222","2022-10-10",0))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -45,11 +44,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_endTime_1() throws Exception {
+    public void getStatisticByYear_startTime_2() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "222222222", 0, "ABC"))
+                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-10-10","2222222222222",1))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -63,11 +62,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_type_1() throws Exception {
+    public void getStatisticByYear_startTime_3() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", "123123", "ABC"))
+                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-09-10","2022-10-10","asd"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -81,31 +80,13 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_type_2() throws Exception {
+    public void getStatisticByYear_type_2() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", 3, "ABC"))
+                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-10-10","2022-10-10",3))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
-    }
-
-    /**
-     * Created by: ToanNH
-     * Date created: 9/9/2022
-     * function: Check null value
-     *
-     * @return NO_CONTENT 204
-     */
-
-    @Test
-    public void getStatisticByYearAndCompany_company_1() throws Exception {
-
-        this.mockMvc.perform(
-                MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-11-10", 0, "ABCD"))
-                .andDo(print())
-                .andExpect(status().is2xxSuccessful());
     }
 
     /**
@@ -117,11 +98,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByMonth_All_5() throws Exception {
+    public void getStatisticByYear_startTime_5() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "2022-08-10","2022-10-10",0, "ABC"))
+                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-08-10","2022-10-10",0))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
 //                .andExpect(jsonPath("time").value("9/2022"))
