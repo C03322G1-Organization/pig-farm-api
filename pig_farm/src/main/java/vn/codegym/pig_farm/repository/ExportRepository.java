@@ -23,8 +23,9 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      * Create by: DongLHP
      * Date create: 08/09/2022
      * Function: show export pork list
-     * @Param: pageable
+     *
      * @return
+     * @Param: pageable
      */
     @Query(value = "SELECT e.id as id, " +
             "amount as amount, " +
@@ -33,18 +34,32 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
             "e.is_deleted as isDeleted, " +
             "kilogram as kilogram, " +
             "price as price, " +
-            "e.start_date as startDate, " +
+            "e.sale_date as saleDate, " +
             "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee, " +
             "e.type_pigs as typePigs " +
             "FROM export e " +
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
-            "where e.is_deleted = 0 and code_export like:codeExport and company like:company", nativeQuery = true)
-    Page<ExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company);
+            "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee", nativeQuery = true,
+            countQuery = "SELECT count(*) from (SELECT e.id as id," +
+                    "amount as amount," +
+                    "e.code_export as codeExport," +
+                    "company as company," +
+                    "e.is_deleted as isDeleted," +
+                    "kilogram as kilogram," +
+                    "price as price," +
+                    "e.sale_date as saleDate," +
+                    "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee," +
+                    "e.type_pigs as typePigs " +
+                    "FROM export e " +
+                    "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
+                    "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee) as export")
+    Page<ExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company, @Param("nameEmployee") String nameEmployee);
 
     /**
      * Create by: DongLHP
      * Date create: 08/09/2022
      * Function: delete export pork
+     *
      * @Param: id
      */
     @Modifying
@@ -71,15 +86,17 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Modifying
     @Transactional
     @Query(value = "insert into `export` (pigsty_id,employee_id,code_export,company," +
-            "price,type_pigs) values" +
-            " (:pigstyId,:employeeId,:codeExport,:company,:price,:typePigs)",
+            "price,type_pigs,amount,kilogram) values" +
+            " (:pigstyId,:employeeId,:codeExport,:company,:price,:typePigs, :amount, :kilogram)",
             nativeQuery = true)
     void create(@Param("pigstyId") Integer pigstyId,
                 @Param("employeeId") Integer employeeId,
                 @Param("codeExport") String codeExport,
                 @Param("company") String company,
                 @Param("price") Double price,
-                @Param("typePigs") String typePigs
+                @Param("typePigs") Integer typePigs,
+                @Param("amount") Integer amount,
+                @Param("kilogram") Double kilogram
     );
 
     /**
@@ -91,16 +108,17 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Modifying
     @Transactional
     @Query(value = "update `export` set pigsty_id = :pigstyId,employee_id = :employeeId,code_export = :codeExport,company = :company," +
-            "price = :price,type_pigs = :typePigs where id = :id",
+            "price = :price,type_pigs = :typePigs, amount = :amount, kilogram = :kilogram where id = :id",
             nativeQuery = true)
     void update(@Param("pigstyId") Pigsty pigstyId, @Param("employeeId") Employee employeeId,
                 @Param("codeExport") String codeExport, @Param("company") String company,
                 @Param("price") Double price,
-                @Param("typePigs") String typePigs, @Param("id") Integer id
+                @Param("typePigs") Integer typePigs,
+                @Param("amount") Integer amount, @Param("id") Double kilogram, @Param("id") Integer id
     );
 
     /**
-     * Created by: HoaL
+     * Created by: DongLHP
      * Date created: 08/09/2022
      * Function: findById
      */
@@ -114,7 +132,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      * return totalWeight
      */
     @Query(value = "select sum(weight) as weighht from pig where pigsty_id = :id ;", nativeQuery = true)
-    Integer totalWeight(@Param("id") int id);
+    Double totalWeight(@Param("id") int id);
 
     /**
      * Created by: HoaL
@@ -122,6 +140,12 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      * Function: findById
      * return countPigOnPigsty
      */
-    @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id",nativeQuery = true)
+    @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id", nativeQuery = true)
     Integer countPigOnPigsty(@Param("id") int id);
+
+//    @Query(value = "select count(pig.pigsty_id) as totalWeight,sum(pig.weight) as amountPigOnPigsty  from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id;", nativeQuery = true)
+//    IPigstyDto test(@Param("id") int id);
+//
+//    @Query(value = "select pigsty.code from pigsty where id=:id;", nativeQuery = true)
+//    IPigstyDto tes(@Param("id") int id);
 }

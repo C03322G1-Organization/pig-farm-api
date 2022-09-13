@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -25,27 +25,19 @@ public class Export {
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
-    private Double price;
-
-    private String typePigs;
-
-    @ColumnDefault("0")
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
-    private Boolean isDeleted;
-
-
-    @Column(columnDefinition = "DATE")
-    private LocalDate startDate;
+    private Double kilogram;
 
     private Integer amount;
 
-    private Double kilogram;
+    private Double price;
 
-    private Double totalMoney;
+    private Integer typePigs;
 
-//    @Column(columnDefinition = "BIT(1) default 0")
-//    private int typePigs;
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+    private Boolean isDeleted;
 
+    @Column(columnDefinition = "DATE")
+    private LocalDate saleDate;
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")

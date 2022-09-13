@@ -13,6 +13,7 @@ import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.service.IExportService;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,9 +34,13 @@ public class ExportRestController {
      * @param: pageable
      */
     @GetMapping("/page")
-    public ResponseEntity<Page<ExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable, Optional<String> codeExport, Optional<String> company) {
+    public ResponseEntity<Page<ExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable,
+                                                         Optional<String> codeExport,
+                                                         Optional<String> company,
+                                                         Optional<String> nameEmployee) {
         String code = codeExport.orElse("");
         String company1 = company.orElse("");
+        String nameEmployee1 = nameEmployee.orElse("");
         if (code.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -43,7 +48,12 @@ public class ExportRestController {
         if (company1.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1);
+
+        if (nameEmployee1.equals("null")) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1,nameEmployee1);
+
         if (contactPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -58,16 +68,10 @@ public class ExportRestController {
      *
      * @return HttpStatus.NOT_FOUND
      * @return HttpStatus.OK
-     * @param: id
      */
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Export> deleteExport(@PathVariable("id") Integer id) {
-
-        Export export = iExportService.findById(id);
-        if (export == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        iExportService.delete(export);
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteExport(@RequestBody Map<String, Integer[]> ids){
+        iExportService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

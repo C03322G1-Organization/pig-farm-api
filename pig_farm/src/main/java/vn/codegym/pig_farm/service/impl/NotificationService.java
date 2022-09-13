@@ -32,44 +32,6 @@ public class NotificationService implements INotificationService {
         return notificationRepository.findAll(pageable, keyword);
     }
 
-    /**
-     * Create by HuyenTN
-     * Date: 08/09/2022
-     * Override method findById
-     * @param id
-     * @return notificationRepository.findById(id)
-     */
-    @Override
-    public Optional<Notification> findById(Integer id) {
-        return notificationRepository.findById(id);
-    }
-
-    /**
-     * Create by HuyenTN
-     * Date: 08/09/2022
-     * Override method save
-     * @param notification
-     */
-
-    @Override
-    public void save(Notification notification) {
-        notificationRepository.save(notification.getId(),notification.getTitle(), notification.getContent(), notification.getSubmittedDate(),
-                notification.getImage());
-    }
-
-    /**
-     * Create by HuyenTN
-     * Date: 08/09/2022
-     * Override method update
-     * @param notification
-     */
-
-    @Override
-    public void update(Notification notification) {
-        notificationRepository.update(notification.getTitle(),notification.getContent(), notification.getSubmittedDate(),
-                notification.getImage(), notification.getIsDeleted(), notification.getId());
-    }
-
 
     /**
      * Create by HaiTV
@@ -81,9 +43,8 @@ public class NotificationService implements INotificationService {
      * @return
      */
     @Override
-    public Page<NotificationDto> findAll(String content, Pageable pageable) {
-        return notificationRepository.findAllNotification("%" + content + "%", pageable);
-
+    public Page<NotificationDto> findAllNotification(Pageable pageable, String content) {
+        return notificationRepository.findAllNotification(pageable, "%" + content + "%");
     }
 
 
@@ -99,5 +60,46 @@ public class NotificationService implements INotificationService {
         for (Integer id : ids) {
             notificationRepository.delete(id);
         }
+    }
+
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Override method findById
+     * @param id
+     * @return notificationRepository.findById(id)
+     */
+
+    @Override
+    public Optional<Notification> findById(Integer id) {
+        return notificationRepository.findById(id);
+    }
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Override method save
+     *
+     * @param notification
+     */
+
+    @Override
+    public void save(Notification notification) {
+        notificationRepository.save(notification.getId(),notification.getTitle(), notification.getContent(), notification.getSubmittedDate(), notification.getImage());
+    }
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Override method update
+     *
+     * @param notification
+     */
+
+    @Override
+    public void update(Notification notification) {
+        notificationRepository.update(notification.getTitle(),notification.getContent(), notification.getSubmittedDate(),
+                notification.getImage(), notification.getIsDeleted(), notification.getId());
     }
 }
