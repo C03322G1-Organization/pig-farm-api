@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import vn.codegym.pig_farm.dto.projections.PigstyDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.repository.PigstyRepository;
 import vn.codegym.pig_farm.service.IPigstyService;
@@ -65,8 +66,8 @@ public class PigstyService implements IPigstyService {
      * Param search,pageable
      */
     @Override
-    public Page<Pigsty> findAll(Pageable pageable, String search) {
-        return pigstyRepository.findAll(pageable, "%" + search + "%");
+    public Page<PigstyDto> findAll(Pageable pageable, String search) {
+        return pigstyRepository.findAll(pageable,"%"+search+"%");
 
     }
 }

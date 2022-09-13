@@ -104,7 +104,7 @@ public class PigstyRestController {
      * Param search
      */
     @GetMapping("/list")
-    public ResponseEntity<Page<Pigsty>> findAll(@RequestParam(value = "search", defaultValue = "") String search, @PageableDefault(5) Pageable pageable) {
+    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.PigstyDto>> findAll(@RequestParam(value = "search", defaultValue = "") String search, @PageableDefault(5) Pageable pageable) {
         return new ResponseEntity<>(iPigstyService.findAll(pageable, search), HttpStatus.OK);
 
     }

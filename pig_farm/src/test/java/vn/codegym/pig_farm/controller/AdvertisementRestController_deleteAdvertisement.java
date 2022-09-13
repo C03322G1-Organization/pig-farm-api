@@ -63,7 +63,7 @@ public class AdvertisementRestController_deleteAdvertisement {
      */
     @Test
     public void deleteAdvertisement_idOk() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.patch("/advertisement/delete/2"))
+        this.mockMvc.perform(MockMvcRequestBuilders.patch("/advertisement/delete/1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }

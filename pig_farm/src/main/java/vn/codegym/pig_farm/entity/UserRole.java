@@ -22,9 +22,9 @@ public class UserRole {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private AppUser user;
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    private AppRole role;
 }

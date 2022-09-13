@@ -19,6 +19,10 @@ public class Pigsty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    @Column(columnDefinition = "VARCHAR(20)")
+    private String code;
+
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 

@@ -18,34 +18,26 @@ public class Export {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @Column(columnDefinition = "VARCHAR(50)")
     private String codeExport;
-
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
+    private Double kilogram;
+
+    private Integer amount;
+
     private Double price;
 
-    private String typePigs;
-
-    @ColumnDefault("0")
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
 
+    @Column(columnDefinition = "BIT(1) default 0")
+    private Integer typePigs;
+
     @Column(columnDefinition = "DATE")
-    private LocalDate startDate;
-
-    private Integer amount;
-
-    private Double kilogram;
-
-    private Double totalMoney;
-
-//    @Column(columnDefinition = "BIT(1) default 0")
-//    private int typePigs;
-
+    private LocalDate saleDate;
 
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
