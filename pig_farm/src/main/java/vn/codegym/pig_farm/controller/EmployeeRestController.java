@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.dto.projection.EmployeeDto;
 import vn.codegym.pig_farm.service.IEmployeeService;
+import vn.codegym.pig_farm.service.IUserRoleService;
+import vn.codegym.pig_farm.service.IUserService;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +25,12 @@ public class EmployeeRestController {
     
     @Autowired
     private IEmployeeService iEmployeeService;
+
+    @Autowired
+    private IUserRoleService iUserRoleService;
+
+    @Autowired
+    private IUserService iUserService;
 
     /**
      * @Creator HungNQ
@@ -38,6 +46,7 @@ public class EmployeeRestController {
                                                                                    @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
+
         Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
         if (employeePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -56,6 +65,7 @@ public class EmployeeRestController {
         List<Employee> employeeList = iEmployeeService.getAllEmployee();
         for (Employee employee: employeeList) {
             if(Objects.equals(id, employee.getId())){
+
                 iEmployeeService.deleteEmployee(id);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
