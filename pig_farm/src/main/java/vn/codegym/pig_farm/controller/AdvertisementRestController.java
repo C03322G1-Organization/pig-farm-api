@@ -36,7 +36,6 @@ public class AdvertisementRestController {
     @Autowired(required = false)
     private ModelMapper modelMapper;
 
-
     /**
      * Created by :ChungHV
      * Date create : 9/8/2022
@@ -130,11 +129,9 @@ public class AdvertisementRestController {
      * @date-create 08/09/2022
      */
     @GetMapping("/page")
-    public ResponseEntity<Page<AdvertisementDto>> findAllAdvertisement(@PageableDefault(value = 5) Pageable pageable, Optional<String> keySearch) {
+    public ResponseEntity<Page<AdvertisementDto>> findAllAdvertisement(@PageableDefault(value = 5) Pageable pageable,
+                                                                       @RequestParam Optional<String> keySearch) {
         String title = keySearch.orElse("");
-        if (title.equals("null")) {
-            title = "";
-        }
         Page<AdvertisementDto> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
         if (advertisementPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
