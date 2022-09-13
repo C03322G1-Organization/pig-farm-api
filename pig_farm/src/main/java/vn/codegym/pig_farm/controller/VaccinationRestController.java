@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.IVaccinationDto;
-import vn.codegym.pig_farm.dto.VaccinationDto;
+import vn.codegym.pig_farm.dto.projections.VaccinationDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Vaccination;
 import vn.codegym.pig_farm.service.IVaccinationService;
@@ -37,7 +36,7 @@ public class VaccinationRestController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid VaccinationDto vaccinationDto, BindingResult bindingResult) {
+    public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid vn.codegym.pig_farm.dto.VaccinationDto vaccinationDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_FOUND);
         }
@@ -51,7 +50,7 @@ public class VaccinationRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<IVaccinationDto>> getList(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> name) {
+    public ResponseEntity<Page<VaccinationDto>> getList(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> name) {
         /**
          * @function (Display all Vaccination and search)
          * @creator TamLT
@@ -67,7 +66,7 @@ public class VaccinationRestController {
             nameSearch = "";
         }
 
-        Page<IVaccinationDto> vaccinationList = iVaccinationService.getAll(pageable, nameSearch);
+        Page<VaccinationDto> vaccinationList = iVaccinationService.getAll(pageable, nameSearch);
         if (vaccinationList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

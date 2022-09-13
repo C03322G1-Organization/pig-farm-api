@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import vn.codegym.pig_farm.dto.IExportDto;
-import vn.codegym.pig_farm.dto.IPigstyDto;
+import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.entity.Pigsty;
@@ -35,13 +34,26 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
             "e.is_deleted as isDeleted, " +
             "kilogram as kilogram, " +
             "price as price, " +
-            "e.start_date as startDate, " +
+            "e.sale_date as saleDate, " +
             "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee, " +
             "e.type_pigs as typePigs " +
             "FROM export e " +
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
-            "where e.is_deleted = 0 and code_export like:codeExport and company like:company", nativeQuery = true)
-    Page<IExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company);
+            "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee", nativeQuery = true,
+            countQuery = "SELECT count(*) from (SELECT e.id as id," +
+                    "amount as amount," +
+                    "e.code_export as codeExport," +
+                    "company as company," +
+                    "e.is_deleted as isDeleted," +
+                    "kilogram as kilogram," +
+                    "price as price," +
+                    "e.sale_date as saleDate," +
+                    "e.employee_id as idEmployee, emp.code as codeEmployee, emp.name as nameEmployee," +
+                    "e.type_pigs as typePigs " +
+                    "FROM export e " +
+                    "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
+                    "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee) as export")
+    Page<ExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company, @Param("nameEmployee") String nameEmployee);
 
     /**
      * Create by: DongLHP

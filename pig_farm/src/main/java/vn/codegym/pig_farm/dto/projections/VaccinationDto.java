@@ -1,8 +1,8 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 import java.time.LocalDate;
 
-public interface IVaccinationDto {
+public interface VaccinationDto {
     Integer getId();
 
     LocalDate getDate();

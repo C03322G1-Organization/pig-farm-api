@@ -355,6 +355,7 @@ public class ExportRestController_updateExport {
      * Date created: 09/09/2022
      * Function: updateExport_typePigs_20
      */
+<<<<<<< HEAD
 //    @Test
 //    public void updateExport_typePigs_20() throws Exception {
 //
@@ -378,6 +379,31 @@ public class ExportRestController_updateExport {
 //                .andDo(print())
 //                .andExpect(status().is4xxClientError());
 //    }
+=======
+    @Test
+    public void updateExport_typePigs_20() throws Exception {
+
+        ExportDto exportDto = new ExportDto();
+        exportDto.setCodeExport("MC0111");
+        exportDto.setCompany("Nhà c");
+        exportDto.setPrice(10000.0);
+        exportDto.setTypePigs(0);
+        exportDto.setDeleted(false);
+
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setId(1);
+        PigstyDto pigstyDto = new PigstyDto();
+        pigstyDto.setId(1);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .patch("/export/update/1")
+                        .content(this.objectMapper.writeValueAsString(exportDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+>>>>>>> origin/export-port-management
 
     /**
      * Created by: HoaL

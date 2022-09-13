@@ -9,7 +9,6 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,15 +18,16 @@ public class Export {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @Column(columnDefinition = "VARCHAR(50)")
     private String codeExport;
 
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
-    private Integer amount;
-
     private Double kilogram;
+
+    private Integer amount;
 
     private Double price;
 

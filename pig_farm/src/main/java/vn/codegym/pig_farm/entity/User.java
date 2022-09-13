@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -45,6 +44,4 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<UserRole> userRoles;
-
-
 }

@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     /**
      * @param name
@@ -41,8 +41,8 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
                     "where e.is_deleted = 0 " +
                     "and e.name like  " +
                     "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')) abc")
-    Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(@Param("name") String name, @Param("idCard") String idCard,
-                                                                Pageable pageable);
+    Page<EmployeeDto> getAllEmployeePaginationAndSearch(@Param("name") String name, @Param("idCard") String idCard,
+                                                        Pageable pageable);
 
     /**
      * @param id function deleteEmployee
@@ -59,7 +59,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Date 08/09/2022
      * @return List employee
      */
-    @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,name,user_id from employee",nativeQuery = true)
+    @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,`name`,user_id from employee",nativeQuery = true)
     List<Employee> getAllEmployee();
 
 }

@@ -1,14 +1,10 @@
 package vn.codegym.pig_farm.dto;
 
-import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.entity.Pigsty;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-
 /**
  * Created by: HoaL
  * Date created: 09/09/2022
@@ -16,7 +12,6 @@ import java.time.LocalDate;
  * return exportDto
  */
 public class ExportDto {
-
 
     @Size(min = 1, max = 50, message = "không quá 1-50 từ và không để trống")
     @NotBlank
@@ -40,7 +35,6 @@ public class ExportDto {
     @Size(min = 1, max = 50, message = "không quá 1-50 từ")
     private Integer typePigs;
 
-
     private Boolean isDeleted;
 
     private PigstyDto pigstyDto;
@@ -52,12 +46,21 @@ public class ExportDto {
 
     public ExportDto() {
     }
-    public Integer getTypePigs() {
-        return typePigs;
-    }
 
-    public void setTypePigs(Integer typePigs) {
+
+    public ExportDto(String codeExport, String company, Integer amount, Double kilogram,
+                     Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted,
+                     PigstyDto pigstyDto, EmployeeDto employeeDto) {
+        this.codeExport = codeExport;
+        this.company = company;
+        this.amount = amount;
+        this.kilogram = kilogram;
+        this.price = price;
         this.typePigs = typePigs;
+        this.saleDate = saleDate;
+        this.isDeleted = isDeleted;
+        this.pigstyDto = pigstyDto;
+        this.employeeDto = employeeDto;
     }
 
     public String getCodeExport() {
@@ -77,7 +80,7 @@ public class ExportDto {
     }
 
 
-    public LocalDate getSaleDateDate() {
+    public LocalDate getSaleDate() {
         return saleDate;
     }
 
@@ -132,5 +135,13 @@ public class ExportDto {
 
     public void setEmployeeDto(EmployeeDto employeeDto) {
         this.employeeDto = employeeDto;
+    }
+
+    public Integer getTypePigs() {
+        return typePigs;
+    }
+
+    public void setTypePigs(Integer typePigs) {
+        this.typePigs = typePigs;
     }
 }
