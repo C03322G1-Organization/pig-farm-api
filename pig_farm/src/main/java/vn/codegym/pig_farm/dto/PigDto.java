@@ -10,10 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
-public class PigDTO implements Validator {
+public class PigDto implements Validator {
     private Integer id;
     @NotBlank
     @Pattern(regexp = "^(ML)[0-9]{2,4}$", message = "Code phải có dạng MlXXX")
@@ -43,7 +42,7 @@ public class PigDTO implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        PigDTO pigDTO = (PigDTO) target;
+        PigDto pigDTO = (PigDto) target;
         Date dateIn = new Date();
         Date dateOut = new Date();
         try {
