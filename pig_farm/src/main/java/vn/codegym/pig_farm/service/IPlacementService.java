@@ -1,10 +1,7 @@
 package vn.codegym.pig_farm.service;
 
-<<<<<<< HEAD
-public interface IPlacementService {
-=======
-import vn.codegym.pig_farm.entity.Placement;
 
+import vn.codegym.pig_farm.entity.Placement;
 import java.util.List;
 
 public interface IPlacementService {
@@ -15,5 +12,4 @@ public interface IPlacementService {
      * @return :List<Placement>
      */
     List<Placement> findAllPlacement();
->>>>>>> advertisement-management
 }

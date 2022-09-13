@@ -74,18 +74,12 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
      * @creator DucNH
      * @date-create 08/09/2022
      */
-    @Query(value = "select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " + "from advertisement where title like :keySearch and is_deleted = 0", nativeQuery = true, countQuery = "select count(*) from (select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " + "from advertisement where title like :keySearch and is_deleted = 0) abc")
+    @Query(value = "select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " +
+            "from advertisement where title like :keySearch and is_deleted = 0", nativeQuery = true,
+            countQuery = "select count(*) from (select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " +
+                    "from advertisement where title like :keySearch and is_deleted = 0) as abc")
     Page<AdvertisementDto> findAllAdvertisement(Pageable pageable, @Param("keySearch") String keySearch);
 
-    /**
-     * @param id must not be
-     * @return Advertisement, status 200
-     * @function (Query to Advertisement)
-     * @creator DucNH
-     * @date-create 08/09/2022
-     */
-    @Query(value = "select * from advertisement where id =:id", nativeQuery = true)
-    Optional<Advertisement> findById(@Param("id") int id);
 
     /**
      * @param id
@@ -94,6 +88,8 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
      * @date-create 08/09/2022
      */
     @Modifying
-    @Query(value = "update advertisement set is_delete = 1 where id =:id", nativeQuery = true)
-    void deleteAdvertisement(@Param("id") int id);
+    @Query(value = "update advertisement set is_deleted = 1 where id =:id", nativeQuery = true)
+    void deleteAdvertisement(@Param("id") Integer id);
+
+
 }

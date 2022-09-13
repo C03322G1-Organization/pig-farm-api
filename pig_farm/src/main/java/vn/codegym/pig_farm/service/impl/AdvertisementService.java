@@ -71,26 +71,17 @@ public class AdvertisementService implements IAdvertisementService {
         return advertisementRepository.findAllAdvertisement(pageable, "%" + keySearch + "%");
     }
 
-    /**
-     * @param id must not be
-     * @return
-     * @function (Query to Advertisement)
-     * @creator DucNH
-     * @date-create 08/09/2022
-     */
-    @Override
-    public Optional<Advertisement> findById(int id) {
-        return advertisementRepository.findById(id);
-    }
 
     /**
-     * @param id
+     * @param ids
      * @function (Query to delete Advertisement)
      * @creator DucNH
      * @date-create 08/09/2022
      */
     @Override
-    public void deleteAdvertisement(int id) {
-        advertisementRepository.deleteAdvertisement(id);
+    public void delete(Integer[] ids) {
+        for (Integer id : ids) {
+            advertisementRepository.deleteAdvertisement(id);
+        }
     }
 }
