@@ -1,6 +1,6 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
-public interface IPigstyDto {
+public interface PigstyDto {
    Integer getTotalWeight();
    Integer getAmountPigOnPigsty();
    Integer getCode();
