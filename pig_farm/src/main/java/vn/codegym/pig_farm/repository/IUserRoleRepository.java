@@ -8,10 +8,20 @@ import org.springframework.stereotype.Repository;
 import vn.codegym.pig_farm.entity.UserRole;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 public interface IUserRoleRepository extends JpaRepository<UserRole, Integer> {
+
+    /**
+     * @return list UserRole
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    @Query(value = "select * from user_role", nativeQuery = true)
+    List<UserRole> findAll();
 
     /**
      * @param roleId

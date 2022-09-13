@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRole {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,9 +21,9 @@ public class UserRole {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private AppUser appUser;
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    private AppRole appRole;
 }

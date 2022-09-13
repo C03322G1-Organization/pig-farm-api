@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface IUserRepository extends JpaRepository<User, Integer> {
+public interface IUserRepository extends JpaRepository<AppUser, Integer> {
 
     /**
      * @return list User
@@ -21,8 +21,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @day 12/09/2022
      */
 
-    @Query(value = "select * from user", nativeQuery = true)
-    List<User> findAll();
+    @Query(value = "select * from app_user", nativeQuery = true)
+    List<AppUser> findAll();
 
     /**
      * @param username
@@ -34,7 +34,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
 
     @Modifying
-    @Query(value = "insert into `user` (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
+    @Query(value = "insert into app_user (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
     void save(@Param("username") String username, @Param("password") String password, @Param("email") String email);
 
     /**
@@ -44,8 +44,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @day 12/09/2022
      */
 
-    @Query(value = "select * from user where user.id = :id", nativeQuery = true)
-    Optional<User> findById(@Param("id") Integer id);
+    @Query(value = "select * from app_user where id = :id", nativeQuery = true)
+    Optional<AppUser> findById(@Param("id") Integer id);
 
     /**
      * @param username
@@ -57,7 +57,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
 
     @Modifying
-    @Query(value = "update `user` set username = :username, `password` = :password, email = :email where id = :id", nativeQuery = true)
+    @Query(value = "update app_user set username = :username, `password` = :password, email = :email where id = :id", nativeQuery = true)
     void edit(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("id") Integer id);
-
 }

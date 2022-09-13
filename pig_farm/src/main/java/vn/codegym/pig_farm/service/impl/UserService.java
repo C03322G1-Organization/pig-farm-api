@@ -2,7 +2,7 @@ package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.repository.IUserRepository;
 import vn.codegym.pig_farm.service.IUserService;
 
@@ -22,19 +22,19 @@ public class UserService implements IUserService {
      */
 
     @Override
-    public List<User> findAll() {
+    public List<AppUser> findAll() {
         return userRepository.findAll();
     }
 
     /**
-     * @param user
+     * @param appUser
      * @creator LongNT
      * @day 12/09/2022
      */
 
     @Override
-    public void save(User user) {
-        userRepository.save(user.getUsername(), user.getPassword(), user.getEmail());
+    public void save(AppUser appUser) {
+        userRepository.save(appUser.getUsername(), appUser.getPassword(), appUser.getEmail());
     }
 
     /**
@@ -45,18 +45,18 @@ public class UserService implements IUserService {
      */
 
     @Override
-    public Optional<User> findById(Integer id) {
+    public Optional<AppUser> findById(Integer id) {
         return userRepository.findById(id);
     }
 
     /**
-     * @param user
+     * @param appUser
      * @creator LongNT
      * @day 12/09/2022
      */
 
     @Override
-    public void edit(User user) {
-        userRepository.edit(user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
+    public void edit(AppUser appUser) {
+        userRepository.edit(appUser.getUsername(), appUser.getPassword(), appUser.getEmail(), appUser.getId());
     }
 }

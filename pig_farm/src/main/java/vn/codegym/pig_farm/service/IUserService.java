@@ -1,6 +1,6 @@
 package vn.codegym.pig_farm.service;
 
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,15 +13,15 @@ public interface IUserService {
      * @day 12/09/2022
      */
 
-    List<User> findAll();
+    List<AppUser> findAll();
 
     /**
-     * @param user
+     * @param appUser
      * @creator LongNT
      * @day 12/09/2022
      */
 
-    void save(User user);
+    void save(AppUser appUser);
 
     /**
      * @param id
@@ -30,13 +30,13 @@ public interface IUserService {
      * @day 12/09/2022
      */
 
-    Optional<User> findById(Integer id);
+    Optional<AppUser> findById(Integer id);
 
     /**
-     * @param user
+     * @param appUser
      * @creator LongNT
      * @day 12/09/2022
      */
 
-    void edit(User user);
+    void edit(AppUser appUser);
 }

@@ -2,9 +2,6 @@ package vn.codegym.pig_farm.dto;
 
 import vn.codegym.pig_farm.entity.Export;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -14,17 +11,15 @@ import java.util.List;
 
 public class EmployeeDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank(message = "Mã Nhân Viên không được để trống !!")
-//    @Pattern(regexp = "^(NV-)+([0-9]{3})$'", message = "Mã Nhân Viên phải đúng định dạng: NV-xxx !!")
+    @Pattern(regexp = "^(NV-)+([0-9]{3})$", message = "Mã Nhân Viên phải đúng định dạng: NV-xxx !!")
     private String code;
 
     @NotBlank(message = "Tên Nhân Viên không được để trống !!")
     @Pattern(regexp = "^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$", message = "Tên Nhân Viên phải viết hoa chữ cái đầu !!")
-    @Size(min = 1, max = 30, message = "Tên Nhân Viên không quá 30 kí tự !!")
+    @Size(max = 30, message = "Tên Nhân Viên không quá 30 kí tự !!")
     private String name;
 
     @NotNull(message = "Ngày Sinh không được để trống !!")

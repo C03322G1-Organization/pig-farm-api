@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.EmployeeDto;
 import vn.codegym.pig_farm.dto.UserDto;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.service.IEmployeeService;
 import vn.codegym.pig_farm.service.IUserService;
 
@@ -51,8 +51,9 @@ public class EmployeeRestController {
      * @day 08/09/2022
      */
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
@@ -61,11 +62,11 @@ public class EmployeeRestController {
 
         userDto = employeeDto.getUserDto();
 
-        User user = new User();
+        AppUser appUser = new AppUser();
 
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(userDto, appUser);
 
-        userService.save(user);
+        userService.save(appUser);
 
         Employee employee = new Employee();
 
@@ -100,8 +101,9 @@ public class EmployeeRestController {
      * @day 08/09/2022
      */
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
+
         Optional<Employee> employeeObj = employeeService.findById(id);
 
         if (bindingResult.hasErrors()) {
@@ -117,6 +119,8 @@ public class EmployeeRestController {
         employeeObj.get().setName(employeeDto.getName());
 
         employeeObj.get().setBirthDay(employeeDto.getBirthDay());
+
+        employeeObj.get().setGender(employeeDto.getGender());
 
         employeeObj.get().setIdCard(employeeDto.getIdCard());
 

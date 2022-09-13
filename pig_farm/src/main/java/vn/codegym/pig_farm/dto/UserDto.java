@@ -2,9 +2,6 @@ package vn.codegym.pig_farm.dto;
 
 import vn.codegym.pig_farm.entity.UserRole;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,8 +10,6 @@ import java.util.List;
 
 public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotBlank(message = "Username không được để trống !!")
