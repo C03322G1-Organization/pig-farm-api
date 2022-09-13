@@ -106,9 +106,9 @@ public class EmployeeRestController {
 
         Optional<Employee> employeeObj = employeeService.findById(id);
 
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
+//        }
 
         if (!employeeObj.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
