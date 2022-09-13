@@ -51,7 +51,6 @@ public class EmployeeServiceImpl implements IEmployeeService {
         return iEmployeeRepository.getAllEmployee();
     }
 
-
     /**
      * @Creator HungNQ
      * @Date 12/09/2022

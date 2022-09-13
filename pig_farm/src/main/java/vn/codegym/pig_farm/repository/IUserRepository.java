@@ -4,11 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 
 import javax.transaction.Transactional;
 
-public interface IUserRepository extends JpaRepository<User,Integer> {
+public interface IUserRepository extends JpaRepository<AppUser,Integer> {
 
     /**
      * @param id function deleteUser

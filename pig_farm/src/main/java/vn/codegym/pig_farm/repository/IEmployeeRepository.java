@@ -26,20 +26,20 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Date 08/09/2022
      */
     @Query(value = "select e.`name` as nameEmployee, e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
-            "e.is_deleted as isDeleted, e.id, `user`.username , `role`.role_name as roleName,`user`.creation_date " +
-            "as creationDate, `user`.password, `user`.email from employee e " +
-            "join `user` on e.user_id = `user`.id " +
-            "join user_role on user_role.user_id = `user`.id " +
-            "join `role` on `role`.id = user_role.role_id " +
+            "e.is_deleted as isDeleted, e.id, app_user.username , app_role.role_name as roleName,app_user.creation_date " +
+            "as creationDate, app_user.password, app_user.email from employee e " +
+            "join app_user on e.user_id = app_user.id " +
+            "join user_role on user_role.user_id = app_user.id " +
+            "join app_role on app_role.id = user_role.role_id " +
             "where e.is_deleted = 0 " +
             "and e.name like  " +
             "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%') order by e.id desc ", nativeQuery = true,
             countQuery = "select count(*) from (select e.`name` as nameEmployee , e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
-                    "e.is_deleted as isDeleted, e.id, `user`.username,`role`.role_name as roleName,`user`.creation_date " +
-                    "as creationDate, `user`.password, `user`.email from employee e " +
-                    "join `user` on e.user_id = `user`.id " +
-                    "join user_role on user_role.user_id = `user`.id  " +
-                    "join `role` on `role`.id = user_role.role_id " +
+                    "e.is_deleted as isDeleted, e.id, app_user.username,app_role.role_name as roleName,app_user.creation_date " +
+                    "as creationDate, app_user.password, app_user.email from employee e " +
+                    "join app_user on e.user_id = app_user.id " +
+                    "join user_role on user_role.user_id = app_user.id  " +
+                    "join app_role on app_role.id = user_role.role_id " +
                     "where e.is_deleted = 0 " +
                     "and e.name like  " +
                     "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%') order by e.id desc ) abc")
@@ -72,11 +72,11 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      * @return EmployeeDto
      */
     @Query(value = "select e.`name` as nameEmployee, e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
-            "e.is_deleted as isDeleted, e.id, `user`.username , `role`.role_name as roleName,`user`.creation_date " +
-            "as creationDate, `user`.password, `user`.email from employee e " +
-            "join `user` on e.user_id = `user`.id " +
-            "join user_role on user_role.user_id = `user`.id " +
-            "join `role` on `role`.id = user_role.role_id " +
+            "e.is_deleted as isDeleted, e.id, app_user.username , app_role.role_name as roleName,app_user.creation_date " +
+            "as creationDate, app_user.password, app_user.email from employee e " +
+            "join app_user on e.user_id = app_user.id " +
+            "join user_role on user_role.user_id = app_user.id " +
+            "join app_role on app_role.id = user_role.role_id " +
             "where e.id = :id",nativeQuery = true)
     Optional<EmployeeDto> getEmployeeDtoById(@Param("id") int id);
 

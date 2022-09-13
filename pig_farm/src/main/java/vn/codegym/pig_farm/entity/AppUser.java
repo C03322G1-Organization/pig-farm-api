@@ -6,26 +6,41 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "role")
-public class Role {
+public class AppUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(45)",name = "role_name")
-    private String name;
+    @Column(columnDefinition = "VARCHAR(45)")
+    private String username;
+
+    @Column(columnDefinition = "VARCHAR(100)")
+    private String password;
+
+    @Column(columnDefinition = "VARCHAR(45)")
+    private String email;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate creationDate;
 
     @Column(columnDefinition = "BIT")
     private Boolean isDeleted;
 
-    @OneToMany(mappedBy = "role")
+    @OneToOne(mappedBy = "appUser")
+    @JsonIgnore
+    private Employee employee;
+
+    @OneToMany(mappedBy = "appUser")
     @JsonIgnore
     private List<UserRole> userRoles;
+
 
 }

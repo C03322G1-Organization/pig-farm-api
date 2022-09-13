@@ -65,7 +65,6 @@ public class EmployeeRestController {
         List<Employee> employeeList = iEmployeeService.getAllEmployee();
         for (Employee employee: employeeList) {
             if(Objects.equals(id, employee.getId())){
-
                 iEmployeeService.deleteEmployee(id);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
