@@ -10,10 +10,5 @@
         <module name="pig_farm.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="pig_farm" target="1.8" />
-      <module name="pig_farm.main" target="1.8" />
-      <module name="pig_farm.test" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
