@@ -6,14 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import vn.codegym.pig_farm.dto.projections.PigstyDto;
 import vn.codegym.pig_farm.entity.Pigsty;
+
+import javax.transaction.Transactional;
 
 public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
     /**
@@ -25,7 +21,6 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      */
     @Query(value = "select pigsty.id,pigsty.build_date as buildDate,pigsty.code,pigsty.creation_date as creationDate,pigsty.max_number as maxNumber,employee.code as employeeCode,employee.name as employeeName from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search",countQuery = "select pigsty.id from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search", nativeQuery = true)
     Page<PigstyDto>  findAll(Pageable pageable, @Param("search") String search);
-
     /**
      * Created by: HieuCD
      * Date created: 08/09/2022
