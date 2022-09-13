@@ -30,8 +30,8 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
      * Date create: 08/09/2022
      * function: find all Contact by name and content
      */
-    @Query(value = "select id, `name`, email, phone, address, content,`date`, is_deleted from contact where is_deleted = 0 and `name` like :nameSearch or content like :nameSearch", nativeQuery = true,
-            countQuery = "select count(*) from (select id, `name`, email, phone, address, content,`date`, is_deleted from contact where is_deleted = 0 and `name` like :nameSearch or content like :nameSearch) as aaaa")
+    @Query(value = "select id, `name`, email, phone, address, content,`date`, is_deleted from contact where is_deleted = 0 and (`name` like :nameSearch or content like :nameSearch)", nativeQuery = true,
+            countQuery = "select count(*) from (select id, `name`, email, phone, address, content,`date`, is_deleted from contact where is_deleted = 0 and (`name` like :nameSearch or content like :nameSearch)) as aaaa")
     Page<Contact> findAll(Pageable pageable, @Param("nameSearch") String nameSearch);
 
 

@@ -16,7 +16,7 @@ import vn.codegym.pig_farm.service.IContactService;
 import javax.validation.Valid;
 import java.util.Map;
 import java.util.Optional;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/contact")
 public class ContactRestController {
@@ -48,7 +48,6 @@ public class ContactRestController {
      * Date create: 08/09/2022
      * function: findAll Contact
      */
-    @CrossOrigin()
     @GetMapping("/page")
     public ResponseEntity<Page<Contact>> findAllContact(@PageableDefault(value = 5) Pageable pageable,
                                                         Optional<String> nameSearch) {
@@ -83,6 +82,7 @@ public class ContactRestController {
      */
     @PostMapping("/delete")
     private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+        System.out.println(111);
         contactService.deleteContact(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
