@@ -88,4 +88,14 @@ public class EmployeeRestController {
         return new ResponseEntity<>(employeeDtoOptional.get(), HttpStatus.OK);
     }
 
+    /**
+     * @Creator HungNQ
+     * @Date 13/09/2022
+     * @return List employee
+     */
+    @GetMapping("/list")
+    public ResponseEntity<List<Employee>> getAllEmployee(){
+        return new ResponseEntity<>(iEmployeeService.getAllEmployee(),HttpStatus.OK);
+    }
+
 }
