@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import vn.codegym.pig_farm.dto.ITreatmentDto;
+import vn.codegym.pig_farm.dto.TreatmentDto;
 import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.entity.Treatment;
 
@@ -40,6 +41,7 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
     @Query(value = "update Treatment T set t.is_deleted = 1 where T.id = :id", nativeQuery = true)
     void deleteByIdTreatment(@Param("id") int id);
 
+
     /**
      * create by TuongTK
      * date: 08/09/2022
@@ -53,7 +55,7 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
      * @param pig
      */
     @Modifying
-    @javax.transaction.Transactional
+    @Transactional
     @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id) " +
             " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id);", nativeQuery = true)
     void save(@Param("id") Integer id,
@@ -63,4 +65,5 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
               @Param("medicine") String medicine,
               @Param("amount") Integer amount,
               @Param("pig_id") Pig pig);
+
 }

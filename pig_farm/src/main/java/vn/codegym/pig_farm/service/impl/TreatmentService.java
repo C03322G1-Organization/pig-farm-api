@@ -18,13 +18,12 @@ public class TreatmentService implements ITreatmentService {
      * create by TuongTK
      * date: 08/09/2022
      * override method save(Treatment treatment)
+     *
      * @param treatment
      */
     @Override
     public void save(Treatment treatment) {
-        treatmentRepository.save(treatment.getId(), treatment.getDate(),
-                treatment.getDoctor(), treatment.getDiseases(), treatment.getMedicine(),
-                treatment.getAmount(), treatment.getPig());
+        treatmentRepository.save(treatment.getId(), treatment.getDate(), treatment.getDoctor(), treatment.getDiseases(), treatment.getMedicine(), treatment.getAmount(), treatment.getPig());
     }
 
     /**
@@ -36,14 +35,15 @@ public class TreatmentService implements ITreatmentService {
      */
     @Override
     public Page<ITreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
-        System.out.printf("--------------- "+keySearch+" ---------------");
-        return treatmentRepository.getAllTreatment(pageable,"%" + keySearch + "%");
+        System.out.printf("--------------- " + keySearch + " ---------------");
+        return treatmentRepository.getAllTreatment(pageable, "%" + keySearch + "%");
     }
 
     /**
      * Create by ThuanT
      * Date create: 08/09/2022
      * Override method deleteByIdTreatment
+     *
      * @return
      */
     @Override

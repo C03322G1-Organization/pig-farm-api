@@ -32,7 +32,6 @@ public class TreatmentController_createTreatment {
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_date_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
@@ -119,7 +118,6 @@ public class TreatmentController_createTreatment {
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_doctor_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
@@ -178,7 +176,6 @@ public class TreatmentController_createTreatment {
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_doctor_16() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
@@ -208,7 +205,6 @@ public class TreatmentController_createTreatment {
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_doctor_17() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
@@ -268,7 +264,6 @@ public class TreatmentController_createTreatment {
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_amount_15() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
@@ -292,12 +287,39 @@ public class TreatmentController_createTreatment {
     }
 
     /**
+     * this function use to test the validation of field amount more specific is number is too big
+     *
+     * @author TuongTK
+     * @Date 09/09/2022
+     */
+    @Test
+    public void createTreatment_amount_16() throws Exception {
+        TreatmentDto treatmentDto = new TreatmentDto();
+        treatmentDto.setId(22);
+        treatmentDto.setDate("01-01-2000");
+        treatmentDto.setDoctor("Nguyen Van A");
+        treatmentDto.setAmount(888888888);
+        treatmentDto.setDiseases("cúm");
+        treatmentDto.setMedicine("abc");
+        treatmentDto.setDeleted(false);
+        PigDto pigDto = new PigDto();
+        pigDto.setId(2);
+        treatmentDto.setPigDto(pigDto);
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/treatment/v1")
+                        .content(this.objectMapper.writeValueAsString(treatmentDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
      * this function use to test the validation of field diseases more specific is null
      *
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_diseases_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
@@ -524,7 +546,6 @@ public class TreatmentController_createTreatment {
      * @author TuongTK
      * @Date 09/09/2022
      */
-
     @Test
     public void createTreatment_pig_id_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();

@@ -16,6 +16,9 @@ import vn.codegym.pig_farm.entity.Treatment;
 import vn.codegym.pig_farm.service.ITreatmentService;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,5 +88,25 @@ public class TreatmentController {
         treatmentService.deleteByIdTreatment(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    public static boolean validateDate(String dateval){
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        boolean valid = false;
+//        try {
+//            // why 2008-02-2x, 20-11-02, 12012-04-05 are valid date?
+//            sdf.parse(dateval);
+//            // strict mode - check 30 or 31 days, leap year
+//            sdf.setLenient(false);
+//            valid = true;
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            valid = false;
+//        }
+//
+//        return valid;
+//    }
+
 
 }
