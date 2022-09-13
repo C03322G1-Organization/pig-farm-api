@@ -22,14 +22,30 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
      * @param pageable
      * @param name
      * @return List Vaccination, status 200
-     * @function (Query to display all Vaccination and search)
+     * @function (Query to display all Vaccination and search and pageable)
      * @creator TamLT
      * @date-create 08/09/2022
      */
 
-    @Query(value = "select v.id,v.amount,v.date,v.vaccinated_person as vaccinatedPerson, vaccine_type as vaccineType ,p.code as pigstyCode" + " from vaccination v " + " join pigsty as p on v.id=p.id" + " where vaccinated_person like :name and v.is_deleted =0", nativeQuery = true)
-    Page<VaccinationDto> getAllVaccination(Pageable pageable, @Param("name") String name);
 
+    @Query(value = "select v.id , v.amount , v.date , v.vaccinated_person as vaccinatedPerson , v.vaccine_type as vaccineType , p.`code` as pigstyCode " +
+            " from vaccination v " +
+            " join pigsty p on v.pigsty_id = p.id " +
+            " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 ", nativeQuery = true,
+            countQuery = "select count(*) from(select v.id , v.amount , v.date , v.vaccinated_person as vaccinatedPerson , v.vaccine_type as vaccineType , p.`code` as pigstyCode" +
+                    " from vaccination v" +
+                    " join pigsty p on v.pigsty_id = p.id" +
+                    " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 ) as abc ")
+
+    Page<VaccinationDto> getAllListVaccination(Pageable pageable, @Param("name")String name);
+
+    /**
+     * @param id
+     * @return Delete Vaccination, status 200
+     * @function (Query to delete Vaccination)
+     * @creator TamLT
+     * @date-create 08/09/2022
+     */
     @Modifying
     @Query(value = "update vaccination set is_deleted =1 where id =:id", nativeQuery = true)
     void delete(@Param("id") Integer id);
@@ -41,7 +57,7 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
     List<Vaccination> getAll();
 
     @Modifying
-    @org.springframework.transaction.annotation.Transactional
+    @Transactional
     @Query(value = "insert into vaccination(amount, `date`, is_deleted, note, vaccinated_person, vaccine_type, pigsty_id)" +
             "value (:amount, :date, 0, :note, :vaccinatedPerson, :vaccineType, :pigsty)", nativeQuery=true)
     void createVaccination(@Param("amount") Integer amount,
