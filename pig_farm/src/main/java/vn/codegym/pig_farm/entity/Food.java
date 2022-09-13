@@ -30,7 +30,6 @@ public class Food {
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
 
-
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 }
