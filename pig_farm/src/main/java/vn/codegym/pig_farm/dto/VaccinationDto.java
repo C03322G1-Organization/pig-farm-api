@@ -5,10 +5,11 @@ import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 public class VaccinationDto implements Validator {
     private Integer id;
-    private String date;
+    private LocalDate date;
     @NotNull
     @Min(value = 1)
     @Max(value = 10)
@@ -25,7 +26,7 @@ public class VaccinationDto implements Validator {
     public VaccinationDto() {
     }
 
-    public VaccinationDto(Integer id, String date, Integer amount, String vaccineType, String vaccinatedPerson, String note, Boolean isDeleted, Pigsty pigsty) {
+    public VaccinationDto(Integer id, LocalDate date, @NotNull @Min(value = 1) @Max(value = 10) Integer amount, @NotBlank String vaccineType, @NotBlank String vaccinatedPerson, @Size(min = 1, max = 255) String note, Boolean isDeleted, Pigsty pigsty) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -44,11 +45,11 @@ public class VaccinationDto implements Validator {
         this.id = id;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
