@@ -3,6 +3,7 @@ package vn.codegym.pig_farm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.entity.Pig;
+import vn.codegym.pig_farm.entity.Pigsty;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,8 +41,6 @@ public interface IPigService {
      */
     Optional<Pig> findById(int id);
 
-    List<Pig> findAll();
-
     /**
      * Created by: DatVT
      * Date created: 08/09/2022
@@ -62,4 +61,6 @@ public interface IPigService {
      * Function: updatePig
      */
     void updatePig(Integer id,Pig pig);
+
+    Integer quantity(Integer id);
 }
