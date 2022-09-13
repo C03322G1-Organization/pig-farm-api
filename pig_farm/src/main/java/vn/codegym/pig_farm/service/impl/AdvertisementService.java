@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import vn.codegym.pig_farm.dto.projections.AdvertisementDto;
 import vn.codegym.pig_farm.entity.Advertisement;
-import vn.codegym.pig_farm.projection.IAdvertisementProjection;
 import vn.codegym.pig_farm.repository.AdvertisementRepository;
 import vn.codegym.pig_farm.service.IAdvertisementService;
 
@@ -26,30 +26,31 @@ public class AdvertisementService implements IAdvertisementService {
      * Created by : ChungHV
      * Date create : 9/8/2022
      * Function : Post Advertisement
+     *
      * @param advertisement
      */
     @Override
     public void saveAdvertisement(Advertisement advertisement) {
-        advertisementRepository.saveAdvertisement(advertisement.getImage(),advertisement.getSubmittedDate(),advertisement.getTimeExistence()
-        ,advertisement.getTitle(),advertisement.getPlacement().getId());
+        advertisementRepository.saveAdvertisement(advertisement.getImage(), advertisement.getSubmittedDate(), advertisement.getTimeExistence(), advertisement.getTitle(), advertisement.getPlacement().getId());
     }
 
     /**
      * Created by : ChungHV
      * Date create : 9/8/2022
      * Function : Update Advertisement
+     *
      * @param advertisement
      */
     @Override
     public void updateAdvertisement(Advertisement advertisement) {
-          advertisementRepository.updateAdvertisement(advertisement.getImage(),advertisement.getSubmittedDate(),advertisement.getTimeExistence()
-                  ,advertisement.getTitle(),advertisement.getPlacement().getId(),advertisement.getId());
+        advertisementRepository.updateAdvertisement(advertisement.getImage(), advertisement.getSubmittedDate(), advertisement.getTimeExistence(), advertisement.getTitle(), advertisement.getPlacement().getId(), advertisement.getId());
     }
 
     /**
      * Created by : ChungHV
      * Date create : 9/8/2022
      * Function : FindById Advertisement
+     *
      * @param id
      * @return :Optional<Advertisement>
      */
@@ -67,30 +68,21 @@ public class AdvertisementService implements IAdvertisementService {
      * @date-create 08/09/2022
      */
     @Override
-    public Page<IAdvertisementProjection> findAllAdvertisement(Pageable pageable, String keySearch) {
+    public Page<AdvertisementDto> findAllAdvertisement(Pageable pageable, String keySearch) {
         return advertisementRepository.findAllAdvertisement(pageable, "%" + keySearch + "%");
     }
 
-    /**
-     * @param id must not be
-     * @return
-     * @function (Query to Advertisement)
-     * @creator DucNH
-     * @date-create 08/09/2022
-     */
-    @Override
-    public Optional<Advertisement> findById(int id) {
-        return advertisementRepository.findById(id);
-    }
 
     /**
-     * @param id
+     * @param ids
      * @function (Query to delete Advertisement)
      * @creator DucNH
      * @date-create 08/09/2022
      */
     @Override
-    public void deleteAdvertisement(int id) {
-        advertisementRepository.deleteAdvertisement(id);
+    public void delete(Integer[] ids) {
+        for (Integer id : ids) {
+            advertisementRepository.deleteAdvertisement(id);
+        }
     }
 }

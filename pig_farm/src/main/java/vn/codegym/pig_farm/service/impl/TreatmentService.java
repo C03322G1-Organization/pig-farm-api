@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.ITreatmentDto;
+import vn.codegym.pig_farm.dto.projections.TreatmentDto;
 import vn.codegym.pig_farm.entity.Treatment;
 import vn.codegym.pig_farm.repository.TreatmentRepository;
 import vn.codegym.pig_farm.service.ITreatmentService;
@@ -35,7 +35,7 @@ public class TreatmentService implements ITreatmentService {
      * @return
      */
     @Override
-    public Page<ITreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
+    public Page<TreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
         System.out.printf("--------------- "+keySearch+" ---------------");
         return treatmentRepository.getAllTreatment(pageable,"%" + keySearch + "%");
     }
