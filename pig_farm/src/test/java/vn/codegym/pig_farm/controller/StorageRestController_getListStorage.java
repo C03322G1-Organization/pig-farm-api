@@ -66,7 +66,7 @@ public class StorageRestController_getListStorage {
                         MockMvcRequestBuilders
                                 .get("/storage/page?keyWord= "))
                 .andDo(print())
-                .andExpect(status().is(204));
+                .andExpect(status().is2xxSuccessful());
     }
 
     /**
