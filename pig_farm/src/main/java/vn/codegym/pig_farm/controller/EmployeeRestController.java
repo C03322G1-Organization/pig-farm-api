@@ -2,13 +2,17 @@ package vn.codegym.pig_farm.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.service.IEmployeeService;
@@ -16,15 +20,56 @@ import vn.codegym.pig_farm.service.IUserService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/employee")
 public class EmployeeRestController {
-
+    
     @Autowired
-    private IEmployeeService employeeService;
+    private IEmployeeService iEmployeeService;
+
+    /**
+     * @Creator HungNQ
+     * @Date 08/09/2022
+     * @param pageable
+     * @param name
+     * @param idCard
+     * @return if success status 2xx else if error status 4xx
+     */
+    @GetMapping("/searchList")
+    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 2) Pageable pageable,
+                                                                                   @RequestParam Optional<String> name,
+                                                                                   @RequestParam Optional<String> idCard) {
+        String keywordIdCard = idCard.orElse("");
+        String keywordName = name.orElse("");
+        Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
+        if (employeePage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(employeePage, HttpStatus.OK);
+    }
+
+    /**
+     * @Creator HungNQ
+     * @Date 08/09/2022
+     * @param id
+     * @return if success delete employee by id
+     */
+    @PatchMapping("/delete/{id}")
+    public ResponseEntity<Employee> deleteEmployeeById(@PathVariable Integer id){
+        List<Employee> employeeList = iEmployeeService.getAllEmployee();
+        for (Employee employee: employeeList) {
+            if(Objects.equals(id, employee.getId())){
+                iEmployeeService.deleteEmployee(id);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
 
     @Autowired
     private IUserService userService;
@@ -37,7 +82,7 @@ public class EmployeeRestController {
 
     @GetMapping("")
     public ResponseEntity<List<Employee>> findAll() {
-        List<Employee> employees = employeeService.findAll();
+        List<Employee> employees = iEmployeeService.findAll();
         if (employees.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -51,9 +96,9 @@ public class EmployeeRestController {
      * @day 08/09/2022
      */
 
-    @PostMapping("/create")
-    public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
 
+    @PostMapping("")
+    public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
@@ -61,6 +106,7 @@ public class EmployeeRestController {
         UserDto userDto;
 
         userDto = employeeDto.getUserDto();
+
 
         AppUser appUser = new AppUser();
 
@@ -72,7 +118,8 @@ public class EmployeeRestController {
 
         BeanUtils.copyProperties(employeeDto, employee);
 
-        employeeService.save(employee);
+        iEmployeeService.save(employee);
+
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -86,7 +133,7 @@ public class EmployeeRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Employee>> findById(@PathVariable Integer id) {
-        Optional<Employee> employee = employeeService.findById(id);
+        Optional<Employee> employee = iEmployeeService.findById(id);
         if (!employee.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -101,10 +148,10 @@ public class EmployeeRestController {
      * @day 08/09/2022
      */
 
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
 
-        Optional<Employee> employeeObj = employeeService.findById(id);
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
+        Optional<Employee> employeeObj = iEmployeeService.findById(id);
 
 //        if (bindingResult.hasErrors()) {
 //            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
@@ -126,7 +173,7 @@ public class EmployeeRestController {
 
         employeeObj.get().setImage(employeeDto.getImage());
 
-        employeeService.edit(employeeObj.get());
+        iEmployeeService.edit(employeeObj.get());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

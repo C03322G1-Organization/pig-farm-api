@@ -3,7 +3,7 @@ package vn.codegym.pig_farm.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.AppUser;
-import vn.codegym.pig_farm.repository.IUserRepository;
+import vn.codegym.pig_farm.repository.UserRepository;
 import vn.codegym.pig_farm.service.IUserService;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class UserService implements IUserService {
 
     @Autowired
-    IUserRepository userRepository;
+    UserRepository userRepository;
 
     /**
      * @return List User (test list)
@@ -25,6 +25,7 @@ public class UserService implements IUserService {
     public List<AppUser> findAll() {
         return userRepository.findAll();
     }
+
 
     /**
      * @param appUser

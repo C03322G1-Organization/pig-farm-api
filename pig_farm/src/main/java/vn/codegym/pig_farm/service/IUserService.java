@@ -39,4 +39,5 @@ public interface IUserService {
      */
 
     void edit(AppUser appUser);
+
 }

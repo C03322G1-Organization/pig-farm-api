@@ -1,14 +1,17 @@
 package vn.codegym.pig_farm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.entity.Employee;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.AppRole;
 import vn.codegym.pig_farm.entity.AppUser;
+import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.UserRole;
-import vn.codegym.pig_farm.repository.IEmployeeRepository;
-import vn.codegym.pig_farm.repository.IUserRepository;
-import vn.codegym.pig_farm.repository.IUserRoleRepository;
+import vn.codegym.pig_farm.repository.EmployeeRepository;
+import vn.codegym.pig_farm.repository.UserRepository;
+import vn.codegym.pig_farm.repository.UserRoleRepository;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
 import java.util.List;
@@ -18,13 +21,13 @@ import java.util.Optional;
 public class EmployeeService implements IEmployeeService {
 
     @Autowired
-    IEmployeeRepository employeeRepository;
+    EmployeeRepository iEmployeeRepository;
 
     @Autowired
-    IUserRepository userRepository;
+    UserRepository userRepository;
 
     @Autowired
-    IUserRoleRepository userRoleRepository;
+    UserRoleRepository userRoleRepository;
 
 
 //    public PasswordEncoder encoder() {
@@ -41,7 +44,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+        return iEmployeeRepository.findAll();
     }
 
     /**
@@ -62,7 +65,8 @@ public class EmployeeService implements IEmployeeService {
         userRoleRepository.save(userRole);
 
         employee.setAppUser(employee.getAppUser());
-        employeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), appUsers.toArray().length);
+        iEmployeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), appUsers.toArray().length);
+
     }
 
     /**
@@ -74,7 +78,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Optional<Employee> findById(Integer id) {
-        return employeeRepository.findById(id);
+        return iEmployeeRepository.findById(id);
     }
 
     /**
@@ -85,7 +89,40 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void edit(Employee employee) {
+        iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
+    }
 
-        employeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
+
+    /**
+     * @param name
+     * @param idCard
+     * @param pageable
+     * @return Page<Employee>
+     * @Creator HungNQ
+     * @Date 08/09/2022
+     */
+    @Override
+    public Page<EmployeeDto> getAllEmployeePaginationAndSearch(String name, String idCard, Pageable pageable) {
+        return iEmployeeRepository.getAllEmployeePaginationAndSearch(name, idCard, pageable);
+    }
+
+    /**
+     * @param id
+     * @Creator HungNQ
+     * @Date 08/09/2022
+     */
+    @Override
+    public void deleteEmployee(int id) {
+        iEmployeeRepository.deleteEmployee(id);
+    }
+
+    /**
+     * @return List employee
+     * @Creator HungNQ
+     * @Date 09/09/2022
+     */
+    @Override
+    public List<Employee> getAllEmployee() {
+        return iEmployeeRepository.getAllEmployee();
     }
 }

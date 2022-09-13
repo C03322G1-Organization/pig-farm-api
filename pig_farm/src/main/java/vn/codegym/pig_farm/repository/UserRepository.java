@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface IUserRepository extends JpaRepository<AppUser, Integer> {
+public interface UserRepository extends JpaRepository<AppUser, Integer> {
 
     /**
      * @return list User
@@ -32,10 +32,10 @@ public interface IUserRepository extends JpaRepository<AppUser, Integer> {
      * @creator LongNT
      * @day 12/09/2022
      */
-
     @Modifying
     @Query(value = "insert into app_user (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
     void save(@Param("username") String username, @Param("password") String password, @Param("email") String email);
+
 
     /**
      * @param id must not be {@literal null}.

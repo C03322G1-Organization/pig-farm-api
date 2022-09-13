@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface IUserRoleRepository extends JpaRepository<UserRole, Integer> {
+public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 
     /**
      * @return list UserRole

@@ -16,7 +16,8 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "BIT")
+
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @ManyToOne
@@ -26,4 +27,5 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private AppRole appRole;
+
 }
