@@ -15,6 +15,7 @@ import vn.codegym.pig_farm.entity.Notification;
 import vn.codegym.pig_farm.service.INotificationService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -67,7 +68,7 @@ public class NotificationRestController {
 
         Notification notification = new Notification();
         BeanUtils.copyProperties(notificationDto, notification);
-
+        notification.setSubmittedDate(LocalDate.now());
         this.iNotificationService.save(notification);
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -118,6 +119,7 @@ public class NotificationRestController {
         }
 
         currentNotification.get().setId(notificationDto.getId());
+        currentNotification.get().setTitle(notificationDto.getTitle());
         currentNotification.get().setContent(notificationDto.getContent());
         currentNotification.get().setImage(notificationDto.getImage());
 
