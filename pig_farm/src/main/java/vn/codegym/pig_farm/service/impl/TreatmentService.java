@@ -3,13 +3,13 @@ package vn.codegym.pig_farm.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Treatment;
-import vn.codegym.pig_farm.repository.ITreatmentRepository;
+import vn.codegym.pig_farm.repository.TreatmentRepository;
 import vn.codegym.pig_farm.service.ITreatmentService;
 
 @Service
 public class TreatmentService implements ITreatmentService {
     @Autowired
-    ITreatmentRepository treatmentRepository;
+    TreatmentRepository treatmentRepository;
 
     /**
      * create by TuongTK

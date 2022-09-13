@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Repository
-public interface ITreatmentRepository extends JpaRepository<Treatment,Integer> {
+public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
     /**
      * create by TuongTK
      * date: 08/09/2022
@@ -27,8 +27,8 @@ public interface ITreatmentRepository extends JpaRepository<Treatment,Integer> {
      */
     @Modifying
     @Transactional
-    @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id) " +
-            " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id);", nativeQuery = true)
+    @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id, is_deleted) " +
+            " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id, 0);", nativeQuery = true)
     void save(@Param("id") Integer id,
               @Param("date") LocalDate date,
               @Param("doctor") String doctor,
@@ -36,5 +36,6 @@ public interface ITreatmentRepository extends JpaRepository<Treatment,Integer> {
               @Param("medicine") String medicine,
               @Param("amount") Integer amount,
               @Param("pig_id") Pig pig);
+
 
 }

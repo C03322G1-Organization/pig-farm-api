@@ -14,6 +14,9 @@ import vn.codegym.pig_farm.entity.Treatment;
 import vn.codegym.pig_farm.service.ITreatmentService;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -35,13 +38,21 @@ public class TreatmentController {
 //        treatmentService.save(treatment);
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto,
                                                    BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(),
-                    HttpStatus.NOT_ACCEPTABLE);
-        }
+
+//        if (!validateDate(treatmentDto.getDate())) {
+//            return new ResponseEntity<>(bindingResult.getFieldErrors(),
+//                    HttpStatus.NOT_ACCEPTABLE);
+//        }
+//
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity<>(bindingResult.getFieldErrors(),
+//                    HttpStatus.NO_CONTENT);
+//        }
+
+        System.out.println(treatmentDto);
 
         Treatment treatment = new Treatment();
         BeanUtils.copyProperties(treatmentDto, treatment);
@@ -50,5 +61,25 @@ public class TreatmentController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    public static boolean validateDate(String dateval){
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        boolean valid = false;
+//        try {
+//            // why 2008-02-2x, 20-11-02, 12012-04-05 are valid date?
+//            sdf.parse(dateval);
+//            // strict mode - check 30 or 31 days, leap year
+//            sdf.setLenient(false);
+//            valid = true;
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            valid = false;
+//        }
+//
+//        return valid;
+//    }
+
 
 }
