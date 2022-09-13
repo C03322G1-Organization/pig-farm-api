@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/contact")
-public class ContactRestController {
+public class  ContactRestController {
     @Autowired
     private IContactService iContactService;
 

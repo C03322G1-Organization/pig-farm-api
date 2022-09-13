@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -7,41 +8,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
-public class User {
+@Table(name = "role")
+
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(45)")
-    private String username;
-
-    @Column(columnDefinition = "VARCHAR(100)")
-    private String password;
-
-    @Column(columnDefinition = "VARCHAR(45)")
-    private String email;
-
-    @Column(columnDefinition = "DATE")
-    private LocalDate creationDate;
+    @Column(columnDefinition = "VARCHAR(45)",name = "role_name")
+    private String roleName;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
     @JsonBackReference
-    @OneToOne(mappedBy = "user")
-    @JsonIgnore
-    private Employee employee;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "role")
     @JsonIgnore
     private List<UserRole> userRoles;
 }

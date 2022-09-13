@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.entity.Advertisement;
 import vn.codegym.pig_farm.dto.projections.AdvertisementDto;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -43,19 +42,10 @@ public interface IAdvertisementService {
     Page<AdvertisementDto> findAllAdvertisement(Pageable pageable, String keySearch);
 
     /**
-     * @param id must not be
-     * @return Advertisement, status 200
-     * @function (Query to Advertisement)
-     * @creator DucNH
-     * @date-create 08/09/2022
-     */
-    Optional<Advertisement> findById(int id);
-
-    /**
-     * @param id
+     * @param ids
      * @function (Query to delete Advertisement)
      * @creator DucNH
      * @date-create 08/09/2022
      */
-    void deleteAdvertisement(int id);
+    void delete(Integer[] ids);
 }
