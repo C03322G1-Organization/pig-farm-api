@@ -12,9 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.EmployDto;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
 import javax.validation.Valid;
@@ -39,12 +39,12 @@ public class EmployeeRestController {
      * @return if success status 2xx else if error status 4xx
      */
     @GetMapping("/searchList")
-    public ResponseEntity<Page<IEmployeeProjection>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 2) Pageable pageable,
-                                                                                           @RequestParam Optional<String> name,
-                                                                                           @RequestParam Optional<String> idCard) {
+    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 2) Pageable pageable,
+                                                                                   @RequestParam Optional<String> name,
+                                                                                   @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
-        Page<IEmployeeProjection> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
+        Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
         if (employeePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -90,7 +90,7 @@ public class EmployeeRestController {
      */
 
     @PostMapping("")
-    public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
@@ -130,7 +130,7 @@ public class EmployeeRestController {
      */
 
     @PutMapping("/{id}")
-    public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployeeDto employeeDto, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
         Optional<Employee> employeeObj = iEmployeeService.findById(id);
 
         if (bindingResult.hasErrors()) {

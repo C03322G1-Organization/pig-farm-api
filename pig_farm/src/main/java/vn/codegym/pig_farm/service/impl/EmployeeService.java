@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
-import vn.codegym.pig_farm.repository.IEmployeeRepository;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
+import vn.codegym.pig_farm.repository.EmployeeRepository;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class EmployeeService implements IEmployeeService {
 
     @Autowired
-    IEmployeeRepository iEmployeeRepository;
+    EmployeeRepository iEmployeeRepository;
 
     @Override
     public List<Employee> findAll() {
@@ -38,6 +38,7 @@ public class EmployeeService implements IEmployeeService {
         iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
     }
 
+
     /**
      * @Creator HungNQ
      * @Date 08/09/2022
@@ -47,7 +48,7 @@ public class EmployeeService implements IEmployeeService {
      * @return Page<Employee>
      */
     @Override
-    public Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(String name, String idCard, Pageable pageable) {
+    public Page<EmployeeDto> getAllEmployeePaginationAndSearch(String name, String idCard, Pageable pageable) {
         return iEmployeeRepository.getAllEmployeePaginationAndSearch(name,idCard,pageable);
     }
 

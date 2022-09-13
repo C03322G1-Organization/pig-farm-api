@@ -20,21 +20,23 @@ public class Pigsty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(30)")
+
+    @Column(columnDefinition = "VARCHAR(20)")
     private String code;
 
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 
+    private Integer typePigs;
+
     @Column(columnDefinition = "DATE")
     private LocalDate buildDate;
 
-    @Column(columnDefinition = "varchar(100)")
-    private String creator;
 
     private Integer maxNumber;
 
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+
+    @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 
 

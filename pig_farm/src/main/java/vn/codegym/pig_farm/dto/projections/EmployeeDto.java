@@ -1,8 +1,8 @@
-package vn.codegym.pig_farm.projection;
+package vn.codegym.pig_farm.dto.projections;
 
 import java.time.LocalDate;
 
-public interface IEmployeeProjection {
+public interface EmployeeDto {
         Integer getId();
 
         String getCode();

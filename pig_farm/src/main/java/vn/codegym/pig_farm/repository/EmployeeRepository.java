@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.entity.User;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
+
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     /**
      * @param name
@@ -27,8 +28,25 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Creator HungNQ
      * @Date 08/09/2022
      */
-    @Query(value = "select e.`name` as nameEmployee, e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " + "e.is_deleted as deleted, e.id, `user`.username , `role`.role_name as roleName from employee e " + "join `user` on e.user_id = `user`.id " + "join user_role on user_role.user_id = `user`.id " + "join `role` on `role`.id = user_role.role_id " + "where e.is_deleted = 0 " + "and e.name like  " + "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')", nativeQuery = true, countQuery = "select count(*) from (select e.`name` as nameEmployee , e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " + "e.is_deleted as deleted, e.id, `user`.username,`role`.role_name as roleName from employee e " + "join `user` on e.user_id = `user`.id " + "join user_role on user_role.user_id = `user`.id  " + "join `role` on `role`.id = user_role.role_id " + "where e.is_deleted = 0 " + "and e.name like  " + "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')) abc")
-    Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(@Param("name") String name, @Param("idCard") String idCard, Pageable pageable);
+
+    @Query(value = "select e.`name` as nameEmployee, e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
+            "e.is_deleted as deleted, e.id, `user`.username , `role`.role_name as roleName from employee e " +
+            "join `user` on e.user_id = `user`.id " +
+            "join user_role on user_role.user_id = `user`.id " +
+            "join `role` on `role`.id = user_role.role_id " +
+            "where e.is_deleted = 0 " +
+            "and e.name like  " +
+            "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')", nativeQuery = true,
+            countQuery = "select count(*) from (select e.`name` as nameEmployee , e.user_id as userId, e.birth_day as birthDay, e.`code`, e.gender, e.id_card as idCard, e.image, " +
+                    "e.is_deleted as deleted, e.id, `user`.username,`role`.role_name as roleName from employee e " +
+                    "join `user` on e.user_id = `user`.id " +
+                    "join user_role on user_role.user_id = `user`.id  " +
+                    "join `role` on `role`.id = user_role.role_id " +
+                    "where e.is_deleted = 0 " +
+                    "and e.name like  " +
+                    "concat('%', :name ,'%') and e.id_card like concat('%',:idCard,'%')) abc")
+    Page<EmployeeDto> getAllEmployeePaginationAndSearch(@Param("name") String name, @Param("idCard") String idCard,
+                                                        Pageable pageable);
 
     /**
      * @param id function deleteEmployee
@@ -57,7 +75,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Modifying
     @Query(value = "insert into employee (`code`, `name`, birth_day, gender, id_card, image, is_deleted, user_id) values (:code, :name, :birthDay, :gender, :idCard, :image, 0, :userId)", nativeQuery = true)
-    void save(@Param("code") String code, @Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("userId") User userId);
+    void save(@Param("code") String code, @Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("userId") AppUser userId);
 
     @Query(value = "select * from employee where id = :id", nativeQuery = true)
     Optional<Employee> findById(@Param("id") Integer id);

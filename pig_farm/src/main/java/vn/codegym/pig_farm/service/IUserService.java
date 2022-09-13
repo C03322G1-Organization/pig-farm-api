@@ -1,17 +1,17 @@
 package vn.codegym.pig_farm.service;
 
-import vn.codegym.pig_farm.entity.User;
+import vn.codegym.pig_farm.entity.AppUser;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
 
-    List<User> findAll();
+    List<AppUser> findAll();
 
-    void save(User user);
+    void save(AppUser user);
 
-    Optional<User> findById(Integer id);
+    Optional<AppUser> findById(Integer id);
 
-    void edit(User user);
+    void edit(AppUser user);
 }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import vn.codegym.pig_farm.dto.PigDto;
 import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.service.IPigService;
 
@@ -47,8 +48,8 @@ public class PigRestController {
      * @param pigDTO
      */
     @PostMapping("/create")
-    public ResponseEntity<?> createPig(@RequestBody @Valid PigDTO pigDTO, BindingResult bindingResult) {
-        new PigDTO().validate(pigDTO,bindingResult);
+    public ResponseEntity<?> createPig(@RequestBody @Valid PigDto pigDTO, BindingResult bindingResult) {
+        new PigDto().validate(pigDTO,bindingResult);
         if (bindingResult.hasErrors()){
             return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
         }else {
@@ -75,7 +76,7 @@ public class PigRestController {
      */
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updatePig(@PathVariable("id") Integer id,
-                                       @RequestBody @Valid PigDTO pigDTO) {
+                                       @RequestBody @Valid PigDto pigDTO) {
         Pig pig = modelMapper.map(pigDTO, Pig.class);
         pigService.updatePig(id, pig);
         return new ResponseEntity<>(HttpStatus.OK);

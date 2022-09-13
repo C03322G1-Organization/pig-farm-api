@@ -3,7 +3,7 @@ package vn.codegym.pig_farm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public interface IEmployeeService {
      * @param pageable
      * @return Page employee
      */
-    Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(String name, String phoneNumber, Pageable pageable);
+    Page<EmployeeDto> getAllEmployeePaginationAndSearch(String name, String phoneNumber, Pageable pageable);
 
     /**
      * @Creator HungNQ

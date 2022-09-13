@@ -1,35 +1,16 @@
 package vn.codegym.pig_farm.dto;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Export;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
-public class EmployeeDto {
-    /**
-     * Created by: HoaL
-     * Date created: 09/09/2022
-     * Function: EmployeeDto
-     * return employeeDto
-     */
-//    private Integer id;
-//    private String code;
-//    private String name;
-//    private LocalDate birthDay;
-//    private String gender;
-//    private String idCard;
-//    private String image;
-//    private User user;
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EmployDto implements Validator {
     private Integer id;
 
     @NotBlank(message = "Mã Nhân Viên không được để trống !!")
@@ -60,10 +41,13 @@ public class EmployeeDto {
 
     private UserDto userDto;
 
-    public EmployeeDto() {
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public EmployeeDto(Integer id, String code, String name, LocalDate birthDay, String gender, String idCard, String image, Boolean isDeleted, List<Export> exports, UserDto userDto) {
+    public EmployDto(Integer id, String code, String name, LocalDate birthDay, String gender, String idCard, String image, Boolean isDeleted, List<Export> exports, UserDto userDto) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -163,4 +147,10 @@ public class EmployeeDto {
     public void setUserDto(UserDto userDto) {
         this.userDto = userDto;
     }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+    }
+
+
 }

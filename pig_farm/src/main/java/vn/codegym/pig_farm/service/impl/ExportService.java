@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.ExportDto;
-import vn.codegym.pig_farm.dto.IExportDto;
+import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.repository.ExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
@@ -24,8 +23,9 @@ public class ExportService implements IExportService {
      * @return
      */
     @Override
-    public Page<IExportDto> listAll(Pageable pageable, String codeExport, String company) {
-        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%");
+
+    public Page<ExportDto> listAll(Pageable pageable, String codeExport, String company, String nameEmployee) {
+        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%" , "%" +  nameEmployee + "%");
     }
 
     /**
@@ -35,8 +35,10 @@ public class ExportService implements IExportService {
      * @Param: export
      */
     @Override
-    public void delete(Export export) {
-      iExportRepository.deleteByStatus(export.getId());
+    public void delete(Integer[] ids) {
+        for (Integer id: ids) {
+            iExportRepository.deleteByStatus(id);
+        }
     }
 
 
@@ -46,7 +48,7 @@ public class ExportService implements IExportService {
      * Function: create
      */
     @Override
-    public void create(ExportDto exportDto) {
+    public void create(vn.codegym.pig_farm.dto.ExportDto exportDto) {
         iExportRepository.create(exportDto.getPigstyDto().getId(),
                 exportDto.getEmployeeDto().getId(),
                 exportDto.getCodeExport(),
@@ -69,7 +71,6 @@ public class ExportService implements IExportService {
      * Created by: HoaL
      * Date created: 08/09/2022
      * Function: findById
->>>>>>> export-port-HoaL
      */
     @Override
     public Export findById(int id) {

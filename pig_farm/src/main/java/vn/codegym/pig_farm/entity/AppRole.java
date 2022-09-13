@@ -15,13 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "role")
-public class Role {
+
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(45)",name = "role_name")
-    private String name;
+    private String roleName;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
@@ -30,5 +31,4 @@ public class Role {
     @OneToMany(mappedBy = "role")
     @JsonIgnore
     private List<UserRole> userRoles;
-
 }
