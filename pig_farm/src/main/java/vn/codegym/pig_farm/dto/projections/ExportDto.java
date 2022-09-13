@@ -8,8 +8,9 @@ import java.time.LocalDate;
  * Function: Create Interface ExportDto
  */
 public interface ExportDto {
+    Integer getId();
     String getCompany();
-    LocalDate getStartDate();
+    LocalDate getSaleDate();
     String getCodeExport();
     Integer getAmount();
     Double getKilogram();

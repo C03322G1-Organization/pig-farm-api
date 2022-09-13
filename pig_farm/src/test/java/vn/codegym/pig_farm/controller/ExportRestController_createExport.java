@@ -37,7 +37,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -68,7 +68,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -102,7 +102,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -133,7 +133,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -166,7 +166,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -197,7 +197,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -260,7 +260,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -291,7 +291,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -322,7 +322,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -353,7 +353,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -384,7 +384,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
