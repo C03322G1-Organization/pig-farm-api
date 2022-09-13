@@ -8,18 +8,18 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.NotificationProjection;
-import vn.codegym.pig_farm.service.NotificationService;
+import vn.codegym.pig_farm.dto.projection.INotificationDto;
+import vn.codegym.pig_farm.service.INotificationService;
 
 import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/notifications")
+@RequestMapping("/api/v1/notification")
 public class NotificationRestController {
     @Autowired
-    private NotificationService notificationService;
+    private INotificationService notificationService;
 
     /**
      * Create by HaiTV
@@ -32,24 +32,20 @@ public class NotificationRestController {
      * @return HttpStatus: Http 400 NO_CONTENT
      */
     @GetMapping("/page")
-    private ResponseEntity<Page<NotificationProjection>> findAllNotification(@PageableDefault(5) Pageable pageable,
-                                                                             Optional<String> content
+    private ResponseEntity<Page<INotificationDto>> findAllNotification(@PageableDefault(5) Pageable pageable,
+                                                                       Optional<String> content
             ) {
         String searchContent = content.orElse("");
         if (searchContent.equals("null")) {
             searchContent = "";
         }
-        Page<NotificationProjection> notifications = notificationService.findAll( pageable,searchContent);
+        Page<INotificationDto> notifications = notificationService.findAll( pageable,searchContent);
         if (notifications.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(notifications, HttpStatus.OK);
     }
 
-//    @GetMapping("/{id}")
-//    private ResponseEntity<?> findAllNotification(@PathVariable("id") Integer id) {
-//        return new ResponseEntity<>(notificationService.findById(id), HttpStatus.OK);
-//    }
 
     /**
      * Create by HaiTV

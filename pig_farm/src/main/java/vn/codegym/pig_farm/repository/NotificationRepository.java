@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import vn.codegym.pig_farm.dto.NotificationProjection;
+import vn.codegym.pig_farm.dto.projection.INotificationDto;
 import vn.codegym.pig_farm.entity.Notification;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.util.Optional;
 
 @Transactional
 public interface NotificationRepository extends JpaRepository<Notification, Integer> {
@@ -34,7 +36,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
                     " where content " +
                     "like :content " +
                     "and is_deleted =0) as abc")
-    Page<NotificationProjection> findAllNotification(Pageable pageable, @Param("content") String content);
+    Page<INotificationDto> findAllNotification(Pageable pageable, @Param("content") String content);
 
     /**
      * Create by HaiTV
@@ -48,4 +50,43 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     @Query(value = "update notification set is_deleted =1 where id =:id", nativeQuery = true)
     void delete(@Param("id") Integer id);
 
+    @Query(value = "select * from notification where id = :id", nativeQuery = true)
+    Optional<Notification> findById(@Param("id") Integer id);
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Write query create notification
+     *
+     * @param id
+     * @param content
+     * @param submitted_date
+     * @param image
+     */
+
+    @Transactional
+    @Modifying
+    @Query(value = "insert into notification(id, content, title, submitted_date, image) " +
+            " values (:id, :content, :title, :submitted_date, :image);", nativeQuery = true)
+    void save(@Param("id") Integer id, @Param("content") String content, @Param("title") String title,
+              @Param("submitted_date") LocalDate submitted_date, @Param("image") String image);
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Write query edit notification
+     *
+     * @param content
+     * @param submittedDate
+     * @param image
+     * @param isDeleted
+     * @param id
+     */
+
+    @Transactional
+    @Modifying
+    @Query(value = "update notification set content = :content, title = :title, submitted_date = :submittedDate, " +
+            " image = :image, is_deleted = :isDeleted where id = :id", nativeQuery = true)
+    void update(@Param("content") String content, @Param("title") String title, @Param("submittedDate") LocalDate submittedDate,
+                @Param("image") String image, @Param("isDeleted") Boolean isDeleted, @Param("id") Integer id);
 }

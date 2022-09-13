@@ -2,10 +2,12 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.NotificationProjection;
+import vn.codegym.pig_farm.dto.projection.INotificationDto;
 import vn.codegym.pig_farm.entity.Notification;
 
-public interface NotificationService {
+import java.util.Optional;
+
+public interface INotificationService {
     /**
      * Create by HaiTV
      * Date : 08/09/2022
@@ -15,7 +17,7 @@ public interface NotificationService {
      * @param pageable
      * @return
      */
-    Page<NotificationProjection> findAll(Pageable pageable, String content);
+    Page<INotificationDto> findAll(Pageable pageable, String content);
 
     /**
      * Create by HaiTV
@@ -25,7 +27,8 @@ public interface NotificationService {
      * @param id
      * @return
      */
-    Notification findById(Integer id);
+//    Notification findById(Integer id);
+    Optional<Notification> findById(Integer id);
 
     /**
      * Create by HaiTV
@@ -35,4 +38,8 @@ public interface NotificationService {
      * @param ids
      */
     void delete(Integer[] ids);
+
+    void save(Notification notification);
+
+    void update(Notification notification);
 }
