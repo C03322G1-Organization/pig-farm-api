@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.StatisticByMonth;
-import vn.codegym.pig_farm.dto.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.StatisticByMonth;
+import vn.codegym.pig_farm.dto.projections.StatisticByYear;
 import vn.codegym.pig_farm.service.IStatisticService;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/statistic")
-public class StatisticController {
+public class StatisticRestController {
 
     @Autowired
     private IStatisticService statisticService;

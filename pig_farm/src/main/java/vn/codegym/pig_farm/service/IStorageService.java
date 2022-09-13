@@ -2,7 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.StorageListDto;
+import vn.codegym.pig_farm.dto.projections.StorageDto;
 import vn.codegym.pig_farm.entity.Storage;
 
 public interface IStorageService {
@@ -12,7 +12,7 @@ public interface IStorageService {
      * Function: findAll
      */
 
-    Page<StorageListDto> findAll(Pageable pageable, String keyWord);
+    Page<StorageDto> findAll(Pageable pageable, String keyWord);
 
     /**
      * Created by: HoangDT

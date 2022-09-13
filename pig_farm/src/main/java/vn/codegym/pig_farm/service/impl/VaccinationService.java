@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.IVaccinationDto;
+import vn.codegym.pig_farm.dto.projections.VaccinationDto;
 import vn.codegym.pig_farm.entity.Vaccination;
 import vn.codegym.pig_farm.repository.VaccinationRepository;
 import vn.codegym.pig_farm.service.IVaccinationService;
@@ -28,7 +28,7 @@ public class VaccinationService implements IVaccinationService {
      */
 
     @Override
-    public Page<IVaccinationDto> getAll(Pageable pageable, String name) {
+    public Page<VaccinationDto> getAll(Pageable pageable, String name) {
         return vaccinationRepository.getAllVaccination(pageable, "%" + name + "%");
     }
 
@@ -47,7 +47,7 @@ public class VaccinationService implements IVaccinationService {
     }
 
     @Override
-    public Optional<IVaccinationDto> findByIdVac(Integer id) {
+    public Optional<VaccinationDto> findByIdVac(Integer id) {
         return vaccinationRepository.findIdVaccination(id);
     }
 

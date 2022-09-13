@@ -3,6 +3,7 @@ package vn.codegym.pig_farm.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -18,6 +19,7 @@ public class Notification {
 
     @Column(columnDefinition = "VARCHAR(255)")
     private String title;
+
 
     @Column(columnDefinition = "VARCHAR(1000)")
     private String content;

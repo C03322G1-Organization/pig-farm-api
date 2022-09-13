@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ import java.time.LocalDate;
  *
  * @return
  */
-public interface ITreatmentDto {
+public interface TreatmentDto {
     Integer getId();
 
     Integer getAmount();

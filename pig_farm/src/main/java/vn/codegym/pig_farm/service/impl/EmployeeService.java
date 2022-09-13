@@ -5,17 +5,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.projection.IEmployeeProjection;
-import vn.codegym.pig_farm.repository.IEmployeeRepository;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
+import vn.codegym.pig_farm.repository.EmployeeRepository;
 import vn.codegym.pig_farm.service.IEmployeeService;
 
 import java.util.List;
 
 @Service
-public class EmployeeServiceImpl implements IEmployeeService {
+public class EmployeeService implements IEmployeeService {
 
     @Autowired
-    private IEmployeeRepository iEmployeeRepository;
+    private EmployeeRepository iEmployeeRepository;
 
     /**
      * @Creator HungNQ
@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
      * @return Page<Employee>
      */
     @Override
-    public Page<IEmployeeProjection> getAllEmployeePaginationAndSearch(String name, String idCard, Pageable pageable) {
+    public Page<EmployeeDto> getAllEmployeePaginationAndSearch(String name, String idCard, Pageable pageable) {
         return iEmployeeRepository.getAllEmployeePaginationAndSearch(name,idCard,pageable);
     }
 

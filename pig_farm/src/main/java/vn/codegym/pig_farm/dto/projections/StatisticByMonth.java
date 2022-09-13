@@ -1,4 +1,4 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 
 public interface StatisticByMonth {

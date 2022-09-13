@@ -1,7 +1,7 @@
 package vn.codegym.pig_farm.service;
 
-import vn.codegym.pig_farm.dto.StatisticByMonth;
-import vn.codegym.pig_farm.dto.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.StatisticByMonth;
+import vn.codegym.pig_farm.dto.projections.StatisticByYear;
 
 import java.util.List;
 
