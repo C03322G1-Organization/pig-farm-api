@@ -60,4 +60,9 @@ public class UserService implements IUserService {
     public void edit(AppUser appUser) {
         userRepository.edit(appUser.getUsername(), appUser.getPassword(), appUser.getEmail(), appUser.getId());
     }
+
+    @Override
+    public void deleteUser(int id) {
+        userRepository.deleteUser(id);
+    }
 }

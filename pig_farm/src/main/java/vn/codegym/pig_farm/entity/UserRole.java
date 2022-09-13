@@ -27,5 +27,4 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private AppRole appRole;
-
 }

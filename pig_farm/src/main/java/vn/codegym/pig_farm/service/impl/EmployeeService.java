@@ -30,12 +30,6 @@ public class EmployeeService implements IEmployeeService {
     UserRoleRepository userRoleRepository;
 
 
-//    public PasswordEncoder encoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
-//    private PasswordEncoder passwordEncoder;
-
     /**
      * @return list Employee (test list)
      * @creator LongNT
@@ -124,5 +118,16 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public List<Employee> getAllEmployee() {
         return iEmployeeRepository.getAllEmployee();
+    }
+
+    /**
+     * @param id
+     * @return EmployeeDto
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     */
+    @Override
+    public Optional<EmployeeDto> getEmployeeDtoById(int id) {
+        return iEmployeeRepository.getEmployeeDtoById(id);
     }
 }

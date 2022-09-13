@@ -15,6 +15,17 @@ import java.util.List;
 public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 
     /**
+     * @param id function deleteUserRole
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "delete from user_role where user_id= :id",nativeQuery = true)
+    void deleteUserRole(@Param("id") int id);
+
+
+    /**
      * @return list UserRole
      * @creator LongNT
      * @day 12/09/2022

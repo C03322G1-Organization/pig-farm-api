@@ -39,4 +39,10 @@ public class UserRoleService implements IUserRoleService {
     public void save(UserRole userRole) {
         userRoleRepository.save(userRole.getAppRole().getId(), userRole.getAppUser().getId());
     }
+
+
+    @Override
+    public void deleteUserRole(int id) {
+        userRoleRepository.deleteUserRole(id);
+    }
 }

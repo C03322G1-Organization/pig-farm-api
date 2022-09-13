@@ -16,6 +16,17 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<AppUser, Integer> {
 
     /**
+     * @param id function deleteUser
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "update `user` set is_deleted = 1 where id = :id", nativeQuery = true)
+    void deleteUser(@Param("id") int id);
+
+
+    /**
      * @return list User
      * @creator LongNT
      * @day 12/09/2022

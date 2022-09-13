@@ -16,6 +16,7 @@ import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.service.IEmployeeService;
+import vn.codegym.pig_farm.service.IUserRoleService;
 import vn.codegym.pig_farm.service.IUserService;
 
 import javax.validation.Valid;
@@ -31,6 +32,12 @@ public class EmployeeRestController {
     @Autowired
     private IEmployeeService iEmployeeService;
 
+    @Autowired
+    private IUserRoleService iUserRoleService;
+
+    @Autowired
+    private IUserService iUserService;
+
     /**
      * @Creator HungNQ
      * @Date 08/09/2022
@@ -40,11 +47,14 @@ public class EmployeeRestController {
      * @return if success status 2xx else if error status 4xx
      */
     @GetMapping("/searchList")
-    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 2) Pageable pageable,
+
+    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
+
                                                                                    @RequestParam Optional<String> name,
                                                                                    @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
+
         Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
         if (employeePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -70,6 +80,30 @@ public class EmployeeRestController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     * @param id
+     * @return EmployeeDto
+     */
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<EmployeeDto> getEmployeeDtoById(@PathVariable Integer id){
+        Optional<EmployeeDto> employeeDtoOptional = iEmployeeService.getEmployeeDtoById(id);
+        if (!employeeDtoOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employeeDtoOptional.get(), HttpStatus.OK);
+    }
+
+    /**
+     * @Creator HungNQ
+     * @Date 13/09/2022
+     * @return List employee
+     */
+    @GetMapping("/list")
+    public ResponseEntity<List<Employee>> getAllEmployee(){
+        return new ResponseEntity<>(iEmployeeService.getAllEmployee(),HttpStatus.OK);
+    }
 
     @Autowired
     private IUserService userService;
@@ -153,9 +187,6 @@ public class EmployeeRestController {
     public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
         Optional<Employee> employeeObj = iEmployeeService.findById(id);
 
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
-//        }
 
         if (!employeeObj.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

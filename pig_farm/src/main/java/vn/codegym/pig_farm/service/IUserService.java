@@ -37,7 +37,8 @@ public interface IUserService {
      * @creator LongNT
      * @day 12/09/2022
      */
-
     void edit(AppUser appUser);
+
+    void deleteUser(int id);
 
 }
