@@ -28,7 +28,6 @@ public class VaccinationRestController {
 
 
     @PostMapping(value = "/create")
-
     /**
      * @function (Create vaccination schedule)
      * @creator DamTN
