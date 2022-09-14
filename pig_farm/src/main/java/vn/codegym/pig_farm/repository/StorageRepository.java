@@ -11,12 +11,16 @@ import vn.codegym.pig_farm.dto.StorageListDto;
 import vn.codegym.pig_farm.entity.Storage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Transactional
 public interface StorageRepository extends JpaRepository<Storage, Integer> {
 
-//    @Query(value = "select `storage`.id, `storage`.amount,`storage`.food_type, `storage`.`date`, `storage`.unit, `storage`.is_deleted from storage", nativeQuery = true)
-//    List<Storage> storagePage();
+//    @Query(value = "select storage.id, storage.amount, storage.food_type, storage.date, storage.unit, storage.is_deleted from storage", nativeQuery = true)
+//    List<Storage> findAllS();
+
+    @Query(value = "select storage.id, storage.amount, storage.food_type, storage.date, storage.unit, storage.is_deleted from storage", nativeQuery = true)
+    List<Storage> storageList();
 
     /**
      * Created by: HoangDT

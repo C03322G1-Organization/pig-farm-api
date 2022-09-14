@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.dto.StorageListDto;
 import vn.codegym.pig_farm.entity.Storage;
 
+import java.util.List;
+
 public interface IStorageService {
     /**
      * Created by: HoangDT
@@ -20,4 +22,6 @@ public interface IStorageService {
      * Function: create storage
      */
     void save(Storage storage);
+
+    List<Storage> findAllS();
 }
