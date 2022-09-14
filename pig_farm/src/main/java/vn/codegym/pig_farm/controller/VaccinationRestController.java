@@ -14,8 +14,9 @@ import vn.codegym.pig_farm.dto.VaccinationDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Vaccination;
 import vn.codegym.pig_farm.service.IVaccinationService;
-
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +28,7 @@ public class VaccinationRestController {
 
 
     @PostMapping(value = "/create")
+
     /**
      * @function (Create vaccination schedule)
      * @creator DamTN
@@ -56,9 +58,9 @@ public class VaccinationRestController {
          * @creator TamLT
          * @date-create 08/09/2022
          * @param pageable
-         * @param name
+         * @param nameSearch
          * @return List Vaccination, HttpStatus.OK
-         * @return HttpStatus.NOTFOUND
+         * @return HttpStatus.NO_CONTENT
          */
 
         String nameSearch = name.orElse("");
@@ -80,11 +82,10 @@ public class VaccinationRestController {
      * @creator TamLT
      * @date-create 08/09/2022
      */
-
-//    @PostMapping("/delete")
-//    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-//        iVaccinationService.delete(ids.get("id"));
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @PostMapping("/delete")
+    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+        iVaccinationService.delete(ids.get("id"));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

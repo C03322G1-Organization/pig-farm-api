@@ -26,9 +26,8 @@ public interface IVaccinationService {
      * @creator TamLT
      * @date-create 08/09/2022
      */
-//    void delete(Integer[] ids);
 
-    void delete(Integer ids);
+    void delete(Integer[] ids);
 
     Optional<VaccinationDto> findByIdVac(Integer id);
 
