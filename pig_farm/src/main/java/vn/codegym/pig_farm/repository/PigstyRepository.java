@@ -30,7 +30,8 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO `pigsty` (`id`,`build_date`, `creation_date`, `max_number`, `employee_id`) " + " VALUES (:#{#pigsty.id},:#{#pigsty.buildDate},:#{#pigsty.creationDate},:#{#pigsty.maxNumber}," + ":#{#pigsty.employee});", nativeQuery = true)
+    @Query(value = "INSERT INTO `pigsty` (`id`,`code`,type_pigs`,`build_date`, `creation_date`, `max_number`, `employee_id`) " + " " +
+            " VALUES (:#{#pigsty.id},(:#{#pigsty.code}(:#{#pigsty.typePigs},,:#{#pigsty.buildDate},:#{#pigsty.creationDate},:#{#pigsty.maxNumber}," + ":#{#pigsty.employee});", nativeQuery = true)
     void createPigsty(Pigsty pigsty);
 
     /**
