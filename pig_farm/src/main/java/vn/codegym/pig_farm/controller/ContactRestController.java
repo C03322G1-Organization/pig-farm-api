@@ -16,7 +16,7 @@ import vn.codegym.pig_farm.service.IContactService;
 import javax.validation.Valid;
 import java.util.Map;
 import java.util.Optional;
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/contact")
 public class  ContactRestController {
