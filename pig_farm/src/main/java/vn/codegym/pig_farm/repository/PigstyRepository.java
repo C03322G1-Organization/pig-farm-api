@@ -43,7 +43,7 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      * @param id
      * @return a pigsty
      */
-    @Query(value = "  select `id`, `build_date`, `creation_date`, `is_deleted`, `max_number`,`type_pigs`, `employee_id`  " +
+    @Query(value = "  select `id`,`code`, `build_date`, `creation_date`, `is_deleted`, `max_number`,`type_pigs`, `employee_id`  " +
             " from pigsty p where p.is_deleted=0 and p.id = :pigstyId ;", nativeQuery = true)
     Pigsty getPigstyById(@Param("pigstyId") Integer id);
 
