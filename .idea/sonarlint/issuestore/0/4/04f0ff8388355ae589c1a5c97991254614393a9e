@@ -1,0 +1,8 @@
+
+v
+java:S3655 "ZCall "advertisement.isPresent()" or "!advertisement.isEmpty()" before accessing the value.(ì“Ü³üÿÿÿÿ
+V	java:S125Z"<This block of commented-out lines of code should be removed.(†™¡§ýÿÿÿÿ
+A
+java:S1452v"&Remove usage of generic wildcard type.(‡í°Äÿÿÿÿÿ
+;
+java:S3751›"Make this method non "private".(ÝâÎÎùÿÿÿÿ

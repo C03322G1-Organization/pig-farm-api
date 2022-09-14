@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6001acf3-8dea-48d9-80be-ae53999d8d65" name="Changes" comment="TriPT up lai source code">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/pig_farm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/pig_farm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/pig_farm.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/pig_farm.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/pig_farm.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/pig_farm.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pig_farm/src/main/java/vn/codegym/pig_farm/controller/ContactRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pig_farm/src/main/java/vn/codegym/pig_farm/controller/ContactRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pig_farm/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pig_farm/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +85,8 @@
       <workItem from="1662694027038" duration="30000" />
       <workItem from="1663039011474" duration="2184000" />
       <workItem from="1663124768446" duration="104000" />
-      <workItem from="1663124894012" duration="702000" />
+      <workItem from="1663124894012" duration="941000" />
+      <workItem from="1663125850265" duration="35000" />
     </task>
     <task id="LOCAL-00001" summary="TriPT up lai source code">
       <created>1663057790770</created>
