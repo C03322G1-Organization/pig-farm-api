@@ -90,7 +90,7 @@ public class NotificationRestController {
         if (!iNotificationService.findById(id).isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(notification.get(), HttpStatus.OK);
+        return new ResponseEntity<>(notification.orElse(null), HttpStatus.OK);
     }
 
     /**
@@ -125,7 +125,7 @@ public class NotificationRestController {
 
         iNotificationService.update(currentNotification.get());
 
-        return new ResponseEntity(currentNotification.get(), HttpStatus.OK);
+        return new ResponseEntity<>(currentNotification.get(), HttpStatus.OK);
     }
 
     /**
@@ -138,7 +138,7 @@ public class NotificationRestController {
      * @return HttpStatus: Http 200 OK
      */
     @GetMapping("")
-    private ResponseEntity<Page<NotificationDto>> findAllNotification(@RequestParam Optional<String> content, @PageableDefault(5) Pageable pageable) {
+    public ResponseEntity<Page<NotificationDto>> findAllNotification(@RequestParam Optional<String> content, @PageableDefault(5) Pageable pageable) {
         String searchContent = content.orElse("");
         if (searchContent.equals("null")) {
             searchContent = "";
@@ -156,7 +156,7 @@ public class NotificationRestController {
      * @return HttpStatus: Http 200 OK
      */
     @PostMapping("/delete")
-    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+    public ResponseEntity<Object> delete(@RequestBody Map<String, Integer[]> ids) {
         iNotificationService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
