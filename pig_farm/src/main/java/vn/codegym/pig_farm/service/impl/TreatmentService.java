@@ -35,9 +35,7 @@ public class TreatmentService implements ITreatmentService {
      */
     @Override
     public Page<TreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
-        System.err.printf("--------------- " + keySearch + " ---------------");
         return treatmentRepository.getAllTreatment(pageable, "%" + keySearch + "%");
-
     }
 
     /**
@@ -61,7 +59,7 @@ public class TreatmentService implements ITreatmentService {
      * @return
      */
     @Override
-    public Treatment findById(int id) {
+    public TreatmentDto findById(int id) {
         return treatmentRepository.findByIdTreatment(id);
     }
 }

@@ -35,6 +35,8 @@ public interface ITreatmentService {
      */
     void deleteByIdTreatment(int id);
 
+    TreatmentDto findById(int parseInt);
+
     /**
      * Create by ThuanT
      * Date create: 08/09/2022
@@ -42,5 +44,4 @@ public interface ITreatmentService {
      * @return
      * @param id
      */
-    Treatment findById(int id);
 }
