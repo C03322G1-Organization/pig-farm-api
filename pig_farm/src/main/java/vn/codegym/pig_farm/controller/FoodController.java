@@ -30,7 +30,7 @@ public class FoodController {
      * @return
      */
     @GetMapping("/list")
-    public ResponseEntity<Page<Food>> getAllFood(@PageableDefault(3) Pageable pageable,
+    public ResponseEntity<Page<Food>> getAllFood(@PageableDefault(6) Pageable pageable,
                                                  Optional<String> foodType) {
         String searchKeyWork = foodType.orElse("");
         Page<Food> iFoodPage = this.iFoodService.getAllFood(pageable, searchKeyWork);
