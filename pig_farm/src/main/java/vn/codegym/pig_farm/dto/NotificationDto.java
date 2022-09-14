@@ -3,9 +3,6 @@ package vn.codegym.pig_farm.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -18,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationDto implements Validator {
+public class NotificationDto {
     private Integer id;
     @NotBlank(message = "Vui lòng không để trống")
     private String title;
@@ -29,14 +26,4 @@ public class NotificationDto implements Validator {
     @NotBlank(message = "Vui lòng không để trống")
     private String image;
     private Boolean isDeleted;
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
 }
