@@ -29,7 +29,7 @@ public class VaccinationService implements IVaccinationService {
 
     @Override
     public Page<VaccinationDto> getAll(Pageable pageable, String name) {
-        return vaccinationRepository.getAllVaccination(pageable, "%" + name + "%");
+        return vaccinationRepository.getAllListVaccination(pageable, "%" + name + "%");
     }
 
 
@@ -42,8 +42,10 @@ public class VaccinationService implements IVaccinationService {
      */
 
     @Override
-    public void delete(Integer ids) {
-        vaccinationRepository.delete(ids);
+    public void delete(Integer[] ids) {
+        for (Integer id : ids) {
+            vaccinationRepository.delete(id);
+        }
     }
 
     @Override
@@ -56,6 +58,13 @@ public class VaccinationService implements IVaccinationService {
         return vaccinationRepository.getAll();
     }
 
+
+    /**
+     * @return Create Vaccination, status 200
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     @Override
     public void saveVaccination(Vaccination vaccination) {
         vaccinationRepository.createVaccination(vaccination.getAmount(), vaccination.getDate(), vaccination.getNote(), vaccination.getVaccinatedPerson(), vaccination.getVaccineType(), vaccination.getPigsty());

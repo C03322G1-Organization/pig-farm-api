@@ -17,6 +17,7 @@ import vn.codegym.pig_farm.service.IVaccinationService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -81,15 +82,11 @@ public class VaccinationRestController {
      * @date-create 08/09/2022
      */
 
-//    @PostMapping("/delete")
-//    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-//        vaccinationService.delete(ids.get("id"));
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-    @PutMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@RequestBody Integer id) {
-        iVaccinationService.delete(id);
+    @PostMapping("/delete")
+    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+        iVaccinationService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }
