@@ -44,6 +44,7 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
      * create by TuongTK
      * date: 08/09/2022
      * write query for method save
+     *
      * @param id
      * @param date
      * @param doctor
@@ -54,13 +55,18 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
      */
     @Modifying
     @javax.transaction.Transactional
-    @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id) " +
-            " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id);", nativeQuery = true)
-    void save(@Param("id") Integer id,
-              @Param("date") LocalDate date,
-              @Param("doctor") String doctor,
-              @Param("diseases") String diseases,
-              @Param("medicine") String medicine,
-              @Param("amount") Integer amount,
-              @Param("pig_id") Pig pig);
+    @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id) " + " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id);", nativeQuery = true)
+    void save(@Param("id") Integer id, @Param("date") LocalDate date, @Param("doctor") String doctor, @Param("diseases") String diseases, @Param("medicine") String medicine, @Param("amount") Integer amount, @Param("pig_id") Pig pig);
+
+
+    /**
+     * Create by ThuanT
+     * Date create: 09/09/2022
+     * write query for method find By Id Treatment
+     *
+     * @param id
+     * @return
+     */
+    @Query(value = "select * from Treatment t where t.id = :id and t.is_deleted = 0", nativeQuery = true)
+    Treatment findByIdTreatment(@Param("id") int id);
 }

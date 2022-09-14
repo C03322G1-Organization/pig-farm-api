@@ -80,9 +80,17 @@ public class TreatmentRestController {
      * @return
      */
     @PutMapping(value = "/{id}")
-    public ResponseEntity<?> deleteTreatment(@PathVariable int id) {
-        treatmentService.deleteByIdTreatment(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Void> deleteTreatment(@PathVariable String id) {
+        try {
+            Integer.parseInt(id);
+            Treatment treatment = treatmentService.findById(Integer.parseInt(id));
+            if (treatment == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            treatmentService.deleteByIdTreatment(Integer.parseInt(id));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (final Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-
 }

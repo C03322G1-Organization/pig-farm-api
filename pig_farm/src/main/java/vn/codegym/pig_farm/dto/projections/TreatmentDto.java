@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Create by ThuanT
  * Date create: 08/09/2022
- * interface: ITreatmentDto
+ * interface: TreatmentDto
  *
  * @return
  */
