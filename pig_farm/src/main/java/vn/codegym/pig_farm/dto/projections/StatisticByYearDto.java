@@ -1,6 +1,6 @@
 package vn.codegym.pig_farm.dto.projections;
 
-public interface StatisticByYear {
+public interface StatisticByYearDto {
     Long getPrice();
 
     String getCompany();
@@ -9,5 +9,5 @@ public interface StatisticByYear {
 
     String getYear();
 
-    String getGroupD();
+    String getTime();
 }

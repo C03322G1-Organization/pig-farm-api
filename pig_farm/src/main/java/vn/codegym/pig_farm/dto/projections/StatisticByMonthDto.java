@@ -1,7 +1,7 @@
 package vn.codegym.pig_farm.dto.projections;
 
 
-public interface StatisticByMonth {
+public interface StatisticByMonthDto {
     Long getPrice();
 
     String getCompany();

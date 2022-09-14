@@ -8,11 +8,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StatisticController_GetStatisticByYear {
+public class StatisticController_GetIStatisticByMonthDto {
 
     @Autowired
     private MockMvc mockMvc;
@@ -26,11 +27,11 @@ public class StatisticController_GetStatisticByYear {
      */
 
     @Test
-    public void getStatisticByYear_startTime_1() throws Exception {
+    public void getStatisticByMonth_startTime_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2222222222222","2022-10-10",0))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}", "3333333333333","2022-10-10",0))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -44,11 +45,11 @@ public class StatisticController_GetStatisticByYear {
      */
 
     @Test
-    public void getStatisticByYear_startTime_2() throws Exception {
+    public void getStatisticByMonth_endTime_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-10-10","2222222222222",1))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}", "2022-10-10","3333333333333",1))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -62,11 +63,11 @@ public class StatisticController_GetStatisticByYear {
      */
 
     @Test
-    public void getStatisticByYear_startTime_3() throws Exception {
+    public void getStatisticByMonth_type_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-09-10","2022-10-10","asd"))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}", "2022-09-10","2022-10-10","abacxczx"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -80,11 +81,11 @@ public class StatisticController_GetStatisticByYear {
      */
 
     @Test
-    public void getStatisticByYear_type_2() throws Exception {
+    public void getStatisticByMonth_type_2() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-10-10","2022-10-10",3))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}", "2022-10-10","2022-10-10",3))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -98,11 +99,11 @@ public class StatisticController_GetStatisticByYear {
      */
 
     @Test
-    public void getStatisticByYear_startTime_5() throws Exception {
+    public void getStatisticByMonth_All_5() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}", "2022-08-10","2022-10-10",0))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}", "2022-08-10","2022-10-10",0))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
 //                .andExpect(jsonPath("time").value("9/2022"))

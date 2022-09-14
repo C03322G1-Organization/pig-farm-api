@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class StatisticController_GetStatisticByYearAndCompany {
+public class StatisticController_GetIStatisticByMonthDtoAndCompany {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,13 +25,12 @@ public class StatisticController_GetStatisticByYearAndCompany {
      * @return BAD_REQUEST 400
      */
 
-
     @Test
-    public void getStatisticByYearAndCompany_startTime_1() throws Exception {
+    public void getStatisticByMonthAndCompany_startTime_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "222222222", "2022-10-10", 0, "ABC"))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "3333333333333", "2022-10-10", 0, "ABC"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -45,11 +44,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_endTime_1() throws Exception {
+    public void getStatisticByMonthAndCompany_endTime_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "222222222", 0, "ABC"))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "3333333333333", 0, "ABC"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -63,11 +62,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_type_1() throws Exception {
+    public void getStatisticByMonthAndCompany_type_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", "123123", "ABC"))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", 3, "ABC"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -81,11 +80,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_type_2() throws Exception {
+    public void getStatisticByMonthAndCompany_type_2() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", 3, "ABC"))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-10-10", "asdasdas", "ABC"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -99,11 +98,11 @@ public class StatisticController_GetStatisticByYearAndCompany {
      */
 
     @Test
-    public void getStatisticByYearAndCompany_company_1() throws Exception {
+    public void getStatisticByMonthAndCompany_company_1() throws Exception {
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .get("/statistic/by-year/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-11-10", 0, "ABCD"))
+                        .get("/statistic/by-month/{startTime}/{endTime}/{type}/{company}", "2022-10-10", "2022-11-10", 0, "ABCD"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
