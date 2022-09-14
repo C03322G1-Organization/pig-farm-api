@@ -31,7 +31,7 @@ public class ContactRestController {
      * Param contactDto
      */
     @PostMapping("/create")
-    public ResponseEntity<?> save(@Valid @RequestBody ContactDto contactDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> save(@Valid @RequestBody ContactDto contactDto, BindingResult bindingResult) {
         new ContactDto().validate(contactDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.BAD_REQUEST);
@@ -81,9 +81,8 @@ public class ContactRestController {
      * function: delete Contact
      */
     @PostMapping("/delete")
-    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-        System.out.println(111);
+    public ResponseEntity<Contact>delete(@RequestBody Map<String, Integer[]> ids) {
         contactService.deleteContact(ids.get("id"));
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(new Contact(),HttpStatus.OK);
     }
 }

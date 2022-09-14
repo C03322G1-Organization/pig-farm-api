@@ -18,7 +18,7 @@
       <configuration />
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/../../pig_farm/build/classes/java/main" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../pig_farm/build/generated/sources/annotationProcessor/java/main">

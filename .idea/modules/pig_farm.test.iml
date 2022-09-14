@@ -19,7 +19,7 @@
       <configuration />
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+  <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../pig_farm/build/classes/java/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../pig_farm/src/test">
