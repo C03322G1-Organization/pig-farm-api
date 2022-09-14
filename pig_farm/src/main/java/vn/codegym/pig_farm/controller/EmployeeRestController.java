@@ -28,7 +28,7 @@ import java.util.Optional;
 @CrossOrigin
 @RequestMapping("/employee")
 public class EmployeeRestController {
-    
+
     @Autowired
     private IEmployeeService iEmployeeService;
 

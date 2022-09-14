@@ -64,6 +64,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Creator HungNQ
      * @Date 08/09/2022
      */
+
     @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,name,user_id from employee", nativeQuery = true)
     List<Employee> getAllEmployee();
 

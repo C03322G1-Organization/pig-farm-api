@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.dto.projections;
 
+
 import java.time.LocalDate;
 
 public interface PigstyDto {
@@ -10,4 +11,5 @@ public interface PigstyDto {
     Integer getMaxNumber();
     String getEmployeeCode();
     String getEmployeeName();
+
 }

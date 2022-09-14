@@ -49,6 +49,10 @@ public class EmployDto implements Validator {
         return false;
     }
 
+
+    public EmployDto() {
+    }
+
     public EmployDto(Integer id, String code, String name, LocalDate birthDay, String gender, String idCard, String image, Boolean isDeleted, List<Export> exports, UserDto userDto) {
         this.id = id;
         this.code = code;

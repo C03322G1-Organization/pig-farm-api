@@ -52,8 +52,9 @@ public class Employee {
     @JsonIgnore
     private List<Export> exports;
 
-    @JsonIgnore
+
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser appUser;
 

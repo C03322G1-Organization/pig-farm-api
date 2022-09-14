@@ -35,16 +35,18 @@ public class ExportDto {
     @Size(min = 1, max = 50, message = "không quá 1-50 từ")
     private Integer typePigs;
 
-    private LocalDate saleDate;
-
     private Boolean isDeleted;
 
     private PigstyDto pigstyDto;
 
     private EmployDto employDto;
 
+    private LocalDate saleDate;
+
+
     public ExportDto() {
     }
+
 
     public ExportDto(String codeExport, String company, Integer amount, Double kilogram,
                      Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted,
@@ -76,6 +78,7 @@ public class ExportDto {
     public void setCompany(String company) {
         this.company = company;
     }
+
 
     public LocalDate getSaleDate() {
         return saleDate;
@@ -116,6 +119,7 @@ public class ExportDto {
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
+
 
     public PigstyDto getPigstyDto() {
         return pigstyDto;

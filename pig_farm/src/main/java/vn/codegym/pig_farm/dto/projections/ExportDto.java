@@ -20,4 +20,5 @@ public interface ExportDto {
     String getIdEmployee();
     String getCodeEmployee();
     String getNameEmployee();
+    Integer get();
 }
