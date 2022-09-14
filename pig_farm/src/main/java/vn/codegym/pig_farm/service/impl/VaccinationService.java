@@ -56,6 +56,13 @@ public class VaccinationService implements IVaccinationService {
         return vaccinationRepository.getAll();
     }
 
+
+    /**
+     * @return Create Vaccination, status 200
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     @Override
     public void saveVaccination(Vaccination vaccination) {
         vaccinationRepository.createVaccination(vaccination.getAmount(), vaccination.getDate(), vaccination.getNote(), vaccination.getVaccinatedPerson(), vaccination.getVaccineType(), vaccination.getPigsty());

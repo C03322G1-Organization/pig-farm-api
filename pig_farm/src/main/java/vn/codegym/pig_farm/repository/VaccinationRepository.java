@@ -40,8 +40,13 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
     @Query(value="select * from vaccination", nativeQuery=true)
     List<Vaccination> getAll();
 
+
+    /**
+     * @function (Query to create vaccination)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     @Modifying
-    @org.springframework.transaction.annotation.Transactional
     @Query(value = "insert into vaccination(amount, `date`, is_deleted, note, vaccinated_person, vaccine_type, pigsty_id)" +
             "value (:amount, :date, 0, :note, :vaccinatedPerson, :vaccineType, :pigsty)", nativeQuery=true)
     void createVaccination(@Param("amount") Integer amount,

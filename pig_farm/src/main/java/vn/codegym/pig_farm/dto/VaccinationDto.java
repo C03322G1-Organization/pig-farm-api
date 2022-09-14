@@ -12,19 +12,23 @@ public class VaccinationDto implements Validator {
     private LocalDate date;
     @NotNull
     @Min(value = 1)
-    @Max(value = 10)
+    @Max(value = 20)
     private Integer amount;
     @NotBlank
     private String vaccineType;
     @NotBlank
+    @Size(min = 5, max = 30)
+    @Pattern(regexp = "(^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$)")
     private String vaccinatedPerson;
     @Size(min = 1, max = 255)
     private String note;
     private Boolean isDeleted;
+    @NotNull
     private Pigsty pigsty;
 
     public VaccinationDto() {
     }
+
 
     public VaccinationDto(Integer id, LocalDate date, @NotNull @Min(value = 1) @Max(value = 10) Integer amount, @NotBlank String vaccineType, @NotBlank String vaccinatedPerson, @Size(min = 1, max = 255) String note, Boolean isDeleted, Pigsty pigsty) {
         this.id = id;
@@ -44,6 +48,7 @@ public class VaccinationDto implements Validator {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public LocalDate getDate() {
         return date;

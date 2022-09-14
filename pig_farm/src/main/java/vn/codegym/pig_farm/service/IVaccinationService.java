@@ -34,6 +34,12 @@ public interface IVaccinationService {
 
     List<Vaccination> findAll();
 
+    /**
+     * @return Create Vaccination, status 200
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     void saveVaccination(Vaccination vaccination);
 
 }

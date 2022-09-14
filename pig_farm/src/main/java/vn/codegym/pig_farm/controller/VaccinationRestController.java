@@ -10,13 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.projections.VaccinationDto;
+import vn.codegym.pig_farm.dto.VaccinationDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Vaccination;
 import vn.codegym.pig_farm.service.IVaccinationService;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,19 +25,20 @@ public class VaccinationRestController {
     @Autowired
     private IVaccinationService iVaccinationService;
 
-    @GetMapping("/list1")
-    public ResponseEntity<List<Vaccination>> findAll() {
-        List<Vaccination> vaccinationList = iVaccinationService.findAll();
-        if (vaccinationList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(vaccinationList, HttpStatus.OK);
-    }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid vn.codegym.pig_farm.dto.VaccinationDto vaccinationDto, BindingResult bindingResult) {
+    /**
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     * @return bindingResult, HttpStatus.NOT_ACCEPTABLE
+     * @return HttpStatus.OK
+     */
+    public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid VaccinationDto vaccinationDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_FOUND);
+
+            return new ResponseEntity<>(bindingResult.getFieldError(),
+                    HttpStatus.NOT_ACCEPTABLE);
         }
         Vaccination vaccination = new Vaccination();
         BeanUtils.copyProperties(vaccinationDto, vaccination);
@@ -50,7 +50,7 @@ public class VaccinationRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<VaccinationDto>> getList(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> name) {
+    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.VaccinationDto>> getList(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> name) {
         /**
          * @function (Display all Vaccination and search)
          * @creator TamLT
@@ -66,7 +66,7 @@ public class VaccinationRestController {
             nameSearch = "";
         }
 
-        Page<VaccinationDto> vaccinationList = iVaccinationService.getAll(pageable, nameSearch);
+        Page<vn.codegym.pig_farm.dto.projections.VaccinationDto> vaccinationList = iVaccinationService.getAll(pageable, nameSearch);
         if (vaccinationList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -83,13 +83,8 @@ public class VaccinationRestController {
 
 //    @PostMapping("/delete")
 //    public ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-//        vaccinationService.delete(ids.get("id"));
+//        iVaccinationService.delete(ids.get("id"));
 //        return new ResponseEntity<>(HttpStatus.OK);
 //    }
-    @PutMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@RequestBody Integer id) {
-        iVaccinationService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 }
