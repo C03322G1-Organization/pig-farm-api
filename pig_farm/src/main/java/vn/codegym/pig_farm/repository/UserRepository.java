@@ -32,7 +32,7 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      * @day 12/09/2022
      */
 
-    @Query(value = "select * from app_user", nativeQuery = true)
+    @Query(value = "select * from `user`", nativeQuery = true)
     List<AppUser> findAll();
 
     /**
@@ -44,7 +44,7 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      * @day 12/09/2022
      */
     @Modifying
-    @Query(value = "insert into app_user (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
+    @Query(value = "insert into `user` (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
     void save(@Param("username") String username, @Param("password") String password, @Param("email") String email);
 
 
@@ -55,7 +55,7 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      * @day 12/09/2022
      */
 
-    @Query(value = "select * from app_user where id = :id", nativeQuery = true)
+    @Query(value = "select * from `user` where id = :id", nativeQuery = true)
     Optional<AppUser> findById(@Param("id") Integer id);
 
     /**
@@ -68,6 +68,6 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      */
 
     @Modifying
-    @Query(value = "update app_user set username = :username, `password` = :password, email = :email where id = :id", nativeQuery = true)
+    @Query(value = "update `user` set username = :username, `password` = :password, email = :email where id = :id", nativeQuery = true)
     void edit(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("id") Integer id);
 }

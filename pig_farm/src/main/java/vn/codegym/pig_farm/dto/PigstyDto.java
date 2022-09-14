@@ -26,7 +26,7 @@ public class PigstyDto implements Validator {
 
     private Boolean isDeleted;
 
-    private EmployDto employDto;
+    private EmployeeDto employeeDto;
 
 
     /**

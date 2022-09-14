@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import vn.codegym.pig_farm.dto.EmployDto;
+import vn.codegym.pig_farm.dto.EmployeeDto;
 import vn.codegym.pig_farm.dto.PigstyDto;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -153,9 +153,9 @@ public class PigstyRestController_createPigsty {
         pigstyDto.setCreationDate("2044-07-01");
         pigstyDto.setMaxNumber(20);
 
-        EmployDto employDto = new EmployDto();
-        employDto.setId(1);
-        pigstyDto.setEmployDto(employDto);
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setId(1);
+        pigstyDto.setEmployeeDto(employeeDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pigsty/createPigsty")
