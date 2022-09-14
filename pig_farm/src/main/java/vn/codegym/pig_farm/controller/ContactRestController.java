@@ -57,7 +57,7 @@ public class ContactRestController {
         }
         Page<Contact> contactPage = contactService.getAll(pageable,name);
         if (contactPage.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(contactPage,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contactPage,HttpStatus.OK);
     }
