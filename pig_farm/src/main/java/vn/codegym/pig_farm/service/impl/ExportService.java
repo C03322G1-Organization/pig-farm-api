@@ -62,10 +62,10 @@ public class ExportService implements IExportService {
      * Function: update
      */
     @Override
-    public void update(Export export) {
-        iExportRepository.update(export.getPigsty(), export.getEmployee(), export.getCodeExport(), export.getCompany(),
-                 export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(),
-                export.getId());
+    public void update(vn.codegym.pig_farm.dto.ExportDto exportDto) {
+        iExportRepository.update(exportDto.getPigstyDto(), exportDto.getEmployeeDto(), exportDto.getCodeExport(), exportDto.getCompany(),
+                exportDto.getPrice(), exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram(),
+                exportDto.getId());
     }
     /**
      * Created by: DongLHP
@@ -73,7 +73,7 @@ public class ExportService implements IExportService {
      * Function: findById
      */
     @Override
-    public Export findById(int id) {
+    public vn.codegym.pig_farm.dto.ExportDto findById(int id) {
         return iExportRepository.findById(id);
     }
 

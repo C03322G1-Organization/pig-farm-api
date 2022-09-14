@@ -71,7 +71,7 @@ public class ExportRestController {
      * @return HttpStatus.OK
      */
     @PostMapping("/delete")
-    public ResponseEntity<?> deleteExport(@RequestBody Map<String, Integer[]> ids){
+    public ResponseEntity<Object> deleteExport(@RequestBody Map<String, Integer[]> ids){
         iExportService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -84,7 +84,7 @@ public class ExportRestController {
      */
 
     @PostMapping("/create")
-    private ResponseEntity<?> create(@Validated @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
+    public ResponseEntity<vn.codegym.pig_farm.dto.ExportDto> create(@Validated @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
@@ -99,31 +99,40 @@ public class ExportRestController {
      * return export1
      */
     @PutMapping("/update/{id}")
-    public ResponseEntity<Export> update(@Validated @PathVariable int id, @RequestBody Export export, BindingResult bindingResult) {
-        Export export1 = iExportService.findById(id);
-        if (export1 == null) {
+    public ResponseEntity<vn.codegym.pig_farm.dto.ExportDto> update(@Validated @PathVariable int id, @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
+        vn.codegym.pig_farm.dto.ExportDto export = iExportService.findById(id);
+        if (export == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        export1.setPigsty(export.getPigsty());
-        export1.setEmployee(export.getEmployee());
-        export1.setCodeExport(export.getCodeExport());
-        export1.setCompany(export.getCompany());
-        export1.setPrice(export.getPrice());
-        export1.setTypePigs(export.getTypePigs());
-        export1.setAmount(export.getAmount());
-        export1.setKilogram(export.getKilogram());
-        iExportService.update(export1);
-        return new ResponseEntity<>(export1, HttpStatus.OK);
+        export.setPigstyDto(export.getPigstyDto());
+        export.setEmployeeDto(export.getEmployeeDto());
+        export.setCodeExport(export.getCodeExport());
+        export.setCompany(export.getCompany());
+        export.setPrice(export.getPrice());
+        export.setTypePigs(export.getTypePigs());
+        export.setAmount(export.getAmount());
+        export.setKilogram(export.getKilogram());
+        iExportService.update(export);
+        return new ResponseEntity<>(export, HttpStatus.OK);
     }
     @Autowired
     private ExportRepository exportRepository;
     @GetMapping("/totalWeightCount/{id}")
-    private ResponseEntity<Object[]> totalWeightCount(@PathVariable("id") Integer id) {
+    public ResponseEntity<Object[]> totalWeightCount(@PathVariable("id") Integer id) {
         Object[] temp = {(exportRepository.countPigOnPigsty(id)),exportRepository.totalWeight(id)};
        return new ResponseEntity<>(temp,HttpStatus.OK);
+    }
+
+    @GetMapping("/export/{id}")
+    public ResponseEntity<Object> findById(@PathVariable("id") Integer id) {
+        vn.codegym.pig_farm.dto.ExportDto export = iExportService.findById(id);
+        if (export == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(export, HttpStatus.CREATED);
     }
 
 }

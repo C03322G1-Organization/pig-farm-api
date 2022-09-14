@@ -39,7 +39,7 @@ public interface IExportService {
      * Date created: 08/09/2022
      * Function: update
      */
-    void update(Export export);
+    void update(vn.codegym.pig_farm.dto.ExportDto exportDto);
 
     /**
      * Created by: HoaL
@@ -47,6 +47,6 @@ public interface IExportService {
      * Function: findById
      *
      */
-    Export findById(int id);
+    vn.codegym.pig_farm.dto.ExportDto findById(int id);
 
 }
