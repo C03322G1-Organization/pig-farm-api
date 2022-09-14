@@ -95,12 +95,46 @@ public class FoodRestController {
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
+        int amountSet;
+        int count = foods.getAmount();
         foods.setAmount(foodDto.getAmount());
         foods.setUnit(foodDto.getUnit());
         foods.setPigsty(foodDto.getPigsty());
         foods.setStorage(foodDto.getStorage());
         iFoodService.update(foods);
+        Storage storage = iFoodService.findByIdStorage(foods.getStorage().getId());
+        if(count < foods.getAmount()){
+             amountSet = storage.getAmount() + (foods.getAmount()-count);
+            if (amountSet < 0) {
+                return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
+            }
+            iFoodService.updateStorage(amountSet, storage.getId());
+            return new ResponseEntity<>(foods, HttpStatus.CREATED);
+        }
+        amountSet = storage.getAmount() - (foods.getAmount()-count);
+        if (amountSet < 0) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
+        }
+        iFoodService.updateStorage(amountSet, storage.getId());
         return new ResponseEntity<>(foods, HttpStatus.CREATED);
     }
+
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: show a food
+     *
+     * @return if created food return HttpStatus.CREATED(201)
+     */
+    @GetMapping("/show/{id}")
+    public ResponseEntity<Object> findById(@PathVariable("id") Integer id) {
+        Food foods = iFoodService.findById(id);
+        if (foods == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(foods, HttpStatus.CREATED);
+    }
+
 
 }

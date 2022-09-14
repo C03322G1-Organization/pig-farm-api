@@ -29,7 +29,7 @@ public class Storage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JsonBackReference
+
     @OneToMany(mappedBy = "storage")
     @JsonIgnore
     private List<Food> foods;
