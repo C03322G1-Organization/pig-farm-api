@@ -10,6 +10,7 @@ import vn.codegym.pig_farm.dto.projections.PigstyDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
     /**
@@ -21,6 +22,7 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      */
     @Query(value = "select pigsty.id,pigsty.build_date as buildDate,pigsty.code,pigsty.creation_date as creationDate,pigsty.max_number as maxNumber,employee.code as employeeCode,employee.name as employeeName from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search",countQuery = "select pigsty.id from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search", nativeQuery = true)
     Page<PigstyDto>  findAll(Pageable pageable, @Param("search") String search);
+
     /**
      * Created by: HieuCD
      * Date created: 08/09/2022
@@ -55,4 +57,13 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
     @Modifying
     @Query(value = "update pigsty set `build_date`=:#{#pigsty.buildDate},`creation_date`=:#{#pigsty.creationDate}," + "`max_number`=:#{#pigsty.maxNumber} where `is_deleted`=0 and `id`=:#{#pigsty.id}", nativeQuery = true)
     void editPigsty(Pigsty pigsty);
+
+    /**
+     * Created by: DatVT
+     * Date created: 08/09/2022
+     * Function: findByIdPigsty
+     */
+    @Query(value = "select * from pigsty ", nativeQuery = true)
+    List<Pigsty> findALLPigsty();
+
 }

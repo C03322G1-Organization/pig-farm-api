@@ -67,7 +67,12 @@ public class PigstyService implements IPigstyService {
      */
     @Override
     public Page<PigstyDto> findAll(Pageable pageable, String search) {
-        return pigstyRepository.findAll(pageable,"%"+search+"%");
+        return pigstyRepository.findAll(pageable, "%" + search + "%");
 
+    }
+
+    @Override
+    public List<Pigsty> listPigsty() {
+        return pigstyRepository.findALLPigsty();
     }
 }
