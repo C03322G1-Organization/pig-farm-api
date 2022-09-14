@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.projections.TreatmentDto;
@@ -33,17 +32,8 @@ public class TreatmentRestController {
      * @param treatmentDto
      * @return HttpStatus.OK : Http 200: ResponseEntity
      */
-//    @PostMapping
-//    public ResponseEntity<Treatment> create(@RequestBody Treatment treatment) {
-//        treatmentService.save(treatment);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-    @PostMapping
-    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }
-
+    @PostMapping("/create")
+    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto){
         Treatment treatment = new Treatment();
         BeanUtils.copyProperties(treatmentDto, treatment);
 
