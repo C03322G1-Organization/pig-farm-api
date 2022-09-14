@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/treatment/v1")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TreatmentRestController {
     @Autowired
     private ITreatmentService treatmentService;

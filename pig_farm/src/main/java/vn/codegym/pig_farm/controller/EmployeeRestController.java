@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/employee")
 public class EmployeeRestController {
 
