@@ -19,8 +19,10 @@ public class ContactService implements IContactService {
      * function: Delete Contact
      */
     @Override
-    public void deleteContact(int id) {
-        contactRepository.deleteContact(id);
+    public void deleteContact(Integer[] ids) {
+        for (Integer id : ids) {
+            contactRepository.deleteContact(id);
+        }
     }
 
     /**
@@ -29,8 +31,8 @@ public class ContactService implements IContactService {
      * function: getAll Contact
      */
     @Override
-    public Page<Contact> getAll(Pageable pageable, String name, String content) {
-        return contactRepository.findAll(pageable, "%" + name + "%", "%" + content + "%");
+    public Page<Contact> getAll(Pageable pageable, String name) {
+        return contactRepository.findAll(pageable, "%" + name + "%");
     }
 
     /**
