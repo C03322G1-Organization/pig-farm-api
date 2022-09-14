@@ -1,0 +1,9 @@
+
+H
+java:S1199m"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+A
+java:S14523"&Remove usage of generic wildcard type.(õ ¡™ûÿÿÿÿ
+Q	java:S125@"<This block of commented-out lines of code should be removed.(ÑžÖ
+<
+java:S1452N"&Remove usage of generic wildcard type.(ÁâÝÜ
+Q	java:S125U"<This block of commented-out lines of code should be removed.(û¿ö§
