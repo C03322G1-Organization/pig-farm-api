@@ -50,7 +50,7 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
      * @param id
      * @return
      */
-    @Query(value = "select id , amount, date, is_deleted, unit from storage where id = :id ", nativeQuery = true)
+    @Query(value = "select id , amount, date, is_deleted, unit, food_type from storage where id = :id ", nativeQuery = true)
     Storage findByIdStorage(@Param("id") int id);
 
 
