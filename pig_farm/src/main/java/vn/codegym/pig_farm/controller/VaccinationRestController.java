@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vaccination")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class VaccinationRestController {
     @Autowired
     private IVaccinationService iVaccinationService;

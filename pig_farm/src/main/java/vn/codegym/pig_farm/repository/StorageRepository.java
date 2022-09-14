@@ -26,8 +26,8 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
      */
 
 
-    @Query(value = " select storage.id, storage.amount,storage.food_type as foodType, storage.date as date, storage.unit from storage where food_type like :foodType and is_deleted = 0 ", nativeQuery = true,
-            countQuery = " select count(*) from (select storage.id, storage.amount,storage.food_type as foodType, storage.date as date, storage.unit from storage where food_type like :foodType) temp_table ")
+    @Query(value = " select storage.id, storage.amount,storage.food_type as foodType, storage.date as date, storage.unit from storage where food_type like :foodType and is_deleted = 0 and amount > 0 ", nativeQuery = true,
+            countQuery = " select count(*) from (select storage.id, storage.amount,storage.food_type as foodType, storage.date as date, storage.unit from storage where food_type like :foodType  and amount > 0) temp_table ")
     Page<StorageDto> findAllStorage(Pageable pageable, @Param("foodType") String foodType);
 
 
