@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.StorageListDto;
+import vn.codegym.pig_farm.dto.projections.StorageDto;
 import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.repository.StorageRepository;
 import vn.codegym.pig_farm.service.IStorageService;
+
+import java.util.List;
 
 @Service
 public class StorageService implements IStorageService {
@@ -21,7 +23,7 @@ public class StorageService implements IStorageService {
      */
 
     @Override
-    public Page<StorageListDto> findAll(Pageable pageable, String keyWord) {
+    public Page<StorageDto> findAll(Pageable pageable, String keyWord) {
         return storageRepository.findAllStorage(pageable,"%" + keyWord + "%");
     }
 
@@ -36,5 +38,9 @@ public class StorageService implements IStorageService {
         storageRepository.saveS(storage.getAmount(), storage.getFoodType(), storage.getDate(), storage.getUnit());
     }
 
+    @Override
+    public List<Storage> findAllS() {
+        return storageRepository.storageList();
+    }
 
 }

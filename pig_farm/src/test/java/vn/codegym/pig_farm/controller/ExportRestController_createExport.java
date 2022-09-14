@@ -23,6 +23,7 @@ public class ExportRestController_createExport {
 
     @Autowired
     private MockMvc mockMvc;
+
     /**
      * Created by: HoaL
      * Date created: 09/09/2022
@@ -37,7 +38,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -45,13 +46,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -68,7 +63,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -76,13 +71,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -95,14 +84,11 @@ public class ExportRestController_createExport {
 
         ExportDto exportDto = new ExportDto();
         exportDto.setCodeExport("MC01");
-        exportDto.setCompany("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        exportDto.setCompany("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -110,13 +96,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -133,7 +113,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -143,13 +123,7 @@ public class ExportRestController_createExport {
         pigstyDto.setId(1);
         exportDto.setPigstyDto(pigstyDto);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is2xxSuccessful());
     }
 
     /**
@@ -166,7 +140,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -174,13 +148,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -197,7 +165,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -205,13 +173,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -236,13 +198,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
 
@@ -251,6 +207,7 @@ public class ExportRestController_createExport {
      * Date created: 09/09/2022
      * Function: createExport_typePigs_14
      */
+
     @Test
     public void createExport_typePigs_14() throws Exception {
 
@@ -260,7 +217,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -268,13 +225,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -291,7 +242,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -299,13 +250,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -322,7 +267,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -330,13 +275,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -353,7 +292,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -361,13 +300,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
     /**
@@ -384,7 +317,7 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
         EmployeeDto employeeDto = new EmployeeDto();
@@ -392,13 +325,7 @@ public class ExportRestController_createExport {
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
-        this.mockMvc
-                .perform(MockMvcRequestBuilders
-                        .post("/export/create")
-                        .content(this.objectMapper.writeValueAsString(exportDto))
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/export/create").content(this.objectMapper.writeValueAsString(exportDto)).contentType(MediaType.APPLICATION_JSON_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
     }
 
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import vn.codegym.pig_farm.dto.PigDTO;
+import vn.codegym.pig_farm.dto.PigDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -32,7 +32,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_code_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode(null);
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -60,7 +60,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_code_14() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -88,7 +88,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_dateIn_14() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("");
         pigDTO.setDateOut("2022-02-02");
@@ -117,7 +117,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_dateIn_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn(null);
         pigDTO.setDateOut("2022-02-02");
@@ -145,7 +145,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_dateOut_14() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML002");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("");
@@ -174,7 +174,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_dateOut_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML002");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut(null);
@@ -202,7 +202,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_status_14() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML002");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("");
@@ -231,7 +231,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_status_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode(null);
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -259,7 +259,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_weight_14() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -288,7 +288,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_weight_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -316,7 +316,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_weight_15() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -344,7 +344,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_weight_16() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -372,7 +372,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_id_14() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -401,7 +401,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_id_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");
@@ -430,7 +430,7 @@ public class PigRestController_updatePig {
      */
     @Test
     public void updatePig_delete_13() throws Exception {
-        PigDTO pigDTO = new PigDTO();
+        PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn("2022-01-01");
         pigDTO.setDateOut("2022-02-02");

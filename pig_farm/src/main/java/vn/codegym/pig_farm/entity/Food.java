@@ -14,14 +14,10 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(30)")
-    private String type;
-
     private Integer amount;
 
     @Column(columnDefinition = "VARCHAR(15)")
     private String unit;
-
     @ManyToOne
     @JoinColumn(name = "storage_id", referencedColumnName = "id")
     private Storage storage;
@@ -29,7 +25,6 @@ public class Food {
     @ManyToOne
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
-
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;

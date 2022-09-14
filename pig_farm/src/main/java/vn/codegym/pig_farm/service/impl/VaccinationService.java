@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.codegym.pig_farm.dto.IVaccinationDto;
+import vn.codegym.pig_farm.dto.projections.VaccinationDto;
 import vn.codegym.pig_farm.entity.Vaccination;
 import vn.codegym.pig_farm.repository.VaccinationRepository;
 import vn.codegym.pig_farm.service.IVaccinationService;
@@ -28,8 +28,8 @@ public class VaccinationService implements IVaccinationService {
      */
 
     @Override
-    public Page<IVaccinationDto> getAll(Pageable pageable, String name) {
-        return vaccinationRepository.getAllVaccination(pageable, "%" + name + "%");
+    public Page<VaccinationDto> getAll(Pageable pageable, String name) {
+        return vaccinationRepository.getAllListVaccination(pageable, "%" + name + "%");
     }
 
 
@@ -42,12 +42,14 @@ public class VaccinationService implements IVaccinationService {
      */
 
     @Override
-    public void delete(Integer ids) {
-        vaccinationRepository.delete(ids);
+    public void delete(Integer[] ids) {
+        for (Integer id : ids) {
+            vaccinationRepository.delete(id);
+        }
     }
 
     @Override
-    public Optional<IVaccinationDto> findByIdVac(Integer id) {
+    public Optional<VaccinationDto> findByIdVac(Integer id) {
         return vaccinationRepository.findIdVaccination(id);
     }
 
@@ -56,6 +58,13 @@ public class VaccinationService implements IVaccinationService {
         return vaccinationRepository.getAll();
     }
 
+
+    /**
+     * @return Create Vaccination, status 200
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     @Override
     public void saveVaccination(Vaccination vaccination) {
         vaccinationRepository.createVaccination(vaccination.getAmount(), vaccination.getDate(), vaccination.getNote(), vaccination.getVaccinatedPerson(), vaccination.getVaccineType(), vaccination.getPigsty());

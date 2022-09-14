@@ -11,9 +11,9 @@ import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public interface PigRepository extends JpaRepository<Pig, Integer> {
 
     /**
@@ -32,7 +32,6 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
     Page<Pig> findAllPig(Pageable pageable, @Param("code") String code, @Param("dateIn") String dateIn, @Param("status") String status);
 
     /**
-     *
      * @param id
      * @return pig, status 200
      * @function (find Pig by Id)
@@ -45,7 +44,6 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
 
 
     /**
-     *
      * @param id
      * @return pig, status 200
      * @function (delete Pig)
@@ -58,9 +56,6 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
     @Query(value = " update pig p set is_deleted = 1 where  p.id =:id and p.is_deleted = 0", nativeQuery = true)
     void deletePigById(@Param("id") Integer id);
 
-
-    @Query(value = "select * from Pig where is_deleted = 0", nativeQuery = true)
-    List<Pig> findAll();
 
     /**
      * Created by: DatVT
@@ -79,6 +74,7 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
      * Date created: 08/09/2022
      * Function: countPigOnPigsty
      */
+
     @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id", nativeQuery = true)
     Integer countPigOnPigsty(@Param("id") int id);
 
@@ -108,5 +104,6 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
                    @Param("dateOut") LocalDate dateOut, @Param("status") String status,
                    @Param("weight") String weight, @Param("pigsty") Pigsty pigsty,
                    @Param("id") Integer id);
+
 }
 
