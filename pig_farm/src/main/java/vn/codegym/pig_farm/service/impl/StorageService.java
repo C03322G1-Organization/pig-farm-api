@@ -9,6 +9,8 @@ import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.repository.StorageRepository;
 import vn.codegym.pig_farm.service.IStorageService;
 
+import java.util.List;
+
 @Service
 public class StorageService implements IStorageService {
     @Autowired
@@ -36,5 +38,9 @@ public class StorageService implements IStorageService {
         storageRepository.saveS(storage.getAmount(), storage.getFoodType(), storage.getDate(), storage.getUnit());
     }
 
+    @Override
+    public List<Storage> findAllS() {
+        return storageRepository.storageList();
+    }
 
 }

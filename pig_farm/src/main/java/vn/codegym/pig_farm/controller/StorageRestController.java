@@ -13,6 +13,7 @@ import vn.codegym.pig_farm.entity.Storage;
 import vn.codegym.pig_farm.service.IStorageService;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,8 +33,7 @@ public class StorageRestController {
      */
 
     @GetMapping("/page")
-    public ResponseEntity<Page<StorageDto>> showAll(@PageableDefault(5) Pageable pageable,
-                                                    Optional<String> keyWord) {
+    public ResponseEntity<Page<StorageDto>> showAll(@PageableDefault(5) Pageable pageable, Optional<String> keyWord) {
         {
             String foodType = keyWord.orElse("");
             if (foodType.equals("null")) {
@@ -54,9 +54,18 @@ public class StorageRestController {
      */
 
     @PostMapping("/create")
-    public ResponseEntity <Storage> createStorage(@RequestBody @Valid vn.codegym.pig_farm.dto.StorageDto storageDto) {
+    public ResponseEntity<Storage> createStorage(@RequestBody @Valid vn.codegym.pig_farm.dto.StorageDto storageDto) {
         Storage storage = modelMapper.map(storageDto, Storage.class);
         storageService.save(storage);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Storage>> getStorageList() {
+        List<Storage> storageList = storageService.findAllS();
+        if (storageList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(storageList, HttpStatus.OK);
     }
 }

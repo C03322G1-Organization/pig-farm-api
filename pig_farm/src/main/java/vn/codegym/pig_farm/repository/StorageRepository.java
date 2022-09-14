@@ -11,12 +11,13 @@ import vn.codegym.pig_farm.dto.projections.StorageDto;
 import vn.codegym.pig_farm.entity.Storage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Transactional
 public interface StorageRepository extends JpaRepository<Storage, Integer> {
 
-//    @Query(value = "select `storage`.id, `storage`.amount,`storage`.food_type, `storage`.`date`, `storage`.unit, `storage`.is_deleted from storage", nativeQuery = true)
-//    List<Storage> storagePage();
+    @Query(value = "select storage.id, storage.amount, storage.food_type, storage.date, storage.unit, storage.is_deleted from storage", nativeQuery = true)
+    List<Storage> storageList();
 
     /**
      * Created by: HoangDT
@@ -24,9 +25,11 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
      * Function: findAll
      */
 
-    @Query(value = " select storage.id, storage.amount,storage.food_type as foodType, storage.date, storage.unit from storage where food_type like :foodType and is_deleted = 0 ", nativeQuery = true,
-            countQuery = " select count(*) from (select * from storage where food_type like :foodType) temp_table ")
+
+    @Query(value = " select storage.id, storage.amount,storage.food_type as foodType, storage.date as date, storage.unit from storage where food_type like :foodType and is_deleted = 0 ", nativeQuery = true,
+            countQuery = " select count(*) from (select storage.id, storage.amount,storage.food_type as foodType, storage.date as date, storage.unit from storage where food_type like :foodType) temp_table ")
     Page<StorageDto> findAllStorage(Pageable pageable, @Param("foodType") String foodType);
+
 
     /**
      * Created by: HoangDT
@@ -57,8 +60,7 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
      * function: edit a Storage
      * @param amount
      */
-
-    @javax.transaction.Transactional
+    @Transactional
     @Modifying
     @Query(value = "update storage set amount = :amount where id = :id", nativeQuery = true)
     void updateAmountStorage(@Param("amount") Integer amount,@Param("id") Integer id);
