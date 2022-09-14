@@ -19,8 +19,9 @@ public class ExportService implements IExportService {
      * Create by: DongLHP
      * Date create: 08/09/2022
      * Function: get all export pork
-     * @Param: pageable
+     *
      * @return
+     * @Param: pageable
      */
     @Override
 
@@ -32,6 +33,7 @@ public class ExportService implements IExportService {
      * Create by: DongLHP
      * Date create: 08/09/2022
      * Function: delete export pork
+     *
      * @Param: export
      */
     @Override
@@ -56,6 +58,7 @@ public class ExportService implements IExportService {
                 exportDto.getPrice(),
                 exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram());
     }
+
     /**
      * Created by: HoaL
      * Date created: 08/09/2022
@@ -67,6 +70,7 @@ public class ExportService implements IExportService {
                  export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(),
                 export.getId());
     }
+
     /**
      * Created by: DongLHP
      * Date created: 08/09/2022

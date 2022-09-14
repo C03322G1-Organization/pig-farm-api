@@ -27,14 +27,18 @@ public class Export {
 
     private Integer amount;
 
+
     private Double price;
+
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
 
+
     @Column(columnDefinition = "BIT(1) default 0")
     private Integer typePigs;
+
 
     @Column(columnDefinition = "DATE")
     private LocalDate saleDate;

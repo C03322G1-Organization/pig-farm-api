@@ -12,7 +12,6 @@ import java.time.LocalDate;
  * return exportDto
  */
 public class ExportDto {
-
     @Size(min = 1, max = 50, message = "không quá 1-50 từ và không để trống")
     @NotBlank
     private String codeExport;
@@ -44,6 +43,7 @@ public class ExportDto {
     private LocalDate saleDate;
 
 
+
     public ExportDto() {
     }
 
@@ -51,6 +51,7 @@ public class ExportDto {
     public ExportDto(String codeExport, String company, Integer amount, Double kilogram,
                      Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted,
                      PigstyDto pigstyDto, EmployDto employDto) {
+
         this.codeExport = codeExport;
         this.company = company;
         this.amount = amount;
@@ -61,6 +62,7 @@ public class ExportDto {
         this.isDeleted = isDeleted;
         this.pigstyDto = pigstyDto;
         this.employDto = employDto;
+
     }
 
     public String getCodeExport() {
@@ -120,7 +122,6 @@ public class ExportDto {
         isDeleted = deleted;
     }
 
-
     public PigstyDto getPigstyDto() {
         return pigstyDto;
     }
@@ -140,7 +141,6 @@ public class ExportDto {
     public Integer getTypePigs() {
         return typePigs;
     }
-
     public void setTypePigs(Integer typePigs) {
         this.typePigs = typePigs;
     }

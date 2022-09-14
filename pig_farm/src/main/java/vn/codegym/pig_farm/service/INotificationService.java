@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import vn.codegym.pig_farm.dto.projections.NotificationDto;
 import vn.codegym.pig_farm.entity.Notification;
-
 import java.util.Optional;
 
 public interface INotificationService {
@@ -21,34 +20,6 @@ public interface INotificationService {
 
     Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 
-    /**
-     * Create by HuyenTN
-     * Date: 08/09/2022
-     * Create method findById
-     * @param id
-     * @return findById(Integer id)
-     */
-    Optional<Notification> findById(Integer id);
-
-    /**
-     * Create by HuyenTN
-     * Date: 08/09/2022
-     * Create method save
-     * @param notification
-     * @return save(Notification notification)
-     */
-
-    void save(Notification notification);
-
-    /**
-     * Create by HuyenTN
-     * Date: 08/09/2022
-     * Create method update
-     * @param notification
-     * @return save(Notification notification)
-     */
-
-    void update(Notification notification);
 
     /**
      * Create by HaiTV
@@ -59,8 +30,17 @@ public interface INotificationService {
      * @param pageable
      * @return
      */
-    Page<NotificationDto> findAll(String content, Pageable pageable);
+    Page<NotificationDto> findAllNotification(Pageable pageable, String content);
 
+    /**
+     * Create by HaiTV
+     * Date : 08/09/2022
+     * Find by id :Interface Notification
+     *
+     * @param id
+     * @return
+     */
+    Optional<Notification> findById(Integer id);
 
     /**
      * Create by HaiTV
@@ -70,4 +50,8 @@ public interface INotificationService {
      * @param ids
      */
     void delete(Integer[] ids);
+
+    void save(Notification notification);
+
+    void update(Notification notification);
 }
