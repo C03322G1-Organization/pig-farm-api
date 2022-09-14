@@ -29,15 +29,12 @@ import java.util.Optional;
 public class AdvertisementRestController {
     @Autowired
     private IAdvertisementService advertisementService;
+
     @Autowired
     private IPlacementService placementService;
+
     @Autowired(required = false)
     private ModelMapper modelMapper;
-
-    @GetMapping("/list")
-    public ResponseEntity<List<Advertisement>> findAll() {
-        return new ResponseEntity<>(advertisementService.findAllAdvertisement(), HttpStatus.OK);
-    }
 
     /**
      * Created by :ChungHV
@@ -86,11 +83,7 @@ public class AdvertisementRestController {
      */
     @PutMapping("/edit/{id}")
 
-    public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer
-                                                            id, @RequestBody @Valid vn.codegym.pig_farm.dto.AdvertisementDto advertisementDto, BindingResult bindingResult) {
-//        if(bindingResult.hasErrors()){
-//            return new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_FOUND);
-//        }
+    public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer id, @RequestBody @Valid vn.codegym.pig_farm.dto.AdvertisementDto advertisementDto, BindingResult bindingResult) {
 
         Optional<Advertisement> advertisementUpdate = advertisementService.findById(id);
         if (!advertisementUpdate.isPresent()) {
@@ -134,11 +127,8 @@ public class AdvertisementRestController {
      */
     @GetMapping("/page")
     public ResponseEntity<Page<AdvertisementDto>> findAllAdvertisement(@PageableDefault(value = 5) Pageable pageable,
-                                                                               Optional<String> keySearch) {
+                                                                       @RequestParam Optional<String> keySearch) {
         String title = keySearch.orElse("");
-        if (title.equals("null")) {
-            title = "";
-        }
         Page<AdvertisementDto> advertisementPage = advertisementService.findAllAdvertisement(pageable, title);
         if (advertisementPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

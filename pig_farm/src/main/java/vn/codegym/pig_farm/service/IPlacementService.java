@@ -14,5 +14,4 @@ public interface IPlacementService {
      * @return :List<Placement>
      */
     List<Placement> findAllPlacement();
-
 }

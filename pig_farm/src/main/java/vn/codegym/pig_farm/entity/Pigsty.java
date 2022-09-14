@@ -33,7 +33,6 @@ public class Pigsty {
 
     private Integer maxNumber;
 
-
     @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
 
