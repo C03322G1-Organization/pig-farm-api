@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -41,6 +42,7 @@ public class Employee {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
+
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
     private List<Pigsty> pigsties;
@@ -50,7 +52,9 @@ public class Employee {
     @JsonIgnore
     private List<Export> exports;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private AppUser user;
+    private AppUser appUser;
+
 }

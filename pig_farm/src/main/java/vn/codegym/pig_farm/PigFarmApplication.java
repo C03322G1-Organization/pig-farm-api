@@ -17,5 +17,4 @@ public class PigFarmApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(PigFarmApplication.class, args);
     }
-
 }

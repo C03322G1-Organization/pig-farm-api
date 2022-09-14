@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.PigstyDto;
 
@@ -39,8 +39,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -68,8 +68,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -99,8 +99,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -130,8 +130,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -160,8 +160,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -191,8 +191,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -220,8 +220,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -249,8 +249,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -278,8 +278,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -307,8 +307,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -336,8 +336,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(null);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -365,8 +365,8 @@ public class ExportRestController_updateExport {
         exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -422,8 +422,8 @@ public class ExportRestController_updateExport {
         exportDto.setPrice(10000.0);
         exportDto.setTypePigs(0);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 

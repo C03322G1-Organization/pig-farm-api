@@ -1,6 +1,5 @@
 package vn.codegym.pig_farm.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -15,20 +14,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "role")
-
 public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "VARCHAR(45)",name = "role_name")
+    @Column(columnDefinition = "VARCHAR(45)", name = "role_name")
     private String roleName;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
+
     @JsonBackReference
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "appRole")
     @JsonIgnore
     private List<UserRole> userRoles;
 }
