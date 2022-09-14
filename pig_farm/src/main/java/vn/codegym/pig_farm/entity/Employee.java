@@ -1,6 +1,5 @@
 package vn.codegym.pig_farm.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,10 +37,8 @@ public class Employee {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
-
 
     @OneToMany(mappedBy = "employee")
     @JsonIgnore
@@ -51,10 +48,8 @@ public class Employee {
     @JsonIgnore
     private List<Export> exports;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser appUser;
-
 }

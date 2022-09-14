@@ -71,7 +71,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      */
     @Query(value = "select * " +
             "from notification " +
-            "where title like %:keyword% and content like %:keyword% and is_deleted = 0",
+            "where title like %:keyword% and content like %:keyword% and is_deleted = 0 order by date_submitted dsc",
             nativeQuery = true)
     Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 
