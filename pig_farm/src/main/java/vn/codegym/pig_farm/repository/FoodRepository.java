@@ -28,12 +28,13 @@ public interface FoodRepository extends JpaRepository<Food, Integer> {
     @Query(value = " select f.id, f.amount,f.unit, f.is_deleted, f.pigsty_id,f.storage_id from food f " +
             " join pigsty p on p.id = f.pigsty_id " +
             " join storage s on s.id = f.storage_id " +
-            " where s.food_type like :foodType order by amount ,unit " , nativeQuery = true,
+            " where s.food_type like :foodType order by amount ,unit ", nativeQuery = true,
             countQuery = " select count(*) from ( select f.id,f.unit, f.amount, f.is_deleted, f.pigsty_id, f.storage_id from food f " +
                     " join pigsty p on p.id = f.pigsty_id " +
                     " join storage s on s.id = f.storage_id " +
                     " where s.food_type like :foodType  order by amount, unit) temp ")
     Page<Food> getAllFood(Pageable pageable, @Param("foodType") String foodType);
+
 
     /**
      * Create by: HungNV

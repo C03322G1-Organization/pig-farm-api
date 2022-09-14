@@ -15,6 +15,7 @@ public class Food {
     private Integer id;
 
     private Integer amount;
+
     @Column(columnDefinition = "VARCHAR(15)")
     private String unit;
     @ManyToOne
