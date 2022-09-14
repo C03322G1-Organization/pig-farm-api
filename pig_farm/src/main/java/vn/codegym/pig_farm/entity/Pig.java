@@ -31,20 +31,17 @@ public class Pig {
     @Column(columnDefinition = "VARCHAR(20)")
     private String status;
 
-    @Column(columnDefinition = "VARCHAR(20)")
+    @Column
     private String weight;
 
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
+    @Column
     private Boolean isDeleted = false;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "pig")
     @JsonIgnore
     private List<Treatment> treatments;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "pigsty_id", referencedColumnName = "id")
     private Pigsty pigsty;
-
 }

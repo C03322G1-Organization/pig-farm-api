@@ -8,7 +8,6 @@ import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.repository.PigRepository;
 import vn.codegym.pig_farm.service.IPigService;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,9 +15,6 @@ public class PigService implements IPigService {
     @Autowired
     private PigRepository pigRepository;
 
-    public List<Pig> findAll() {
-        return pigRepository.findAll();
-    }
     /**
      * Created by: DatVT
      * Date created: 08/09/2022
@@ -28,6 +24,7 @@ public class PigService implements IPigService {
     public Pig findById(Integer id) {
         return pigRepository.findByIdPig(id);
     }
+
     /**
      * Created by: DatVT
      * Date created: 08/09/2022
@@ -44,22 +41,31 @@ public class PigService implements IPigService {
                 pig.getPigsty().getId());
 
     }
+
     /**
      * Created by: DatVT
      * Date created: 08/09/2022
      * Function: updatePig
      */
     @Override
-    public void updatePig(Integer id,Pig pig) {
+    public void updatePig(Integer id, Pig pig) {
         pigRepository.updatePig(
                 pig.getCode(),
-               pig.getDateIn(),
+                pig.getDateIn(),
                 pig.getDateOut(),
                 pig.getStatus(),
                 pig.getWeight(),
                 pig.getPigsty(),
                 pig.getId());
     }
+
+    @Override
+    public Integer quantity(Integer id) {
+        return pigRepository.countPigOnPigsty(id);
+    }
+
+
+
 
     /**
      * @param pageable
@@ -74,7 +80,7 @@ public class PigService implements IPigService {
 
     @Override
     public Page<Pig> findAllPig(Pageable pageable, String code, String dateIn, String status) {
-        return pigRepository.findAllPig(pageable, "%" + code + "%","%" + dateIn + "%", "%" + status + "%");
+        return pigRepository.findAllPig(pageable, "%" + code + "%", "%" + dateIn + "%", "%" + status + "%");
     }
 
     /**

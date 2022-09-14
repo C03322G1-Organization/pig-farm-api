@@ -21,6 +21,8 @@ import java.time.LocalDate;
 public class NotificationDto implements Validator {
     private Integer id;
     @NotBlank(message = "Vui lòng không để trống")
+    private String title;
+    @NotBlank(message = "Vui lòng không để trống")
     @Size(max = 1000, message = "Nội dung không quá 1000 kí tự")
     private String content;
     private LocalDate submittedDate;

@@ -1,5 +1,9 @@
 package vn.codegym.pig_farm.dto;
-import javax.validation.constraints.*;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
@@ -9,7 +13,6 @@ import java.time.LocalDate;
  */
 public class TreatmentDto {
     private Integer id;
-
 
     private LocalDate date;
 
@@ -24,6 +27,7 @@ public class TreatmentDto {
 
 
     @NotBlank(message = "khong duoc de trong")
+    @Size(min = 3, max = 50)
     private String medicine;
 
     @NotNull
@@ -31,16 +35,10 @@ public class TreatmentDto {
     private Integer amount;
 
     private Boolean isDeleted;
-private PigDto pigDto;
+    @NotNull
+    private PigDto pigDto;
+
     public TreatmentDto() {
-    }
-
-    public PigDto getPigDto() {
-        return pigDto;
-    }
-
-    public void setPigDto(PigDto pigDto) {
-        this.pigDto = pigDto;
     }
 
     public Integer getId() {
@@ -97,5 +95,13 @@ private PigDto pigDto;
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public PigDto getPigDto() {
+        return pigDto;
+    }
+
+    public void setPigDto(PigDto pigDto) {
+        this.pigDto = pigDto;
     }
 }

@@ -12,30 +12,40 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.PigDto;
 import vn.codegym.pig_farm.entity.Pig;
+import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.service.IPigService;
+import vn.codegym.pig_farm.service.IPigstyService;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pig")
+@RequestMapping("/api/pig")
 @CrossOrigin
 public class PigRestController {
 
     @Autowired
     private IPigService pigService;
+    @Autowired
+    private IPigstyService pigstyService;
 
     @Autowired
     private ModelMapper modelMapper;
 
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Pig>> findAll() {
-        if (pigService.findAll().isEmpty()) {
-            return new ResponseEntity<>(pigService.findAll(), HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(pigService.findAll(), HttpStatus.OK);
+    /**
+     * Create by: DatVT
+     * Date Create: 08/09/2022
+     * function: Quantity item in pig
+     *
+     * @param id
+     */
+
+    @GetMapping("/quantity")
+    public ResponseEntity<Integer> getQuantityPigsty(@RequestParam Integer id) {
+        Integer quantity = pigService.quantity(id);
+        return new ResponseEntity<>(quantity, HttpStatus.OK);
     }
 
     /**
@@ -43,15 +53,15 @@ public class PigRestController {
      * Date Create: 08/09/2022
      * function: Create item in pig
      *
-     * @param pigDto
+     * @param pigDTO
      */
     @PostMapping("/create")
-    public ResponseEntity<?> createPig(@RequestBody @Valid PigDto pigDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.BAD_REQUEST);
-        }else {
+    public ResponseEntity<?> createPig(@RequestBody @Valid PigDto pigDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.BAD_REQUEST);
+        } else {
             Pig pig = new Pig();
-            BeanUtils.copyProperties(pigDto, pig);
+            BeanUtils.copyProperties(pigDTO, pig);
             pigService.createPig(pig);
             return new ResponseEntity<>(pig, HttpStatus.CREATED);
         }
@@ -63,20 +73,11 @@ public class PigRestController {
      * function: Update item in pig
      */
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updatePig(@PathVariable("id") Integer id,
-                                       @RequestBody @Valid PigDto pigDTO) {
+    public ResponseEntity<?> updatePig(@PathVariable("id") Integer id, @RequestBody @Valid PigDto pigDTO) {
         Pig pig = modelMapper.map(pigDTO, Pig.class);
         pigService.updatePig(id, pig);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-//        Pig pig1 = pigService.findById(id);
-//        if (pig1 == null) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        } else {
-//            pigService.updatePig(pig);
-//            return new ResponseEntity<>(pig1, HttpStatus.OK);
-//        }
 
     /**
      * @param pageable
@@ -90,10 +91,7 @@ public class PigRestController {
      */
 
     @GetMapping("/page")
-    public ResponseEntity<Page<Pig>> listAll(@PageableDefault(5) Pageable pageable,
-                                             @RequestParam Optional<String> codeSearch,
-                                             @RequestParam Optional<String> dateInSearch,
-                                             @RequestParam Optional<String> statusSearch) {
+    public ResponseEntity<Page<Pig>> listAll(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> codeSearch, @RequestParam Optional<String> dateInSearch, @RequestParam Optional<String> statusSearch) {
         {
             String code = codeSearch.orElse("");
             String dateIn = dateInSearch.orElse("");
@@ -131,5 +129,38 @@ public class PigRestController {
         }
         pigService.deletePigById(pig.get());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: DatVT
+     * Date Create: 13/09/2022
+     * funtion: findById item in pig
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/list/{id}")
+    public ResponseEntity<Pig> findById(@PathVariable("id") Integer id) {
+        Pig pig = pigService.findById(id);
+        if (pig == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(pig, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: DatVT
+     * Date Create: 13/09/2022
+     * funtion: findAllPigsty item in pigsty
+     *
+     * @return
+     */
+    @GetMapping(value = "list/pigsty")
+    public ResponseEntity<List<Pigsty>> getListPigsty() {
+        List<Pigsty> pigsty = pigstyService.listPigsty();
+        if (pigsty.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(pigsty, HttpStatus.OK);
     }
 }

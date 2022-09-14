@@ -2,8 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.ExportDto;
-import vn.codegym.pig_farm.dto.IExportDto;
+import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Export;
 
 public interface IExportService {
@@ -15,7 +14,9 @@ public interface IExportService {
      * @Param: pageable
      * @return
      */
-    Page<IExportDto> listAll(Pageable pageable, String codeExport, String company);
+
+    Page<ExportDto> listAll(Pageable pageable, String codeExport, String company, String nameEmployee);
+
 
     /**
      * Create by: DongLHP
@@ -23,7 +24,7 @@ public interface IExportService {
      * Function: delete export pork
      * @Param: export
      */
-    void delete(Export export);
+    void delete(Integer[] ids);
 
 
     /**
@@ -31,7 +32,7 @@ public interface IExportService {
      * Date created: 08/09/2022
      * Function: create
      */
-    void create(ExportDto exportDto);
+    void create(vn.codegym.pig_farm.dto.ExportDto exportDto);
 
     /**
      * Created by: HoaL

@@ -2,7 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.codegym.pig_farm.dto.IVaccinationDto;
+import vn.codegym.pig_farm.dto.projections.VaccinationDto;
 import vn.codegym.pig_farm.entity.Vaccination;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public interface IVaccinationService {
      * @date-create 08/09/2022
      */
 
-    Page<IVaccinationDto> getAll(Pageable pageable, String name);
+    Page<VaccinationDto> getAll(Pageable pageable, String name);
 
     /**
      * @param ids
@@ -26,14 +26,19 @@ public interface IVaccinationService {
      * @creator TamLT
      * @date-create 08/09/2022
      */
-//    void delete(Integer[] ids);
 
-    void delete(Integer ids);
+    void delete(Integer[] ids);
 
-    Optional<IVaccinationDto> findByIdVac(Integer id);
+    Optional<VaccinationDto> findByIdVac(Integer id);
 
     List<Vaccination> findAll();
 
+    /**
+     * @return Create Vaccination, status 200
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     void saveVaccination(Vaccination vaccination);
 
 }

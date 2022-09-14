@@ -33,5 +33,17 @@ out/
 /nbdist/
 /.nb-gradle/
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+### VS Code ##
+=======
 ### VS Code ###
+>>>>>>> origin/contact-PhucND
+=======
+### VS Code ###
+>>>>>>> origin/food-HoanTV
+=======
+### VS Code ###
+>>>>>>> origin/notification-HaiTV
 .vscode/
