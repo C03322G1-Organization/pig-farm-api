@@ -25,7 +25,7 @@ public class TreatmentService implements ITreatmentService {
      */
     @Override
     public Page<ITreatmentDto> getAllTreatment(Pageable pageable, String keySearch) {
-        System.out.printf("--------------- "+keySearch+" ---------------");
+        System.err.printf("--------------- "+keySearch+" ---------------");
         return treatmentRepository.getAllTreatment( pageable,"%" + keySearch + "%");
     }
 
@@ -40,6 +40,12 @@ public class TreatmentService implements ITreatmentService {
         treatmentRepository.deleteByIdTreatment(id);
     }
 
+    /**
+     * Create by ThuanT
+     * Date create: 08/09/2022
+     * Override method findById
+     * @return
+     */
     @Override
     public Treatment findById(int id) {
         return treatmentRepository.findByIdTreatment(id);

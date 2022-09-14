@@ -27,5 +27,12 @@ public interface ITreatmentService {
      */
     void deleteByIdTreatment(int id);
 
+    /**
+     * Create by ThuanT
+     * Date create: 08/09/2022
+     * create method findById
+     * @return
+     * @param id
+     */
     Treatment findById(int id);
 }
