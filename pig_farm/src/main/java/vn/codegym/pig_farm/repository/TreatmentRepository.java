@@ -24,8 +24,18 @@ public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
      *
      * @return
      */
-    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine," + " p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + "where t.is_deleted = 0 and pt.code like :keySearch", nativeQuery = true)
-    Page<TreatmentDto> getAllTreatment(Pageable pageable, @Param("keySearch") String keySearch);
+
+    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine,p.code as pigCode, pt.code as pigstyCode" +
+            " FROM Treatment t JOIN pig p ON t.pig_id = p.id" +
+            " JOIN pigsty pt ON p.pigsty_id = pt.id " +
+            "where t.is_deleted = 0 and pt.code like :keySearch", nativeQuery = true,
+            countQuery = "select count(*) from(SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, p.code as pigCode, pt.code as pigstyCode" +
+                    " FROM Treatment t " +
+                    " JOIN pig p ON t.pig_id = p.id" +
+                    " JOIN pigsty pt ON p.pigsty_id = pt.id " +
+                    " where t.is_deleted = 0 and pt.code like :keySearch) as abc ")
+    Page<TreatmentDto> getAllTreatment(Pageable pageable,@Param("keySearch")  String keySearch);
+
 
     /**
      * Create by ThuanT

@@ -33,7 +33,7 @@ public class TreatmentRestController {
      * @return HttpStatus.OK : Http 200: ResponseEntity
      */
     @PostMapping("/create")
-    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto){
+    public ResponseEntity<List<FieldError>> createTreatment(@RequestBody @Valid TreatmentDto treatmentDto) {
         Treatment treatment = new Treatment();
         BeanUtils.copyProperties(treatmentDto, treatment);
 
