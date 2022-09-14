@@ -1,16 +1,12 @@
 package vn.codegym.pig_farm.dto;
 
-import vn.codegym.pig_farm.entity.AppUser;
+import lombok.Data;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
-
-public class EmployeeDto {
-    /**
-     * Created by: HoaL
-     * Date created: 09/09/2022
-     * Function: EmployeeDto
-     * return employeeDto
-     */
+@Data
+public class EmployeeDto implements Validator {
     private Integer id;
     private String code;
     private String name;
@@ -18,72 +14,14 @@ public class EmployeeDto {
     private String gender;
     private String idCard;
     private String image;
-    private AppUser user;
+    private Boolean isDeleted;
 
-    public EmployeeDto() {
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(LocalDate birthDay) {
-        this.birthDay = birthDay;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public AppUser getUser() {
-        return user;
-    }
-
-    public void setUser(AppUser user) {
-        this.user = user;
+    @Override
+    public void validate(Object target, Errors errors) {
     }
 }

@@ -23,8 +23,9 @@ public class ExportService implements IExportService {
      * @return
      */
     @Override
-    public Page<ExportDto> listAll(Pageable pageable, String codeExport, String company) {
-        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%");
+
+    public Page<ExportDto> listAll(Pageable pageable, String codeExport, String company, String nameEmployee) {
+        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%" , "%" +  nameEmployee + "%");
     }
 
     /**
@@ -34,8 +35,10 @@ public class ExportService implements IExportService {
      * @Param: export
      */
     @Override
-    public void delete(Export export) {
-      iExportRepository.deleteByStatus(export.getId());
+    public void delete(Integer[] ids) {
+        for (Integer id: ids) {
+            iExportRepository.deleteByStatus(id);
+        }
     }
 
 
@@ -68,7 +71,6 @@ public class ExportService implements IExportService {
      * Created by: HoaL
      * Date created: 08/09/2022
      * Function: findById
->>>>>>> export-port-HoaL
      */
     @Override
     public Export findById(int id) {

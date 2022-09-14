@@ -22,7 +22,7 @@ public class AppRole {
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR(45)",name = "role_name")
-    private String name;
+    private String roleName;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
