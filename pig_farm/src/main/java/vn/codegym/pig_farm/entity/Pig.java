@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,11 +31,11 @@ public class Pig {
     @Column(columnDefinition = "VARCHAR(20)")
     private String status;
 
-    @Column(columnDefinition = "VARCHAR(20)")
+    @Column
     private String weight;
 
-    @Column(columnDefinition = "BIT")
-    private Boolean isDeleted;
+    @Column
+    private Boolean isDeleted = false;
 
     @OneToMany(mappedBy = "pig")
     @JsonIgnore

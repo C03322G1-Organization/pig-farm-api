@@ -4,7 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import vn.codegym.pig_farm.entity.Employee;
-import vn.codegym.pig_farm.dto.projection.EmployeeDto;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,38 @@ public interface IEmployeeService {
      */
     List<Employee> getAllEmployee();
 
+    /**
+     * @return List Employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    List<Employee> findAll();
+
+    /**
+     * @param employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    void save(Employee employee);
+
+    /**
+     * @param id
+     * @return Employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    Optional<Employee> findById(Integer id);
+
+    /**
+     * @param employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    void edit(Employee employee);
     /**
      * @Creator HungNQ
      * @Date 12/09/2022

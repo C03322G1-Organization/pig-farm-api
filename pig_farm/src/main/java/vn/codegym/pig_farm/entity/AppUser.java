@@ -1,10 +1,10 @@
 package vn.codegym.pig_farm.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user")
 public class AppUser {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,16 +31,15 @@ public class AppUser {
     @Column(columnDefinition = "DATE")
     private LocalDate creationDate;
 
-    @Column(columnDefinition = "BIT")
+    @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
-    @OneToOne(mappedBy = "appUser")
+
     @JsonIgnore
+    @OneToOne(mappedBy = "appUser")
     private Employee employee;
 
     @OneToMany(mappedBy = "appUser")
     @JsonIgnore
     private List<UserRole> userRoles;
-
-
 }
