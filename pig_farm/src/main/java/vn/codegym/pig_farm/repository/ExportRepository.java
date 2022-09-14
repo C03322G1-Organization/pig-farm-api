@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.PigstyDto;
 import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Export;
@@ -110,7 +112,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Query(value = "update `export` set pigsty_id = :pigstyId,employee_id = :employeeId,code_export = :codeExport,company = :company," +
             "price = :price,type_pigs = :typePigs, amount = :amount, kilogram = :kilogram where id = :id",
             nativeQuery = true)
-    void update(@Param("pigstyId") Pigsty pigstyId, @Param("employeeId") Employee employeeId,
+    void update(@Param("pigstyId") PigstyDto pigstyId, @Param("employeeId") EmployeeDto employeeId,
                 @Param("codeExport") String codeExport, @Param("company") String company,
                 @Param("price") Double price,
                 @Param("typePigs") Integer typePigs,
@@ -123,7 +125,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      * Function: findById
      */
     @Query(value = "select * from export where id = :id", nativeQuery = true)
-    Export findById(@Param("id") int id);
+    vn.codegym.pig_farm.dto.ExportDto findById(@Param("id") int id);
 
     /**
      * Created by: HoaL
