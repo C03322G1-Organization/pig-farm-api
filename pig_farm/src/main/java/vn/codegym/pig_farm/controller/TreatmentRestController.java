@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/treatment/v1")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TreatmentRestController {
     @Autowired
     private ITreatmentService treatmentService;
@@ -73,7 +73,7 @@ public class TreatmentRestController {
     public ResponseEntity<Void> deleteTreatment(@PathVariable String id) {
         try {
             Integer.parseInt(id);
-            Treatment treatment = treatmentService.findById(Integer.parseInt(id));
+            TreatmentDto treatment = treatmentService.findById(Integer.parseInt(id));
             if (treatment == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

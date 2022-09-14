@@ -72,3 +72,4 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
     @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, t.pig_id" + " from Treatment t where t.id = :id and t.is_deleted = 0 ", nativeQuery = true)
     Treatment findByIdTreatment(@Param("id") int id);
 }
+
