@@ -31,7 +31,6 @@ public class PigRestController {
     @Autowired
     private ModelMapper modelMapper;
 
-
     @GetMapping("/list")
     public ResponseEntity<List<Pig>> findAll() {
         if (pigService.findAll().isEmpty()) {

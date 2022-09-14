@@ -19,7 +19,6 @@ import java.util.List;
  * Entity: Storage
  */
 
-
 @Entity
 @Data
 @NoArgsConstructor

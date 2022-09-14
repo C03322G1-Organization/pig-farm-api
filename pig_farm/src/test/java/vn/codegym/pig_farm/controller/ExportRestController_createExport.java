@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.ExportDto;
 import vn.codegym.pig_farm.dto.PigstyDto;
 
@@ -37,11 +37,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -68,11 +68,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -102,11 +102,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -133,12 +133,12 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
-        exportDto.setEmployeeDto(employeeDto);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
+        exportDto.setEmployeeDto(employDto);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
         exportDto.setPigstyDto(pigstyDto);
@@ -166,11 +166,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -197,11 +197,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(-10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -231,8 +231,8 @@ public class ExportRestController_createExport {
         exportDto.setTypePigs(null);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -251,6 +251,33 @@ public class ExportRestController_createExport {
      * Date created: 09/09/2022
      * Function: createExport_typePigs_14
      */
+<<<<<<< HEAD
+//    @Test
+//    public void createExport_typePigs_14() throws Exception {
+//
+//        ExportDto exportDto = new ExportDto();
+//        exportDto.setCodeExport("MC01");
+//        exportDto.setCompany("nha dong");
+//        exportDto.setAmount(10);
+//        exportDto.setKilogram(30.0);
+//        exportDto.setPrice(30.0);
+//        exportDto.setTypePigs("");
+//        exportDto.setDeleted(false);
+//
+//        EmployeeDto employeeDto = new EmployeeDto();
+//        employeeDto.setId(1);
+//        PigstyDto pigstyDto = new PigstyDto();
+//        pigstyDto.setId(1);
+//
+//        this.mockMvc
+//                .perform(MockMvcRequestBuilders
+//                        .post("/export/create")
+//                        .content(this.objectMapper.writeValueAsString(exportDto))
+//                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+//                .andDo(print())
+//                .andExpect(status().is4xxClientError());
+//    }
+=======
     @Test
     public void createExport_typePigs_14() throws Exception {
 
@@ -260,11 +287,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -276,6 +303,7 @@ public class ExportRestController_createExport {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+>>>>>>> origin/export-port-management
 
     /**
      * Created by: HoaL
@@ -291,11 +319,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -322,11 +350,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -353,11 +381,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(-30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 
@@ -384,11 +412,11 @@ public class ExportRestController_createExport {
         exportDto.setAmount(10);
         exportDto.setKilogram(30.0);
         exportDto.setPrice(30.0);
-        exportDto.setTypePigs("Lon thit");
+        exportDto.setTypePigs(0);
         exportDto.setDeleted(false);
 
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setId(1);
+        EmployDto employDto = new EmployDto();
+        employDto.setId(1);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
 

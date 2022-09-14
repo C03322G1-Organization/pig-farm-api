@@ -26,14 +26,19 @@ public interface IVaccinationService {
      * @creator TamLT
      * @date-create 08/09/2022
      */
-//    void delete(Integer[] ids);
 
-    void delete(Integer ids);
+    void delete(Integer[] ids);
 
     Optional<VaccinationDto> findByIdVac(Integer id);
 
     List<Vaccination> findAll();
 
+    /**
+     * @return Create Vaccination, status 200
+     * @function (Create vaccination schedule)
+     * @creator DamTN
+     * @date-create 08/09/2022
+     */
     void saveVaccination(Vaccination vaccination);
 
 }

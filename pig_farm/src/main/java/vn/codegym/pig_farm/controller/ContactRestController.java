@@ -14,13 +14,14 @@ import vn.codegym.pig_farm.entity.Contact;
 import vn.codegym.pig_farm.service.IContactService;
 
 import javax.validation.Valid;
+import java.util.Map;
 import java.util.Optional;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/contact")
-public class ContactRestController {
+public class  ContactRestController {
     @Autowired
-    private IContactService iContactService;
+    private IContactService contactService;
 
     /**
      * Create by PhucND
@@ -37,7 +38,7 @@ public class ContactRestController {
         } else {
             Contact contact = new Contact();
             BeanUtils.copyProperties(contactDto, contact);
-            iContactService.save(contact);
+            contactService.save(contact);
             return new ResponseEntity<>(contact, HttpStatus.CREATED);
         }
     }
@@ -47,26 +48,18 @@ public class ContactRestController {
      * Date create: 08/09/2022
      * function: findAll Contact
      */
-    @CrossOrigin()
     @GetMapping("/page")
     public ResponseEntity<Page<Contact>> findAllContact(@PageableDefault(value = 5) Pageable pageable,
-                                                        Optional<String> nameSearch,
-                                                        Optional<String> contentSearch) {
+                                                        Optional<String> nameSearch) {
         String name = nameSearch.orElse("");
-        String content = contentSearch.orElse("");
         if (name.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         }
-        if (content.equals("null")) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        Page<Contact> contactPage = iContactService.getAll(pageable,name,content);
+        Page<Contact> contactPage = contactService.getAll(pageable,name);
         if (contactPage.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contactPage,HttpStatus.OK);
-
     }
 
     /**
@@ -76,7 +69,7 @@ public class ContactRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Contact> findById(@PathVariable Integer id) {
-        Contact contact = iContactService.findByIdContact(id);
+        Contact contact = contactService.findByIdContact(id);
         if (contact == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -87,9 +80,10 @@ public class ContactRestController {
      * Date created: 08/09/2022
      * function: delete Contact
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteContact(@PathVariable("id") Integer id) {
-        iContactService.deleteContact(id);
+    @PostMapping("/delete")
+    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+        System.out.println(111);
+        contactService.deleteContact(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

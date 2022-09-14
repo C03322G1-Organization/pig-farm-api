@@ -19,23 +19,28 @@ public class ExportService implements IExportService {
      * Create by: DongLHP
      * Date create: 08/09/2022
      * Function: get all export pork
-     * @Param: pageable
+     *
      * @return
+     * @Param: pageable
      */
     @Override
-    public Page<ExportDto> listAll(Pageable pageable, String codeExport, String company) {
-        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%");
+
+    public Page<ExportDto> listAll(Pageable pageable, String codeExport, String company, String nameEmployee) {
+        return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%" , "%" +  nameEmployee + "%");
     }
 
     /**
      * Create by: DongLHP
      * Date create: 08/09/2022
      * Function: delete export pork
+     *
      * @Param: export
      */
     @Override
-    public void delete(Export export) {
-      iExportRepository.deleteByStatus(export.getId());
+    public void delete(Integer[] ids) {
+        for (Integer id: ids) {
+            iExportRepository.deleteByStatus(id);
+        }
     }
 
 
@@ -51,8 +56,9 @@ public class ExportService implements IExportService {
                 exportDto.getCodeExport(),
                 exportDto.getCompany(),
                 exportDto.getPrice(),
-                exportDto.getTypePigs());
+                exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram());
     }
+
     /**
      * Created by: HoaL
      * Date created: 08/09/2022
@@ -61,17 +67,19 @@ public class ExportService implements IExportService {
     @Override
     public void update(Export export) {
         iExportRepository.update(export.getPigsty(), export.getEmployee(), export.getCodeExport(), export.getCompany(),
-                 export.getPrice(), export.getTypePigs(),
+                 export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(),
                 export.getId());
     }
+
     /**
-     * Created by: HoaL
+     * Created by: DongLHP
      * Date created: 08/09/2022
      * Function: findById
->>>>>>> export-port-HoaL
      */
     @Override
     public Export findById(int id) {
         return iExportRepository.findById(id);
     }
+
+
 }

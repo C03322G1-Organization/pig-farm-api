@@ -11,8 +11,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Export;
+import vn.codegym.pig_farm.repository.ExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,9 +35,13 @@ public class ExportRestController {
      * @param: pageable
      */
     @GetMapping("/page")
-    public ResponseEntity<Page<ExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable, Optional<String> codeExport, Optional<String> company) {
+    public ResponseEntity<Page<ExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable,
+                                                          Optional<String> codeExport,
+                                                          Optional<String> company,
+                                                          Optional<String> nameEmployee) {
         String code = codeExport.orElse("");
         String company1 = company.orElse("");
+        String nameEmployee1 = nameEmployee.orElse("");
         if (code.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -43,7 +49,12 @@ public class ExportRestController {
         if (company1.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1);
+
+        if (nameEmployee1.equals("null")) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1,nameEmployee1);
+
         if (contactPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -58,16 +69,10 @@ public class ExportRestController {
      *
      * @return HttpStatus.NOT_FOUND
      * @return HttpStatus.OK
-     * @param: id
      */
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Export> deleteExport(@PathVariable("id") Integer id) {
-
-        Export export = iExportService.findById(id);
-        if (export == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        iExportService.delete(export);
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteExport(@RequestBody Map<String, Integer[]> ids){
+        iExportService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -108,7 +113,17 @@ public class ExportRestController {
         export1.setCompany(export.getCompany());
         export1.setPrice(export.getPrice());
         export1.setTypePigs(export.getTypePigs());
+        export1.setAmount(export.getAmount());
+        export1.setKilogram(export.getKilogram());
         iExportService.update(export1);
         return new ResponseEntity<>(export1, HttpStatus.OK);
     }
+    @Autowired
+    private ExportRepository exportRepository;
+    @GetMapping("/totalWeightCount/{id}")
+    private ResponseEntity<Object[]> totalWeightCount(@PathVariable("id") Integer id) {
+        Object[] temp = {(exportRepository.countPigOnPigsty(id)),exportRepository.totalWeight(id)};
+       return new ResponseEntity<>(temp,HttpStatus.OK);
+    }
+
 }

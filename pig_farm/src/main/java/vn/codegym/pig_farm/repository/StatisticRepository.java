@@ -3,10 +3,9 @@ package vn.codegym.pig_farm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import org.springframework.data.repository.query.Param;
-import vn.codegym.pig_farm.dto.projections.StatisticByMonth;
-import vn.codegym.pig_farm.dto.projections.StatisticByYear;
+import vn.codegym.pig_farm.dto.projections.StatisticByMonthDto;
+import vn.codegym.pig_farm.dto.projections.StatisticByYearDto;
 import vn.codegym.pig_farm.entity.Export;
 
 import javax.transaction.Transactional;
@@ -29,12 +28,14 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
             "sum(amount) as amount, " +
             "month(start_date) as `month`, " +
             "year(start_date) as `year`, " +
-            "concat(month(start_date),'/', year(start_date)) as `time` " +
+            "concat(month(start_date),'/', year(start_date), '-' ,company) as `time` " +
             "from `export` " +
             "where (start_date > date(:starTime)) " +
             "and (start_date < date(:endTime)) " +
-            "and type_pigs = :type group by `time`", nativeQuery = true)
-    List<StatisticByMonth> getStatisticByMonth(@Param("starTime") String starTime, @Param("endTime") String endTime,  @Param("type") Integer type);
+            "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
+    List<StatisticByMonthDto> getStatisticByMonth(@Param("starTime") String starTime,
+                                                  @Param("endTime") String endTime,
+                                                  @Param("type") String type);
 
     /**
      * Created by: ToanNH
@@ -49,12 +50,14 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
             "company as company, " +
             "sum(amount) as amount, " +
             "year(start_date) as `year`, " +
-            "concat(company,'/', year(start_date)) as `groupD` " +
+            "concat(year(start_date),'-', company) as `time` " +
             "from `export` " +
             "where (start_date > date(:starTime)) " +
             "and (start_date < date(:endTime)) " +
-            "and type_pigs =:type group by groupD", nativeQuery = true)
-    List<StatisticByYear> getStatisticByYear(@Param("starTime") String starTime, @Param("endTime") String endTime, @Param("type") Integer type);
+            "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
+    List<StatisticByYearDto> getStatisticByYear(@Param("starTime") String starTime,
+                                                @Param("endTime") String endTime,
+                                                @Param("type") String type);
 
     /**
      * Created by: ToanNH
@@ -70,13 +73,16 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
             "sum(amount) as amount, " +
             "month(start_date) as `month`, " +
             "year(start_date) as `year`, " +
-            "concat(month(start_date),'/', year(start_date)) as `time` " +
+            "concat(month(start_date),'/', year(start_date), '-' ,company) as `time` " +
             "from `export` " +
             "where (start_date > date(:starTime)) " +
-            "and company like %:company% " +
+            "and company = :company " +
             "and (start_date < date(:endTime)) " +
-            "and type_pigs = :type group by `time`", nativeQuery = true)
-    List<StatisticByMonth> getStatisticByMonthAndCompany(@Param("starTime") String starTime, @Param("endTime") String endTime,  @Param("type") Integer type, @Param("company") String company);
+            "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
+    List<StatisticByMonthDto> getStatisticByMonthAndCompany(@Param("starTime") String starTime,
+                                                            @Param("endTime") String endTime,
+                                                            @Param("type") String type,
+                                                            @Param("company") String company);
 
     /**
      * Created by: ToanNH
@@ -92,12 +98,27 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
             "sum(amount) as amount, " +
             "month(start_date) as `month`, " +
             "year(start_date) as `year`, " +
-            "concat(month(start_date),'/', year(start_date)) as `time` " +
+            "concat(year(start_date), '-' ,company) as `time` " +
             "from `export` " +
             "where (start_date > date(:starTime)) " +
             "and company like %:company% " +
             "and (start_date < date(:endTime)) " +
-            "and type_pigs = :type group by `time`", nativeQuery = true)
-    List<StatisticByYear> getStatisticByYearAndCompany(@Param("starTime") String starTime, @Param("endTime") String endTime,  @Param("type") Integer type, @Param("company") String company);
+            "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
+    List<StatisticByYearDto> getStatisticByYearAndCompany(@Param("starTime") String starTime,
+                                                          @Param("endTime") String endTime,
+                                                          @Param("type") String type,
+                                                          @Param("company") String company);
+
+
+    /**
+     * Created by: ToanNH
+     * Date created: 13/9/2022
+     * function: Get list company.
+     *
+     * @return List<String> or null
+     */
+
+    @Query(value = "select company from `export` group by company", nativeQuery = true)
+    List<String> getListCompany();
 }
 
