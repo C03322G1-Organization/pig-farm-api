@@ -1,9 +1,11 @@
 package vn.codegym.pig_farm.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,9 +35,11 @@ public class Pig {
     private String weight;
 
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "pig")
+    @JsonIgnore
     private List<Treatment> treatments;
 
     @ManyToOne

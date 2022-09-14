@@ -1,7 +1,4 @@
 package vn.codegym.pig_farm.dto;
-
-import lombok.Builder;
-
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
@@ -27,7 +24,6 @@ public class TreatmentDto {
 
 
     @NotBlank(message = "khong duoc de trong")
-    @Size(min = 3, max = 50)
     private String medicine;
 
     @NotNull
@@ -35,10 +31,16 @@ public class TreatmentDto {
     private Integer amount;
 
     private Boolean isDeleted;
-    @NotNull
-    private PigDto pigDto;
-
+private PigDto pigDto;
     public TreatmentDto() {
+    }
+
+    public PigDto getPigDto() {
+        return pigDto;
+    }
+
+    public void setPigDto(PigDto pigDto) {
+        this.pigDto = pigDto;
     }
 
     public Integer getId() {
@@ -95,13 +97,5 @@ public class TreatmentDto {
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
-    }
-
-    public PigDto getPigDto() {
-        return pigDto;
-    }
-
-    public void setPigDto(PigDto pigDto) {
-        this.pigDto = pigDto;
     }
 }

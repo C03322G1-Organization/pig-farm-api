@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
@@ -29,12 +28,11 @@ public class Advertisement {
     @Column(columnDefinition = "VARCHAR(50)")
     private String timeExistence;
 
-    @OneToMany(mappedBy = "advertisement")
-    private List<Placement> placements;
+    @ManyToOne
+    @JoinColumn(name = "placement_id", referencedColumnName = "id")
+    private Placement placement;
 
 
-    @Column(columnDefinition = "BIT(1) DEFAULT 0")
-
+    @Column(columnDefinition = "BIT(1) default 0")
     private Boolean isDeleted;
-
 }

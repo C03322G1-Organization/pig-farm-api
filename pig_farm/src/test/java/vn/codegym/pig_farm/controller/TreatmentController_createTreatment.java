@@ -10,9 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import vn.codegym.pig_farm.dto.PigDto;
 import vn.codegym.pig_farm.dto.TreatmentDto;
-
-import java.time.LocalDate;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -65,7 +62,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_date_14() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("");
+//        treatmentDto.setDate("");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -93,7 +90,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_date_15() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(22);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate('2000-02-02');
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -122,7 +119,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_doctor_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor(null);
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -151,7 +148,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_doctor_14() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -180,7 +177,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_doctor_16() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("a");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -209,7 +206,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_doctor_17() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("nguyen van a nguyen van a nguyen van a nguyen van a nguyen van a nguyen van a " +
                 "nguyen van a nguyen van a nguyen van a nguyen van a nguyen van a");
         treatmentDto.setAmount(3);
@@ -239,7 +236,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_amount_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(null);
         treatmentDto.setDiseases("cúm");
@@ -268,7 +265,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_amount_15() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(-3);
         treatmentDto.setDiseases("cúm");
@@ -296,7 +293,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_amount_16() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(22);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(888888888);
         treatmentDto.setDiseases("cúm");
@@ -324,7 +321,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_diseases_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases(null);
@@ -353,7 +350,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_diseases_14() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("");
@@ -381,7 +378,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_diseases_16() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("a");
@@ -409,7 +406,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_diseases_17() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("nguyen van a");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("hsgdsaghdgsadgajgdakgdkagdgdhsagdhsaghdgsajdgsajkdgsajgdsagdksadksadkasgdgsdgsadgasgdsafdsadja");
@@ -437,7 +434,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_medicine_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -465,7 +462,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_medicine_14() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -493,7 +490,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_medicine_16() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -522,7 +519,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_medicine_17() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -550,7 +547,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_pig_id_13() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(21);
-        treatmentDto.setDate("01-01-2000");
+//        treatmentDto.setDate("01-01-2000");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
@@ -578,7 +575,7 @@ public class TreatmentController_createTreatment {
     public void createTreatment_18() throws Exception {
         TreatmentDto treatmentDto = new TreatmentDto();
         treatmentDto.setId(23);
-        treatmentDto.setDate("2022-02-02");
+//        treatmentDto.setDate("2022-02-02");
         treatmentDto.setDoctor("Nguyen Van A");
         treatmentDto.setAmount(3);
         treatmentDto.setDiseases("cúm");
