@@ -25,8 +25,14 @@ public interface FoodRepository extends JpaRepository<Food, Integer> {
      * @param foodType
      * @return
      **/
-    @Query(value = " select f.* from food f " + " join storage s on s.id = f.storage_id " + " where s.food_type like :foodType ", nativeQuery = true, countQuery = " select count(*) from ( select f.* from food f join storage s on s.id = f.storage_id where s.food_type like :foodType ) temp ")
-    Page<Food> getAllFood(Pageable pageable, @Param("foodType") String foodType);
+    @Query(value = " select f.id, f.amount, f.is_deleted, f.pigsty_id, f.storage_id from food f " +
+            " join pigsty p on p.id = f.pigsty_id " +
+            " join storage s on s.id = f.storage_id " +
+            " where s.food_type like :foodType", nativeQuery = true,
+            countQuery = " select count(*) from ( select f.id, f.amount, f.is_deleted, f.pigsty_id, f.storage_id from food f " +
+                    " join pigsty p on p.id = f.pigsty_id " +
+                    " join storage s on s.id = f.storage_id " +
+                    " where s.food_type like :foodType ) temp ")    Page<Food> getAllFood(Pageable pageable, @Param("foodType") String foodType);
 
     /**
      * Create by: HungNV
