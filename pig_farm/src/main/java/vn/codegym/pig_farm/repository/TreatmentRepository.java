@@ -16,7 +16,6 @@ import java.time.LocalDate;
 
 @Repository
 public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
-
     /**
      * Create by ThuanT
      * Date create: 08/09/2022
@@ -68,6 +67,6 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
      * @param id
      * @return
      */
-    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, t.pig_id" + " from Treatment t where t.id = :id and t.is_deleted = 0 ", nativeQuery = true)
-    Treatment findByIdTreatment(@Param("id") int id);
+    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine,p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + "where t.is_deleted = 0 and t.id like :id", nativeQuery = true, countQuery = "select count(*) from(SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t " + " JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + " where t.is_deleted = 0 and t.id =  :id) as abc ")
+    TreatmentDto findByIdTreatment(@Param("id") int id);
 }

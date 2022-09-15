@@ -32,7 +32,7 @@ public class NotificationRestController {
      * @return HttpStatus: Http 400 NO_CONTENT
      */
     @GetMapping("/page")
-    private ResponseEntity<Page<NotificationDto>> findAllNotification(@PageableDefault(5) Pageable pageable,
+    public ResponseEntity<Page<NotificationDto>> findAllNotification(@PageableDefault(5) Pageable pageable,
                                                                       Optional<String> content
             ) {
         String searchContent = content.orElse("");
@@ -56,7 +56,7 @@ public class NotificationRestController {
      * @return HttpStatus: Http 200 OK
      */
     @PostMapping("/delete")
-    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
+    public ResponseEntity<Object> delete(@RequestBody Map<String, Integer[]> ids) {
         notificationService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }

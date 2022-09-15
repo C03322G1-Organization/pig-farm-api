@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import vn.codegym.pig_farm.dto.EmployeeDto;
+import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
 
 import java.time.LocalDate;
@@ -34,15 +34,15 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_code_19() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -56,15 +56,15 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_name_19() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -78,15 +78,15 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_birthDay_19() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -100,15 +100,15 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_gender_19() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -122,15 +122,15 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_idCard_19() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -144,15 +144,15 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_image_19() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -166,16 +166,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_code_20() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -189,16 +189,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_name_20() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -212,16 +212,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_birthDay_20() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse(""));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse(""));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -235,16 +235,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_gender_20() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -258,16 +258,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_idCard_20() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -281,16 +281,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_image_20() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -304,16 +304,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_code_21() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("sldfnkv");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("sldfnkv");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -327,16 +327,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_name_21() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName(",dfvb,vzxc");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName(",dfvb,vzxc");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -350,16 +350,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_idCard_21() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơn");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("kzfbxkcb xkcjb");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơn");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("kzfbxkcb xkcjb");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -373,16 +373,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_name_22() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -396,16 +396,16 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_name_23() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc Sơnhhhhhhhhhhhhhhhhhhhhádfsđoàóihdfoáhdfoáhidfoáihdfoáhdfoádhfoádhvoiáh");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc Sơnhhhhhhhhhhhhhhhhhhhhádfsđoàóihdfoáhdfoáhidfoáihdfoáhdfoádhfoádhvoiáh");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -419,20 +419,20 @@ public class EmployeeRestController_edit {
 
     @Test
     public void edit_24() throws Exception {
-        EmployeeDto employeeDto = new EmployeeDto();
-        employeeDto.setCode("NV-001");
-        employeeDto.setName("Trần Ngọc");
-        employeeDto.setBirthDay(LocalDate.parse("2000-10-10"));
-        employeeDto.setGender("Nam");
-        employeeDto.setIdCard("123456789");
-        employeeDto.setImage("sdfdfb");
+        EmployDto employDto = new EmployDto();
+        employDto.setCode("NV-001");
+        employDto.setName("Trần Ngọc");
+        employDto.setBirthDay(LocalDate.parse("2000-10-10"));
+        employDto.setGender("Nam");
+        employDto.setIdCard("123456789");
+        employDto.setImage("sdfdfb");
 
         UserDto userDto = new UserDto();
         userDto.setId(1);
-        employeeDto.setUserDto(userDto);
+        employDto.setUserDto(userDto);
 
         this.mockMvc.perform(MockMvcRequestBuilders.put("/employee/4")
-                        .content(this.objectMapper.writeValueAsString(employeeDto))
+                        .content(this.objectMapper.writeValueAsString(employDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());

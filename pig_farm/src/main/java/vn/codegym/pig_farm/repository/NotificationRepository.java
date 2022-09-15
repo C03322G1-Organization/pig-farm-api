@@ -30,7 +30,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      * Write query create notification
      * @param id
      * @param content
-     * @param submitted_date
+     * @param submittedDate
      * @param image
      */
 
@@ -39,7 +39,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
     @Query(value = "insert into notification(id, title, content, submitted_date, image) " +
             " values (:id, :title, :content, :submitted_date, :image);", nativeQuery = true)
     void save(@Param("id") Integer id, @Param("title") String title, @Param("content") String content,
-              @Param("submitted_date") LocalDate submitted_date, @Param("image") String image);
+              @Param("submitted_date") LocalDate submittedDate, @Param("image") String image);
 
     /**
      * Create by HuyenTN
@@ -71,7 +71,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      */
     @Query(value = "select * " +
             "from notification " +
-            "where title like %:keyword% and content like %:keyword% and is_deleted = 0",
+            "where title like %:keyword% and content like %:keyword% and is_deleted = 0 order by date_submitted dsc",
             nativeQuery = true)
     Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 
