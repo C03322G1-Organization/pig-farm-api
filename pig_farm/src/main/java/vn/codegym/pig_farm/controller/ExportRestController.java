@@ -1,5 +1,6 @@
 package vn.codegym.pig_farm.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.projections.ExportDto;
+import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Export;
+import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.repository.ExportRepository;
 import vn.codegym.pig_farm.service.IExportService;
 
@@ -22,6 +25,8 @@ import java.util.Optional;
 @RequestMapping("/export")
 public class ExportRestController {
 
+    @Autowired
+    ExportRepository exportRepository;
     @Autowired
     IExportService iExportService;
 
@@ -71,7 +76,7 @@ public class ExportRestController {
      * @return HttpStatus.OK
      */
     @PostMapping("/delete")
-    public ResponseEntity<?> deleteExport(@RequestBody Map<String, Integer[]> ids){
+    public ResponseEntity<Object> deleteExport(@RequestBody Map<String, Integer[]> ids){
         iExportService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -84,7 +89,7 @@ public class ExportRestController {
      */
 
     @PostMapping("/create")
-    private ResponseEntity<?> create(@Validated @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> create(@Validated @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
@@ -99,31 +104,34 @@ public class ExportRestController {
      * return export1
      */
     @PutMapping("/update/{id}")
-    public ResponseEntity<Export> update(@Validated @PathVariable int id, @RequestBody Export export, BindingResult bindingResult) {
-        Export export1 = iExportService.findById(id);
-        if (export1 == null) {
+    public ResponseEntity<Export> update(@Validated @PathVariable("id") Integer id, @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
+        Export exportUpdate = iExportService.findById(id);
+        if (exportUpdate == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if (bindingResult.hasFieldErrors()) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-        export1.setPigsty(export.getPigsty());
-        export1.setEmployee(export.getEmployee());
-        export1.setCodeExport(export.getCodeExport());
-        export1.setCompany(export.getCompany());
-        export1.setPrice(export.getPrice());
-        export1.setTypePigs(export.getTypePigs());
-        export1.setAmount(export.getAmount());
-        export1.setKilogram(export.getKilogram());
-        iExportService.update(export1);
-        return new ResponseEntity<>(export1, HttpStatus.OK);
-    }
-    @Autowired
-    private ExportRepository exportRepository;
-    @GetMapping("/totalWeightCount/{id}")
-    private ResponseEntity<Object[]> totalWeightCount(@PathVariable("id") Integer id) {
-        Object[] temp = {(exportRepository.countPigOnPigsty(id)),exportRepository.totalWeight(id)};
-       return new ResponseEntity<>(temp,HttpStatus.OK);
+        Export export = new Export();
+        BeanUtils.copyProperties(exportDto, export);
+        export.setId(exportUpdate.getId());
+        export.setEmployee(exportUpdate.getEmployee());
+        export.setPigsty(exportUpdate.getPigsty());
+        export.setEmployee(new Employee(exportDto.getEmployeeDto().getId()));
+        export.setPigsty(new Pigsty(exportDto.getPigstyDto().getId()));
+        iExportService.update(export);
+        return new ResponseEntity<>(export, HttpStatus.OK);
     }
 
+    @GetMapping("/totalWeightCount/{id}")
+    public ResponseEntity<Object[]> totalWeightCount(@PathVariable("id") Integer id) {
+        Object[] temp = {(exportRepository.countPigOnPigsty(id)), exportRepository.totalWeight(id)};
+        return new ResponseEntity<>(temp, HttpStatus.OK);
+    }
+
+    @GetMapping("/show/{id}")
+    public ResponseEntity<Object> findById(@PathVariable("id") Integer id) {
+        Export export = iExportService.findById(id);
+        if (export == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(export, HttpStatus.CREATED);
+    }
 }
