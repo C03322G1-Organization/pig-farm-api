@@ -139,4 +139,9 @@ public class ExportRestController {
         }
         return new ResponseEntity<>(export, HttpStatus.CREATED);
     }
+
+    @GetMapping("/check/{code}")
+    public ResponseEntity<Object> checkCode(@PathVariable("code") String code) {
+        return new ResponseEntity<>(iExportService.existsCode(code), HttpStatus.OK);
+    }
 }

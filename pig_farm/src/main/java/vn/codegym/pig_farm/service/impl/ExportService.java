@@ -82,4 +82,8 @@ public class ExportService implements IExportService {
     }
 
 
+    @Override
+    public Boolean existsCode(String codeExport) {
+        return codeExport.equals(iExportRepository.exitCode(codeExport));
+    }
 }

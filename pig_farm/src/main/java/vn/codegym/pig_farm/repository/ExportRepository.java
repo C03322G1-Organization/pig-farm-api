@@ -135,4 +135,13 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      */
     @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id", nativeQuery = true)
     Integer countPigOnPigsty(@Param("id") int id);
+
+    /**
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: exitCode
+     * return countPigOnPigsty
+     */
+    @Query(value = "SELECT code_export FROM export where code_export=:codeExport", nativeQuery = true)
+    String exitCode(@Param("codeExport") String codeExport);
 }
