@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     /**
@@ -54,7 +55,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Creator HungNQ
      * @Date 08/09/2022
      */
-    @Transactional
     @Modifying
     @Query(value = "update employee set is_deleted = 1 where id = :id", nativeQuery = true)
     void deleteEmployee(@Param("id") int id);
@@ -64,24 +64,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Creator HungNQ
      * @Date 08/09/2022
      */
-
     @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,name,user_id from employee", nativeQuery = true)
     List<Employee> getAllEmployee();
-
-
-    @Query(value = "select employee.code, employee.name, user.username, user.email, employee.birth_day, employee.gender, employee.id_card, employee.image from employee join user on user.id = employee.user_id", nativeQuery = true)
-    List<Employee> findAll();
-
-    @Modifying
-    @Query(value = "insert into employee (`code`, `name`, birth_day, gender, id_card, image, is_deleted, user_id) values (:code, :name, :birthDay, :gender, :idCard, :image, 0, :userId)", nativeQuery = true)
-    void save(@Param("code") String code, @Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("userId") Integer userId);
-
-    @Query(value = "select * from employee where id = :id", nativeQuery = true)
-    Optional<Employee> findById(@Param("id") Integer id);
-
-    @Modifying
-    @Query(value = "update employee set `name` = :name, birth_day = :birthDay, gender = :gender, id_card = :idCard, image = :image where id = :id", nativeQuery = true)
-    void edit(@Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("id") Integer id);
 
     /**
      * @Creator HungNQ
@@ -97,5 +81,65 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "join app_role on app_role.id = user_role.role_id " +
             "where e.id = :id",nativeQuery = true)
     Optional<EmployeeDto> getEmployeeDtoById(@Param("id") int id);
+
+
+    /**
+     * @return list Employee (test list)
+     * @creator LongNT
+     * @date 08/09/2022
+     */
+
+    @Query(value = "select employee.code, employee.name, user.username, user.email, employee.birth_day, employee.gender, employee.id_card, employee.image from employee join user on user.id = employee.user_id", nativeQuery = true)
+    List<Employee> findAll();
+
+    /**
+     * @param code
+     * @param name
+     * @param birthDay
+     * @param gender
+     * @param idCard
+     * @param image
+     * @param userId
+     * @creator LongNT
+     * @date 08/09/2022
+     */
+    @Modifying
+    @Query(value = "insert into employee (`code`, `name`, birth_day, gender, id_card, image, is_deleted, user_id) values (:code, :name, :birthDay, :gender, :idCard, :image, 0, :userId)", nativeQuery = true)
+    void save(@Param("code") String code, @Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("userId") Integer userId);
+
+    /**
+     * @param id must not be {@literal null}.
+     * @return id Employee
+     * @creator LongNT
+     * @date 08/09/2022
+     */
+
+    @Query(value = "select * from employee where id = :id", nativeQuery = true)
+    Optional<Employee> findById(@Param("id") Integer id);
+
+    /**
+     * @param name
+     * @param birthDay
+     * @param gender
+     * @param idCard
+     * @param image
+     * @param id
+     * @creator LongNT
+     * @date 08/09/2022
+     */
+
+    @Modifying
+    @Query(value = "update employee set `name` = :name, birth_day = :birthDay, gender = :gender, id_card = :idCard, image = :image where id = :id", nativeQuery = true)
+    void edit(@Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("id") Integer id);
+
+
+    /**
+     * @param code
+     * @return code
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Query(value = "select code from employee where code = :code", nativeQuery = true)
+    String existsCode(@Param("code") String code);
 
 }

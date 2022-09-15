@@ -29,64 +29,6 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     UserRoleRepository userRoleRepository;
 
-
-    /**
-     * @return list Employee (test list)
-     * @creator LongNT
-     * @day 12/09/2022
-     */
-
-    @Override
-    public List<Employee> findAll() {
-        return iEmployeeRepository.findAll();
-    }
-
-    /**
-     * @param employee
-     * @creator LongNT
-     * @day 12/09/2022
-     */
-
-    @Override
-    public void save(Employee employee) {
-        List<AppUser> appUsers = userRepository.findAll();
-        UserRole userRole = new UserRole();
-        AppRole appRole = new AppRole();
-        appRole.setId(1);
-        userRole.setIsDeleted(false);
-        userRole.setAppUser(appUsers.get(appUsers.toArray().length - 1));
-        userRole.setAppRole(appRole);
-        userRoleRepository.save(userRole);
-
-        employee.setAppUser(employee.getAppUser());
-        iEmployeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), appUsers.toArray().length);
-
-    }
-
-    /**
-     * @param id
-     * @return Employee
-     * @creator LongNT
-     * @day 12/09/2022
-     */
-
-    @Override
-    public Optional<Employee> findById(Integer id) {
-        return iEmployeeRepository.findById(id);
-    }
-
-    /**
-     * @param employee
-     * @creator LongNT
-     * @day 12/09/2022
-     */
-
-    @Override
-    public void edit(Employee employee) {
-        iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
-    }
-
-
     /**
      * @param name
      * @param idCard
@@ -130,4 +72,69 @@ public class EmployeeService implements IEmployeeService {
     public Optional<EmployeeDto> getEmployeeDtoById(int id) {
         return iEmployeeRepository.getEmployeeDtoById(id);
     }
+
+    /**
+     * @return list Employee (test list)
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    @Override
+    public List<Employee> findAll() {
+        return iEmployeeRepository.findAll();
+    }
+
+    /**
+     * @param employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+
+    @Override
+    public void save(Employee employee) {
+        List<AppUser> appUsers = userRepository.findAll();
+        UserRole userRole = new UserRole();
+        AppRole appRole = new AppRole();
+        appRole.setId(1);
+        userRole.setIsDeleted(false);
+        userRole.setAppUser(appUsers.get(appUsers.toArray().length - 1));
+        userRole.setAppRole(appRole);
+        userRoleRepository.save(userRole);
+
+        employee.setAppUser(employee.getAppUser());
+        iEmployeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), appUsers.toArray().length);
+    }
+
+    /**
+     * @param id
+     * @return Employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+    @Override
+    public Optional<Employee> findById(Integer id) {
+        return iEmployeeRepository.findById(id);
+    }
+
+    /**
+     * @param employee
+     * @creator LongNT
+     * @day 12/09/2022
+     */
+    @Override
+    public void edit(Employee employee) {
+        iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
+    }
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Override
+    public Boolean existsCode(String code) {
+        return code.equals(iEmployeeRepository.existsCode(code));
+    }
+
 }

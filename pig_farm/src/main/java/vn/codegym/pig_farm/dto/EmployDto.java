@@ -122,13 +122,6 @@ public class EmployDto implements Validator {
         this.image = image;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     public Boolean getDeleted() {
         return isDeleted;

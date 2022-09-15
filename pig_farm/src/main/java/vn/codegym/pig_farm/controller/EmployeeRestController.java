@@ -25,7 +25,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/employee")
 public class EmployeeRestController {
 
@@ -36,7 +36,7 @@ public class EmployeeRestController {
     private IUserRoleService iUserRoleService;
 
     @Autowired
-    private IUserService iUserService;
+    private IUserService userService;
 
     /**
      * @Creator HungNQ
@@ -105,9 +105,6 @@ public class EmployeeRestController {
         return new ResponseEntity<>(iEmployeeService.getAllEmployee(),HttpStatus.OK);
     }
 
-    @Autowired
-    private IUserService userService;
-
     /**
      * @return list Employee (test list) success: OK, error: NOT_FOUND
      * @creator LongNT
@@ -124,23 +121,16 @@ public class EmployeeRestController {
     }
 
     /**
-     * @param employeeDto
+     * @param employDto
      * @return create Employee success: CREATED, error: NOT_ACCEPTABLE
      * @creator LongNT
      * @day 08/09/2022
      */
 
+    @PostMapping("/create")
+    public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployDto employDto) {
 
-    @PostMapping("")
-    public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
-        }
-
-        UserDto userDto;
-
-        userDto = employeeDto.getUserDto();
-
+        UserDto userDto = employDto.getUserDto();
 
         AppUser appUser = new AppUser();
 
@@ -150,10 +140,9 @@ public class EmployeeRestController {
 
         Employee employee = new Employee();
 
-        BeanUtils.copyProperties(employeeDto, employee);
+        BeanUtils.copyProperties(employDto, employee);
 
         iEmployeeService.save(employee);
-
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -176,7 +165,7 @@ public class EmployeeRestController {
 
     /**
      * @param id
-     * @param employeeDto
+     * @param employDto
      * @return Employee edited success: OK, Employee not present: NO_CONTENT, error: NOT_ACCEPTABLE
      * @creator LongNT
      * @day 08/09/2022
@@ -184,28 +173,43 @@ public class EmployeeRestController {
 
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployDto employeeDto, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployDto employDto, BindingResult bindingResult) {
         Optional<Employee> employeeObj = iEmployeeService.findById(id);
-
 
         if (!employeeObj.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        employeeObj.get().setCode(employeeDto.getCode());
+        employeeObj.get().setCode(employDto.getCode());
 
-        employeeObj.get().setName(employeeDto.getName());
+        employeeObj.get().setName(employDto.getName());
 
-        employeeObj.get().setBirthDay(employeeDto.getBirthDay());
+        employeeObj.get().setBirthDay(employDto.getBirthDay());
 
-        employeeObj.get().setGender(employeeDto.getGender());
+        employeeObj.get().setGender(employDto.getGender());
 
-        employeeObj.get().setIdCard(employeeDto.getIdCard());
+        employeeObj.get().setIdCard(employDto.getIdCard());
 
-        employeeObj.get().setImage(employeeDto.getImage());
+        employeeObj.get().setImage(employDto.getImage());
 
         iEmployeeService.edit(employeeObj.get());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/check/{code}")
+    public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
+        return new ResponseEntity<>(iEmployeeService.existsCode(code), HttpStatus.OK);
+    }
+
+
+
+
 }

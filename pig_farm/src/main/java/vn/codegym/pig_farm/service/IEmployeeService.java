@@ -2,7 +2,6 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 
@@ -36,6 +35,15 @@ public interface IEmployeeService {
      */
     List<Employee> getAllEmployee();
 
+
+    /**
+     * @Creator HungNQ
+     * @Date 12/09/2022
+     * @param id
+     * @return EmployeeDto
+     */
+    Optional<EmployeeDto> getEmployeeDtoById(int id);
+
     /**
      * @return List Employee
      * @creator LongNT
@@ -68,12 +76,14 @@ public interface IEmployeeService {
      */
 
     void edit(Employee employee);
+
+
     /**
-     * @Creator HungNQ
-     * @Date 12/09/2022
-     * @param id
-     * @return EmployeeDto
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
      */
-    Optional<EmployeeDto> getEmployeeDtoById(int id);
+    Boolean existsCode(String code);
 
 }

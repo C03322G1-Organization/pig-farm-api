@@ -22,9 +22,8 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "update `user` set is_deleted = 1 where id = :id", nativeQuery = true)
+    @Query(value = "update app_user set is_deleted = 1 where id = :id", nativeQuery = true)
     void deleteUser(@Param("id") int id);
-
 
     /**
      * @return list User
