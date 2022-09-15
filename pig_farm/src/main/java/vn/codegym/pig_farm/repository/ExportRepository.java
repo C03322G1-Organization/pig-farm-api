@@ -69,17 +69,6 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     void deleteByStatus(@Param("id") Integer id);
 
     /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: find export by Id
-     * @Param: id
-     * @return
-     */
-//    @Query(value = "SELECT id, amount, code_export, company, is_deleted, kilogram," +
-//            " price, start_date, employee_id, pigsty_id FROM export WHERE id=:id", nativeQuery = true)
-//    Export findById(@Param("id") int id);
-
-    /**
      * Created by: HoaL
      * Date created: 08/09/2022
      * Function: createExport
@@ -145,9 +134,4 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id", nativeQuery = true)
     Integer countPigOnPigsty(@Param("id") int id);
 
-//    @Query(value = "select count(pig.pigsty_id) as totalWeight,sum(pig.weight) as amountPigOnPigsty  from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id;", nativeQuery = true)
-//    IPigstyDto test(@Param("id") int id);
-//
-//    @Query(value = "select pigsty.code from pigsty where id=:id;", nativeQuery = true)
-//    IPigstyDto tes(@Param("id") int id);
 }
