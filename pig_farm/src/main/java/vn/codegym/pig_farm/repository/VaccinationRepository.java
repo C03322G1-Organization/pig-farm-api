@@ -65,11 +65,11 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
     @Modifying
     @Transactional
     @Query(value = "insert into vaccination(amount, `date`, is_deleted, note, vaccinated_person, vaccine_type, pigsty_id)" +
-            "value (:amount, :date, 0, :note, :vaccinatedPerson, :vaccineType, :pigsty)", nativeQuery=true)
+            "value (:amount, :date, 0, :note, :vaccinatedPerson, :vaccineType, :pigstyCode)", nativeQuery=true)
     void createVaccination(@Param("amount") Integer amount,
                            @Param("date") LocalDate date,
                            @Param("note") String note,
                            @Param("vaccinatedPerson") String vaccinatedPerson,
                            @Param("vaccineType") String vaccineType,
-                           @Param("pigsty") Pigsty pigsty);
+                           @Param("pigstyCode") Pigsty pigstyCode);
 }
