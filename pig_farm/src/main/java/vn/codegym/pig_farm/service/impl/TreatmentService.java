@@ -5,14 +5,26 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.codegym.pig_farm.dto.projections.TreatmentDto;
+import vn.codegym.pig_farm.entity.Pig;
+import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Treatment;
+import vn.codegym.pig_farm.repository.PigRepository;
+import vn.codegym.pig_farm.repository.PigstyRepository;
 import vn.codegym.pig_farm.repository.TreatmentRepository;
 import vn.codegym.pig_farm.service.ITreatmentService;
+
+import java.util.List;
 
 @Service
 public class TreatmentService implements ITreatmentService {
     @Autowired
     TreatmentRepository treatmentRepository;
+
+    @Autowired
+    PigRepository pigRepository;
+
+    @Autowired
+    PigstyRepository pigstyRepository;
 
     /**
      * create by TuongTK
@@ -61,5 +73,15 @@ public class TreatmentService implements ITreatmentService {
     @Override
     public TreatmentDto findById(int id) {
         return treatmentRepository.findByIdTreatment(id);
+    }
+
+    @Override
+    public List<Pig> getListPig(String id) {
+        return pigRepository.getListPig(id);
+    }
+
+    @Override
+    public List<Pigsty> getListPigSty() {
+        return pigstyRepository.findALLPigsty();
     }
 }

@@ -12,6 +12,7 @@ import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -114,5 +115,12 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
     @Query(value="SELECT code FROM pig where code=:code",nativeQuery=true)
     String exitCode(@Param("code") String code);
 
+    /**
+     * Created by: TuongTK
+     * Date created: 14/09/2022
+     * Function: exitCode
+     */
+    @Query(value="SELECT * FROM pig WHERE pigsty_id = :id",nativeQuery=true)
+    List<Pig> getListPig(@Param("id") String id);
 }
 
