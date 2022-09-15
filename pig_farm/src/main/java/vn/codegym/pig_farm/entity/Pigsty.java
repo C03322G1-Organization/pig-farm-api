@@ -24,12 +24,12 @@ public class Pigsty {
     private String code;
 
     @Column(columnDefinition = "DATE")
-    private LocalDate creationDate;
+    private String creationDate;
 
     private Integer typePigs;
 
     @Column(columnDefinition = "DATE")
-    private LocalDate buildDate;
+    private String buildDate;
 
 
     private Integer maxNumber;

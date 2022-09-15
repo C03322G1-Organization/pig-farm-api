@@ -50,7 +50,7 @@ public class PigstyService implements IPigstyService {
      */
     @Override
     public Pigsty getPigstyById(Integer id) {
-        return this.pigstyRepository.getPigstyById(id);
+        return this.pigstyRepository.findById(id).orElse(null);
     }
 
     @Override

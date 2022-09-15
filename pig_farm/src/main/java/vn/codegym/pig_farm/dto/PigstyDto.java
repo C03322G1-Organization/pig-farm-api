@@ -16,6 +16,7 @@ public class PigstyDto implements Validator {
     @NotEmpty
     private String creationDate;
 
+    private String code;
     private Integer typePigs;
 
     private String buildDate;
