@@ -55,7 +55,6 @@ public class Pigsty {
     @JsonIgnore
     private Employee employee;
 
-
     public Pigsty(Integer id) {
         this.id = id;
     }

@@ -2,6 +2,7 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import vn.codegym.pig_farm.dto.projections.PigDto;
 import vn.codegym.pig_farm.entity.Pig;
 
 import java.util.Optional;
@@ -19,16 +20,16 @@ public interface IPigService {
      * @date-create 08/09/2022
      */
 
-    Page<Pig> findAllPig(Pageable pageable, String code, String dateIn, String status);
+    Page<PigDto> findAllPig(Pageable pageable, String code, String dateIn, String status);
 
     /**
-     * @param id
+     * @param ids
      * @return void, status 200
      * @function (delete Pig by id)
      * @creator LamNT
      * @date-create 08/09/2022
      */
-    void deletePigById(Pig id);
+    void delete(Integer[] ids);
 
     /**
      * @param id

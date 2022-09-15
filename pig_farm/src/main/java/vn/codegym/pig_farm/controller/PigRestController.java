@@ -18,10 +18,11 @@ import vn.codegym.pig_farm.service.IPigstyService;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/pig")
+@RequestMapping("")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PigRestController {
 
@@ -91,7 +92,7 @@ public class PigRestController {
      */
 
     @GetMapping("/page")
-    public ResponseEntity<Page<Pig>> listAll(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> codeSearch, @RequestParam Optional<String> dateInSearch, @RequestParam Optional<String> statusSearch) {
+    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.PigDto>> listAll(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> codeSearch, @RequestParam Optional<String> dateInSearch, @RequestParam Optional<String> statusSearch) {
         {
             String code = codeSearch.orElse("");
             String dateIn = dateInSearch.orElse("");
@@ -105,7 +106,7 @@ public class PigRestController {
             if (status.equals("null")) {
                 status = "";
             }
-            Page<Pig> pigs = pigService.findAllPig(pageable, code, dateIn, status);
+            Page<vn.codegym.pig_farm.dto.projections.PigDto> pigs = pigService.findAllPig(pageable, code, dateIn, status);
             if (pigs.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -114,19 +115,16 @@ public class PigRestController {
     }
 
     /**
-     * @param id
+     * @param ids
      * @return
      * @function (delete Pig by Id)
      * @creator LamNT
      * @date-create 08/09/2022
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id) {
-        Optional<Pig> pig = pigService.findById(id);
-        if (!pig.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        pigService.deletePigById(pig.get());
+
+    @PostMapping("/id")
+    public ResponseEntity<vn.codegym.pig_farm.dto.projections.PigDto> delete(@RequestBody Map<String, Integer[]> ids) {
+        pigService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -138,7 +136,7 @@ public class PigRestController {
      * @param id
      * @return
      */
-    @GetMapping(value = "/list/{id}")
+    @GetMapping(value = "list/{id}")
     public ResponseEntity<Pig> findById(@PathVariable("id") Integer id) {
         Pig pig = pigService.findById(id);
         if (pig == null) {
@@ -167,10 +165,11 @@ public class PigRestController {
      * Create by: DatVT
      * Date Create: 14/09/2022
      * funtion: checkCode
+     *
      * @return
      */
     @GetMapping("/check/{code}")
-    public  ResponseEntity<?> checkCode(@PathVariable("code") String code){
+    public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
         return new ResponseEntity<>(pigService.existsCode(code), HttpStatus.OK);
     }
 }
