@@ -120,7 +120,6 @@ public class PigRestController {
      * @creator LamNT
      * @date-create 08/09/2022
      */
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id) {
         Optional<Pig> pig = pigService.findById(id);

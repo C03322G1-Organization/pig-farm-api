@@ -105,7 +105,12 @@ public class ExportRestController {
      */
     @PutMapping("/update/{id}")
     public ResponseEntity<Export> update(@Validated @PathVariable("id") Integer id, @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+
         Export exportUpdate = iExportService.findById(id);
+
         if (exportUpdate == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
