@@ -25,7 +25,6 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
     @Query(value = "update app_user set is_deleted = 1 where id = :id", nativeQuery = true)
     void deleteUser(@Param("id") int id);
 
-
     /**
      * @return list User
      * @creator LongNT
@@ -43,10 +42,10 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      * @creator LongNT
      * @day 12/09/2022
      */
+
     @Modifying
     @Query(value = "insert into app_user (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
     void save(@Param("username") String username, @Param("password") String password, @Param("email") String email);
-
 
     /**
      * @param id must not be {@literal null}.

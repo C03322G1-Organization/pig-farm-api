@@ -70,16 +70,50 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,name,user_id from employee", nativeQuery = true)
     List<Employee> getAllEmployee();
 
+    /**
+     * @creator LongNT
+     * @date 08/09/2022
+     * @return list Employee (test list)
+     */
 
     @Query(value = "select employee.code, employee.name, user.username, user.email, employee.birth_day, employee.gender, employee.id_card, employee.image from employee join user on user.id = employee.user_id", nativeQuery = true)
     List<Employee> findAll();
 
+    /**
+     * @creator LongNT
+     * @date 08/09/2022
+     * @param code
+     * @param name
+     * @param birthDay
+     * @param gender
+     * @param idCard
+     * @param image
+     * @param userId
+     */
     @Modifying
     @Query(value = "insert into employee (`code`, `name`, birth_day, gender, id_card, image, is_deleted, user_id) values (:code, :name, :birthDay, :gender, :idCard, :image, 0, :userId)", nativeQuery = true)
     void save(@Param("code") String code, @Param("name") String name, @Param("birthDay") LocalDate birthDay, @Param("gender") String gender, @Param("idCard") String idCard, @Param("image") String image, @Param("userId") Integer userId);
 
+    /**
+     * @creator LongNT
+     * @date 08/09/2022
+     * @param id must not be {@literal null}.
+     * @return id Employee
+     */
+
     @Query(value = "select * from employee where id = :id", nativeQuery = true)
     Optional<Employee> findById(@Param("id") Integer id);
+
+    /**
+     * @creator LongNT
+     * @date 08/09/2022
+     * @param name
+     * @param birthDay
+     * @param gender
+     * @param idCard
+     * @param image
+     * @param id
+     */
 
     @Modifying
     @Query(value = "update employee set `name` = :name, birth_day = :birthDay, gender = :gender, id_card = :idCard, image = :image where id = :id", nativeQuery = true)

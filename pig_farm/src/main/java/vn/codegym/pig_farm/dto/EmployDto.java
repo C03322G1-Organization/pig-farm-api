@@ -115,7 +115,6 @@ public class EmployDto {
         this.image = image;
     }
 
-
     public Boolean getDeleted() {
         return isDeleted;
     }

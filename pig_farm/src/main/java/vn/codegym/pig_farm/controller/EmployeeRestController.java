@@ -12,8 +12,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
-import vn.codegym.pig_farm.entity.Employee;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.AppUser;
+import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.service.IEmployeeService;
 import vn.codegym.pig_farm.service.IUserRoleService;
 import vn.codegym.pig_farm.service.IUserService;
@@ -47,14 +48,14 @@ public class EmployeeRestController {
      */
     @GetMapping("/searchList")
 
-    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
+    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
 
-                                                                                                                       @RequestParam Optional<String> name,
-                                                                                                                       @RequestParam Optional<String> idCard) {
+                                                                                   @RequestParam Optional<String> name,
+                                                                                   @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
 
-        Page<vn.codegym.pig_farm.dto.projections.EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName, keywordIdCard, pageable);
+        Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName, keywordIdCard, pageable);
         if (employeePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -86,8 +87,8 @@ public class EmployeeRestController {
      * @Date 12/09/2022
      */
     @GetMapping("/detail/{id}")
-    public ResponseEntity<vn.codegym.pig_farm.dto.projections.EmployeeDto> getEmployeeDtoById(@PathVariable Integer id) {
-        Optional<vn.codegym.pig_farm.dto.projections.EmployeeDto> employeeDtoOptional = iEmployeeService.getEmployeeDtoById(id);
+    public ResponseEntity<EmployeeDto> getEmployeeDtoById(@PathVariable Integer id) {
+        Optional<EmployeeDto> employeeDtoOptional = iEmployeeService.getEmployeeDtoById(id);
         if (!employeeDtoOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -132,18 +133,13 @@ public class EmployeeRestController {
     @PostMapping("/create")
     public ResponseEntity<List<FieldError>> save(@RequestBody @Valid EmployDto employDto) {
 
-        UserDto userDto;
+        UserDto userDto = employDto.getUserDto();
 
-        userDto = employDto.getUserDto();
+        AppUser appUser = new AppUser();
 
-        if (userDto != null) {
+        BeanUtils.copyProperties(userDto, appUser);
 
-            AppUser appUser = new AppUser();
-
-            BeanUtils.copyProperties(userDto, appUser);
-
-            userService.save(appUser);
-        }
+        userService.save(appUser);
 
         Employee employee = new Employee();
 

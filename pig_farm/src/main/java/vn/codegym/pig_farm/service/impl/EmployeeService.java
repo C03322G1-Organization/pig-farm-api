@@ -59,7 +59,6 @@ public class EmployeeService implements IEmployeeService {
 
         employee.setAppUser(employee.getAppUser());
         iEmployeeRepository.save(employee.getCode(), employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), appUsers.toArray().length);
-
     }
 
     /**
