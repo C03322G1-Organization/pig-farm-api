@@ -91,13 +91,14 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
             " from notification " +
             " where content " +
             "like :content " +
-            "and is_deleted =0",
+            "and is_deleted =0" +
+            "order by id desc",
             nativeQuery = true,
             countQuery = "select count(*) from (select id , content, title , submitted_date as submittedDate , image  " +
                     " from notification " +
                     " where content " +
                     "like :content " +
-                    "and is_deleted =0) as subTable")
+                    "and is_deleted =0 order by id desc) as subTable")
     Page<NotificationDto> findAllNotification(Pageable pageable, @Param("content") String content);
 
     /**
