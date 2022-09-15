@@ -105,5 +105,13 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
                    @Param("weight") String weight, @Param("pigsty") Pigsty pigsty,
                    @Param("id") Integer id);
 
+    /**
+     * Created by: DatVT
+     * Date created: 14/09/2022
+     * Function: exitCode
+     */
+    @Query(value="SELECT code FROM pig where code=:code",nativeQuery=true)
+    String exitCode(@Param("code") String code);
+
 }
 

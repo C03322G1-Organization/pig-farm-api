@@ -32,7 +32,8 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO `pigsty` (`id`,`build_date`, `creation_date`, `max_number`, `employee_id`) " + " VALUES (:#{#pigsty.id},:#{#pigsty.buildDate},:#{#pigsty.creationDate},:#{#pigsty.maxNumber}," + ":#{#pigsty.employee});", nativeQuery = true)
+    @Query(value = "INSERT INTO `pigsty` (`id`,`code`,`type_pigs`, `build_date`, `creation_date`, `max_number`, `employee_id`) " + " " +
+            " VALUES (:#{#pigsty.id},:#{#pigsty.code},:#{#pigsty.typePigs},:#{#pigsty.buildDate},:#{#pigsty.creationDate},:#{#pigsty.maxNumber}," + ":#{#pigsty.employee});", nativeQuery = true)
     void createPigsty(Pigsty pigsty);
 
     /**
@@ -43,7 +44,9 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      * @param id
      * @return a pigsty
      */
-    @Query(value = "  select `id`, `build_date`, `creation_date`, `is_deleted`, `max_number`,`type_pigs`, `employee_id`  " + " from pigsty p where p.is_deleted=0 and p.id = :pigstyId ;", nativeQuery = true)
+
+    @Query(value = "  select `id`,`code`,`type_pigs`, `build_date`, `creation_date`, `max_number`, `employee_id`,`is_deleted`  " +
+            " from pigsty p where p.employee_id=0 and p.id = :pigstyId ;", nativeQuery = true)
     Pigsty getPigstyById(@Param("pigstyId") Integer id);
 
     /**
