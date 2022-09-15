@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class EmployeeDto {
+public class EmployDto {
 
     private Integer id;
 
@@ -43,10 +43,10 @@ public class EmployeeDto {
     private UserDto userDto;
 
 
-    public EmployeeDto() {
+    public EmployDto() {
     }
 
-    public EmployeeDto(Integer id, String code, String name, LocalDate birthDay, String gender, String idCard, String image, Boolean isDeleted, List<Export> exports, UserDto userDto) {
+    public EmployDto(Integer id, String code, String name, LocalDate birthDay, String gender, String idCard, String image, Boolean isDeleted, List<Export> exports, UserDto userDto) {
         this.id = id;
         this.code = code;
         this.name = name;

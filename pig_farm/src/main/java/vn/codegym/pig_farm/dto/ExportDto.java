@@ -38,7 +38,7 @@ public class ExportDto {
 
     private PigstyDto pigstyDto;
 
-    private EmployeeDto employeeDto;
+    private EmployDto employDto;
 
     private LocalDate saleDate;
 
@@ -50,7 +50,7 @@ public class ExportDto {
 
     public ExportDto(String codeExport, String company, Integer amount, Double kilogram,
                      Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted,
-                     PigstyDto pigstyDto, EmployeeDto employeeDto) {
+                     PigstyDto pigstyDto, EmployDto employDto) {
 
         this.codeExport = codeExport;
         this.company = company;
@@ -61,7 +61,7 @@ public class ExportDto {
         this.saleDate = saleDate;
         this.isDeleted = isDeleted;
         this.pigstyDto = pigstyDto;
-        this.employeeDto = employeeDto;
+        this.employDto = employDto;
 
     }
 
@@ -130,12 +130,12 @@ public class ExportDto {
         this.pigstyDto = pigstyDto;
     }
 
-    public EmployeeDto getEmployeeDto() {
-        return employeeDto;
+    public EmployDto getEmployeeDto() {
+        return employDto;
     }
 
-    public void setEmployeeDto(EmployeeDto employeeDto) {
-        this.employeeDto = employeeDto;
+    public void setEmployeeDto(EmployDto employDto) {
+        this.employDto = employDto;
     }
 
     public Integer getTypePigs() {

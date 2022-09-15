@@ -27,21 +27,21 @@ public class UserDto {
 
     private Boolean isDeleted;
 
-    private EmployeeDto employeeDto;
+    private EmployDto employDto;
 
     private List<UserRole> userRoles;
 
     public UserDto() {
     }
 
-    public UserDto(Integer id, String username, String password, String email, LocalDate creationDate, Boolean isDeleted, EmployeeDto employeeDto, List<UserRole> userRoles) {
+    public UserDto(Integer id, String username, String password, String email, LocalDate creationDate, Boolean isDeleted, EmployDto employDto, List<UserRole> userRoles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.creationDate = creationDate;
         this.isDeleted = isDeleted;
-        this.employeeDto = employeeDto;
+        this.employDto = employDto;
         this.userRoles = userRoles;
     }
 
@@ -93,12 +93,12 @@ public class UserDto {
         isDeleted = deleted;
     }
 
-    public EmployeeDto getEmployeeDto() {
-        return employeeDto;
+    public EmployDto getEmployeeDto() {
+        return employDto;
     }
 
-    public void setEmployeeDto(EmployeeDto employeeDto) {
-        this.employeeDto = employeeDto;
+    public void setEmployeeDto(EmployDto employDto) {
+        this.employDto = employDto;
     }
 
     public List<UserRole> getUserRoles() {

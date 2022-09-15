@@ -61,4 +61,11 @@ public interface IPigService {
     void updatePig(Integer id,Pig pig);
 
     Integer quantity(Integer id);
+
+    /**
+     * Created by: DatVT
+     * Date created: 14/0/2022
+     * Function: existsCode
+     */
+    Boolean existsCode(String code);
 }

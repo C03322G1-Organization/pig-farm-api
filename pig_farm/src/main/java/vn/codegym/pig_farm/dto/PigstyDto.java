@@ -12,9 +12,12 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PigstyDto implements Validator {
     private Integer id;
+
     @NotNull
     @NotEmpty
     private String creationDate;
+
+    private String code;
 
     private Integer typePigs;
 
@@ -26,21 +29,12 @@ public class PigstyDto implements Validator {
 
     private Boolean isDeleted;
 
-    private EmployeeDto employeeDto;
-
-
-    /**
-     * Created by: HoaL
-     * Date created: 09/09/2022
-     * Function: PigstyDto
-     * return pigstyDto
-     */
+    private EmployDto employDto;
 
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
     }
-
 
     @Override
     public void validate(Object target, Errors errors) {
