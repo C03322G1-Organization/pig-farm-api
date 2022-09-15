@@ -51,7 +51,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      * @param isDeleted
      * @param id
      */
-
     @Transactional
     @Modifying
     @Query(value = "update notification set title = :title, content = :content, submitted_date = :submittedDate, " +
@@ -71,7 +70,10 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      */
     @Query(value = "select * " +
             "from notification " +
-            "where title like %:keyword% and content like %:keyword% and is_deleted = 0 order by date_submitted dsc",
+            "where title like %:keyword% and " +
+            "content like %:keyword% and " +
+            "is_deleted = 0 " +
+            "order by submitted_date desc",
             nativeQuery = true)
     Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 
@@ -95,7 +97,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
                     " from notification " +
                     " where content " +
                     "like :content " +
-                    "and is_deleted =0) as abc")
+                    "and is_deleted =0) as subTable")
     Page<NotificationDto> findAllNotification(Pageable pageable, @Param("content") String content);
 
     /**

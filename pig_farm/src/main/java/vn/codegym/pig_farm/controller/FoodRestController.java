@@ -108,6 +108,9 @@ public class FoodRestController {
         iFoodService.create(food);
         Storage storage = iFoodService.findByIdStorage(foodDto.getStorage().getId());
         int amountSet = storage.getAmount() - foodDto.getAmount();
+        if (amountSet == 0) {
+            iFoodService.deleteStorage(1, storage.getId());
+        }
         if (amountSet < 0) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
         }
@@ -132,11 +135,34 @@ public class FoodRestController {
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
+        int amountSet;
+        int count = foods.getAmount();
         foods.setAmount(foodDto.getAmount());
         foods.setUnit(foodDto.getUnit());
         foods.setPigsty(foodDto.getPigsty());
         foods.setStorage(foodDto.getStorage());
         iFoodService.update(foods);
+        Storage storage = iFoodService.findByIdStorage(foods.getStorage().getId());
+
+        if (count < foods.getAmount()) {
+            amountSet = storage.getAmount() + (foods.getAmount() - count);
+            if (amountSet == 0) {
+                iFoodService.deleteStorage(1, storage.getId());
+            }
+            if (amountSet < 0) {
+                return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
+            }
+            iFoodService.updateStorage(amountSet, storage.getId());
+            return new ResponseEntity<>(foods, HttpStatus.CREATED);
+        }
+        amountSet = storage.getAmount() - (foods.getAmount() - count);
+        if (amountSet == 0) {
+            iFoodService.deleteStorage(1, storage.getId());
+        }
+        if (amountSet < 0) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
+        }
+        iFoodService.updateStorage(amountSet, storage.getId());
         return new ResponseEntity<>(foods, HttpStatus.CREATED);
     }
 
