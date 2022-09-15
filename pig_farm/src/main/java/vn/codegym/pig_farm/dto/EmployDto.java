@@ -1,8 +1,7 @@
 package vn.codegym.pig_farm.dto;
 
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import vn.codegym.pig_farm.entity.Export;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -11,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class EmployDto implements Validator {
+public class EmployDto {
 
     private Integer id;
 
@@ -42,12 +41,6 @@ public class EmployDto implements Validator {
     private List<Export> exports;
 
     private UserDto userDto;
-
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
 
 
     public EmployDto() {
@@ -145,10 +138,6 @@ public class EmployDto implements Validator {
 
     public void setUserDto(UserDto userDto) {
         this.userDto = userDto;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
     }
 
 

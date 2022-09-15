@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Repository
-public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
+public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
 
     /**
      * Create by ThuanT
@@ -25,16 +25,8 @@ public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
      * @return
      */
 
-    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine,p.code as pigCode, pt.code as pigstyCode" +
-            " FROM Treatment t JOIN pig p ON t.pig_id = p.id" +
-            " JOIN pigsty pt ON p.pigsty_id = pt.id " +
-            "where t.is_deleted = 0 and pt.code like :keySearch", nativeQuery = true,
-            countQuery = "select count(*) from(SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, p.code as pigCode, pt.code as pigstyCode" +
-                    " FROM Treatment t " +
-                    " JOIN pig p ON t.pig_id = p.id" +
-                    " JOIN pigsty pt ON p.pigsty_id = pt.id " +
-                    " where t.is_deleted = 0 and pt.code like :keySearch) as abc ")
-    Page<TreatmentDto> getAllTreatment(Pageable pageable,@Param("keySearch")  String keySearch);
+    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine,p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + "where t.is_deleted = 0 and pt.code like :keySearch", nativeQuery = true, countQuery = "select count(*) from(SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t " + " JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + " where t.is_deleted = 0 and pt.code like :keySearch) as abc ")
+    Page<TreatmentDto> getAllTreatment(Pageable pageable, @Param("keySearch") String keySearch);
 
 
     /**
@@ -54,6 +46,7 @@ public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
      * create by TuongTK
      * date: 08/09/2022
      * write query for method save
+     *
      * @param id
      * @param date
      * @param doctor
@@ -64,15 +57,8 @@ public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
      */
     @Modifying
     @Transactional
-    @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id, is_deleted) " +
-            " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id, 0);", nativeQuery = true)
-    void save(@Param("id") Integer id,
-              @Param("date") LocalDate date,
-              @Param("doctor") String doctor,
-              @Param("diseases") String diseases,
-              @Param("medicine") String medicine,
-              @Param("amount") Integer amount,
-              @Param("pig_id") Pig pig);
+    @Query(value = "insert into treatment(id, `date`, doctor, diseases, medicine, amount, pig_id, is_deleted) " + " values (:id, :date, :doctor, :diseases, :medicine, :amount, :pig_id, 0);", nativeQuery = true)
+    void save(@Param("id") Integer id, @Param("date") LocalDate date, @Param("doctor") String doctor, @Param("diseases") String diseases, @Param("medicine") String medicine, @Param("amount") Integer amount, @Param("pig_id") Pig pig);
 
     /**
      * Create by ThuanT
@@ -82,6 +68,6 @@ public interface TreatmentRepository extends JpaRepository<Treatment,Integer> {
      * @param id
      * @return
      */
-    @Query(value = "select * from Treatment t where t.id = :id and t.is_deleted = 0", nativeQuery = true)
+    @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, t.pig_id" + " from Treatment t where t.id = :id and t.is_deleted = 0 ", nativeQuery = true)
     Treatment findByIdTreatment(@Param("id") int id);
 }

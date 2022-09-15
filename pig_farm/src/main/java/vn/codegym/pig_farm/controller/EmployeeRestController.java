@@ -12,7 +12,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
-import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.service.IEmployeeService;
@@ -39,23 +38,23 @@ public class EmployeeRestController {
     private IUserService userService;
 
     /**
-     * @Creator HungNQ
-     * @Date 08/09/2022
      * @param pageable
      * @param name
      * @param idCard
      * @return if success status 2xx else if error status 4xx
+     * @Creator HungNQ
+     * @Date 08/09/2022
      */
     @GetMapping("/searchList")
 
-    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
+    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
 
-                                                                                   @RequestParam Optional<String> name,
-                                                                                   @RequestParam Optional<String> idCard) {
+                                                                                                                       @RequestParam Optional<String> name,
+                                                                                                                       @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
 
-        Page<EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName,keywordIdCard, pageable);
+        Page<vn.codegym.pig_farm.dto.projections.EmployeeDto> employeePage = iEmployeeService.getAllEmployeePaginationAndSearch(keywordName, keywordIdCard, pageable);
         if (employeePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -63,16 +62,16 @@ public class EmployeeRestController {
     }
 
     /**
-     * @Creator HungNQ
-     * @Date 08/09/2022
      * @param id
      * @return if success delete employee by id
+     * @Creator HungNQ
+     * @Date 08/09/2022
      */
     @PatchMapping("/delete/{id}")
-    public ResponseEntity<Employee> deleteEmployeeById(@PathVariable Integer id){
+    public ResponseEntity<Employee> deleteEmployeeById(@PathVariable Integer id) {
         List<Employee> employeeList = iEmployeeService.getAllEmployee();
-        for (Employee employee: employeeList) {
-            if(Objects.equals(id, employee.getId())){
+        for (Employee employee : employeeList) {
+            if (Objects.equals(id, employee.getId())) {
                 iEmployeeService.deleteEmployee(id);
                 return new ResponseEntity<>(HttpStatus.OK);
             }
@@ -81,14 +80,14 @@ public class EmployeeRestController {
     }
 
     /**
-     * @Creator HungNQ
-     * @Date 12/09/2022
      * @param id
      * @return EmployeeDto
+     * @Creator HungNQ
+     * @Date 12/09/2022
      */
     @GetMapping("/detail/{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeDtoById(@PathVariable Integer id){
-        Optional<EmployeeDto> employeeDtoOptional = iEmployeeService.getEmployeeDtoById(id);
+    public ResponseEntity<vn.codegym.pig_farm.dto.projections.EmployeeDto> getEmployeeDtoById(@PathVariable Integer id) {
+        Optional<vn.codegym.pig_farm.dto.projections.EmployeeDto> employeeDtoOptional = iEmployeeService.getEmployeeDtoById(id);
         if (!employeeDtoOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -96,13 +95,13 @@ public class EmployeeRestController {
     }
 
     /**
+     * @return List employee
      * @Creator HungNQ
      * @Date 13/09/2022
-     * @return List employee
      */
     @GetMapping("/list")
-    public ResponseEntity<List<Employee>> getAllEmployee(){
-        return new ResponseEntity<>(iEmployeeService.getAllEmployee(),HttpStatus.OK);
+    public ResponseEntity<List<Employee>> getAllEmployee() {
+        return new ResponseEntity<>(iEmployeeService.getAllEmployee(), HttpStatus.OK);
     }
 
     /**
@@ -208,8 +207,6 @@ public class EmployeeRestController {
     public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
         return new ResponseEntity<>(iEmployeeService.existsCode(code), HttpStatus.OK);
     }
-
-
 
 
 }

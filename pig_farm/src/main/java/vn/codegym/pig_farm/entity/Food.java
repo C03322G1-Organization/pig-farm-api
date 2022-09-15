@@ -18,7 +18,6 @@ public class Food {
 
     @Column(columnDefinition = "VARCHAR(15)")
     private String unit;
-
     @ManyToOne
     @JoinColumn(name = "storage_id", referencedColumnName = "id")
     private Storage storage;
