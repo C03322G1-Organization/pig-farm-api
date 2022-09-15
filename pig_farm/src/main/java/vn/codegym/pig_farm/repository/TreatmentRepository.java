@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import vn.codegym.pig_farm.dto.projections.TreatmentDto;
 import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.entity.Treatment;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Repository
@@ -70,3 +71,5 @@ public interface TreatmentRepository extends JpaRepository<Treatment, Integer> {
     @Query(value = "SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine,p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + "where t.is_deleted = 0 and t.id like :id", nativeQuery = true, countQuery = "select count(*) from(SELECT t.id, t.amount, t.date, t.diseases, t.doctor, t.is_deleted, t.medicine, p.code as pigCode, pt.code as pigstyCode" + " FROM Treatment t " + " JOIN pig p ON t.pig_id = p.id" + " JOIN pigsty pt ON p.pigsty_id = pt.id " + " where t.is_deleted = 0 and t.id =  :id) as abc ")
     TreatmentDto findByIdTreatment(@Param("id") int id);
 }
+
+

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class PigDto {
     private Integer id;
-//    @NotBlank
+    //    @NotBlank
 //    @Pattern(regexp = "^(ML)[0-9]{2,4}$", message = "Code phải có dạng MlXXX")
     private String code;
 
@@ -14,10 +14,10 @@ public class PigDto {
 
     private LocalDate dateOut;
 
-//    @NotBlank(message = "Không được để trống")
+    //    @NotBlank(message = "Không được để trống")
     private String status;
 
-//    @Length(min = 1, max = 100, message = "Tối thiểu 1 ký tự và lớn nhất 3 ký tự.")
+    //    @Length(min = 1, max = 100, message = "Tối thiểu 1 ký tự và lớn nhất 3 ký tự.")
 //    @NotBlank(message = "Không được để trống")
     private String weight;
 
