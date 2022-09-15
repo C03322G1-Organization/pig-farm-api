@@ -48,7 +48,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_vaccinatedPerson_14() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(7);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("");
@@ -69,7 +69,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_vaccineType_14() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(7);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("Lam Linh");
@@ -90,7 +90,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_date_14() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(7);
-        vaccinationDto.setDate("");
+//        vaccinationDto.setDate("");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("Lam Linh");
@@ -111,7 +111,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_pigsty_15() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(1);
-        vaccinationDto.setDate("");
+//        vaccinationDto.setDate("");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("Lam Linh");
@@ -132,7 +132,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_vaccinatedPerson_15() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(1);
-        vaccinationDto.setDate("");
+//        vaccinationDto.setDate("");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("Lam Linh 1");
@@ -153,7 +153,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_amount_16() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(33);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("An Nhiên");
@@ -174,7 +174,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_amount1_16() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(0);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("An Nhiên");
@@ -195,7 +195,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_vaccinatedPerson_16() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(3);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên An Nhiên");
@@ -223,7 +223,7 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_vaccinatedPerson_17() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(3);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("An");
@@ -250,15 +250,17 @@ public class VaccinationRestController_createVaccination {
     public void createVaccination_18() throws Exception {
         VaccinationDto vaccinationDto = new VaccinationDto();
         vaccinationDto.setAmount(8);
-        vaccinationDto.setDate("2022-01-21");
+//        vaccinationDto.setDate("2022-01-21");
         vaccinationDto.setDeleted(false);
         vaccinationDto.setNote("ML001 không tiêm");
         vaccinationDto.setVaccinatedPerson("Lam Linh");
         vaccinationDto.setVaccineType("PPK");
 
-        Pigsty pigsty = new Pigsty();
-        pigsty.setId(1);
-        vaccinationDto.setPigsty(pigsty);
+//        Pigsty pigsty = new Pigsty();
+//        pigsty.setId(1);
+        PigstyDto pigstyDto = new PigstyDto();
+        pigstyDto.setId(1);
+        vaccinationDto.setPigstyDto(pigstyDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/vaccination/create")

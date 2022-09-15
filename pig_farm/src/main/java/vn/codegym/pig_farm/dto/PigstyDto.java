@@ -4,20 +4,18 @@ import lombok.Data;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Data
 public class PigstyDto implements Validator {
     private Integer id;
     @NotNull
-    @NotEmpty
     private String creationDate;
-
+    @NotBlank
+    private String code;
+    @NotNull
     private Integer typePigs;
-
+    @NotNull
     private String buildDate;
 
     @Max(value = 20, message = "không được lớn hơn 20 cá thể")

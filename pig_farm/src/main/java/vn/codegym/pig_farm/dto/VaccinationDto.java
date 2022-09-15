@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class VaccinationDto implements Validator {
     private Integer id;
+    @NotNull
     private LocalDate date;
     @NotNull
     @Min(value = 1)
@@ -20,17 +21,15 @@ public class VaccinationDto implements Validator {
     @Size(min = 5, max = 30)
     @Pattern(regexp = "(^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$)")
     private String vaccinatedPerson;
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     private String note;
     private Boolean isDeleted;
-    @NotNull
-    private Pigsty pigsty;
 
+   private Pigsty pigstyCode;
     public VaccinationDto() {
     }
 
-
-    public VaccinationDto(Integer id, LocalDate date, @NotNull @Min(value = 1) @Max(value = 10) Integer amount, @NotBlank String vaccineType, @NotBlank String vaccinatedPerson, @Size(min = 1, max = 255) String note, Boolean isDeleted, Pigsty pigsty) {
+    public VaccinationDto(Integer id, @NotNull LocalDate date, @NotNull @Min(value = 1) @Max(value = 20) Integer amount, @NotBlank String vaccineType, @NotBlank @Size(min = 5, max = 30) @Pattern(regexp = "(^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$)") String vaccinatedPerson, @Size(max = 255) String note, Boolean isDeleted, Pigsty pigstyCode) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -38,7 +37,7 @@ public class VaccinationDto implements Validator {
         this.vaccinatedPerson = vaccinatedPerson;
         this.note = note;
         this.isDeleted = isDeleted;
-        this.pigsty = pigsty;
+        this.pigstyCode = pigstyCode;
     }
 
     public Integer getId() {
@@ -98,12 +97,20 @@ public class VaccinationDto implements Validator {
         isDeleted = deleted;
     }
 
-    public Pigsty getPigsty() {
-        return pigsty;
+//    public Pigsty getPigsty() {
+//        return pigsty;
+//    }
+//
+//    public void setPigsty(Pigsty pigsty) {
+//        this.pigsty = pigsty;
+//    }
+
+    public Pigsty getPigstyCode() {
+        return pigstyCode;
     }
 
-    public void setPigsty(Pigsty pigsty) {
-        this.pigsty = pigsty;
+    public void setPigstyCode(Pigsty pigstyCode) {
+        this.pigstyCode = pigstyCode;
     }
 
     @Override
