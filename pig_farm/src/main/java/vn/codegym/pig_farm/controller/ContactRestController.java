@@ -31,7 +31,7 @@ public class  ContactRestController {
      * Param contactDto
      */
     @PostMapping("/create")
-    public ResponseEntity<?> save(@Valid @RequestBody ContactDto contactDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> save(@Valid @RequestBody ContactDto contactDto, BindingResult bindingResult) {
         new ContactDto().validate(contactDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.BAD_REQUEST);
@@ -57,7 +57,7 @@ public class  ContactRestController {
         }
         Page<Contact> contactPage = contactService.getAll(pageable,name);
         if (contactPage.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(contactPage,HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(contactPage,HttpStatus.OK);
     }
@@ -81,8 +81,7 @@ public class  ContactRestController {
      * function: delete Contact
      */
     @PostMapping("/delete")
-    private ResponseEntity<?> delete(@RequestBody Map<String, Integer[]> ids) {
-        System.out.println(111);
+    public ResponseEntity<Contact> delete(@RequestBody Map<String, Integer[]> ids) {
         contactService.deleteContact(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
