@@ -19,7 +19,7 @@ import vn.codegym.pig_farm.service.IFoodService;
 
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/food")
 public class FoodRestController {

@@ -163,4 +163,15 @@ public class PigRestController {
         }
         return new ResponseEntity<>(pigsty, HttpStatus.OK);
     }
+
+    /**
+     * Create by: DatVT
+     * Date Create: 14/09/2022
+     * funtion: checkCode
+     * @return
+     */
+    @GetMapping("/check/{code}")
+    public  ResponseEntity<?> checkCode(@PathVariable("code") String code){
+        return new ResponseEntity<>(pigService.existsCode(code), HttpStatus.OK);
+    }
 }

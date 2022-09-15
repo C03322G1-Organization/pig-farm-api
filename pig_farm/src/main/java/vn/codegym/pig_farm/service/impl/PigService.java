@@ -108,4 +108,14 @@ public class PigService implements IPigService {
     public Optional<Pig> findById(int id) {
         return pigRepository.findByIdPig(id);
     }
+
+    /**
+     * Created by: DatVT
+     * Date created: 14/09/2022
+     * Function: existsCode
+     */
+    @Override
+    public Boolean existsCode(String code) {
+        return code.equals(pigRepository.exitCode(code));
+    }
 }

@@ -52,7 +52,7 @@ public class VaccinationRestController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.VaccinationDto>> getList(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> name) {
+    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.VaccinationDto>> getList(@PageableDefault(8) Pageable pageable, @RequestParam Optional<String> name) {
         /**
          * @function (Display all Vaccination and search)
          * @creator TamLT

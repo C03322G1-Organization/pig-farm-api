@@ -29,7 +29,6 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     UserRoleRepository userRoleRepository;
 
-
     /**
      * @return list Employee (test list)
      * @creator LongNT
@@ -85,7 +84,6 @@ public class EmployeeService implements IEmployeeService {
     public void edit(Employee employee) {
         iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
     }
-
 
     /**
      * @param name
