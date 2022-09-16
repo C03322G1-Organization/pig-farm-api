@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+
 /**
  * Created by: HoaL
  * Date created: 09/09/2022
@@ -30,8 +31,7 @@ public class ExportDto {
     @Max(value = 99000)
     private Double price;
 
-    @NotBlank(message = "Vui lòng nhập loại")
-    @Size(min = 1, max = 50, message = "không quá 1-50 từ")
+
     private Integer typePigs;
 
     private Boolean isDeleted;
@@ -43,14 +43,11 @@ public class ExportDto {
     private LocalDate saleDate;
 
 
-
     public ExportDto() {
     }
 
 
-    public ExportDto(String codeExport, String company, Integer amount, Double kilogram,
-                     Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted,
-                     PigstyDto pigstyDto, EmployDto employDto) {
+    public ExportDto(String codeExport, String company, Integer amount, Double kilogram, Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted, PigstyDto pigstyDto, EmployDto employDto) {
 
         this.codeExport = codeExport;
         this.company = company;
@@ -141,6 +138,7 @@ public class ExportDto {
     public Integer getTypePigs() {
         return typePigs;
     }
+
     public void setTypePigs(Integer typePigs) {
         this.typePigs = typePigs;
     }

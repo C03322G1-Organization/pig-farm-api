@@ -40,7 +40,7 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
     @Modifying
     @Query(value = "insert into `storage` ( amount, food_type, `date`, unit)" +
             "values (:amount, :foodType, :date, :unit)", nativeQuery = true)
-    void saveS(@Param("amount") Integer amount, @Param("foodType") String foodType, @Param("date") LocalDate date, @Param("unit") String unit);
+    void saveS(@Param("amount") Double amount, @Param("foodType") String foodType, @Param("date") LocalDate date, @Param("unit") String unit);
 
 
     /**
@@ -63,7 +63,7 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
     @Transactional
     @Modifying
     @Query(value = "update storage set amount = :amount where id = :id", nativeQuery = true)
-    void updateAmountStorage(@Param("amount") Integer amount,@Param("id") Integer id);
+    void updateAmountStorage(@Param("amount") Double amount,@Param("id") Integer id);
 
     /**
      * Create by: HungNV
@@ -75,5 +75,5 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
     @Transactional
     @Modifying
     @Query(value = "update storage set is_deleted = :delete where id = :id", nativeQuery = true)
-    void deleteStorage(@Param("delete") Integer delete, @Param("id") Integer id);
+    void deleteStorage(@Param("delete") Double delete, @Param("id") Integer id);
 }

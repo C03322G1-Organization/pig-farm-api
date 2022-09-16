@@ -100,4 +100,22 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             "where e.id = :id",nativeQuery = true)
     Optional<EmployeeDto> getEmployeeDtoById(@Param("id") int id);
 
+
+    /**
+     * @param code
+     * @return code
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Query(value = "select `code` from employee where `code` = :code", nativeQuery = true)
+    String existsCode(@Param("code") String code);
+
+    /**
+     * @param idCard
+     * @return code
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Query(value = "select id_card from employee where id_card = :idCard", nativeQuery = true)
+    String existsIdCard(@Param("idCard") String idCard);
 }

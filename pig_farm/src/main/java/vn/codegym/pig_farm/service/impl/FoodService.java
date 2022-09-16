@@ -76,7 +76,7 @@ public class FoodService implements IFoodService {
     }
 
     @Override
-    public void updateStorage(int i, Integer id) {
+    public void updateStorage(double i, Integer id) {
         storageRepository.updateAmountStorage(i, id);
     }
 
@@ -90,7 +90,7 @@ public class FoodService implements IFoodService {
      * @return
      */
     @Override
-    public void deleteStorage(int i, Integer id) {
+    public void deleteStorage(double i, Integer id) {
         storageRepository.deleteStorage(i,id);
     }
 }

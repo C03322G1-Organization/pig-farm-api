@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import vn.codegym.pig_farm.dto.PigstyDto;
+import vn.codegym.pig_farm.dto.projections.PigstyDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.service.IPigstyService;
 
@@ -33,7 +33,7 @@ public class PigstyRestController {
      * @return if created pigsty return HttpStatus.CREATED(201)
      */
     @PostMapping("/createPigsty")
-    public ResponseEntity<Pigsty> createPigsty(@Valid @RequestBody PigstyDto pigstyDto, BindingResult bindingResult) {
+    public ResponseEntity<Pigsty> createPigsty(@Valid @RequestBody vn.codegym.pig_farm.dto.PigstyDto pigstyDto, BindingResult bindingResult) {
 
         pigstyDto.validate(pigstyDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -56,8 +56,8 @@ public class PigstyRestController {
      * HTTP status NOT_FOUND : return pigstyId =null
      */
     @GetMapping("/getPigstyById/{id}")
-    public ResponseEntity<Pigsty> getPigstyById(@PathVariable Integer id) {
-        Pigsty pigsty = this.iPigstyService.getPigstyById(id);
+    public ResponseEntity<PigstyDto> getPigstyById(@PathVariable Integer id) {
+        PigstyDto pigsty = this.iPigstyService.getPigstyById(id);
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (pigsty == null) {
@@ -75,7 +75,7 @@ public class PigstyRestController {
      * @return if edited return Http status OK
      */
     @PatchMapping("/editPigsty")
-    public ResponseEntity<Pigsty> editPigsty(@Valid @RequestBody PigstyDto pigstyDto, BindingResult bindingResult) {
+    public ResponseEntity<Pigsty> editPigsty(@Valid @RequestBody vn.codegym.pig_farm.dto.PigstyDto pigstyDto, BindingResult bindingResult) {
         pigstyDto.validate(pigstyDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -86,12 +86,17 @@ public class PigstyRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
+    /**pigsty
+     * Created by: HieuCD
+     * Date created: 16/09/2022
+     * function: get List of
+     * @return
+     */
     @GetMapping("/getList")
     public ResponseEntity<List<Pigsty>> getListPigsty() {
         List<Pigsty> pigstyList = this.iPigstyService.getListPigsty();
         if (pigstyList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(pigstyList, HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(pigstyList, HttpStatus.OK);
     }

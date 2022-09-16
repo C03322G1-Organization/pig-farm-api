@@ -76,4 +76,20 @@ public interface IEmployeeService {
      */
     Optional<EmployeeDto> getEmployeeDtoById(int id);
 
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    Boolean existsCode(String code);
+
+    /**
+     * @param idCard
+     * @return
+     * @creator LongNT
+     * @day 16/09/2022
+     */
+    Boolean existsIdCard(String idCard);
 }
