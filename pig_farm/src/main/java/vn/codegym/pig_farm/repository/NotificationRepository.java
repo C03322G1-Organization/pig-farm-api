@@ -87,12 +87,12 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      * @param pageable
      * @return
      */
+
     @Query(value = " select id , content, title , submitted_date as submittedDate , image  " +
             " from notification " +
             " where content " +
             "like :content " +
-            "and is_deleted =0" +
-            "order by id desc",
+            "and is_deleted =0 order by id desc",
             nativeQuery = true,
             countQuery = "select count(*) from (select id , content, title , submitted_date as submittedDate , image  " +
                     " from notification " +
@@ -108,7 +108,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Inte
      *
      * @param id
      */
-
+    @Transactional
     @Modifying
     @Query(value = "update notification set is_deleted =1 where id =:id", nativeQuery = true)
     void delete(@Param("id") Integer id);
