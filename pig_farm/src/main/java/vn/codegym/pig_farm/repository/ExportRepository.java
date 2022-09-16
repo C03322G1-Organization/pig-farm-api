@@ -42,7 +42,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
             "e.type_pigs as typePigs " +
             "FROM export e " +
             "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
-            "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee", nativeQuery = true,
+            "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee order by id desc ", nativeQuery = true,
             countQuery = "SELECT count(*) from (SELECT e.id as id," +
                     "amount as amount," +
                     "e.code_export as codeExport," +
@@ -55,7 +55,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
                     "e.type_pigs as typePigs " +
                     "FROM export e " +
                     "RIGHT JOIN employee as emp on emp.id = e.employee_id " +
-                    "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee) as export")
+                    "where e.is_deleted = 0 and code_export like:codeExport and company like:company and emp.name like:nameEmployee order by id desc) as export")
     Page<ExportDto> listAllExport(Pageable pageable, @Param("codeExport") String codeExport, @Param("company") String company, @Param("nameEmployee") String nameEmployee);
 
     /**

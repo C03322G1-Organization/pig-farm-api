@@ -73,9 +73,9 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
      * @date-create 08/09/2022
      */
     @Query(value = "select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " +
-            "from advertisement where title like :keySearch and is_deleted = 0", nativeQuery = true,
+            "from advertisement where title like :keySearch and is_deleted = 0 order by id desc", nativeQuery = true,
             countQuery = "select count(*) from (select id ,title ,image ,submitted_date as submittedDate,time_existence as timeExistence, is_deleted, placement_id " +
-                    "from advertisement where title like :keySearch and is_deleted = 0) as abc")
+                    "from advertisement where title like :keySearch and is_deleted = 0 order by id desc) as abc")
     Page<AdvertisementDto> findAllAdvertisement(Pageable pageable, @Param("keySearch") String keySearch);
 
 
