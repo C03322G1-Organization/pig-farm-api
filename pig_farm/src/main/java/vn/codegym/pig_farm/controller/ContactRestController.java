@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/contact")
+@RequestMapping("/api/public")
 public class  ContactRestController {
     @Autowired
     private IContactService contactService;
@@ -30,7 +30,7 @@ public class  ContactRestController {
      *
      * Param contactDto
      */
-    @PostMapping("/create")
+    @PostMapping("/api/contact/create")
     public ResponseEntity<Object> save(@Valid @RequestBody ContactDto contactDto, BindingResult bindingResult) {
         new ContactDto().validate(contactDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
@@ -38,6 +38,7 @@ public class  ContactRestController {
         } else {
             Contact contact = new Contact();
             BeanUtils.copyProperties(contactDto, contact);
+            contact.setDate(java.time.LocalDate.now());
             contactService.save(contact);
             return new ResponseEntity<>(contact, HttpStatus.CREATED);
         }
@@ -48,7 +49,7 @@ public class  ContactRestController {
      * Date create: 08/09/2022
      * function: findAll Contact
      */
-    @GetMapping("/page")
+    @GetMapping("/api/contact/page")
     public ResponseEntity<Page<Contact>> findAllContact(@PageableDefault(value = 5) Pageable pageable,
                                                         Optional<String> nameSearch) {
         String name = nameSearch.orElse("");
@@ -67,7 +68,7 @@ public class  ContactRestController {
      * Date created: 08/09/2022
      * function: find by id contact
      */
-    @GetMapping("/{id}")
+    @GetMapping("/api/contact/{id}")
     public ResponseEntity<Contact> findById(@PathVariable Integer id) {
         Contact contact = contactService.findByIdContact(id);
         if (contact == null) {
@@ -80,7 +81,7 @@ public class  ContactRestController {
      * Date created: 08/09/2022
      * function: delete Contact
      */
-    @PostMapping("/delete")
+    @PostMapping("/api/contact/delete")
     public ResponseEntity<Contact> delete(@RequestBody Map<String, Integer[]> ids) {
         contactService.deleteContact(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);

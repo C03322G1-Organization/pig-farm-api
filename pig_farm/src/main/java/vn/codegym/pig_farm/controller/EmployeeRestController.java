@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/employee")
+@RequestMapping("/api/public/employee")
 public class EmployeeRestController {
 
     @Autowired
@@ -136,14 +136,11 @@ public class EmployeeRestController {
 
         userDto = employDto.getUserDto();
 
-        if (userDto != null) {
+        AppUser appUser = new AppUser();
 
-            AppUser appUser = new AppUser();
+        BeanUtils.copyProperties(userDto, appUser);
 
-            BeanUtils.copyProperties(userDto, appUser);
-
-            userService.save(appUser);
-        }
+        userService.save(appUser);
 
         Employee employee = new Employee();
 

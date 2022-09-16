@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/treatment/v1")
+@RequestMapping("/api/public/api/treatment/v1")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TreatmentRestController {
     @Autowired

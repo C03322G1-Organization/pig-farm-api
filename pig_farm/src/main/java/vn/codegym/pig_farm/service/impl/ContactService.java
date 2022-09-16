@@ -51,7 +51,7 @@ public class ContactService implements IContactService {
      * This save
      */
     @Override
-    public Contact save(Contact contact) {
-        return contactRepository.save(contact.getName(), contact.getEmail(), contact.getPhone(), contact.getAddress(), contact.getContent());
+    public void save(Contact contact) {
+         contactRepository.save(contact.getName(), contact.getEmail(), contact.getPhone(), contact.getAddress(), contact.getContent(),contact.getDate().toString());
     }
 }

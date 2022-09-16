@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/pigsty")
+@RequestMapping("/api/public/pigsty")
 public class PigstyRestController {
     @Autowired
     IPigstyService iPigstyService;

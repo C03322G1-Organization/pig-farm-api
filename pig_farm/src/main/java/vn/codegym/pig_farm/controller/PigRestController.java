@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api/public")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PigRestController {
 

@@ -16,6 +16,23 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<AppUser, Integer> {
 
     /**
+     * Create by SangNH
+     * Date: 08/09/2022
+     * query: search by name
+     *
+     * @param name
+     */
+    @Query(value = "select * from app_user a where a.username = :name", nativeQuery = true)
+    AppUser findAppUserByName(@Param("name") String name);
+
+    @Query(value = "SELECT username from app_user where username = ?1", nativeQuery = true)
+    String existsByUserName(String username);
+
+    @Modifying
+    @Query(value = "update app_user set password =?1 where username = ?2", nativeQuery = true)
+    void saveNewPassword(String password, String name);
+
+    /**
      * @param id function deleteUser
      * @Creator HungNQ
      * @Date 12/09/2022
