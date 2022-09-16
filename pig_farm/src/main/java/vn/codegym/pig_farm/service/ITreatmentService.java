@@ -3,7 +3,11 @@ package vn.codegym.pig_farm.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.codegym.pig_farm.dto.projections.TreatmentDto;
+import vn.codegym.pig_farm.entity.Pig;
+import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.entity.Treatment;
+
+import java.util.List;
 
 
 public interface ITreatmentService {
@@ -35,13 +39,17 @@ public interface ITreatmentService {
      */
     void deleteByIdTreatment(int id);
 
-    TreatmentDto findById(int parseInt);
+
+    List<Pig> getListPig(String id);
+
+    List<Pigsty> getListPigSty();
 
     /**
      * Create by ThuanT
      * Date create: 08/09/2022
      * create method findById
      * @return
-     * @param id
+     * @param parseInt
      */
+    TreatmentDto findById(int parseInt);
 }

@@ -8,12 +8,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import vn.codegym.pig_farm.dto.PigstyDto;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.dto.projections.ExportDto;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Export;
 import vn.codegym.pig_farm.entity.Pigsty;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 @Repository
 @Transactional
@@ -66,28 +69,17 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Query(value = "UPDATE export SET is_deleted = 1 WHERE id=:id", nativeQuery = true)
     void deleteByStatus(@Param("id") Integer id);
 
-    /**
-     * Create by: DongLHP
-     * Date create: 08/09/2022
-     * Function: find export by Id
-     * @Param: id
-     * @return
-     */
-//    @Query(value = "SELECT id, amount, code_export, company, is_deleted, kilogram," +
-//            " price, start_date, employee_id, pigsty_id FROM export WHERE id=:id", nativeQuery = true)
-//    Export findById(@Param("id") int id);
 
     /**
      * Created by: HoaL
      * Date created: 08/09/2022
      * Function: createExport
      */
-
     @Modifying
     @Transactional
     @Query(value = "insert into `export` (pigsty_id,employee_id,code_export,company," +
-            "price,type_pigs,amount,kilogram) values" +
-            " (:pigstyId,:employeeId,:codeExport,:company,:price,:typePigs, :amount, :kilogram)",
+            "price,type_pigs,amount,kilogram,sale_date) values" +
+            " (:pigstyId,:employeeId,:codeExport,:company,:price,:typePigs, :amount, :kilogram, :saleDate)",
             nativeQuery = true)
     void create(@Param("pigstyId") Integer pigstyId,
                 @Param("employeeId") Integer employeeId,
@@ -96,7 +88,8 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
                 @Param("price") Double price,
                 @Param("typePigs") Integer typePigs,
                 @Param("amount") Integer amount,
-                @Param("kilogram") Double kilogram
+                @Param("kilogram") Double kilogram,
+                @Param("saleDate") LocalDate saleDate
     );
 
     /**
@@ -108,13 +101,13 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Modifying
     @Transactional
     @Query(value = "update `export` set pigsty_id = :pigstyId,employee_id = :employeeId,code_export = :codeExport,company = :company," +
-            "price = :price,type_pigs = :typePigs, amount = :amount, kilogram = :kilogram where id = :id",
+            "price = :price,type_pigs = :typePigs, amount = :amount, kilogram = :kilogram, sale_date = :saleDate where id = :id",
             nativeQuery = true)
-    void update(@Param("pigstyId") Pigsty pigstyId, @Param("employeeId") Employee employeeId,
+    void update(@Param("pigstyId") Integer pigstyId, @Param("employeeId") Integer employeeId,
                 @Param("codeExport") String codeExport, @Param("company") String company,
                 @Param("price") Double price,
                 @Param("typePigs") Integer typePigs,
-                @Param("amount") Integer amount, @Param("id") Double kilogram, @Param("id") Integer id
+                @Param("amount") Integer amount, @Param("id") Double kilogram, @Param("saleDate") LocalDate saleDate, @Param("id") Integer id
     );
 
     /**
@@ -143,9 +136,12 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
     @Query(value = "select count(pig.pigsty_id) from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id", nativeQuery = true)
     Integer countPigOnPigsty(@Param("id") int id);
 
-//    @Query(value = "select count(pig.pigsty_id) as totalWeight,sum(pig.weight) as amountPigOnPigsty  from pig join pigsty on pig.pigsty_id = pigsty.id where pigsty.id =:id;", nativeQuery = true)
-//    IPigstyDto test(@Param("id") int id);
-//
-//    @Query(value = "select pigsty.code from pigsty where id=:id;", nativeQuery = true)
-//    IPigstyDto tes(@Param("id") int id);
+    /**
+     * Created by: HoaL
+     * Date created: 08/09/2022
+     * Function: exitCode
+     * return countPigOnPigsty
+     */
+    @Query(value = "SELECT code_export FROM export where code_export=:codeExport", nativeQuery = true)
+    String exitCode(@Param("codeExport") String codeExport);
 }

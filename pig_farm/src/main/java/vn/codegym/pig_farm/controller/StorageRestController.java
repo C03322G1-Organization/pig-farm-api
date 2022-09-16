@@ -36,9 +36,6 @@ public class StorageRestController {
     public ResponseEntity<Page<StorageDto>> showAll(@PageableDefault(5) Pageable pageable, Optional<String> keyWord) {
         {
             String foodType = keyWord.orElse("");
-            if (foodType.equals("null")) {
-                foodType = "";
-            }
             Page<StorageDto> storagePage = storageService.findAll(pageable, foodType);
             if (storagePage.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

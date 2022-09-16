@@ -58,7 +58,7 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "update pigsty set `build_date`=:#{#pigsty.buildDate},`creation_date`=:#{#pigsty.creationDate}," + "`max_number`=:#{#pigsty.maxNumber} where `is_deleted`=0 and `id`=:#{#pigsty.id}", nativeQuery = true)
+    @Query(value = "update pigsty set `type_pigs`=:#{#pigsty.typePigs},`build_date`=:#{#pigsty.buildDate},`creation_date`=:#{#pigsty.creationDate}," + "`max_number`=:#{#pigsty.maxNumber} where `is_deleted`=0 and `id`=:#{#pigsty.id}", nativeQuery = true)
     void editPigsty(Pigsty pigsty);
 
     /**

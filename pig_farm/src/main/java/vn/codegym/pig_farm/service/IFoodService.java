@@ -67,4 +67,13 @@ public interface IFoodService {
      * @param id
      */
     void updateStorage(int i, Integer id);
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: delete a Storage
+     * @param i
+     * @param id
+     */
+    void deleteStorage(int i, Integer id);
 }

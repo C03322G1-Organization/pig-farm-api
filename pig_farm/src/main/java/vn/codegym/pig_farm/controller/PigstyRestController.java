@@ -91,7 +91,7 @@ public class PigstyRestController {
     public ResponseEntity<List<Pigsty>> getListPigsty() {
         List<Pigsty> pigstyList = this.iPigstyService.getListPigsty();
         if (pigstyList.isEmpty()) {
-            return new ResponseEntity<>(pigstyList, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(pigstyList, HttpStatus.OK);
     }

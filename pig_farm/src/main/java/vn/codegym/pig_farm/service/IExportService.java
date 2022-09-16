@@ -49,4 +49,12 @@ public interface IExportService {
      */
     Export findById(int id);
 
+
+    /**
+     * Created by: HoaL
+     * Date created: 15/09/2022
+     * Function: existsCode
+     *
+     */
+    Boolean existsCode(String codeExport);
 }

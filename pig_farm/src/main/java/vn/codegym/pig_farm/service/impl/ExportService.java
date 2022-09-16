@@ -56,7 +56,7 @@ public class ExportService implements IExportService {
                 exportDto.getCodeExport(),
                 exportDto.getCompany(),
                 exportDto.getPrice(),
-                exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram());
+                exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram(), exportDto.getSaleDate());
     }
 
     /**
@@ -66,8 +66,8 @@ public class ExportService implements IExportService {
      */
     @Override
     public void update(Export export) {
-        iExportRepository.update(export.getPigsty(), export.getEmployee(), export.getCodeExport(), export.getCompany(),
-                 export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(),
+        iExportRepository.update(export.getPigsty().getId(), export.getEmployee().getId(), export.getCodeExport(), export.getCompany(),
+                 export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(), export.getSaleDate(),
                 export.getId());
     }
 
@@ -82,4 +82,8 @@ public class ExportService implements IExportService {
     }
 
 
+    @Override
+    public Boolean existsCode(String codeExport) {
+        return codeExport.equals(iExportRepository.exitCode(codeExport));
+    }
 }

@@ -64,4 +64,16 @@ public interface StorageRepository extends JpaRepository<Storage, Integer> {
     @Modifying
     @Query(value = "update storage set amount = :amount where id = :id", nativeQuery = true)
     void updateAmountStorage(@Param("amount") Integer amount,@Param("id") Integer id);
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: edit a Storage
+     *
+     * @param delete
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "update storage set is_deleted = :delete where id = :id", nativeQuery = true)
+    void deleteStorage(@Param("delete") Integer delete, @Param("id") Integer id);
 }

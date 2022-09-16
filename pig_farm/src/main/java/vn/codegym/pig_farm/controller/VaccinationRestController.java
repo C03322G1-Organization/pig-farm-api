@@ -45,7 +45,7 @@ public class VaccinationRestController {
         Vaccination vaccination = new Vaccination();
         BeanUtils.copyProperties(vaccinationDto, vaccination);
         Pigsty pigsty = new Pigsty();
-        pigsty.setId(vaccinationDto.getPigsty().getId());
+        pigsty.setId(vaccinationDto.getPigstyCode().getId());
         vaccination.setPigsty(pigsty);
         this.iVaccinationService.saveVaccination(vaccination);
         return new ResponseEntity<>(HttpStatus.OK);

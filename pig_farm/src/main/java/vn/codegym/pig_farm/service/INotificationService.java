@@ -17,9 +17,37 @@ public interface INotificationService {
      * @param keyword keyword
      * @return Page<Notification>
      */
-
     Page<Notification> findAll(Pageable pageable, @Param("keyword") String keyword);
 
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Create method findById
+     * @param id
+     * @return findById(Integer id)
+     */
+    Optional<Notification> findById(Integer id);
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Create method save
+     * @param notification
+     * @return save(Notification notification)
+     */
+
+    void save(Notification notification);
+
+    /**
+     * Create by HuyenTN
+     * Date: 08/09/2022
+     * Create method update
+     * @param notification
+     * @return save(Notification notification)
+     */
+
+    void update(Notification notification);
 
     /**
      * Create by HaiTV
@@ -32,15 +60,6 @@ public interface INotificationService {
      */
     Page<NotificationDto> findAllNotification(Pageable pageable, String content);
 
-    /**
-     * Create by HaiTV
-     * Date : 08/09/2022
-     * Find by id :Interface Notification
-     *
-     * @param id
-     * @return
-     */
-    Optional<Notification> findById(Integer id);
 
     /**
      * Create by HaiTV
@@ -50,8 +69,4 @@ public interface INotificationService {
      * @param ids
      */
     void delete(Integer[] ids);
-
-    void save(Notification notification);
-
-    void update(Notification notification);
 }
