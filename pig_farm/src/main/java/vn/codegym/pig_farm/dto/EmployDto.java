@@ -14,26 +14,26 @@ public class EmployDto {
 
     private Integer id;
 
-    @NotBlank(message = "Mã Nhân Viên không được để trống !!")
-    @Pattern(regexp = "^(NV-)+([0-9]{3})$", message = "Mã Nhân Viên phải đúng định dạng: NV-xxx !!")
+    @NotBlank(message = "Mã nhân viên không được để trống.")
+    @Pattern(regexp = "^(NV-)+([0-9]{3})$", message = "Mã nhân viên phải đúng định dạng NV-xxx.")
     private String code;
 
-    @NotBlank(message = "Tên Nhân Viên không được để trống !!")
-    @Pattern(regexp = "^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$", message = "Tên Nhân Viên phải viết hoa chữ cái đầu !!")
-    @Size(max = 30, message = "Tên Nhân Viên không quá 30 kí tự !!")
+    @NotBlank(message = "Tên Nhân Viên không được để trống.")
+    @Pattern(regexp = "^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$", message = "Tên Nhân Viên phải viết hoa chữ cái đầu.")
+    @Size(max = 30, message = "Tên nhân viên không quá 30 kí tự.")
     private String name;
 
-    @NotNull(message = "Ngày Sinh không được để trống !!")
+    @NotNull(message = "Ngày sinh không được để trống.")
     private LocalDate birthDay;
 
-    @NotBlank(message = "Giới Tính không được để trống !!")
+    @NotBlank(message = "Giới tính không được để trống.")
     private String gender;
 
-    @NotBlank(message = "Số CMND không được để trống !!")
-    @Pattern(regexp = "^\\d{9}|\\d{12}$", message = "Số CMND phải đúng định dạng: 9 hoặc 12 chữ số !!")
+    @NotBlank(message = "Số CMND không được để trống.")
+    @Pattern(regexp = "^\\d{12}$", message = "Số CMND phải đúng định dạng 12 chữ số.")
     private String idCard;
 
-    @NotBlank(message = "Ảnh không được để trống !!")
+    @NotBlank(message = "Ảnh không được để trống.")
     private String image;
 
     private Boolean isDeleted;
