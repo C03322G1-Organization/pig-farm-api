@@ -68,7 +68,7 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
             " values (:code, :dateIn, :dateOut, :status, :weight,:pigsty, 0)", nativeQuery = true)
     void createPig(@Param("code") String code, @Param("dateIn") LocalDate dateIn,
                    @Param("dateOut") LocalDate dateOut, @Param("status") String status,
-                   @Param("weight") String weight, @Param("pigsty") Integer pigsty);
+                   @Param("weight") Double weight, @Param("pigsty") Integer pigsty);
 
     /**
      * Created by: DatVT
@@ -103,7 +103,7 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
             "where id=:id", nativeQuery = true)
     void updatePig(@Param("code") String code, @Param("dateIn") LocalDate dateIn,
                    @Param("dateOut") LocalDate dateOut, @Param("status") String status,
-                   @Param("weight") String weight, @Param("pigsty") Pigsty pigsty,
+                   @Param("weight") Double weight, @Param("pigsty") Pigsty pigsty,
                    @Param("id") Integer id);
 
 

@@ -19,7 +19,7 @@ public class PigDto {
 
     //    @Length(min = 1, max = 100, message = "Tối thiểu 1 ký tự và lớn nhất 3 ký tự.")
 //    @NotBlank(message = "Không được để trống")
-    private String weight;
+    private Double weight;
 
     private Pigsty pigsty;
 
@@ -65,11 +65,12 @@ public class PigDto {
         this.status = status;
     }
 
-    public String getWeight() {
+
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
