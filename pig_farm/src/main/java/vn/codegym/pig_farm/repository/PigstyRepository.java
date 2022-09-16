@@ -32,8 +32,20 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "INSERT INTO `pigsty` (`id`,`code`,`type_pigs`, `build_date`, `creation_date`, `max_number`, `employee_id`) " + " " +
-            " VALUES (:#{#pigsty.id},:#{#pigsty.code},:#{#pigsty.typePigs},:#{#pigsty.buildDate},:#{#pigsty.creationDate},:#{#pigsty.maxNumber}," + ":#{#pigsty.employee});", nativeQuery = true)
+    @Query(value = "INSERT INTO `pigsty` (`id`," +
+            "`code`," +
+            "`type_pigs`," +
+            " `build_date`," +
+            " `creation_date`," +
+            " `max_number`," +
+            " `employee_id`) "  +
+            " VALUES (:#{#pigsty.id}," +
+            ":#{#pigsty.code}," +
+            ":#{#pigsty.typePigs}," +
+            ":#{#pigsty.buildDate}," +
+            ":#{#pigsty.creationDate}," +
+            ":#{#pigsty.maxNumber}," +
+            ":#{#pigsty.employee});", nativeQuery = true)
     void createPigsty(Pigsty pigsty);
 
     /**
@@ -45,9 +57,17 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      * @return a pigsty
      */
 
-    @Query(value = "  select `id`,`code`,`type_pigs`, `build_date`, `creation_date`, `max_number`, `employee_id`,`is_deleted`  " +
-            " from pigsty p where p.employee_id=0 and p.id = :pigstyId ;", nativeQuery = true)
-    Pigsty getPigstyById(@Param("pigstyId") Integer id);
+    @Query(value = "  select p.`id`," +
+            "p.`code`," +
+            "p.`type_pigs`as typePigs," +
+            " p.`build_date`as buildDate," +
+            " p.`creation_date`as creationDate," +
+            " p.`max_number`as maxNumber," +
+            "p.`is_deleted` as isDeleted," +
+            "e.`code` as employeeCode " +
+            " from pigsty p join employee e on p.employee_id=e.id" +
+            " where p.id = :pigstyId", nativeQuery = true)
+    PigstyDto getPigstyById(@Param("pigstyId") Integer id);
 
     /**
      * Created by: HieuCD

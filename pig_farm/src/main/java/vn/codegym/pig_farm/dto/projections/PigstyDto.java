@@ -12,4 +12,7 @@ public interface PigstyDto {
     String getEmployeeCode();
     String getEmployeeName();
 
+    Integer getTypePigs();
+
+    Boolean getIsDeleted();
 }

@@ -49,7 +49,7 @@ public class PigstyService implements IPigstyService {
      * @return return a pigsty
      */
     @Override
-    public Pigsty getPigstyById(Integer id) {
+    public PigstyDto getPigstyById(Integer id) {
         return this.pigstyRepository.getPigstyById(id);
     }
 

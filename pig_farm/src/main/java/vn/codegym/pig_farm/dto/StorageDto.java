@@ -3,6 +3,7 @@ package vn.codegym.pig_farm.dto;
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,8 @@ public class StorageDto {
 
     @NotNull(message = "Không được để trống")
     @Min(value = 1, message = "Số phải lớn hơn 0")
-    private Integer amount;
+    @Max(value = 999999999, message = "Không được quá 10 chữ số")
+    private Double amount;
 
     @NotBlank(message = "Không được để trống")
     @Length(min = 1, max = 15, message = "Tối thiểu 1 ký tự và lớn nhất 30 ký tự.")
@@ -42,20 +44,11 @@ public class StorageDto {
         this.foodType = foodType;
     }
 
-//    public String getAmount() {
-//        return amount;
-//    }
-//
-//    public void setAmount(String amount) {
-//        this.amount = amount;
-//    }
-
-
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

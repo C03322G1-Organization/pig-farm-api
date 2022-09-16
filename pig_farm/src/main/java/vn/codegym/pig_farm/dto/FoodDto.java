@@ -19,7 +19,7 @@ public class FoodDto implements Validator {
     @NotNull(message = "*Không được để trống!")
     @Min(0)
     @Max(1000)
-    private Integer amount;
+    private Double amount;
 
     @NotBlank(message = "*Không được để trống!")
     private String unit;
@@ -36,7 +36,7 @@ public class FoodDto implements Validator {
     public FoodDto() {
     }
 
-    public FoodDto(Integer id, Integer amount, String unit, Storage storage, Pigsty pigsty, Boolean isDeleted) {
+    public FoodDto(Integer id, Double amount, String unit, Storage storage, Pigsty pigsty, Boolean isDeleted) {
         this.id = id;
         this.amount = amount;
         this.unit = unit;
@@ -53,11 +53,11 @@ public class FoodDto implements Validator {
         this.id = id;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

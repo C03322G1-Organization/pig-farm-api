@@ -41,7 +41,7 @@ public interface FoodRepository extends JpaRepository<Food, Integer> {
      */
     @Modifying
     @Query(value = "INSERT INTO food(amount, unit, pigsty_id, storage_id) " + " values(:amount, :unit , :pigsty, :storage)", nativeQuery = true)
-    void save(@Param("amount") Integer amount, @Param("unit") String unit, @Param("pigsty") Pigsty pigsty, @Param("storage") Storage storage);
+    void save(@Param("amount") Double amount, @Param("unit") String unit, @Param("pigsty") Pigsty pigsty, @Param("storage") Storage storage);
 
 
     /**
@@ -57,7 +57,7 @@ public interface FoodRepository extends JpaRepository<Food, Integer> {
     @Transactional
     @Modifying
     @Query(value = "update food set amount = :amount, unit = :unit, pigsty_id = :pigsty, storage_id = :storage where id = :id", nativeQuery = true)
-    void update(@Param("amount") Integer amount, @Param("unit") String unit, @Param("pigsty") Pigsty pigsty, @Param("storage") Storage storage, @Param("id") Integer id);
+    void update(@Param("amount") Double amount, @Param("unit") String unit, @Param("pigsty") Pigsty pigsty, @Param("storage") Storage storage, @Param("id") Integer id);
 
 
     /**

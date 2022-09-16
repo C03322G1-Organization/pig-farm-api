@@ -66,7 +66,7 @@ public interface IFoodService {
      * @param i
      * @param id
      */
-    void updateStorage(int i, Integer id);
+    void updateStorage(double i, Integer id);
 
     /**
      * Create by: HungNV
@@ -75,5 +75,5 @@ public interface IFoodService {
      * @param i
      * @param id
      */
-    void deleteStorage(int i, Integer id);
+    void deleteStorage(double i, Integer id);
 }

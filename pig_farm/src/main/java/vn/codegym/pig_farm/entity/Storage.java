@@ -33,7 +33,7 @@ public class Storage {
     @Column(columnDefinition = "VARCHAR(30)")
     private String foodType;
 
-    private Integer amount;
+    private Double amount;
 
     @Column(columnDefinition = "VARCHAR(15)")
     private String unit;
