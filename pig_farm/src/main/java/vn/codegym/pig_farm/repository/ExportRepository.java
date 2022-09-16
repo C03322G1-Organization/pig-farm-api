@@ -107,7 +107,7 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
                 @Param("codeExport") String codeExport, @Param("company") String company,
                 @Param("price") Double price,
                 @Param("typePigs") Integer typePigs,
-                @Param("amount") Integer amount, @Param("id") Double kilogram, @Param("saleDate") LocalDate saleDate, @Param("id") Integer id
+                @Param("amount") Integer amount, @Param("kilogram") Double kilogram, @Param("saleDate") LocalDate saleDate, @Param("id") Integer id
     );
 
     /**

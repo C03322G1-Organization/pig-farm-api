@@ -52,7 +52,7 @@ public class ExportService implements IExportService {
     @Override
     public void create(vn.codegym.pig_farm.dto.ExportDto exportDto) {
         iExportRepository.create(exportDto.getPigstyDto().getId(),
-                exportDto.getEmployeeDto().getId(),
+                exportDto.getEmployDto().getId(),
                 exportDto.getCodeExport(),
                 exportDto.getCompany(),
                 exportDto.getPrice(),

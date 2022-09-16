@@ -20,6 +20,7 @@ public class Export {
 
     @Column(columnDefinition = "VARCHAR(50)")
     private String codeExport;
+
     @Column(columnDefinition = "VARCHAR(50)")
     private String company;
 
@@ -48,7 +49,6 @@ public class Export {
     private Pigsty pigsty;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 }

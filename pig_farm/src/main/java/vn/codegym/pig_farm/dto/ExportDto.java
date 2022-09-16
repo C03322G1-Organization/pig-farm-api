@@ -30,8 +30,6 @@ public class ExportDto {
     @Max(value = 99000)
     private Double price;
 
-    @NotBlank(message = "Vui lòng nhập loại")
-    @Size(min = 1, max = 50, message = "không quá 1-50 từ")
     private Integer typePigs;
 
     private Boolean isDeleted;
@@ -130,11 +128,11 @@ public class ExportDto {
         this.pigstyDto = pigstyDto;
     }
 
-    public EmployDto getEmployeeDto() {
+    public EmployDto getEmployDto() {
         return employDto;
     }
 
-    public void setEmployeeDto(EmployDto employDto) {
+    public void setEmployDto(EmployDto employDto) {
         this.employDto = employDto;
     }
 

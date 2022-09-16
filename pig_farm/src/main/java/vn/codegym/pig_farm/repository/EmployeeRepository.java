@@ -67,9 +67,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
      * @Date 08/09/2022
      */
 
-    @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,name,user_id from employee", nativeQuery = true)
+    @Query(value = "select id,birth_day,code,gender,id_card,image,is_deleted,`name`,user_id from employee", nativeQuery = true)
     List<Employee> getAllEmployee();
-
 
     @Query(value = "select employee.code, employee.name, user.username, user.email, employee.birth_day, employee.gender, employee.id_card, employee.image from employee join user on user.id = employee.user_id", nativeQuery = true)
     List<Employee> findAll();

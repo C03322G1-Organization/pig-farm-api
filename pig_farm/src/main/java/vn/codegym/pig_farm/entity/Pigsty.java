@@ -52,7 +52,7 @@ public class Pigsty {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    @JsonIgnore
+//    @JsonIgnore
     private Employee employee;
 
     public Pigsty(Integer id) {

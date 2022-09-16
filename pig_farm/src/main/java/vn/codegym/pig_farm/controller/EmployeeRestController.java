@@ -113,14 +113,14 @@ public class EmployeeRestController {
      * @day 12/09/2022
      */
 
-    @GetMapping("")
-    public ResponseEntity<List<Employee>> findAll() {
-        List<Employee> employees = iEmployeeService.findAll();
-        if (employees.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
+//    @GetMapping("")
+//    public ResponseEntity<List<Employee>> findAll() {
+//        List<Employee> employees = iEmployeeService.findAll();
+//        if (employees.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(employees, HttpStatus.OK);
+//    }
 
     /**
      * @param employDto
