@@ -41,4 +41,19 @@ public interface IUserService {
 
     void deleteUser(int id);
 
+    /**
+     * @param username
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    Boolean existsUsername(String username);
+
+    /**
+     * @param email
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    Boolean existsEmail(String email);
 }

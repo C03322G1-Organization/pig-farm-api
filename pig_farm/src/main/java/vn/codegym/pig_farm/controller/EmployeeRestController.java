@@ -48,10 +48,7 @@ public class EmployeeRestController {
      */
     @GetMapping("/searchList")
 
-    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
-
-                                                                                   @RequestParam Optional<String> name,
-                                                                                   @RequestParam Optional<String> idCard) {
+    public ResponseEntity<Page<EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable, @RequestParam Optional<String> name, @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");
         String keywordName = name.orElse("");
 
@@ -105,23 +102,20 @@ public class EmployeeRestController {
         return new ResponseEntity<>(iEmployeeService.getAllEmployee(), HttpStatus.OK);
     }
 
-    @Autowired
-    private IUserService userService;
-
-    /**
-     * @return list Employee (test list) success: OK, error: NOT_FOUND
-     * @creator LongNT
-     * @day 12/09/2022
-     */
-
-    @GetMapping("")
-    public ResponseEntity<List<Employee>> findAll() {
-        List<Employee> employees = iEmployeeService.findAll();
-        if (employees.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
+//    /**
+//     * @return list Employee (test list) success: OK, error: NOT_FOUND
+//     * @creator LongNT
+//     * @day 12/09/2022
+//     */
+//
+//    @GetMapping("")
+//    public ResponseEntity<List<Employee>> findAll() {
+//        List<Employee> employees = iEmployeeService.findAll();
+//        if (employees.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(employees, HttpStatus.OK);
+//    }
 
     /**
      * @param employDto
@@ -139,7 +133,7 @@ public class EmployeeRestController {
 
         BeanUtils.copyProperties(userDto, appUser);
 
-        userService.save(appUser);
+        iUserService.save(appUser);
 
         Employee employee = new Employee();
 
@@ -198,5 +192,53 @@ public class EmployeeRestController {
         iEmployeeService.edit(employeeObj.get());
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkCode/{code}")
+    public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
+        return new ResponseEntity<>(iEmployeeService.existsCode(code), HttpStatus.OK);
+    }
+
+    /**
+     * @param idCard
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkIdCard/{idCard}")
+    public ResponseEntity<?> checkIdCard(@PathVariable("idCard") String idCard) {
+        return new ResponseEntity<>(iEmployeeService.existsIdCard(idCard), HttpStatus.OK);
+    }
+
+    /**
+     * @param username
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkUsername/{username}")
+    public ResponseEntity<?> checkUsername(@PathVariable("username") String username) {
+        return new ResponseEntity<>(iUserService.existsUsername(username), HttpStatus.OK);
+    }
+
+    /**
+     * @param email
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkEmail/{email}")
+    public ResponseEntity<?> checkEmail(@PathVariable("email") String email) {
+        return new ResponseEntity<>(iUserService.existsEmail(email), HttpStatus.OK);
     }
 }

@@ -67,7 +67,6 @@ public class EmployeeService implements IEmployeeService {
      * @creator LongNT
      * @day 12/09/2022
      */
-
     @Override
     public Optional<Employee> findById(Integer id) {
         return iEmployeeRepository.findById(id);
@@ -78,7 +77,6 @@ public class EmployeeService implements IEmployeeService {
      * @creator LongNT
      * @day 12/09/2022
      */
-
     @Override
     public void edit(Employee employee) {
         iEmployeeRepository.edit(employee.getName(), employee.getBirthDay(), employee.getGender(), employee.getIdCard(), employee.getImage(), employee.getId());
@@ -126,5 +124,27 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Optional<EmployeeDto> getEmployeeDtoById(int id) {
         return iEmployeeRepository.getEmployeeDtoById(id);
+    }
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Override
+    public Boolean existsCode(String code) {
+        return code.equals(iEmployeeRepository.existsCode(code));
+    }
+
+    /**
+     * @param idCard
+     * @return
+     * @creator LongNT
+     * @day 16/09/2022
+     */
+    @Override
+    public Boolean existsIdCard(String idCard) {
+        return idCard.equals(iEmployeeRepository.existsIdCard(idCard));
     }
 }

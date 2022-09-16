@@ -2,10 +2,8 @@ package vn.codegym.pig_farm.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.dto.projections.EmployeeDto;
-
+import vn.codegym.pig_farm.entity.Employee;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,19 +11,19 @@ import java.util.Optional;
 
 public interface IEmployeeService {
     /**
-     * @Creator HungNQ
-     * @Date 08/09/2022
      * @param name
      * @param phoneNumber
      * @param pageable
      * @return Page employee
+     * @Creator HungNQ
+     * @Date 08/09/2022
      */
     Page<EmployeeDto> getAllEmployeePaginationAndSearch(String name, String phoneNumber, Pageable pageable);
 
     /**
+     * @param id
      * @Creator HungNQ
      * @Date 08/09/2022
-     * @param id
      */
     void deleteEmployee(int id);
 
@@ -68,12 +66,28 @@ public interface IEmployeeService {
      */
 
     void edit(Employee employee);
+
     /**
-     * @Creator HungNQ
-     * @Date 12/09/2022
      * @param id
      * @return EmployeeDto
+     * @Creator HungNQ
+     * @Date 12/09/2022
      */
     Optional<EmployeeDto> getEmployeeDtoById(int id);
 
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    Boolean existsCode(String code);
+
+    /**
+     * @param idCard
+     * @return
+     * @creator LongNT
+     * @day 16/09/2022
+     */
+    Boolean existsIdCard(String idCard);
 }
