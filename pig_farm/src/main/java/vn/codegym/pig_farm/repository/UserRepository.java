@@ -70,4 +70,22 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
     @Modifying
     @Query(value = "update app_user set username = :username, `password` = :password, email = :email where id = :id", nativeQuery = true)
     void edit(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("id") Integer id);
+
+    /**
+     * @param username
+     * @return code
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Query(value = "select username from app_user where username = :username", nativeQuery = true)
+    String existsUsername(@Param("username") String username);
+
+    /**
+     * @param email
+     * @return code
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Query(value = "select email from app_user where email = :email", nativeQuery = true)
+    String existsEmail(@Param("email") String email);
 }

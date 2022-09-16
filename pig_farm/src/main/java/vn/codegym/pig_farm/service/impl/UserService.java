@@ -65,4 +65,25 @@ public class UserService implements IUserService {
     public void deleteUser(int id) {
         userRepository.deleteUser(id);
     }
+
+
+    /**
+     * @param username
+     * @creator LongNT
+     * @day 16/09/2022
+     */
+    @Override
+    public Boolean existsUsername(String username) {
+        return username.equals(userRepository.existsUsername(username));
+    }
+
+    /**
+     * @param email
+     * @creator LongNT
+     * @day 16/09/2022
+     */
+    @Override
+    public Boolean existsEmail(String email) {
+        return email.equals(userRepository.existsEmail(email));
+    }
 }

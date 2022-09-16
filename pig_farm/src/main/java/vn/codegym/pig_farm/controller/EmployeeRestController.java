@@ -12,8 +12,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
-import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.AppUser;
+import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.service.IEmployeeService;
 import vn.codegym.pig_farm.service.IUserRoleService;
 import vn.codegym.pig_farm.service.IUserService;
@@ -136,14 +136,11 @@ public class EmployeeRestController {
 
         userDto = employDto.getUserDto();
 
-        if (userDto != null) {
+        AppUser appUser = new AppUser();
 
-            AppUser appUser = new AppUser();
+        BeanUtils.copyProperties(userDto, appUser);
 
-            BeanUtils.copyProperties(userDto, appUser);
-
-            userService.save(appUser);
-        }
+        userService.save(appUser);
 
         Employee employee = new Employee();
 
@@ -202,5 +199,54 @@ public class EmployeeRestController {
         iEmployeeService.edit(employeeObj.get());
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkCode/{code}")
+    public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
+        return new ResponseEntity<>(iEmployeeService.existsCode(code), HttpStatus.OK);
+    }
+
+    /**
+     * @param idCard
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkIdCard/{idCard}")
+    public ResponseEntity<?> checkIdCard(@PathVariable("idCard") String idCard) {
+        return new ResponseEntity<>(iEmployeeService.existsIdCard(idCard), HttpStatus.OK);
+    }
+
+    /**
+     * @param username
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkUsername/{username}")
+    public ResponseEntity<?> checkUsername(@PathVariable("username") String username) {
+        return new ResponseEntity<>(iUserService.existsUsername(username), HttpStatus.OK);
+    }
+
+    /**
+     * @param email
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+
+    @GetMapping("/checkEmail/{email}")
+    public ResponseEntity<?> checkEmail(@PathVariable("email") String email) {
+        return new ResponseEntity<>(iUserService.existsEmail(email), HttpStatus.OK);
     }
 }

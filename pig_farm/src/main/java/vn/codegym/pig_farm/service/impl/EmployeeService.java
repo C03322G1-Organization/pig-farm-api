@@ -128,4 +128,27 @@ public class EmployeeService implements IEmployeeService {
     public Optional<EmployeeDto> getEmployeeDtoById(int id) {
         return iEmployeeRepository.getEmployeeDtoById(id);
     }
+
+
+    /**
+     * @param code
+     * @return
+     * @creator LongNT
+     * @day 15/09/2022
+     */
+    @Override
+    public Boolean existsCode(String code) {
+        return code.equals(iEmployeeRepository.existsCode(code));
+    }
+
+    /**
+     * @param idCard
+     * @return
+     * @creator LongNT
+     * @day 16/09/2022
+     */
+    @Override
+    public Boolean existsIdCard(String idCard) {
+        return idCard.equals(iEmployeeRepository.existsIdCard(idCard));
+    }
 }
