@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/api/v1/notification")
+@RequestMapping("/api/public/api/v1/notification")
 public class NotificationRestController {
     @Autowired
     private INotificationService notificationService;

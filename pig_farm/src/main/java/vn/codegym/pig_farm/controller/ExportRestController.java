@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/export")
+@RequestMapping("/api/public/export")
 public class ExportRestController {
 
     @Autowired

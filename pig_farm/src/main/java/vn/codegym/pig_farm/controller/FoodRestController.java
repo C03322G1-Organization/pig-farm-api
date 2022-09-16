@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/food")
+@RequestMapping("/api/public/api/food")
 public class FoodRestController {
     @Autowired
     private IFoodService iFoodService;

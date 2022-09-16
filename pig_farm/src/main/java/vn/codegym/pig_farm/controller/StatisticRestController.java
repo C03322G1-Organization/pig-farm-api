@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/statistic")
+@RequestMapping("/api/public/statistic")
 public class StatisticRestController {
 
     @Autowired

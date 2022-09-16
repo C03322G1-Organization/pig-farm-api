@@ -17,11 +17,6 @@ public class AdvertisementService implements IAdvertisementService {
     @Autowired
     private AdvertisementRepository advertisementRepository;
 
-    @Override
-    public List<Advertisement> findAllAdvertisement() {
-        return advertisementRepository.findAllAdvertisement();
-    }
-
     /**
      * Created by : ChungHV
      * Date create : 9/8/2022

@@ -21,7 +21,6 @@ public class Placement {
     @Column(columnDefinition = "VARCHAR(255)")
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "placement")
     @JsonBackReference
     private Set<Advertisement> advertisements;

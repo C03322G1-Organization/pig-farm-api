@@ -34,6 +34,6 @@ public interface IContactService {
      * Date Create: 08/09/2022
      * This save
      */
-    Contact save(Contact contact);
+    void save(Contact contact);
 
 }

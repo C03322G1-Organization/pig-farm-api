@@ -49,6 +49,7 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
      * Date Create: 08/09/2022
      * This save
      */
-    @Query(value = "insert into contact (name,email,phone,address,content) value (:name,:email,:phone,:address,:content)", nativeQuery = true)
-    Contact save(@Param("name") String name, @Param("email") String email, @Param("phone") String phone, @Param("address") String address, @Param("content") String content);
+    @Modifying
+    @Query(value = "insert into contact (`name`, email, phone, address, content,`date`) value (:name, :email, :phone, :address, :content,:date)", nativeQuery = true)
+    void save(@Param("name") String name, @Param("email") String email, @Param("phone") String phone, @Param("address") String address, @Param("content") String content,@Param("date") String date);
 }

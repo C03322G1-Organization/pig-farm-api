@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/vaccination")
+@RequestMapping("/api/public/api/vaccination")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class VaccinationRestController {
     @Autowired

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.entity.UserRole;
 
 import javax.transaction.Transactional;
@@ -13,6 +14,8 @@ import java.util.List;
 @Repository
 @Transactional
 public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
+
+    List<UserRole> findAllByAppUser(AppUser appUser);
 
     /**
      * @param id function deleteUserRole

@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/storage")
+@RequestMapping("/api/public/storage")
 public class StorageRestController {
     @Autowired
     ModelMapper modelMapper;

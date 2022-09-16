@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/employee")
+@RequestMapping("/api/public/employee")
 public class EmployeeRestController {
 
     @Autowired
