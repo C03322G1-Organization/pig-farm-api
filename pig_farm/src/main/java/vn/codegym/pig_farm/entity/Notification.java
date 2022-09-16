@@ -19,7 +19,7 @@ public class Notification {
     @Column(columnDefinition = "VARCHAR(255)")
     private String title;
 
-    @Column(columnDefinition = "VARCHAR(1000)")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @Column(columnDefinition = "DATE")

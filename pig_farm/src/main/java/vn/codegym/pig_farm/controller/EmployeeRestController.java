@@ -104,24 +104,6 @@ public class EmployeeRestController {
         return new ResponseEntity<>(iEmployeeService.getAllEmployee(), HttpStatus.OK);
     }
 
-    @Autowired
-    private IUserService userService;
-
-    /**
-     * @return list Employee (test list) success: OK, error: NOT_FOUND
-     * @creator LongNT
-     * @day 12/09/2022
-     */
-
-    @GetMapping("")
-    public ResponseEntity<List<Employee>> findAll() {
-        List<Employee> employees = iEmployeeService.findAll();
-        if (employees.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
-
     /**
      * @param employDto
      * @return create Employee success: CREATED, error: NOT_ACCEPTABLE
@@ -140,7 +122,7 @@ public class EmployeeRestController {
 
         BeanUtils.copyProperties(userDto, appUser);
 
-        userService.save(appUser);
+        iUserService.save(appUser);
 
         Employee employee = new Employee();
 
@@ -174,8 +156,6 @@ public class EmployeeRestController {
      * @creator LongNT
      * @day 08/09/2022
      */
-
-
     @PutMapping("/edit/{id}")
     public ResponseEntity<List<FieldError>> edit(@PathVariable Integer id, @RequestBody @Valid EmployDto employDto, BindingResult bindingResult) {
         Optional<Employee> employeeObj = iEmployeeService.findById(id);
