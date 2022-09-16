@@ -89,4 +89,8 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
     @Modifying
     @Query(value = "update advertisement set is_deleted = 1 where id =:id", nativeQuery = true)
     void deleteAdvertisement(@Param("id") Integer id);
+
+
+    @Query(value = "select `submitted_date` from advertisement where `submitted_date` = :submittedDate", nativeQuery = true)
+    String existDate(@Param("submittedDate") String submittedDate);
 }

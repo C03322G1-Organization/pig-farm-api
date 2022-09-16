@@ -80,4 +80,9 @@ public class AdvertisementService implements IAdvertisementService {
             advertisementRepository.deleteAdvertisement(id);
         }
     }
+
+    @Override
+    public Boolean existsDate(String submittedDate) {
+        return submittedDate.equals(advertisementRepository.existDate(submittedDate));
+    }
 }

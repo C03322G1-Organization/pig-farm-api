@@ -147,4 +147,10 @@ public class AdvertisementRestController {
         advertisementService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @GetMapping("/date/{date}")
+    public ResponseEntity<?> checkDate(@PathVariable("date") String date) {
+        return new ResponseEntity<>(advertisementService.existsDate(date), HttpStatus.OK);
+    }
 }

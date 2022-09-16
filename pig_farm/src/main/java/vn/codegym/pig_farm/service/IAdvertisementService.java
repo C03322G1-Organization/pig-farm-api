@@ -47,4 +47,6 @@ public interface IAdvertisementService {
      * @date-create 08/09/2022
      */
     void delete(Integer[] ids);
+
+    Boolean existsDate(String submittedDate);
 }
