@@ -1,7 +1,6 @@
 package vn.codegym.pig_farm.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +34,6 @@ public class Export {
     private Boolean isDeleted;
 
 
-
     @Column(columnDefinition = "BIT(1) default 0")
     private Integer typePigs;
 
@@ -48,7 +46,6 @@ public class Export {
     private Pigsty pigsty;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 }

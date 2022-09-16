@@ -20,7 +20,7 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      * <p>
      * Param search,pageable
      */
-    @Query(value = "select pigsty.id,pigsty.build_date as buildDate,pigsty.code,pigsty.creation_date as creationDate,pigsty.max_number as maxNumber,employee.code as employeeCode,employee.name as employeeName from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search",countQuery = "select pigsty.id from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search", nativeQuery = true)
+    @Query(value = "select pigsty.id,pigsty.build_date as buildDate,pigsty.code,pigsty.creation_date as creationDate,pigsty.max_number as maxNumber,employee.code as employeeCode,employee.name as employeeName from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search order by pigsty.id desc ",countQuery = "select pigsty.id from pigsty left join employee on employee.id = pigsty.employee_id where employee.name like :search or pigsty.code like :search order by pigsty.id desc", nativeQuery = true)
     Page<PigstyDto>  findAll(Pageable pageable, @Param("search") String search);
 
     /**

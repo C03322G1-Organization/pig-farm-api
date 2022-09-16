@@ -119,7 +119,7 @@ public class ExportRestController {
         export.setId(exportUpdate.getId());
         export.setEmployee(exportUpdate.getEmployee());
         export.setPigsty(exportUpdate.getPigsty());
-        export.setEmployee(new Employee(exportDto.getEmployeeDto().getId()));
+        export.setEmployee(new Employee(exportDto.getEmployDto().getId()));
         export.setPigsty(new Pigsty(exportDto.getPigstyDto().getId()));
         iExportService.update(export);
         return new ResponseEntity<>(export, HttpStatus.OK);

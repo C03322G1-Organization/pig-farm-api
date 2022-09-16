@@ -47,19 +47,17 @@ public class ExportDto {
     }
 
 
-    public ExportDto(String codeExport, String company, Integer amount, Double kilogram, Double price, Integer typePigs, LocalDate saleDate, Boolean isDeleted, PigstyDto pigstyDto, EmployDto employDto) {
-
+    public ExportDto(String codeExport, String company, Integer amount, Double kilogram, Double price, Integer typePigs, Boolean isDeleted, PigstyDto pigstyDto, EmployDto employDto, LocalDate saleDate) {
         this.codeExport = codeExport;
         this.company = company;
         this.amount = amount;
         this.kilogram = kilogram;
         this.price = price;
         this.typePigs = typePigs;
-        this.saleDate = saleDate;
         this.isDeleted = isDeleted;
         this.pigstyDto = pigstyDto;
         this.employDto = employDto;
-
+        this.saleDate = saleDate;
     }
 
     public String getCodeExport() {
@@ -127,11 +125,12 @@ public class ExportDto {
         this.pigstyDto = pigstyDto;
     }
 
-    public EmployDto getEmployeeDto() {
+
+    public EmployDto getEmployDto() {
         return employDto;
     }
 
-    public void setEmployeeDto(EmployDto employDto) {
+    public void setEmployDto(EmployDto employDto) {
         this.employDto = employDto;
     }
 
