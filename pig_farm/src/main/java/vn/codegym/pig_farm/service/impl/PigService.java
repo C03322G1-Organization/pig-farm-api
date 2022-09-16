@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import vn.codegym.pig_farm.dto.projections.PigDto;
 import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.repository.PigRepository;
 import vn.codegym.pig_farm.service.IPigService;
@@ -32,13 +33,7 @@ public class PigService implements IPigService {
      */
     @Override
     public void createPig(Pig pig) {
-        pigRepository.createPig(
-                pig.getCode(),
-                pig.getDateIn(),
-                pig.getDateOut(),
-                pig.getStatus(),
-                pig.getWeight(),
-                pig.getPigsty().getId());
+        pigRepository.createPig(pig.getCode(), pig.getDateIn(), pig.getDateOut(), pig.getStatus(), pig.getWeight(), pig.getPigsty().getId());
 
     }
 
@@ -49,22 +44,13 @@ public class PigService implements IPigService {
      */
     @Override
     public void updatePig(Integer id, Pig pig) {
-        pigRepository.updatePig(
-                pig.getCode(),
-                pig.getDateIn(),
-                pig.getDateOut(),
-                pig.getStatus(),
-                pig.getWeight(),
-                pig.getPigsty(),
-                pig.getId());
+        pigRepository.updatePig(pig.getCode(), pig.getDateIn(), pig.getDateOut(), pig.getStatus(), pig.getWeight(), pig.getPigsty(), pig.getId());
     }
 
     @Override
     public Integer quantity(Integer id) {
         return pigRepository.countPigOnPigsty(id);
     }
-
-
 
 
     /**
@@ -79,12 +65,12 @@ public class PigService implements IPigService {
      */
 
     @Override
-    public Page<Pig> findAllPig(Pageable pageable, String code, String dateIn, String status) {
+    public Page<PigDto> findAllPig(Pageable pageable, String code, String dateIn, String status) {
         return pigRepository.findAllPig(pageable, "%" + code + "%", "%" + dateIn + "%", "%" + status + "%");
     }
 
     /**
-     * @param id
+     * @param ids
      * @return pig, status 200
      * @function (delete Pig by id)
      * @creator LamNT
@@ -92,8 +78,10 @@ public class PigService implements IPigService {
      */
 
     @Override
-    public void deletePigById(Pig id) {
-        pigRepository.delete(id);
+    public void delete(Integer[] ids) {
+        for (Integer id : ids) {
+            pigRepository.delete(id);
+        }
     }
 
     /**

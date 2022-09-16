@@ -75,9 +75,22 @@ public class FoodService implements IFoodService {
         return storageRepository.findByIdStorage(id);
     }
 
-
     @Override
     public void updateStorage(int i, Integer id) {
         storageRepository.updateAmountStorage(i, id);
+    }
+
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: deleteStorage
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public void deleteStorage(int i, Integer id) {
+        storageRepository.deleteStorage(i,id);
     }
 }

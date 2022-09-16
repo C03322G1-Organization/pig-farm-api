@@ -29,7 +29,6 @@ public class Pigsty {
     @Column(columnDefinition = "DATE")
     private LocalDate buildDate;
 
-
     private Integer maxNumber;
 
     @Column(columnDefinition = "BIT(1) default 0")
@@ -56,4 +55,7 @@ public class Pigsty {
     @JsonIgnore
     private Employee employee;
 
+    public Pigsty(Integer id) {
+        this.id = id;
+    }
 }

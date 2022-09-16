@@ -34,43 +34,13 @@ public class NotificationService implements INotificationService {
 
 
     /**
-     * Create by HaiTV
-     * Date : 08/09/2022
-     * Display : Notification
-     *
-     * @param content
-     * @param pageable
-     * @return
-     */
-    @Override
-    public Page<NotificationDto> findAllNotification(Pageable pageable, String content) {
-        return notificationRepository.findAllNotification(pageable, "%" + content + "%");
-    }
-
-
-    /**
-     * Create by HaiTV
-     * Date : 08/09/2022
-     * Delete : Notification
-     *
-     * @param ids
-     */
-    @Override
-    public void delete(Integer[] ids) {
-        for (Integer id : ids) {
-            notificationRepository.delete(id);
-        }
-    }
-
-
-    /**
      * Create by HuyenTN
      * Date: 08/09/2022
      * Override method findById
+     *
      * @param id
      * @return notificationRepository.findById(id)
      */
-
     @Override
     public Optional<Notification> findById(Integer id) {
         return notificationRepository.findById(id);
@@ -86,7 +56,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void save(Notification notification) {
-        notificationRepository.save(notification.getId(),notification.getTitle(), notification.getContent(), notification.getSubmittedDate(), notification.getImage());
+        notificationRepository.save(notification.getId(), notification.getTitle(), notification.getContent(), notification.getSubmittedDate(), notification.getImage());
     }
 
     /**
@@ -99,7 +69,37 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void update(Notification notification) {
-        notificationRepository.update(notification.getTitle(),notification.getContent(), notification.getSubmittedDate(),
-                notification.getImage(), notification.getIsDeleted(), notification.getId());
+        notificationRepository.update(notification.getTitle(), notification.getContent(), notification.getSubmittedDate(), notification.getImage(), notification.getIsDeleted(), notification.getId());
+    }
+
+
+    /**
+     * Create by HaiTV
+     * Date : 08/09/2022
+     * Display : Notification
+     *
+     * @param content
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<NotificationDto> findAllNotification(Pageable pageable, String content) {
+        return notificationRepository.findAllNotification(pageable, "%" + content + "%");
+
+    }
+
+
+    /**
+     * Create by HaiTV
+     * Date : 08/09/2022
+     * Delete : Notification
+     *
+     * @param ids
+     */
+    @Override
+    public void delete(Integer[] ids) {
+        for (Integer id : ids) {
+            notificationRepository.delete(id);
+        }
     }
 }

@@ -52,4 +52,9 @@ public class Employee {
     @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser appUser;
+
+
+    public Employee(Integer id) {
+        this.id = id;
+    }
 }
