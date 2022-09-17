@@ -31,11 +31,11 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
     @Query(value = "select v.id , v.amount , v.date , v.vaccinated_person as vaccinatedPerson , v.vaccine_type as vaccineType , p.`code` as pigstyCode " +
             " from vaccination v " +
             " join pigsty p on v.pigsty_id = p.id " +
-            " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 order by id desc", nativeQuery = true,
+            " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 ", nativeQuery = true,
             countQuery = "select count(*) from(select v.id , v.amount , v.date , v.vaccinated_person as vaccinatedPerson , v.vaccine_type as vaccineType , p.`code` as pigstyCode" +
                     " from vaccination v" +
                     " join pigsty p on v.pigsty_id = p.id" +
-                    " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 order by id desc) as abc ")
+                    " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 ) as abc ")
 
     Page<VaccinationDto> getAllListVaccination(Pageable pageable, @Param("name")String name);
 
@@ -67,7 +67,7 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
     @Query(value = "insert into vaccination(amount, `date`, is_deleted, note, vaccinated_person, vaccine_type, pigsty_id)" +
             "value (:amount, :date, 0, :note, :vaccinatedPerson, :vaccineType, :pigstyCode)", nativeQuery=true)
     void createVaccination(@Param("amount") Integer amount,
-                           @Param("date") LocalDate date,
+                           @Param("date") String date,
                            @Param("note") String note,
                            @Param("vaccinatedPerson") String vaccinatedPerson,
                            @Param("vaccineType") String vaccineType,

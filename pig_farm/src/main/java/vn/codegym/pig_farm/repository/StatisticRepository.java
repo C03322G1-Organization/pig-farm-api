@@ -23,15 +23,15 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
      */
 
     @Query(value= " select " +
-            "sum(price * amount) as price, " +
+            "sum(price * kilogram) as price, " +
             "company as company, " +
             "sum(amount) as amount, " +
-            "month(start_date) as `month`, " +
-            "year(start_date) as `year`, " +
-            "concat(month(start_date),'/', year(start_date), '-' ,company) as `time` " +
+            "month(sale_date) as `month`, " +
+            "year(sale_date) as `year`, " +
+            "concat(month(sale_date),'/', year(sale_date), '-' ,company) as `time` " +
             "from `export` " +
-            "where (start_date > date(:starTime)) " +
-            "and (start_date < date(:endTime)) " +
+            "where (sale_date > date(:starTime)) " +
+            "and (sale_date < date(:endTime)) " +
             "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
     List<StatisticByMonthDto> getStatisticByMonth(@Param("starTime") String starTime,
                                                   @Param("endTime") String endTime,
@@ -46,14 +46,14 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
      */
 
     @Query(value = "select " +
-            "sum(price * amount) as price, " +
+            "sum(price * kilogram) as price, " +
             "company as company, " +
             "sum(amount) as amount, " +
-            "year(start_date) as `year`, " +
-            "concat(year(start_date),'-', company) as `time` " +
+            "year(sale_date) as `year`, " +
+            "concat(year(sale_date),'-', company) as `time` " +
             "from `export` " +
-            "where (start_date > date(:starTime)) " +
-            "and (start_date < date(:endTime)) " +
+            "where (sale_date > date(:starTime)) " +
+            "and (sale_date < date(:endTime)) " +
             "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
     List<StatisticByYearDto> getStatisticByYear(@Param("starTime") String starTime,
                                                 @Param("endTime") String endTime,
@@ -68,16 +68,16 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
      */
 
     @Query(value= " select " +
-            "sum(price * amount) as price, " +
+            "sum(price * kilogram) as price, " +
             "company as company, " +
             "sum(amount) as amount, " +
-            "month(start_date) as `month`, " +
-            "year(start_date) as `year`, " +
-            "concat(month(start_date),'/', year(start_date), '-' ,company) as `time` " +
+            "month(sale_date) as `month`, " +
+            "year(sale_date) as `year`, " +
+            "concat(month(sale_date),'/', year(sale_date), '-' ,company) as `time` " +
             "from `export` " +
-            "where (start_date > date(:starTime)) " +
+            "where (sale_date > date(:starTime)) " +
             "and company = :company " +
-            "and (start_date < date(:endTime)) " +
+            "and (sale_date < date(:endTime)) " +
             "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
     List<StatisticByMonthDto> getStatisticByMonthAndCompany(@Param("starTime") String starTime,
                                                             @Param("endTime") String endTime,
@@ -93,16 +93,16 @@ public interface StatisticRepository extends JpaRepository<Export,Integer> {
      */
 
     @Query(value= " select " +
-            "sum(price * amount) as price, " +
+            "sum(price * kilogram) as price, " +
             "company as company, " +
             "sum(amount) as amount, " +
-            "month(start_date) as `month`, " +
-            "year(start_date) as `year`, " +
-            "concat(year(start_date), '-' ,company) as `time` " +
+            "month(sale_date) as `month`, " +
+            "year(sale_date) as `year`, " +
+            "concat(year(sale_date), '-' ,company) as `time` " +
             "from `export` " +
-            "where (start_date > date(:starTime)) " +
+            "where (sale_date > date(:starTime)) " +
             "and company like %:company% " +
-            "and (start_date < date(:endTime)) " +
+            "and (sale_date < date(:endTime)) " +
             "and type_pigs like %:type% group by `time` order by `time`", nativeQuery = true)
     List<StatisticByYearDto> getStatisticByYearAndCompany(@Param("starTime") String starTime,
                                                           @Param("endTime") String endTime,

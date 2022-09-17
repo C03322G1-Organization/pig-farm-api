@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/advertisement")
+@RequestMapping("/api/public/advertisement")
 @ToString
 public class AdvertisementRestController {
     @Autowired

@@ -11,7 +11,7 @@ public class VaccinationDto implements Validator {
     private Integer id;
 
     @NotNull
-    private LocalDate date;
+    private String date;
     @NotNull
     @Min(value = 1)
     @Max(value = 20)
@@ -31,7 +31,7 @@ public class VaccinationDto implements Validator {
     public VaccinationDto() {
     }
 
-    public VaccinationDto(Integer id, LocalDate date, Integer amount, String vaccineType, String vaccinatedPerson, String note, Boolean isDeleted, Pigsty pigstyCode) {
+    public VaccinationDto(Integer id, String date, Integer amount, String vaccineType, String vaccinatedPerson, String note, Boolean isDeleted, Pigsty pigstyCode) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -50,12 +50,11 @@ public class VaccinationDto implements Validator {
         this.id = id;
     }
 
-
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
