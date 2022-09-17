@@ -36,7 +36,6 @@ public class VaccinationRestController {
     @PostMapping(value = "/create")
     public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid VaccinationDto vaccinationDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-
             return new ResponseEntity<>(bindingResult.getFieldError(),
                     HttpStatus.NOT_ACCEPTABLE);
         }

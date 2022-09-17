@@ -48,21 +48,17 @@ public class ExportRestController {
         String company1 = company.orElse("");
         String nameEmployee1 = nameEmployee.orElse("");
         if (code.equals("null")) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+            code = "";
         }
         if (company1.equals("null")) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            company1 = "";
         }
 
         if (nameEmployee1.equals("null")) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            nameEmployee1 = "";
         }
         Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1, nameEmployee1);
 
-        if (contactPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(contactPage, HttpStatus.OK);
 
     }

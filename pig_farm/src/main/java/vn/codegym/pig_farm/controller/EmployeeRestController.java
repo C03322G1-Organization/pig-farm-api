@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +16,8 @@ import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
 import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.entity.Employee;
+import vn.codegym.pig_farm.entity.MessageResponse;
 import vn.codegym.pig_farm.service.IEmployeeService;
-import vn.codegym.pig_farm.service.IUserRoleService;
 import vn.codegym.pig_farm.service.IUserService;
 
 import javax.validation.Valid;
@@ -32,10 +34,11 @@ public class EmployeeRestController {
     private IEmployeeService iEmployeeService;
 
     @Autowired
-    private IUserRoleService iUserRoleService;
-
-    @Autowired
     private IUserService iUserService;
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     /**
      * @param pageable
@@ -121,11 +124,14 @@ public class EmployeeRestController {
 
         BeanUtils.copyProperties(userDto, appUser);
 
+        appUser.setPassword(passwordEncoder().encode(appUser.getPassword()));
+
         iUserService.save(appUser);
 
         Employee employee = new Employee();
 
         BeanUtils.copyProperties(employDto, employee);
+
 
         iEmployeeService.save(employee);
 
