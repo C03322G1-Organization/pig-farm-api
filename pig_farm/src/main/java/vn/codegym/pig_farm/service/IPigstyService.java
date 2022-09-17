@@ -13,6 +13,7 @@ public interface IPigstyService {
      * Created by: HieuCD
      * Date created: 08/09/2022
      * function: create a Pigsty
+     *
      * @param pigsty
      */
     void createPigsty(Pigsty pigsty);
@@ -21,6 +22,7 @@ public interface IPigstyService {
      * Created by: HieuCD
      * Date created: 08/09/2022
      * function: edit a Pigsty
+     *
      * @param pigsty
      */
     void editPigsty(Pigsty pigsty);
@@ -29,6 +31,7 @@ public interface IPigstyService {
      * Created by: HieuCD
      * Date created: 08/09/2022
      * function: get a Pigsty by id
+     *
      * @param id
      * @return return a pigsty
      */
@@ -50,4 +53,14 @@ public interface IPigstyService {
      * Function: listPigsty
      */
     List<Pigsty> listPigsty();
+
+    /**
+     * Created by: HieuCD
+     * Date created: 08/09/2022
+     * function: check code Pigsty exist
+     *
+     * @param code
+     * @return
+     */
+    Boolean existsCode(String code);
 }

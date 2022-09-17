@@ -86,10 +86,12 @@ public class PigstyRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /**pigsty
+    /**
+     * pigsty
      * Created by: HieuCD
      * Date created: 16/09/2022
      * function: get List of
+     *
      * @return
      */
     @GetMapping("/getList")
@@ -111,6 +113,18 @@ public class PigstyRestController {
     @GetMapping("/list")
     public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.PigstyDto>> findAll(@RequestParam(value = "search", defaultValue = "") String search, @PageableDefault(5) Pageable pageable) {
         return new ResponseEntity<>(iPigstyService.findAll(pageable, search), HttpStatus.OK);
+    }
 
+    /**
+     * Created by: HieuCD
+     * Date created: 16/09/2022
+     * function: check code pigsty exist
+     *
+     * @param code
+     * @return
+     */
+    @GetMapping("/checkCode/{code}")
+    public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
+        return new ResponseEntity<>(iPigstyService.existsCode(code), HttpStatus.OK);
     }
 }

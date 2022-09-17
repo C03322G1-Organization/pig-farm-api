@@ -31,11 +31,11 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Intege
     @Query(value = "select v.id , v.amount , v.date , v.vaccinated_person as vaccinatedPerson , v.vaccine_type as vaccineType , p.`code` as pigstyCode " +
             " from vaccination v " +
             " join pigsty p on v.pigsty_id = p.id " +
-            " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 order by `date`", nativeQuery = true,
+            " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 order by id desc", nativeQuery = true,
             countQuery = "select count(*) from(select v.id , v.amount , v.date , v.vaccinated_person as vaccinatedPerson , v.vaccine_type as vaccineType , p.`code` as pigstyCode" +
                     " from vaccination v" +
                     " join pigsty p on v.pigsty_id = p.id" +
-                    " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 order by `date`) as abc ")
+                    " where (v.vaccinated_person like :name or p.`code` like :name) and v.is_deleted =0 order by id desc) as abc ")
 
     Page<VaccinationDto> getAllListVaccination(Pageable pageable, @Param("name")String name);
 

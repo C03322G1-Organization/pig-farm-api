@@ -75,4 +75,17 @@ public class PigstyService implements IPigstyService {
     public List<Pigsty> listPigsty() {
         return pigstyRepository.findALLPigsty();
     }
+
+    /**
+     * Created by: HieuCD
+     * Date created: 08/09/2022
+     * function: check code Pigsty exist
+     *
+     * @param code
+     * @return
+     */
+    @Override
+    public Boolean existsCode(String code) {
+        return code.equals(pigstyRepository.checkExistsCode(code));
+    }
 }
