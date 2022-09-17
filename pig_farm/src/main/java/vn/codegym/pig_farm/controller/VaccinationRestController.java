@@ -26,9 +26,6 @@ public class VaccinationRestController {
     @Autowired
     private IVaccinationService iVaccinationService;
 
-
-    @PostMapping(value = "/create")
-
     /**
      * @function (Create vaccination schedule)
      * @creator DamTN
@@ -36,6 +33,7 @@ public class VaccinationRestController {
      * @return bindingResult, HttpStatus.NOT_ACCEPTABLE
      * @return HttpStatus.OK
      */
+    @PostMapping(value = "/create")
     public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid VaccinationDto vaccinationDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
 
@@ -48,11 +46,11 @@ public class VaccinationRestController {
         pigsty.setId(vaccinationDto.getPigstyCode().getId());
         vaccination.setPigsty(pigsty);
         this.iVaccinationService.saveVaccination(vaccination);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.VaccinationDto>> getList(@PageableDefault(8) Pageable pageable, @RequestParam Optional<String> name) {
+    public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.VaccinationDto>> getList(@PageableDefault(5) Pageable pageable, @RequestParam Optional<String> name) {
         /**
          * @function (Display all Vaccination and search)
          * @creator TamLT

@@ -25,7 +25,7 @@ public class Treatment {
     @Column(columnDefinition = "VARCHAR(255)")
     private String diseases;
 
-    @Column(columnDefinition = "VARCHAR(5)")
+    @Column(columnDefinition = "VARCHAR(50)")
     private String medicine;
 
     private Integer amount;

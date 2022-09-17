@@ -16,8 +16,7 @@ public class Vaccination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(columnDefinition = "DATE")
-    private LocalDate date;
+    private String date;
 
     private Integer amount;
 

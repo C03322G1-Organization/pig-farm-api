@@ -31,7 +31,6 @@ public class Export {
     @Column(columnDefinition = "BIT(1) DEFAULT 0")
     private Boolean isDeleted;
 
-
     private Integer typePigs;
 
     @Column(columnDefinition = "DATE")
