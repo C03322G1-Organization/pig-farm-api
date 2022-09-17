@@ -41,9 +41,9 @@ public class ExportRestController {
      */
     @GetMapping("/page")
     public ResponseEntity<Page<ExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable,
-                                                          Optional<String> codeExport,
-                                                          Optional<String> company,
-                                                          Optional<String> nameEmployee) {
+                                                         @RequestParam Optional<String> codeExport,
+                                                         @RequestParam Optional<String> company,
+                                                         @RequestParam Optional<String> nameEmployee) {
         String code = codeExport.orElse("");
         String company1 = company.orElse("");
         String nameEmployee1 = nameEmployee.orElse("");

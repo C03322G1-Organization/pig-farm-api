@@ -1,11 +1,9 @@
 package vn.codegym.pig_farm.dto.projections;
 
-import java.time.LocalDate;
-
 public interface VaccinationDto {
     Integer getId();
 
-    LocalDate getDate();
+    String getDate();
 
     String getPigstyCode();
 
