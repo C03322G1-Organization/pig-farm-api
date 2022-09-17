@@ -41,9 +41,9 @@ public class ExportRestController {
      */
     @GetMapping("/page")
     public ResponseEntity<Page<ExportDto>> getListExport(@PageableDefault(value = 5) Pageable pageable,
-                                                          Optional<String> codeExport,
-                                                          Optional<String> company,
-                                                          Optional<String> nameEmployee) {
+                                                         @RequestParam Optional<String> codeExport,
+                                                         @RequestParam Optional<String> company,
+                                                         @RequestParam Optional<String> nameEmployee) {
         String code = codeExport.orElse("");
         String company1 = company.orElse("");
         String nameEmployee1 = nameEmployee.orElse("");
@@ -58,7 +58,7 @@ public class ExportRestController {
         if (nameEmployee1.equals("null")) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1,nameEmployee1);
+        Page<ExportDto> contactPage = iExportService.listAll(pageable, code, company1, nameEmployee1);
 
         if (contactPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -76,7 +76,7 @@ public class ExportRestController {
      * @return HttpStatus.OK
      */
     @PostMapping("/delete")
-    public ResponseEntity<Object> deleteExport(@RequestBody Map<String, Integer[]> ids){
+    public ResponseEntity<Object> deleteExport(@RequestBody Map<String, Integer[]> ids) {
         iExportService.delete(ids.get("id"));
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -18,7 +18,6 @@ public class FoodDto implements Validator {
 
     @NotNull(message = "*Không được để trống!")
     @Min(0)
-    @Max(1000)
     private Double amount;
 
     @NotBlank(message = "*Không được để trống!")

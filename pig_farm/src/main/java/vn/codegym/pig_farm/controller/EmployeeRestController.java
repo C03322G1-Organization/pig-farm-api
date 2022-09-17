@@ -48,7 +48,6 @@ public class EmployeeRestController {
     @GetMapping("/searchList")
 
     public ResponseEntity<Page<vn.codegym.pig_farm.dto.projections.EmployeeDto>> getAllListEmployeePaginationAndSearch(@PageableDefault(value = 6) Pageable pageable,
-
                                                                                                                        @RequestParam Optional<String> name,
                                                                                                                        @RequestParam Optional<String> idCard) {
         String keywordIdCard = idCard.orElse("");

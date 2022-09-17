@@ -98,21 +98,19 @@ public class FoodRestController {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
         }
         Food food = new Food();
-
+        Storage storage = iFoodService.findByIdStorage(foodDto.getStorage().getId());
+        double amountSet = storage.getAmount() - foodDto.getAmount();
+        if (amountSet < 0) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
+        }
         BeanUtils.copyProperties(foodDto, food);
         food.setAmount(foodDto.getAmount());
         food.setUnit(foodDto.getUnit());
         food.setStorage(foodDto.getStorage());
         food.setPigsty(foodDto.getPigsty());
-
         iFoodService.create(food);
-        Storage storage = iFoodService.findByIdStorage(foodDto.getStorage().getId());
-        double amountSet = storage.getAmount() - foodDto.getAmount();
         if (amountSet == 0) {
             iFoodService.deleteStorage(1, storage.getId());
-        }
-        if (amountSet < 0) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_FOUND);
         }
         iFoodService.updateStorage(amountSet, storage.getId());
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -135,23 +133,26 @@ public class FoodRestController {
         if (bindingResult.hasFieldErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
-        double foodsAmount = foods.getAmount();
+        Double foodsAmount = foods.getAmount();
         double amountSet;
-        foods.setAmount(foodDto.getAmount());
-        foods.setUnit(foodDto.getUnit());
-        foods.setPigsty(foodDto.getPigsty());
         foods.setStorage(foodDto.getStorage());
         Storage storage = iFoodService.findByIdStorage(foods.getStorage().getId());
         amountSet = storage.getAmount() + foodsAmount;
-        if (foods.getAmount() > amountSet || foods.getAmount() < amountSet){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (amountSet < foodDto.getAmount() || foodDto.getAmount() < 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            foods.setAmount(foodDto.getAmount());
+            foods.setUnit(foodDto.getUnit());
+            foods.setPigsty(foodDto.getPigsty());
+            iFoodService.update(foods);
+            iFoodService.updateStorage(amountSet - foods.getAmount(), storage.getId());
+            if (amountSet - foods.getAmount() == 0) {
+                iFoodService.deleteStorage(1, storage.getId());
+            }else {
+                iFoodService.deleteStorage(0, storage.getId());
+            }
+            return new ResponseEntity<>(foods, HttpStatus.OK);
         }
-        iFoodService.update(foods);
-        iFoodService.updateStorage(amountSet - foods.getAmount(), storage.getId());
-        if (amountSet - foods.getAmount() == 0) {
-            iFoodService.deleteStorage(1, storage.getId());
-        }
-        return new ResponseEntity<>(foods, HttpStatus.CREATED);
     }
 
 }
