@@ -14,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.EmployDto;
 import vn.codegym.pig_farm.dto.UserDto;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.entity.AppUser;
 import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.MessageResponse;
@@ -38,6 +39,11 @@ public class EmployeeRestController {
 
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @GetMapping("/findUser/{user}")
+    public ResponseEntity<EmployeeDto> findByUser(@PathVariable("user") String username) {
+        return new ResponseEntity<>(iEmployeeService.findByUser(username), HttpStatus.OK);
     }
 
     /**

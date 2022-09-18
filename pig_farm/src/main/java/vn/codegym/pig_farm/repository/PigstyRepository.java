@@ -94,11 +94,9 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
      * Date created: 17/09/2022
      * function: check code Pigsty exist
      *
-     * @param code
      * @return
      */
     @Query(value = "select p.`code` " +
-            "from pigsty p " +
-            "where p.`code` = code", nativeQuery = true)
-    String checkExistsCode(@Param("code") String code);
+            "from pigsty p ", nativeQuery = true)
+    List<String> checkExistsCode();
 }

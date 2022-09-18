@@ -1,6 +1,5 @@
 package vn.codegym.pig_farm.controller;
 
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,11 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.dto.projections.PigstyDto;
+import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Pigsty;
+import vn.codegym.pig_farm.service.IEmployeeService;
 import vn.codegym.pig_farm.service.IPigstyService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -41,6 +44,11 @@ public class PigstyRestController {
         }
         Pigsty pigsty = new Pigsty();
         BeanUtils.copyProperties(pigstyDto, pigsty);
+        if (pigstyDto.getBuildDate() != null && pigstyDto.getBuildDate() != "") {
+            pigsty.setBuildDate(LocalDate.parse(pigstyDto.getBuildDate()));
+        }
+        pigsty.setCreationDate(LocalDate.parse(pigstyDto.getCreationDate()));
+        pigsty.setEmployee(new Employee(pigstyDto.getEmployee().getId()));
         this.iPigstyService.createPigsty(pigsty);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -78,10 +86,15 @@ public class PigstyRestController {
     public ResponseEntity<Pigsty> editPigsty(@Valid @RequestBody vn.codegym.pig_farm.dto.PigstyDto pigstyDto, BindingResult bindingResult) {
         pigstyDto.validate(pigstyDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Pigsty pigsty = new Pigsty();
         BeanUtils.copyProperties(pigstyDto, pigsty);
+        if (pigstyDto.getBuildDate() != null && pigstyDto.getBuildDate() != "") {
+            pigsty.setBuildDate(LocalDate.parse(pigstyDto.getBuildDate()));
+        }
+        pigsty.setCreationDate(LocalDate.parse(pigstyDto.getCreationDate()));
+        pigsty.setEmployee(new Employee(pigstyDto.getEmployee().getId()));
         this.iPigstyService.editPigsty(pigsty);
         return new ResponseEntity<>(HttpStatus.OK);
     }

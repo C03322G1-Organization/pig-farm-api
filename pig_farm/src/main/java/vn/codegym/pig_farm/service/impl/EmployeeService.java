@@ -151,4 +151,9 @@ public class EmployeeService implements IEmployeeService {
     public Boolean existsIdCard(String idCard) {
         return idCard.equals(iEmployeeRepository.existsIdCard(idCard));
     }
+
+    @Override
+    public EmployeeDto findByUser(String userName) {
+        return iEmployeeRepository.findByUserName(userName).get(0);
+    }
 }

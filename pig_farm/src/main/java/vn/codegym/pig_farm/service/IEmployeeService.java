@@ -92,4 +92,6 @@ public interface IEmployeeService {
      * @day 16/09/2022
      */
     Boolean existsIdCard(String idCard);
+
+    EmployeeDto findByUser(String userNamee);
 }
