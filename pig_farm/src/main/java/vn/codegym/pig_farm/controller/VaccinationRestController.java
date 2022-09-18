@@ -35,10 +35,10 @@ public class VaccinationRestController {
      */
     @PostMapping(value = "/create")
     public ResponseEntity<FieldError> createVaccination(@RequestBody @Valid VaccinationDto vaccinationDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldError(),
-                    HttpStatus.NOT_ACCEPTABLE);
-        }
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity<>(bindingResult.getFieldError(),
+//                    HttpStatus.NOT_ACCEPTABLE);
+//        }
         Vaccination vaccination = new Vaccination();
         BeanUtils.copyProperties(vaccinationDto, vaccination);
         Pigsty pigsty = new Pigsty();

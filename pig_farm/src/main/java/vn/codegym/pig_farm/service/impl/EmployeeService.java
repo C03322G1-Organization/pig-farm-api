@@ -51,7 +51,7 @@ public class EmployeeService implements IEmployeeService {
         List<AppUser> appUsers = userRepository.findAll();
         UserRole userRole = new UserRole();
         AppRole appRole = new AppRole();
-        appRole.setId(1);
+        appRole.setId(2);
         userRole.setIsDeleted(false);
         userRole.setAppUser(appUsers.get(appUsers.toArray().length - 1));
         userRole.setAppRole(appRole);

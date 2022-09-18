@@ -17,6 +17,11 @@ public class AdvertisementService implements IAdvertisementService {
     @Autowired
     private AdvertisementRepository advertisementRepository;
 
+    @Override
+    public List<Advertisement> getAllAdvertisement() {
+        return advertisementRepository.getAllAdvertisement();
+    }
+
     /**
      * Created by : ChungHV
      * Date create : 9/8/2022
@@ -84,10 +89,5 @@ public class AdvertisementService implements IAdvertisementService {
     @Override
     public Boolean existsDate(String submittedDate) {
         return submittedDate.equals(advertisementRepository.existDate(submittedDate));
-    }
-
-    @Override
-    public List<Advertisement> getAllAdvertisement() {
-        return advertisementRepository.getAllAdvertisement();
     }
 }
