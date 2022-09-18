@@ -155,4 +155,20 @@ public class FoodRestController {
         }
     }
 
+
+    /**
+     * Create by: HungNV
+     * Date created: 08/09/2022
+     * function: show a food
+     *
+     * @return if created food return HttpStatus.CREATED(201)
+     */
+    @GetMapping("/show/{id}")
+    public ResponseEntity<Object> findById(@PathVariable("id") Integer id) {
+        Food foods = iFoodService.findById(id);
+        if (foods == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(foods, HttpStatus.CREATED);
+    }
 }
