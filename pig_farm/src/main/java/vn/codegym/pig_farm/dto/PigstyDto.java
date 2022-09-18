@@ -29,7 +29,7 @@ public class PigstyDto implements Validator {
 
     private Boolean isDeleted;
 
-    private EmployDto employDto;
+    private EmployDto employee;
 
     @Override
     public boolean supports(Class<?> clazz) {

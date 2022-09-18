@@ -86,6 +86,12 @@ public class PigstyService implements IPigstyService {
      */
     @Override
     public Boolean existsCode(String code) {
-        return code.equals(pigstyRepository.checkExistsCode(code));
+        List<String> codeList = pigstyRepository.checkExistsCode();
+        for (String item: codeList) {
+            if (code.equals(item)){
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -118,4 +118,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
      */
     @Query(value = "select id_card from employee where id_card = :idCard", nativeQuery = true)
     String existsIdCard(@Param("idCard") String idCard);
+
+    @Query(value = "select employee.id,employee.code from employee join app_user au on employee.user_id = au.id where username=:username",nativeQuery = true)
+    List<EmployeeDto> findByUserName(@Param("username") String user);
 }
