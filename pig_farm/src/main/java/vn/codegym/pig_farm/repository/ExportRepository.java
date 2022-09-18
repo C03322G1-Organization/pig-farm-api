@@ -8,12 +8,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import vn.codegym.pig_farm.dto.PigstyDto;
-import vn.codegym.pig_farm.dto.projections.EmployeeDto;
 import vn.codegym.pig_farm.dto.projections.ExportDto;
-import vn.codegym.pig_farm.entity.Employee;
 import vn.codegym.pig_farm.entity.Export;
-import vn.codegym.pig_farm.entity.Pigsty;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;

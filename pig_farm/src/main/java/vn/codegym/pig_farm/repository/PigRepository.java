@@ -29,8 +29,8 @@ public interface PigRepository extends JpaRepository<Pig, Integer> {
      * @date-create 08/09/2022
      */
 
-    @Query(value = " select pig.id, pig.code, pig.date_in as dateIn, pig.date_out as dateOut, pig.status, pig.weight, pigsty.code as pigstyCode from pig join pigsty on pig.pigsty_id = pigsty.id  where pig.code like :code and date_in like :dateIn and status like :status and pig.is_deleted = 0 ", nativeQuery = true,
-            countQuery = " select count(*) from (select pig.id, pig.code, pig.date_in as dateIn, pig.date_out as dateOut, pig.status, pig.weight, pigsty.code as pigstyCode from pig join pigsty on pig.pigsty_id = pigsty.id where pig.code like :code and date_in like :dateIn and status like :status and pig.is_deleted = 0) temp_table ")
+    @Query(value = " select pig.id, pig.code, pig.date_in as dateIn, pig.date_out as dateOut, pig.status, pig.weight, pigsty.code as pigstyCode from pig join pigsty on pig.pigsty_id = pigsty.id  where pig.code like :code and date_in like :dateIn and status like :status and pig.is_deleted = 0 order by id desc", nativeQuery = true,
+            countQuery = " select count(*) from (select pig.id, pig.code, pig.date_in as dateIn, pig.date_out as dateOut, pig.status, pig.weight, pigsty.code as pigstyCode from pig join pigsty on pig.pigsty_id = pigsty.id where pig.code like :code and date_in like :dateIn and status like :status and pig.is_deleted = 0 order by id desc) temp_table ")
     Page<PigDto> findAllPig(Pageable pageable, @Param("code") String code, @Param("dateIn") String dateIn, @Param("status") String status);
 
     /**

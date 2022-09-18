@@ -84,7 +84,9 @@ public class AdvertisementRestController {
     @PutMapping("/edit/{id}")
 
     public ResponseEntity<Object> editAdvertisement(@PathVariable("id") Integer id, @RequestBody @Valid vn.codegym.pig_farm.dto.AdvertisementDto advertisementDto, BindingResult bindingResult) {
-
+        if(bindingResult.hasErrors()){
+            return  new ResponseEntity<>(bindingResult.getAllErrors(),HttpStatus.NOT_FOUND);
+        }
         Optional<Advertisement> advertisementUpdate = advertisementService.findById(id);
         if (!advertisementUpdate.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
