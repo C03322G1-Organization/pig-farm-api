@@ -48,6 +48,11 @@ public class AdvertisementRestController {
         return new ResponseEntity<>(placementService.findAllPlacement(), HttpStatus.OK);
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Advertisement>> findAllAdvertisement() {
+        return new ResponseEntity<>(advertisementService.getAllAdvertisement(), HttpStatus.OK);
+    }
+
     /**
      * Created by :ChungHV
      * Date create : 9/8/2022

@@ -49,4 +49,7 @@ public interface IAdvertisementService {
     void delete(Integer[] ids);
 
     Boolean existsDate(String submittedDate);
+
+
+    List<Advertisement> getAllAdvertisement();
 }

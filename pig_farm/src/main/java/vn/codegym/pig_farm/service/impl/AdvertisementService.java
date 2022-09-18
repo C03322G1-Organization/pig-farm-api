@@ -85,4 +85,9 @@ public class AdvertisementService implements IAdvertisementService {
     public Boolean existsDate(String submittedDate) {
         return submittedDate.equals(advertisementRepository.existDate(submittedDate));
     }
+
+    @Override
+    public List<Advertisement> getAllAdvertisement() {
+        return advertisementRepository.getAllAdvertisement();
+    }
 }

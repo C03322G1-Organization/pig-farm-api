@@ -93,4 +93,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, In
 
     @Query(value = "select `submitted_date` from advertisement where `submitted_date` = :submittedDate", nativeQuery = true)
     String existDate(@Param("submittedDate") String submittedDate);
+
+    @Query(value = "select * from advertisement where is_deleted = 0 order by id desc limit 5",nativeQuery = true)
+    List<Advertisement> getAllAdvertisement();
 }
