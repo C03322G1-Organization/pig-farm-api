@@ -63,4 +63,7 @@ public interface IPigstyService {
      * @return
      */
     Boolean existsCode(String code);
+
+    List<PigstyDto> findListAddPig();
+
 }

@@ -36,7 +36,7 @@ public class StatisticRestController {
             type = "";
         }
         try {
-            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) && !type.equals("0") && !type.equals("1") && !type.equals("")) {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || !type.equals("0") && !type.equals("1") && !type.equals("")) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class StatisticRestController {
         }
         List<StatisticByMonthDto> IStatisticByMonthDtoList = statisticService.getStatisticByMonth(startTime, endTime, type);
         if (IStatisticByMonthDtoList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(IStatisticByMonthDtoList, HttpStatus.OK);
     }
@@ -65,7 +65,7 @@ public class StatisticRestController {
             type = "";
         }
         try {
-            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) && !type.equals("0") && !type.equals("1") && !type.equals("")) {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || !type.equals("0") && !type.equals("1") && !type.equals("")) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class StatisticRestController {
         }
         List<StatisticByYearDto> statisticByMonthList = statisticService.getStatisticByYear(startTime, endTime, type);
         if (statisticByMonthList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(statisticByMonthList, HttpStatus.OK);
     }
@@ -93,7 +93,7 @@ public class StatisticRestController {
                                                                                    @PathVariable String company) {
         if (type.equals("all")){ type = ""; }
         try {
-            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) && company == null && company.equals("") && !type.equals("0") && !type.equals("1") && !type.equals("")) {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || company == null || company.equals("") || !type.equals("0") && !type.equals("1") && !type.equals("")) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class StatisticRestController {
         }
         List<StatisticByMonthDto> statisticByYearList = statisticService.getStatisticByMonthAndCompany(startTime, endTime, type, company);
         if (statisticByYearList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(statisticByYearList, HttpStatus.OK);
     }
@@ -121,7 +121,7 @@ public class StatisticRestController {
                                                                                  @PathVariable String company) {
         if (type.equals("all")){ type = ""; }
         try {
-            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) && company == null && company.equals("") && !type.equals("0") && !type.equals("1") && !type.equals("")) {
+            if (LocalDate.parse(startTime).plusDays(1).isAfter(LocalDate.parse(endTime)) || company == null || company.equals("") || !type.equals("0") && !type.equals("1") && !type.equals("")) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
@@ -129,7 +129,7 @@ public class StatisticRestController {
         }
         List<StatisticByYearDto> StatisticByYearDtoList = statisticService.getStatisticByYearAndCompany(startTime, endTime, type, company);
         if (StatisticByYearDtoList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(StatisticByYearDtoList, HttpStatus.OK);
     }

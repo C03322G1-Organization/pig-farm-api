@@ -24,7 +24,6 @@ public class ExportService implements IExportService {
      * @Param: pageable
      */
     @Override
-
     public Page<ExportDto> listAll(Pageable pageable, String codeExport, String company, String nameEmployee) {
         return iExportRepository.listAllExport(pageable, "%" + codeExport + "%", "%" + company + "%" , "%" +  nameEmployee + "%");
     }
@@ -57,6 +56,7 @@ public class ExportService implements IExportService {
                 exportDto.getCompany(),
                 exportDto.getPrice(),
                 exportDto.getTypePigs(),exportDto.getAmount(),exportDto.getKilogram(), exportDto.getSaleDate());
+        iExportRepository.updateBuildDate(exportDto.getSaleDate(),exportDto.getPigstyDto().getId());
     }
 
     /**
@@ -69,6 +69,7 @@ public class ExportService implements IExportService {
         iExportRepository.update(export.getPigsty().getId(), export.getEmployee().getId(), export.getCodeExport(), export.getCompany(),
                  export.getPrice(), export.getTypePigs(),export.getAmount(),export.getKilogram(), export.getSaleDate(),
                 export.getId());
+        iExportRepository.updateBuildDate(export.getSaleDate(),export.getPigsty().getId());
     }
 
     /**

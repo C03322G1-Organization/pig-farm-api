@@ -94,4 +94,9 @@ public class PigstyService implements IPigstyService {
         }
         return true;
     }
+    @Override
+    public List<PigstyDto> findListAddPig() {
+        return pigstyRepository.findListAddPig();
+    }
+
 }

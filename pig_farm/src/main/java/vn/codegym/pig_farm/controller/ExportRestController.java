@@ -86,9 +86,6 @@ public class ExportRestController {
 
     @PostMapping("/create")
     public ResponseEntity<Object> create(@Validated @RequestBody vn.codegym.pig_farm.dto.ExportDto exportDto, BindingResult bindingResult) {
-        if (bindingResult.hasFieldErrors()) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
         iExportService.create(exportDto);
         return new ResponseEntity<>(exportDto, HttpStatus.CREATED);
     }

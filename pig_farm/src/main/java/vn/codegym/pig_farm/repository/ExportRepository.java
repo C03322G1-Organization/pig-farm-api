@@ -140,4 +140,8 @@ public interface ExportRepository extends JpaRepository<Export, Integer> {
      */
     @Query(value = "SELECT code_export FROM export where code_export=:codeExport", nativeQuery = true)
     String exitCode(@Param("codeExport") String codeExport);
+
+    @Modifying
+    @Query(value = "update pigsty set build_date=:buildDate where id=:id", nativeQuery = true)
+    void updateBuildDate(@Param("buildDate") LocalDate buildDate, @Param("id") int id);
 }

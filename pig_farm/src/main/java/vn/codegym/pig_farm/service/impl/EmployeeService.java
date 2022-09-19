@@ -106,6 +106,7 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public void deleteEmployee(int id) {
         iEmployeeRepository.deleteEmployee(id);
+        iEmployeeRepository.deleteAppUser(id);
     }
 
     /**

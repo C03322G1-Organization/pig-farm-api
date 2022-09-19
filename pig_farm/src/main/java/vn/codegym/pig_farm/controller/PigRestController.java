@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vn.codegym.pig_farm.dto.PigDto;
+import vn.codegym.pig_farm.dto.projections.PigstyDto;
 import vn.codegym.pig_farm.entity.Pig;
 import vn.codegym.pig_farm.entity.Pigsty;
 import vn.codegym.pig_farm.service.IPigService;
@@ -172,4 +173,10 @@ public class PigRestController {
     public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
         return new ResponseEntity<>(pigService.existsCode(code), HttpStatus.OK);
     }
+
+    @GetMapping("/list/addPig")
+    public ResponseEntity<List<PigstyDto>> getListAddPig() {
+        return new ResponseEntity<>(pigstyService.findListAddPig(), HttpStatus.OK);
+    }
+
 }

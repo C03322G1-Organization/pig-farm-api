@@ -61,6 +61,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "update employee set is_deleted = 1 where id = :id", nativeQuery = true)
     void deleteEmployee(@Param("id") int id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update app_user set is_deleted = 1 where id = :id", nativeQuery = true)
+    void deleteAppUser(@Param("id") int id);
+
     /**
      * @return List employee
      * @Creator HungNQ
