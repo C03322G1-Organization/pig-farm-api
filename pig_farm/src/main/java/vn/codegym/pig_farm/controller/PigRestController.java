@@ -173,10 +173,10 @@ public class PigRestController {
     public ResponseEntity<?> checkCode(@PathVariable("code") String code) {
         return new ResponseEntity<>(pigService.existsCode(code), HttpStatus.OK);
     }
-
-    @GetMapping("/list/addPig")
-    public ResponseEntity<List<PigstyDto>> getListAddPig() {
-        return new ResponseEntity<>(pigstyService.findListAddPig(), HttpStatus.OK);
+    @GetMapping("/list/addPig/{id}")
+    public ResponseEntity<List<PigstyDto>> getListAddPig(@PathVariable("id") int id) {
+        return new ResponseEntity<>(pigstyService.findListAddPig(id), HttpStatus.OK);
     }
+
 
 }
