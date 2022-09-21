@@ -33,7 +33,7 @@ public class StorageRestController_getCreateStorage {
     public void createStorage_food_type_13() throws Exception {
 
         StorageDto storageDto = new StorageDto();
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-10-05));
 
@@ -56,7 +56,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-10-05));
 
@@ -79,7 +79,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-10-05));
 
@@ -124,7 +124,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo nái");
-        storageDto.setAmount(-1);
+        storageDto.setAmount(-1.0);
         storageDto.setUnit("Kg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-02-05));
 
@@ -147,7 +147,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo con");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setDate(LocalDate.ofEpochDay(2000-10-05));
 
         this.mockMvc
@@ -169,7 +169,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo con");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("");
         storageDto.setDate(LocalDate.ofEpochDay(2000-10-05));
 
@@ -192,7 +192,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo nái");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kgggggggggggggggggggggggggggggg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-02-05));
 
@@ -215,7 +215,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo nái");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kg");
 
         this.mockMvc
@@ -237,7 +237,7 @@ public class StorageRestController_getCreateStorage {
 
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo nái");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-50-50));
 
@@ -259,7 +259,7 @@ public class StorageRestController_getCreateStorage {
     public void createStorage_all_item_18() throws Exception {
         StorageDto storageDto = new StorageDto();
         storageDto.setFoodType("Heo nái");
-        storageDto.setAmount(15);
+        storageDto.setAmount(15.0);
         storageDto.setUnit("Kg");
         storageDto.setDate(LocalDate.ofEpochDay(2000-02-05));
 

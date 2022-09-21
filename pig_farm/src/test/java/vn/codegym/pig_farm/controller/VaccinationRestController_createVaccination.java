@@ -258,7 +258,7 @@ public class VaccinationRestController_createVaccination {
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
-        vaccinationDto.setPigsty(pigsty);
+        vaccinationDto.setPigstyCode(pigsty);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/vaccination/create")

@@ -118,7 +118,7 @@ public class ExportRestController_createExport {
 
         EmployDto employDto = new EmployDto();
         employDto.setId(1);
-        exportDto.setEmployeeDto(employDto);
+        exportDto.setEmployDto(employDto);
         PigstyDto pigstyDto = new PigstyDto();
         pigstyDto.setId(1);
         exportDto.setPigstyDto(pigstyDto);

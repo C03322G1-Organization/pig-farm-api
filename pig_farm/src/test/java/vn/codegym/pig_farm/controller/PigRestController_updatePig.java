@@ -9,6 +9,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import vn.codegym.pig_farm.dto.PigDto;
 import vn.codegym.pig_farm.entity.Pigsty;
 
+import java.time.LocalDate;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,16 +36,16 @@ public class PigRestController_updatePig {
     public void updatePig_code_13() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode(null);
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -62,16 +64,16 @@ public class PigRestController_updatePig {
     public void updatePig_code_14() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -90,16 +92,16 @@ public class PigRestController_updatePig {
     public void updatePig_dateIn_14() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse(""));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -120,15 +122,15 @@ public class PigRestController_updatePig {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
         pigDTO.setDateIn(null);
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -147,16 +149,16 @@ public class PigRestController_updatePig {
     public void updatePig_dateOut_14() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML002");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse(""));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -176,16 +178,16 @@ public class PigRestController_updatePig {
     public void updatePig_dateOut_13() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML002");
-        pigDTO.setDateIn("2022-01-01");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
         pigDTO.setDateOut(null);
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -204,16 +206,16 @@ public class PigRestController_updatePig {
     public void updatePig_status_14() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML002");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse(""));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -233,16 +235,16 @@ public class PigRestController_updatePig {
     public void updatePig_status_13() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode(null);
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus(null);
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -261,16 +263,16 @@ public class PigRestController_updatePig {
     public void updatePig_weight_14() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("");
+        pigDTO.setWeight(0.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -290,8 +292,8 @@ public class PigRestController_updatePig {
     public void updatePig_weight_13() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
         pigDTO.setWeight(null);
 
@@ -299,7 +301,7 @@ public class PigRestController_updatePig {
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -318,16 +320,16 @@ public class PigRestController_updatePig {
     public void updatePig_weight_15() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("0");
+        pigDTO.setWeight(0.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -346,16 +348,16 @@ public class PigRestController_updatePig {
     public void updatePig_weight_16() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("150");
+        pigDTO.setWeight(150.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -374,16 +376,16 @@ public class PigRestController_updatePig {
     public void updatePig_id_14() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -403,16 +405,16 @@ public class PigRestController_updatePig {
     public void updatePig_id_13() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(null);
         pigDTO.setPigsty(pigsty);
 
-        pigDTO.setIsDeleted(false);
+        pigDTO.setDeleted(false);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")
@@ -432,15 +434,15 @@ public class PigRestController_updatePig {
     public void updatePig_delete_13() throws Exception {
         PigDto pigDTO = new PigDto();
         pigDTO.setCode("ML001");
-        pigDTO.setDateIn("2022-01-01");
-        pigDTO.setDateOut("2022-02-02");
+        pigDTO.setDateIn(LocalDate.parse("2022-01-01"));
+        pigDTO.setDateOut(LocalDate.parse("2022-02-02"));
         pigDTO.setStatus("1");
-        pigDTO.setWeight("1");
+        pigDTO.setWeight(1.0);
 
         Pigsty pigsty = new Pigsty();
         pigsty.setId(1);
         pigDTO.setPigsty(pigsty);
-        pigDTO.setIsDeleted(null);
+        pigDTO.setDeleted(null);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pig/update/2")

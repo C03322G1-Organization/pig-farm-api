@@ -140,7 +140,7 @@ public class NotificationRestController {
      * @return HttpStatus: Http 400 NO_CONTENT
      */
     @GetMapping("/page")
-    private ResponseEntity<Page<NotificationDto>> findAllNotification(@PageableDefault(5) Pageable pageable,
+    public ResponseEntity<Page<NotificationDto>> findAllNotification(@PageableDefault(5) Pageable pageable,
                                                                       @RequestParam Optional<String> content) {
         String searchContent = content.orElse("");
         Page<NotificationDto> notifications = notificationService.findAllNotification(pageable, searchContent);

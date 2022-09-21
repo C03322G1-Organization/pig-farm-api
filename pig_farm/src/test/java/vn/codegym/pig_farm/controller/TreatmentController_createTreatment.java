@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import vn.codegym.pig_farm.dto.PigDto;
 import vn.codegym.pig_farm.dto.TreatmentDto;
+import vn.codegym.pig_farm.entity.Pig;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,9 +41,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -68,9 +70,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -96,9 +98,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -125,9 +127,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -154,9 +156,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -183,9 +185,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -213,9 +215,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -242,9 +244,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -271,9 +273,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -299,9 +301,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -327,9 +329,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases(null);
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -356,9 +358,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -384,9 +386,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("a");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -412,9 +414,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("hsgdsaghdgsadgajgdakgdkagdgdhsagdhsaghdgsajdgsajkdgsajgdsagdksadksadkasgdgsdgsadgasgdsafdsadja");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -440,9 +442,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine(null);
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -468,9 +470,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -496,9 +498,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("a");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -525,9 +527,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abcsfdfsadfsahdfsahfdhsafdhfadshfdsjfgsgdjasgkhÂSDGADJGSADGSGDSGDHGSHGDHSGDHGSHGDSHGDHGS");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -553,9 +555,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(null);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")
@@ -581,9 +583,9 @@ public class TreatmentController_createTreatment {
         treatmentDto.setDiseases("cúm");
         treatmentDto.setMedicine("abc");
         treatmentDto.setDeleted(false);
-        PigDto pigDto = new PigDto();
+        Pig pigDto = new Pig();
         pigDto.setId(2);
-        treatmentDto.setPigDto(pigDto);
+        treatmentDto.setPig(pigDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/api/treatment/v1")

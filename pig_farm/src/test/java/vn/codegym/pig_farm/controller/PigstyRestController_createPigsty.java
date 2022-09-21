@@ -155,7 +155,7 @@ public class PigstyRestController_createPigsty {
 
         EmployDto employDto = new EmployDto();
         employDto.setId(1);
-        pigstyDto.setEmployDto(employDto);
+        pigstyDto.setEmployee(employDto);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
                         .post("/pigsty/createPigsty")

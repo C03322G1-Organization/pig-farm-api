@@ -67,7 +67,7 @@ public class FoodRestController_create {
         FoodDto foodDto = new FoodDto();
         Storage storage = new Storage();
         Pigsty pigsty = new Pigsty();
-        foodDto.setAmount(0);
+        foodDto.setAmount(0.0);
         foodDto.setUnit("");
         storage.setId(1);
         foodDto.setStorage(storage);
@@ -95,7 +95,7 @@ public class FoodRestController_create {
         FoodDto foodDto = new FoodDto();
         Storage storage = new Storage();
         Pigsty pigsty = new Pigsty();
-        foodDto.setAmount(-1);
+        foodDto.setAmount(-1.0);
         foodDto.setUnit("oke");
         storage.setId(1);
         foodDto.setStorage(storage);
@@ -123,7 +123,7 @@ public class FoodRestController_create {
         FoodDto foodDto = new FoodDto();
         Storage storage = new Storage();
         Pigsty pigsty = new Pigsty();
-        foodDto.setAmount(-1);
+        foodDto.setAmount(-1.0);
         foodDto.setUnit("oke");
         storage.setId(1);
         foodDto.setStorage(storage);
@@ -151,7 +151,7 @@ public class FoodRestController_create {
         FoodDto foodDto = new FoodDto();
         Storage storage = new Storage();
         Pigsty pigsty = new Pigsty();
-        foodDto.setAmount(10001);
+        foodDto.setAmount(10001.0);
         foodDto.setUnit("oke");
         storage.setId(1);
         foodDto.setStorage(storage);
@@ -179,7 +179,7 @@ public class FoodRestController_create {
         FoodDto foodDto = new FoodDto();
         Storage storage = new Storage();
         Pigsty pigsty = new Pigsty();
-        foodDto.setAmount(10);
+        foodDto.setAmount(10.0);
         foodDto.setUnit("oke");
         storage.setId(1);
         foodDto.setStorage(storage);
