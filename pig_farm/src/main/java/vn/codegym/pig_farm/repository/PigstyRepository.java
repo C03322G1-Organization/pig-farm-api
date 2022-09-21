@@ -100,7 +100,7 @@ public interface PigstyRepository extends JpaRepository<Pigsty, Integer> {
             "from pigsty p ", nativeQuery = true)
     List<String> checkExistsCode();
 
-    @Query(value = "select pigsty.id,pigsty.code,pigsty.max_number from pigsty join pig p on pigsty.id = p.pigsty_id group by(p.pigsty_id) having count(p.pigsty_id) < pigsty.max_number;", nativeQuery = true)
-    List<PigstyDto> findListAddPig();
+    @Query(value = "select pigsty.id,pigsty.code,pigsty.max_number from pigsty left join pig p on pigsty.id = p.pigsty_id group by(p.pigsty_id) having (pigsty.id =:id ||count(p.pigsty_id) < pigsty.max_number);", nativeQuery = true)
+    List<PigstyDto> findListAddPig(@Param("id") int id);
 
 }

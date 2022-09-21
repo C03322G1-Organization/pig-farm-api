@@ -64,6 +64,6 @@ public interface IPigstyService {
      */
     Boolean existsCode(String code);
 
-    List<PigstyDto> findListAddPig();
+    List<PigstyDto> findListAddPig(int id);
 
 }

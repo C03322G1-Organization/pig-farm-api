@@ -22,10 +22,10 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      *
      * @param name
      */
-    @Query(value = "select * from app_user a where a.username = :name", nativeQuery = true)
+    @Query(value = "select * from app_user a where a.username = :name and is_deleted = 0", nativeQuery = true)
     AppUser findAppUserByName(@Param("name") String name);
 
-    @Query(value = "SELECT username from app_user where username = ?1", nativeQuery = true)
+    @Query(value = "SELECT username from app_user where username = ?1 and is_deleted = 0", nativeQuery = true)
     String existsByUserName(String username);
 
     @Modifying
