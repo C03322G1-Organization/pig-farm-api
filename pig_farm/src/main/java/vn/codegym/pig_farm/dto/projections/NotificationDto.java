@@ -1,9 +1,12 @@
-package vn.codegym.pig_farm.dto;
+package vn.codegym.pig_farm.dto.projections;
 
 import java.time.LocalDate;
 
-public interface NotificationProjection {
-
+/**
+ * Create by HaiTV
+ * Date : 08/09/2022
+ */
+public interface NotificationDto {
     Integer getId();
 
     String getTitle();
@@ -13,4 +16,5 @@ public interface NotificationProjection {
     LocalDate getSubmittedDate();
 
     String getImage();
+
 }

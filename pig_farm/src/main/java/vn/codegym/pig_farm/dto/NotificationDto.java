@@ -18,8 +18,10 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationDto implements Validator {
+public class NotificationDto {
     private Integer id;
+    @NotBlank(message = "Vui lòng không để trống")
+    private String title;
     @NotBlank(message = "Vui lòng không để trống")
     @Size(max = 1000, message = "Nội dung không quá 1000 kí tự")
     private String content;
@@ -27,14 +29,4 @@ public class NotificationDto implements Validator {
     @NotBlank(message = "Vui lòng không để trống")
     private String image;
     private Boolean isDeleted;
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
 }
